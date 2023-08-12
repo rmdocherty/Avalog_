@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ceuy3rqhqr154"
-path="res://.godot/imported/main_menu_bg_no_sky.png-fd3f722cc67f9e538b30a0dae9c65b2a.ctex"
+uid="uid://dhfn3v43peu8x"
+path="res://.godot/imported/maiden.png-e73f39ea23c99164bb80a7eca08e141d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/menus/main_menu_bg_no_sky.png"
-dest_files=["res://.godot/imported/main_menu_bg_no_sky.png-fd3f722cc67f9e538b30a0dae9c65b2a.ctex"]
+source_file="res://assets/pieces/morgana/maiden.png"
+dest_files=["res://.godot/imported/maiden.png-e73f39ea23c99164bb80a7eca08e141d.ctex"]
 
 [params]
 

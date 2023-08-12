@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ceuy3rqhqr154"
-path="res://.godot/imported/main_menu_bg_no_sky.png-fd3f722cc67f9e538b30a0dae9c65b2a.ctex"
+uid="uid://ban074gi5g6r4"
+path="res://.godot/imported/rogue.png-a130eb83acc63fe0982341a7999f4877.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/menus/main_menu_bg_no_sky.png"
-dest_files=["res://.godot/imported/main_menu_bg_no_sky.png-fd3f722cc67f9e538b30a0dae9c65b2a.ctex"]
+source_file="res://assets/pieces/albion/rogue.png"
+dest_files=["res://.godot/imported/rogue.png-a130eb83acc63fe0982341a7999f4877.ctex"]
 
 [params]
 

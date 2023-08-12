@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ceuy3rqhqr154"
-path="res://.godot/imported/main_menu_bg_no_sky.png-fd3f722cc67f9e538b30a0dae9c65b2a.ctex"
+uid="uid://d0rlw3ma5uetw"
+path="res://.godot/imported/phalanx.png-6086d2fde6bbdbb437fbdbad3c043d0f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/menus/main_menu_bg_no_sky.png"
-dest_files=["res://.godot/imported/main_menu_bg_no_sky.png-fd3f722cc67f9e538b30a0dae9c65b2a.ctex"]
+source_file="res://assets/pieces/rome/phalanx.png"
+dest_files=["res://.godot/imported/phalanx.png-6086d2fde6bbdbb437fbdbad3c043d0f.ctex"]
 
 [params]
 

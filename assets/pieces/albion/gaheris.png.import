@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ceuy3rqhqr154"
-path="res://.godot/imported/main_menu_bg_no_sky.png-fd3f722cc67f9e538b30a0dae9c65b2a.ctex"
+uid="uid://dgp2ipqqjofvl"
+path="res://.godot/imported/gaheris.png-dee427a9b768ff034bb43bb6403bf48d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/menus/main_menu_bg_no_sky.png"
-dest_files=["res://.godot/imported/main_menu_bg_no_sky.png-fd3f722cc67f9e538b30a0dae9c65b2a.ctex"]
+source_file="res://assets/pieces/albion/gaheris.png"
+dest_files=["res://.godot/imported/gaheris.png-dee427a9b768ff034bb43bb6403bf48d.ctex"]
 
 [params]
 

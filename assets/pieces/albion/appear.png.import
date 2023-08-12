@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ceuy3rqhqr154"
-path="res://.godot/imported/main_menu_bg_no_sky.png-fd3f722cc67f9e538b30a0dae9c65b2a.ctex"
+uid="uid://bxwc6s64c80ld"
+path="res://.godot/imported/appear.png-057504b1d0da4216c2ac61a97f2d5f88.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/menus/main_menu_bg_no_sky.png"
-dest_files=["res://.godot/imported/main_menu_bg_no_sky.png-fd3f722cc67f9e538b30a0dae9c65b2a.ctex"]
+source_file="res://assets/pieces/albion/appear.png"
+dest_files=["res://.godot/imported/appear.png-057504b1d0da4216c2ac61a97f2d5f88.ctex"]
 
 [params]
 

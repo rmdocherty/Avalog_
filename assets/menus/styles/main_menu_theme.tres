@@ -9,3 +9,4 @@ Button/colors/font_color = Color(1, 1, 1, 1)
 Button/colors/font_hover_color = Color(0.0901961, 0.360784, 0.545098, 1)
 Button/font_sizes/font_size = 60
 Button/fonts/font = ExtResource("1_4nt2o")
+Button/styles/normal = null

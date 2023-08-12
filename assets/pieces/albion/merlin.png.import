@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ceuy3rqhqr154"
-path="res://.godot/imported/main_menu_bg_no_sky.png-fd3f722cc67f9e538b30a0dae9c65b2a.ctex"
+uid="uid://cka6nt07n86pk"
+path="res://.godot/imported/merlin.png-cc78da8aca5b739d023bae6a9c390dca.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/menus/main_menu_bg_no_sky.png"
-dest_files=["res://.godot/imported/main_menu_bg_no_sky.png-fd3f722cc67f9e538b30a0dae9c65b2a.ctex"]
+source_file="res://assets/pieces/albion/merlin.png"
+dest_files=["res://.godot/imported/merlin.png-cc78da8aca5b739d023bae6a9c390dca.ctex"]
 
 [params]
 
