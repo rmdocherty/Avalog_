@@ -11,5 +11,10 @@ config_version=5
 [application]
 
 config/name="Avalog_2"
+run/main_scene="res://scenes/menus/main_menu.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="res://icon.png"
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0

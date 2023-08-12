@@ -1,0 +1,11 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://8r67cpau5hxr"]
+
+[ext_resource type="FontFile" uid="uid://dig8hjpqiefp" path="res://assets/menus/styles/Bitfantasy.ttf" id="1_4nt2o"]
+
+[resource]
+/font_sizes/Button = 28
+/font_sizes/Foo = 16
+Button/colors/font_color = Color(1, 1, 1, 1)
+Button/colors/font_hover_color = Color(0.0901961, 0.360784, 0.545098, 1)
+Button/font_sizes/font_size = 60
+Button/fonts/font = ExtResource("1_4nt2o")

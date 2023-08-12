@@ -1,0 +1,9 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://c7k4afipkahja"]
+
+[ext_resource type="FontFile" uid="uid://dig8hjpqiefp" path="res://assets/menus/styles/Bitfantasy.ttf" id="1_6iuth"]
+
+[resource]
+font = ExtResource("1_6iuth")
+font_size = 84
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(4, 4)
