@@ -11,9 +11,18 @@ config_version=5
 [application]
 
 config/name="Avalog_2"
-run/main_scene="res://scenes/menus/main_menu.tscn"
+run/main_scene="res://scenes/menus/pre_game/main_menu.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
 config/icon="res://icon.png"
+
+[autoload]
+
+cst="*res://scenes/constants.gd"
+
+[display]
+
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
 
 [rendering]
 

@@ -1,0 +1,488 @@
+[gd_scene load_steps=36 format=3 uid="uid://dc1s4ldcnoqel"]
+
+[ext_resource type="Script" path="res://scenes/menus/pre_game/mode_select_menu.gd" id="1_55r0o"]
+[ext_resource type="Texture2D" uid="uid://bwaumvo2l7ve8" path="res://assets/menus/main_menu_bg.png" id="2_j434u"]
+[ext_resource type="Theme" uid="uid://csq3hvxncciso" path="res://assets/menus/styles/mode_select_theme.tres" id="3_4xegf"]
+[ext_resource type="Texture2D" uid="uid://bvovwllxi34ac" path="res://assets/menus/patches/blue_patch.png" id="4_7xkb1"]
+[ext_resource type="Texture2D" uid="uid://ciqg5qdoi8xdu" path="res://assets/menus/patches/red_patch.png" id="5_gm6xq"]
+[ext_resource type="Texture2D" uid="uid://dgrysv5ovt0f3" path="res://assets/menus/patches/green_patch.png" id="6_5yv6l"]
+[ext_resource type="Texture2D" uid="uid://cjld7p2ub00pu" path="res://assets/menus/patches/yellow_patch.png" id="7_p88lv"]
+[ext_resource type="Texture2D" uid="uid://mdy5i51fsdek" path="res://assets/menus/patches/black_patch.png" id="8_fcm8s"]
+[ext_resource type="Texture2D" uid="uid://dpyn4s6dq6eh1" path="res://assets/pieces/albion/arthur.png" id="9_jm3eg"]
+[ext_resource type="Shader" path="res://scenes/pieces/Piece.gdshader" id="9_u01ax"]
+[ext_resource type="Texture2D" uid="uid://b3hui022cb4cj" path="res://assets/pieces/rome/count.png" id="10_gmut8"]
+[ext_resource type="Texture2D" uid="uid://m3cmypbyyc6x" path="res://assets/maps/albion_map.png" id="10_imj8j"]
+[ext_resource type="Texture2D" uid="uid://cf7i6n68okt4l" path="res://assets/maps/italia.png" id="11_x2i0k"]
+[ext_resource type="Texture2D" uid="uid://ckc5yj4yp7r4d" path="res://assets/pieces/bretagne/gradlon.png" id="12_vet0w"]
+[ext_resource type="Texture2D" uid="uid://bispudgokietq" path="res://assets/pieces/turkiye/roxelena.png" id="13_7gnc8"]
+[ext_resource type="StyleBox" uid="uid://cfx3bp5d46vw" path="res://assets/menus/styles/play_btn_style.tres" id="13_gj3uw"]
+[ext_resource type="Texture2D" uid="uid://cjgksav2ho5sx" path="res://assets/pieces/morgana/morgana.png" id="14_fhgjo"]
+[ext_resource type="Texture2D" uid="uid://d332iqxel0wlx" path="res://assets/maps/bretagne.png" id="14_ivik3"]
+[ext_resource type="Texture2D" uid="uid://dwg03tquenpps" path="res://assets/maps/turkiye.png" id="15_37f58"]
+[ext_resource type="Texture2D" uid="uid://3jv2m5rj47v0" path="res://assets/maps/morgana.png" id="16_ctpyf"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_eg8xb"]
+shader = ExtResource("9_u01ax")
+shader_parameter/tol = 0.12
+shader_parameter/original_palette_num = null
+shader_parameter/replace_palette_num = null
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o1aa4"]
+atlas = ExtResource("9_jm3eg")
+region = Rect2(0, 0, 16, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cbb06"]
+atlas = ExtResource("9_jm3eg")
+region = Rect2(16, 0, 16, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tg172"]
+atlas = ExtResource("10_gmut8")
+region = Rect2(0, 0, 16, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s02g4"]
+atlas = ExtResource("10_gmut8")
+region = Rect2(16, 0, 16, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1npce"]
+atlas = ExtResource("12_vet0w")
+region = Rect2(0, 0, 16, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yn44a"]
+atlas = ExtResource("12_vet0w")
+region = Rect2(16, 0, 16, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oaxm1"]
+atlas = ExtResource("13_7gnc8")
+region = Rect2(0, 0, 16, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wshrt"]
+atlas = ExtResource("13_7gnc8")
+region = Rect2(16, 0, 16, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fke2h"]
+atlas = ExtResource("14_fhgjo")
+region = Rect2(0, 0, 16, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w1vuc"]
+atlas = ExtResource("14_fhgjo")
+region = Rect2(16, 0, 16, 17)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_81vch"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"-1_passive",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o1aa4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cbb06")
+}],
+"loop": true,
+"name": &"0_passive",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tg172")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s02g4")
+}],
+"loop": true,
+"name": &"1_passive",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1npce")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yn44a")
+}],
+"loop": true,
+"name": &"2_passive",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oaxm1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wshrt")
+}],
+"loop": true,
+"name": &"3_passive",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fke2h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w1vuc")
+}],
+"loop": true,
+"name": &"4_passive",
+"speed": 3.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_m2duo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_imj8j")
+}],
+"loop": false,
+"name": &"0",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_x2i0k")
+}],
+"loop": false,
+"name": &"1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14_ivik3")
+}],
+"loop": false,
+"name": &"2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("15_37f58")
+}],
+"loop": false,
+"name": &"3",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("16_ctpyf")
+}],
+"loop": false,
+"name": &"4",
+"speed": 5.0
+}]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_s0rqv"]
+resource_local_to_scene = true
+shader = ExtResource("9_u01ax")
+shader_parameter/tol = 0.12
+shader_parameter/original_palette_num = null
+shader_parameter/replace_palette_num = null
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bkn0u"]
+bg_color = Color(0.298039, 0.698039, 0.376471, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+expand_margin_left = 4.0
+expand_margin_top = 4.0
+expand_margin_right = 4.0
+expand_margin_bottom = 4.0
+shadow_size = 10
+
+[node name="mode_select_menu" type="Node2D"]
+script = ExtResource("1_55r0o")
+
+[node name="Canv" type="CanvasLayer" parent="."]
+
+[node name="BG" type="TextureRect" parent="Canv"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_j434u")
+expand_mode = 4
+stretch_mode = 1
+
+[node name="Cont" type="VBoxContainer" parent="Canv"]
+anchors_preset = -1
+anchor_left = 0.05
+anchor_top = 0.05
+anchor_right = 0.95
+anchor_bottom = 0.95
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 50
+
+[node name="GameMode" type="HBoxContainer" parent="Canv/Cont"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="Canv/Cont/GameMode"]
+layout_mode = 2
+theme = ExtResource("3_4xegf")
+text = "Game Mode:"
+
+[node name="Picker" type="OptionButton" parent="Canv/Cont/GameMode"]
+layout_mode = 2
+theme = ExtResource("3_4xegf")
+item_count = 3
+selected = 0
+popup/item_0/text = "classic"
+popup/item_0/id = 0
+popup/item_1/text = "draft"
+popup/item_1/id = 1
+popup/item_2/text = "custom"
+popup/item_2/id = 2
+
+[node name="TimeControl" type="HBoxContainer" parent="Canv/Cont"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="Canv/Cont/TimeControl"]
+layout_mode = 2
+theme = ExtResource("3_4xegf")
+text = "Time Control:"
+
+[node name="Picker" type="OptionButton" parent="Canv/Cont/TimeControl"]
+layout_mode = 2
+theme = ExtResource("3_4xegf")
+item_count = 4
+selected = 0
+popup/item_0/text = "5+0"
+popup/item_0/id = 0
+popup/item_1/text = "10+0"
+popup/item_1/id = 1
+popup/item_2/text = "30+0"
+popup/item_2/id = 2
+popup/item_3/text = "unlimited"
+popup/item_3/id = 3
+
+[node name="SpritesMapFactions" type="VBoxContainer" parent="Canv/Cont"]
+layout_mode = 2
+
+[node name="NameCont" type="HBoxContainer" parent="Canv/Cont/SpritesMapFactions"]
+layout_mode = 2
+alignment = 1
+
+[node name="P1" type="HBoxContainer" parent="Canv/Cont/SpritesMapFactions/NameCont"]
+layout_mode = 2
+theme_override_constants/separation = 75
+
+[node name="Name" type="LineEdit" parent="Canv/Cont/SpritesMapFactions/NameCont/P1"]
+layout_mode = 2
+theme = ExtResource("3_4xegf")
+text = "Arthur"
+placeholder_text = "Arthur
+"
+expand_to_text_length = true
+
+[node name="ColourPicker" type="OptionButton" parent="Canv/Cont/SpritesMapFactions/NameCont/P1"]
+layout_mode = 2
+theme = ExtResource("3_4xegf")
+item_count = 5
+selected = 0
+popup/item_0/text = ""
+popup/item_0/icon = ExtResource("4_7xkb1")
+popup/item_0/id = 0
+popup/item_1/text = ""
+popup/item_1/icon = ExtResource("5_gm6xq")
+popup/item_1/id = 1
+popup/item_2/text = ""
+popup/item_2/icon = ExtResource("6_5yv6l")
+popup/item_2/id = 2
+popup/item_3/text = ""
+popup/item_3/icon = ExtResource("7_p88lv")
+popup/item_3/id = 3
+popup/item_4/text = ""
+popup/item_4/icon = ExtResource("8_fcm8s")
+popup/item_4/id = 4
+
+[node name="spacer" type="HBoxContainer" parent="Canv/Cont/SpritesMapFactions/NameCont"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="P2" type="HBoxContainer" parent="Canv/Cont/SpritesMapFactions/NameCont"]
+layout_mode = 2
+theme_override_constants/separation = 75
+
+[node name="Name" type="LineEdit" parent="Canv/Cont/SpritesMapFactions/NameCont/P2"]
+layout_mode = 2
+theme = ExtResource("3_4xegf")
+text = "Lancelot"
+placeholder_text = "Lancelot
+"
+expand_to_text_length = true
+
+[node name="ColourPicker" type="OptionButton" parent="Canv/Cont/SpritesMapFactions/NameCont/P2"]
+layout_mode = 2
+theme = ExtResource("3_4xegf")
+item_count = 5
+selected = 1
+popup/item_0/text = ""
+popup/item_0/icon = ExtResource("4_7xkb1")
+popup/item_0/id = 0
+popup/item_1/text = ""
+popup/item_1/icon = ExtResource("5_gm6xq")
+popup/item_1/id = 1
+popup/item_2/text = ""
+popup/item_2/icon = ExtResource("6_5yv6l")
+popup/item_2/id = 2
+popup/item_3/text = ""
+popup/item_3/icon = ExtResource("7_p88lv")
+popup/item_3/id = 3
+popup/item_4/text = ""
+popup/item_4/icon = ExtResource("8_fcm8s")
+popup/item_4/id = 4
+
+[node name="SpritesMapBox" type="HBoxContainer" parent="Canv/Cont/SpritesMapFactions"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+
+[node name="P1Parent" type="Control" parent="Canv/Cont/SpritesMapFactions/SpritesMapBox"]
+custom_minimum_size = Vector2(100, 150)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Sprite" type="AnimatedSprite2D" parent="Canv/Cont/SpritesMapFactions/SpritesMapBox/P1Parent"]
+material = SubResource("ShaderMaterial_eg8xb")
+position = Vector2(100, 100)
+scale = Vector2(10, 10)
+sprite_frames = SubResource("SpriteFrames_81vch")
+animation = &"4_passive"
+
+[node name="MapParent" type="Control" parent="Canv/Cont/SpritesMapFactions/SpritesMapBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.4
+
+[node name="Map" type="AnimatedSprite2D" parent="Canv/Cont/SpritesMapFactions/SpritesMapBox/MapParent"]
+position = Vector2(211, 70)
+sprite_frames = SubResource("SpriteFrames_m2duo")
+animation = &"0"
+
+[node name="P2Parent" type="Control" parent="Canv/Cont/SpritesMapFactions/SpritesMapBox"]
+custom_minimum_size = Vector2(100, 150)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Sprite" type="AnimatedSprite2D" parent="Canv/Cont/SpritesMapFactions/SpritesMapBox/P2Parent"]
+material = SubResource("ShaderMaterial_s0rqv")
+position = Vector2(200, 100)
+scale = Vector2(10, 10)
+sprite_frames = SubResource("SpriteFrames_81vch")
+animation = &"0_passive"
+
+[node name="Factions" type="HBoxContainer" parent="Canv/Cont/SpritesMapFactions"]
+layout_mode = 2
+
+[node name="P1" type="OptionButton" parent="Canv/Cont/SpritesMapFactions/Factions"]
+visible = false
+layout_mode = 2
+theme = ExtResource("3_4xegf")
+item_count = 5
+selected = 0
+popup/item_0/text = "Albion"
+popup/item_0/id = 0
+popup/item_1/text = "Rome"
+popup/item_1/id = 1
+popup/item_2/text = "Bretange"
+popup/item_2/id = 2
+popup/item_3/text = "Turkiye"
+popup/item_3/id = 3
+popup/item_4/text = "Gore"
+popup/item_4/id = 4
+
+[node name="Map" type="HBoxContainer" parent="Canv/Cont/SpritesMapFactions/Factions"]
+layout_mode = 2
+size_flags_horizontal = 6
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="Canv/Cont/SpritesMapFactions/Factions/Map"]
+layout_mode = 2
+theme = ExtResource("3_4xegf")
+text = "Map:"
+
+[node name="Faction" type="OptionButton" parent="Canv/Cont/SpritesMapFactions/Factions/Map"]
+layout_mode = 2
+theme = ExtResource("3_4xegf")
+item_count = 5
+selected = 0
+popup/item_0/text = "Albion"
+popup/item_0/id = 0
+popup/item_1/text = "Rome"
+popup/item_1/id = 1
+popup/item_2/text = "Bretange"
+popup/item_2/id = 2
+popup/item_3/text = "Turkiye"
+popup/item_3/id = 3
+popup/item_4/text = "Gore"
+popup/item_4/id = 4
+
+[node name="P2" type="OptionButton" parent="Canv/Cont/SpritesMapFactions/Factions"]
+visible = false
+layout_mode = 2
+theme = ExtResource("3_4xegf")
+item_count = 5
+selected = 0
+popup/item_0/text = "Albion"
+popup/item_0/id = 0
+popup/item_1/text = "Rome"
+popup/item_1/id = 1
+popup/item_2/text = "Bretange"
+popup/item_2/id = 2
+popup/item_3/text = "Turkiye"
+popup/item_3/id = 3
+popup/item_4/text = "Gore"
+popup/item_4/id = 4
+
+[node name="PlayButtons" type="HBoxContainer" parent="Canv/Cont"]
+layout_mode = 2
+
+[node name="OnlineOptions" type="HBoxContainer" parent="Canv/Cont/PlayButtons"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 30
+
+[node name="Host" type="Button" parent="Canv/Cont/PlayButtons/OnlineOptions"]
+layout_mode = 2
+theme = ExtResource("3_4xegf")
+text = "Host"
+
+[node name="Browse" type="Button" parent="Canv/Cont/PlayButtons/OnlineOptions"]
+layout_mode = 2
+theme = ExtResource("3_4xegf")
+text = "Browse"
+
+[node name="spacer" type="HBoxContainer" parent="Canv/Cont/PlayButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.71
+
+[node name="Play" type="Button" parent="Canv/Cont/PlayButtons"]
+layout_mode = 2
+size_flags_horizontal = 10
+theme = ExtResource("3_4xegf")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = ExtResource("13_gj3uw")
+theme_override_styles/hover = SubResource("StyleBoxFlat_bkn0u")
+text = "Play!"
+
+[node name="spacer2" type="HBoxContainer" parent="Canv/Cont/PlayButtons"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+size_flags_stretch_ratio = 3.71
+
+[connection signal="item_selected" from="Canv/Cont/GameMode/Picker" to="." method="game_mode_changed"]
+[connection signal="item_selected" from="Canv/Cont/TimeControl/Picker" to="." method="time_changed"]
+[connection signal="item_selected" from="Canv/Cont/SpritesMapFactions/NameCont/P1/ColourPicker" to="." method="change_spr_palette" binds= [0]]
+[connection signal="item_selected" from="Canv/Cont/SpritesMapFactions/NameCont/P2/ColourPicker" to="." method="change_spr_palette" binds= [1]]
+[connection signal="item_selected" from="Canv/Cont/SpritesMapFactions/Factions/P1" to="." method="set_faction" binds= [0]]
+[connection signal="item_selected" from="Canv/Cont/SpritesMapFactions/Factions/Map/Faction" to="." method="set_map"]
+[connection signal="item_selected" from="Canv/Cont/SpritesMapFactions/Factions/P2" to="." method="set_faction" binds= [1]]

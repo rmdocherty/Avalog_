@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://c1x8md05b6lok" path="res://assets/menus/styles/picker_unfilled.png" id="4_01tpc"]
 
 [resource]
+Button/font_sizes/font_size = 34
+Button/fonts/font = ExtResource("1_vdcxi")
 Label/font_sizes/font_size = 34
 Label/fonts/font = ExtResource("1_vdcxi")
 LineEdit/font_sizes/font_size = 34

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ceuy3rqhqr154"
-path="res://.godot/imported/main_menu_bg_no_sky.png-fd3f722cc67f9e538b30a0dae9c65b2a.ctex"
+uid="uid://m3cmypbyyc6x"
+path="res://.godot/imported/albion_map.png-37c864a5b00b03ca415ff508464c2c8a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/menus/main_menu_bg_no_sky.png"
-dest_files=["res://.godot/imported/main_menu_bg_no_sky.png-fd3f722cc67f9e538b30a0dae9c65b2a.ctex"]
+source_file="res://assets/maps/albion_map.png"
+dest_files=["res://.godot/imported/albion_map.png-37c864a5b00b03ca415ff508464c2c8a.ctex"]
 
 [params]
 
