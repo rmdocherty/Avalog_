@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://dc1s4ldcnoqel"]
+[gd_scene load_steps=39 format=3 uid="uid://dc1s4ldcnoqel"]
 
 [ext_resource type="Script" path="res://scenes/menus/pre_game/mode_select_menu.gd" id="1_55r0o"]
 [ext_resource type="Texture2D" uid="uid://bwaumvo2l7ve8" path="res://assets/menus/main_menu_bg.png" id="2_j434u"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://mdy5i51fsdek" path="res://assets/menus/patches/black_patch.png" id="8_fcm8s"]
 [ext_resource type="Texture2D" uid="uid://dpyn4s6dq6eh1" path="res://assets/pieces/albion/arthur.png" id="9_jm3eg"]
 [ext_resource type="Shader" path="res://scenes/pieces/Piece.gdshader" id="9_u01ax"]
+[ext_resource type="Texture2D" uid="uid://dokgktl6mq6u2" path="res://assets/pieces/mystery.png" id="10_15kok"]
 [ext_resource type="Texture2D" uid="uid://b3hui022cb4cj" path="res://assets/pieces/rome/count.png" id="10_gmut8"]
 [ext_resource type="Texture2D" uid="uid://m3cmypbyyc6x" path="res://assets/maps/albion_map.png" id="10_imj8j"]
 [ext_resource type="Texture2D" uid="uid://cf7i6n68okt4l" path="res://assets/maps/italia.png" id="11_x2i0k"]
@@ -26,6 +27,14 @@ shader = ExtResource("9_u01ax")
 shader_parameter/tol = 0.12
 shader_parameter/original_palette_num = null
 shader_parameter/replace_palette_num = null
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nm4ya"]
+atlas = ExtResource("10_15kok")
+region = Rect2(0, 0, 16, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m4va8"]
+atlas = ExtResource("10_15kok")
+region = Rect2(16, 0, 16, 17)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_o1aa4"]
 atlas = ExtResource("9_jm3eg")
@@ -69,7 +78,13 @@ region = Rect2(16, 0, 16, 17)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_81vch"]
 animations = [{
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nm4ya")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m4va8")
+}],
 "loop": true,
 "name": &"-1_passive",
 "speed": 3.0
@@ -354,7 +369,7 @@ material = SubResource("ShaderMaterial_eg8xb")
 position = Vector2(100, 100)
 scale = Vector2(10, 10)
 sprite_frames = SubResource("SpriteFrames_81vch")
-animation = &"4_passive"
+animation = &"-1_passive"
 
 [node name="MapParent" type="Control" parent="Canv/Cont/SpritesMapFactions/SpritesMapBox"]
 layout_mode = 2

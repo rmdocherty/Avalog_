@@ -4,7 +4,7 @@ var sprs: Array[AnimatedSprite2D] = []
 
 # INIT METHODS
 func _ready() -> void:
-	# loop through each player, init sprites and names
+	# Loop through each player, init sprites and names
 	var names = [cst.uname_1, cst.uname_2]
 	for i in [1, 2]:
 		if cst.network == cst.network_types.LOCAL:
@@ -17,7 +17,7 @@ func _ready() -> void:
 		$Canv/Cont/PlayButtons/OnlineOptions.show()
 
 func set_sprites_init(i: int) -> AnimatedSprite2D:
-	# play passive anim, flip enemy sprite, set shader parameters
+	# Play passive anim, flip enemy sprite, set shader parameters
 	var node_str := "Canv/Cont/SpritesMapFactions/SpritesMapBox/P%sParent/Sprite"
 	var spr: AnimatedSprite2D = get_node(node_str % str(i))
 	spr.play("%s_passive" % str(cst.chosen_factions[i-1]))
@@ -34,14 +34,19 @@ func set_names_init(i: int, player_name: String) -> void:
 # GUI OPTION METHODS
 func game_mode_changed(game_mode: int) -> void:
 	cst.mode = game_mode as cst.modes
-	# hide faction picker if not CUSTOM game mode
+	# Hide faction picker if not CUSTOM game mode
 	var node_str := "Canv/Cont/SpritesMapFactions/Factions/P%s"
 	for i in [1, 2]:
 		var dropdown: OptionButton = get_node(node_str % str(i))
+		dropdown.hide()
 		if game_mode == cst.modes.CUSTOM:
 			dropdown.show()
+		if game_mode == cst.modes.DRAFT:
+			sprs[i - 1].play(("%s_passive" % str(-1)))
+		elif game_mode == cst.modes.CLASSIC:
+			set_faction(0, i - 1)
 		else:
-			dropdown.hide()
+			set_faction(cst.chosen_factions[i - 1], i - 1)
 
 func time_changed(idx: int) -> void:
 	const times := [5, 10, 30, 999]
@@ -63,10 +68,10 @@ func change_spr_palette(palette: int, spr_idx: int) -> void:
 func set_faction(faction: int, player: int) -> void:
 	cst.chosen_factions[player] = faction
 	cst.replace_palettes[player] = faction
-	# switch to new faction's sprites
+	# Switch to new faction's sprites
 	sprs[player].play(("%s_passive" % str(faction)))
 	sprs[player].material.set_shader_parameter("original_palette_num", faction)
 
 func set_map(faction: int) -> void:
-	cst.chosen_map = faction
+	cst.chosen_map = faction as cst.factions
 	$Canv/Cont/SpritesMapFactions/SpritesMapBox/MapParent/Map.play(str(faction))
