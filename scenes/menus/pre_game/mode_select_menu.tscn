@@ -501,3 +501,4 @@ size_flags_stretch_ratio = 3.71
 [connection signal="item_selected" from="Canv/Cont/SpritesMapFactions/Factions/P1" to="." method="set_faction" binds= [0]]
 [connection signal="item_selected" from="Canv/Cont/SpritesMapFactions/Factions/Map/Faction" to="." method="set_map"]
 [connection signal="item_selected" from="Canv/Cont/SpritesMapFactions/Factions/P2" to="." method="set_faction" binds= [1]]
+[connection signal="pressed" from="Canv/Cont/PlayButtons/Play" to="." method="play"]

@@ -75,3 +75,11 @@ func set_faction(faction: int, player: int) -> void:
 func set_map(faction: int) -> void:
 	cst.chosen_map = faction as cst.factions
 	$Canv/Cont/SpritesMapFactions/SpritesMapBox/MapParent/Map.play(str(faction))
+
+# PLAY BUTTONS
+func play() -> void:
+	if cst.mode == cst.modes.DRAFT:
+		pass
+	else:
+		var game_path := "res://scenes/game/game_manager.tscn"
+		cst.load_child_remove_parent(game_path, self)

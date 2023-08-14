@@ -1,4 +1,5 @@
 extends Node
+# if this gets too big, split into 3: constants, settings, helpers 
 
 enum network_types {LOCAL, ONLINE}
 enum modes {CLASSIC, DRAFT, CUSTOM}
@@ -21,6 +22,6 @@ var total_time_seconds := 0
 
 
 func load_child_remove_parent(node_path: String, parent: Node) -> void:
-	var child = load(node_path).instantiate()
+	var child: Node = load(node_path).instantiate()
 	get_tree().get_root().add_child(child)
 	get_tree().get_root().remove_child(parent)

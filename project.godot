@@ -24,6 +24,10 @@ cst="*res://scenes/constants.gd"
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
+[dotnet]
+
+project/assembly_name="Avalog_2"
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
