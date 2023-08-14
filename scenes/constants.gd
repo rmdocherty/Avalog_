@@ -5,6 +5,9 @@ enum network_types {LOCAL, ONLINE}
 enum modes {CLASSIC, DRAFT, CUSTOM}
 enum factions {ALBION, ROME, BRETAGNE, TURKIYE, MORGANA}
 
+enum mv_type {NORMAL, JUMPING, RANGED, NO_ATTACK}
+enum draw_type {LINE, RADIAL}
+
 # Game variables: updated during runtime
 var network := network_types.LOCAL
 var mode := modes.CLASSIC

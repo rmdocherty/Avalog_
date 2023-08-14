@@ -1,10 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://bcfk18fdrro4v"]
+[gd_scene load_steps=4 format=3 uid="uid://bcfk18fdrro4v"]
+
+[ext_resource type="Script" path="res://scenes/pieces/LogicPiece.cs" id="1_m8jgw"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0ceto"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5dm3j"]
 
 [node name="LogicPiece" type="Area2D"]
+script = ExtResource("1_m8jgw")
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_0ceto")
