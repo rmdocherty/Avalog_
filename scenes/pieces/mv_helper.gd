@@ -1,4 +1,5 @@
 extends Node
+class_name mv_helper
 
 func get_arr_fill(n_items: int, value) -> Array:
 	var empty := Array([])
@@ -18,6 +19,6 @@ func get_line_mvs(lines: Array[Vector2], type: cst.mv_type) -> MoveVector:
 	var mv_types := PackedInt32Array(get_arr_fill(n_moves, type))
 	var draw := PackedInt32Array(get_arr_fill(n_moves, cst.draw_type.LINE))
 	
-	var move_vector: MoveVector = MoveVector.instantiate()
+	var move_vector: MoveVector = MoveVector.new()
 	move_vector.set_all(draw, mv_types, to, from, dirs)
 	return move_vector
