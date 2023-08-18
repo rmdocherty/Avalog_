@@ -24,7 +24,7 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_eg8xb"]
 shader = ExtResource("9_u01ax")
-shader_parameter/tol = 0.12
+shader_parameter/tol = 0.01
 shader_parameter/original_palette_num = null
 shader_parameter/replace_palette_num = null
 
@@ -191,7 +191,7 @@ animations = [{
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_s0rqv"]
 resource_local_to_scene = true
 shader = ExtResource("9_u01ax")
-shader_parameter/tol = 0.12
+shader_parameter/tol = 0.01
 shader_parameter/original_palette_num = null
 shader_parameter/replace_palette_num = null
 
