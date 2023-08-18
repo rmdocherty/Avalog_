@@ -8,14 +8,18 @@ func _ready():
 	var p: Area2D = piece.instantiate()
 	var q: Area2D = piece.instantiate()
 	q.position = Vector2(0, 45)
+	q.colour = cst.colour.BLACK
 	add_child(p)
 	add_child(q)
 	
-	var start = Time.get_ticks_usec()
-	var out = p.get_valid_moves(mvs)
-	var end = Time.get_ticks_usec()
-	print(out, end-start)
 	var start2 = Time.get_ticks_usec()
 	var out2 = q.get_valid_moves(mvs)
 	var end2 = Time.get_ticks_usec()
 	print(out2, end2-start2)
+	var start = Time.get_ticks_usec()
+	var out = p.get_valid_moves(mvs)
+
+	p.move(Vector2(0, 40))
+	var end = Time.get_ticks_usec()
+	print(out, end-start)
+	

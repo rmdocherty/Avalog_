@@ -1,5 +1,5 @@
 shader_type canvas_item;
-
+// Can i rewrite this as one large vec4 using a pointer?
 // Which color you want to change
 const vec4 albion[8] = vec4[8] (
     vec4(0.2235, 0.4706, 0.6588, 1.0000), //pawn left arm

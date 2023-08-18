@@ -7,7 +7,7 @@ enum factions {ALBION, ROME, BRETAGNE, TURKIYE, MORGANA}
 
 enum mv_type {NORMAL, JUMPING, RANGED, NO_ATTACK}
 enum draw_type {LINE, RADIAL}
-enum colour {WHITE, BLACK}
+enum colour {WHITE, BLACK, NONE}
 
 const LOGIC_SQ_W := 50
 const LOGIC_PIECE_RADIUS := 14

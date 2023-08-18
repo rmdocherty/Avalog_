@@ -5,6 +5,10 @@ extends Area2D
 @export var piece_char: String = "p"
 @onready var shape_cast: ShapeCast2D = $ShapeCast
 
+enum states {IDLE, MOVED}
+var state = states.IDLE
+var alive: bool = true
+
 func get_valid_moves(mv: MoveVector) -> Array[Vector2]:
 	"""For each vector in move vector, raycast from the start vec to end vec. If a collision is
 	found (either enemy, friend or wall), map the parameters to an end position."""
@@ -22,7 +26,7 @@ func get_valid_moves(mv: MoveVector) -> Array[Vector2]:
 		if collide_count > 0:
 			var collide_obj: Area2D = shape_cast.get_collider(0)
 			var collide_pos: Vector2 = shape_cast.get_collision_point(0)
-			var delta_norm = (ray_target - ray_start).normalized()
+			var delta_norm := (ray_target - ray_start).normalized()
 			end_pos = map_collision_to_point(delta_norm, ray_target, collide_pos, collide_obj, mv.move_type[i])
 		else:
 			end_pos = cst.LOGIC_SQ_W * mv.to_arr[i]
@@ -41,7 +45,7 @@ func map_collision_to_point(norm_m: Vector2, ray_end: Vector2, collision_point: 
 	var collision_point_to_self := collision_point - global_position
 	var allowed_end_point := collision_point_to_self.length() * norm_m - cst.LOGIC_PIECE_RADIUS * norm_m - epsilon
 	
-	var is_attacking: bool = (collide_obj.colour != self.colour) and (collide_obj.colour != cst.NONE)
+	var is_attacking: bool = (collide_obj.colour != self.colour) and (collide_obj.colour != cst.colour.NONE)
 	var is_line: bool = (mv_type == cst.mv_type.NORMAL)
 	var is_jumping: bool = (mv_type == cst.mv_type.JUMPING)
 	var attack := int(is_attacking)
@@ -53,4 +57,25 @@ func map_collision_to_point(norm_m: Vector2, ray_end: Vector2, collision_point: 
 	var jump_dist := (jump * attack * ray_end) + (1 - jump * attack) * Vector2(0, 0)
 
 	var end_point := line_dist + jump_dist
-	return allowed_end_point
+	return end_point
+
+
+func move(pos: Vector2) -> void:
+	state = states.MOVED
+	position = pos
+
+
+func on_overlap(area: Area2D) -> void:
+	# If enemy piece impinges on this, delete
+	var is_enemy = area.colour != colour and colour != cst.colour.NONE
+	if state == states.IDLE and is_enemy:
+		delete()
+
+
+func delete() -> void:
+	# may need to update to be undoable for engine
+	collision_layer = 10
+	alive = false
+	position = Vector2(-1000, -1000)
+	print("deleted")
+	set_process_input(false)
