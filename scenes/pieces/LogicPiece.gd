@@ -1,15 +1,27 @@
 extends Area2D
+class_name  LogicPiece
 
 @export var colour: int = cst.colour.WHITE
 @export var faction_char: String = "b"
 @export var piece_char: String = "p"
 @onready var shape_cast: ShapeCast2D = $ShapeCast
 
-enum states {IDLE, MOVED}
+signal piece_taken
+enum states {IDLE, MOVED, DEAD}
 var state = states.IDLE
-var alive: bool = true
 
-func get_valid_moves(mv: MoveVector) -> Array[Vector2]:
+var active_mvs: Array[MoveVector] = []
+var nested_valid_moves: Array = []
+
+func get_all_moves() -> void:
+	# Loop through all active moves attribute, find valid moves and assign to nested_valid moves attr
+	var output: Array = []
+	for mv in active_mvs:
+		output.push_back(get_valid_moves((mv)))
+	nested_valid_moves = output
+
+
+func get_valid_moves(mv: MoveVector) -> Array[Array]:
 	"""For each vector in move vector, raycast from the start vec to end vec. If a collision is
 	found (either enemy, friend or wall), map the parameters to an end position."""
 	var start_points: Array[Vector2] = []
@@ -24,19 +36,19 @@ func get_valid_moves(mv: MoveVector) -> Array[Vector2]:
 
 		var collide_count: int = shape_cast.get_collision_count()
 		if collide_count > 0:
-			var collide_obj: Area2D = shape_cast.get_collider(0)
+			var collide_obj: LogicPiece = shape_cast.get_collider(0)
 			var collide_pos: Vector2 = shape_cast.get_collision_point(0)
 			var delta_norm := (ray_target - ray_start).normalized()
-			end_pos = map_collision_to_point(delta_norm, ray_target, collide_pos, collide_obj, mv.move_type[i])
+			end_pos = map_collision_to_point(delta_norm, ray_target, collide_pos, collide_obj, mv.move_type)
 		else:
 			end_pos = cst.LOGIC_SQ_W * mv.to_arr[i]
 		start_points.push_back(ray_start)
 		end_points.push_back(end_pos)
-	return end_points
+	return [start_points, end_points]
 
 
 func map_collision_to_point(norm_m: Vector2, ray_end: Vector2, collision_point: Vector2,
-							collide_obj: Area2D, mv_type: cst.mv_type) -> Vector2:
+							collide_obj: LogicPiece, mv_type: cst.mv_type) -> Vector2:
 	"""Given collision with object, get correct endpoint for a raycast with given mv_type.
 	For ranged/no_attack, do nothing if enemy or ally. If line and ally, do nothing, if enemy add
 	extra distance to allow taking. If jumping and ally, return 0, if enemy return target position.
@@ -62,10 +74,17 @@ func map_collision_to_point(norm_m: Vector2, ray_end: Vector2, collision_point: 
 
 func move(pos: Vector2) -> void:
 	state = states.MOVED
+	var delta: Vector2 = pos - position
 	position = pos
+	post_move(delta)
 
 
-func on_overlap(area: Area2D) -> void:
+func post_move(_delta: Vector2) -> void:
+	# To be overwritten later
+	pass
+
+
+func on_overlap(area: LogicPiece) -> void:
 	# If enemy piece impinges on this, delete
 	var is_enemy = area.colour != colour and colour != cst.colour.NONE
 	if state == states.IDLE and is_enemy:
@@ -75,7 +94,7 @@ func on_overlap(area: Area2D) -> void:
 func delete() -> void:
 	# may need to update to be undoable for engine
 	collision_layer = 10
-	alive = false
+	state = states.DEAD
 	position = Vector2(-1000, -1000)
-	print("deleted")
+	piece_taken.emit()
 	set_process_input(false)

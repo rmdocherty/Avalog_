@@ -7,7 +7,8 @@ var piece = preload("res://scenes/pieces/LogicPiece.tscn")
 func _ready():
 	var p: Area2D = piece.instantiate()
 	var q: Area2D = piece.instantiate()
-	q.position = Vector2(0, 45)
+	p.position = Vector2(200, 200)
+	q.position = Vector2(200, 245)
 	q.colour = cst.colour.BLACK
 	add_child(p)
 	add_child(q)
@@ -19,7 +20,7 @@ func _ready():
 	var start = Time.get_ticks_usec()
 	var out = p.get_valid_moves(mvs)
 
-	p.move(Vector2(0, 40))
+	p.move(Vector2(200, 224500))
 	var end = Time.get_ticks_usec()
 	print(out, end-start)
 	

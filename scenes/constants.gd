@@ -12,6 +12,8 @@ enum colour {WHITE, BLACK, NONE}
 const LOGIC_SQ_W := 50
 const LOGIC_PIECE_RADIUS := 14
 
+enum collide_layers {NONE, PIECES, MOUSE, GFX}
+
 # Game variables: updated during runtime
 var network := network_types.LOCAL
 var mode := modes.CLASSIC

@@ -1,5 +1,10 @@
 shader_type canvas_item;
 
+/* Palette swap shader. Faction's colours stored in 'colours', a 5 faction * 8
+colours * vec4 array. For each pixel in sprite, loop through the 8 colours of 
+the original sprite's palette and check if pixel color similar via 'tol'.
+If it's similar, swap it to the corresponding replace palette colour. Low precision
+used throughout for performance. */
 
 const lowp vec4 colours[40] = lowp vec4[40] (
 	vec4(0.2235, 0.4706, 0.6588, 1.0000), //pawn left arm
