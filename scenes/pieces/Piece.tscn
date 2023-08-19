@@ -1,0 +1,12 @@
+[gd_scene load_steps=4 format=3 uid="uid://cfobj247gpa7q"]
+
+[ext_resource type="PackedScene" uid="uid://bcfk18fdrro4v" path="res://scenes/pieces/LogicPiece.tscn" id="1_iim7g"]
+[ext_resource type="Script" path="res://scenes/pieces/Piece.gd" id="1_lt0tp"]
+[ext_resource type="PackedScene" uid="uid://bowuwg1oybgqa" path="res://scenes/pieces/graphics/GraphicalPiece.tscn" id="2_2r1eq"]
+
+[node name="Piece" type="Node2D"]
+script = ExtResource("1_lt0tp")
+
+[node name="LogicPiece" parent="." instance=ExtResource("1_iim7g")]
+
+[node name="GraphicalPiece" parent="." instance=ExtResource("2_2r1eq")]

@@ -1,26 +1,55 @@
 extends Node2D
-var helper: mv_helper = mv_helper.new()
-var mvs = helper.get_line_mvs([Vector2(0, 1), Vector2(1, 0), Vector2(-1, 0), Vector2(0, -1)], cst.mv_type.NORMAL)
-var piece = preload("res://scenes/pieces/LogicPiece.tscn")
 
-# Called when the node enters the scene tree for the first time.
+const Board = preload("res://scenes/game/board/board.tscn")
+var board = Board.instantiate()
+
+var all_pieces: Array[LogicPiece] = []
+
+const temp_offset := Vector2(300, 150)
+
+
+#============INIT BOARD============
+func add_pieces_from_fen(fen_str: String) -> void:
+	var x_idx: int = 0
+	var y_idx: int = 0
+	var faction_int: int = -1
+	for letter in fen_str:
+		var p0 := Vector2(x_idx * cst.LOGIC_SQ_W + temp_offset.x, y_idx * cst.LOGIC_SQ_W + temp_offset.y)
+		if letter == '/':
+			y_idx += 1
+			x_idx = 0
+		elif letter.is_valid_int():
+			x_idx += int(letter)
+		elif letter in cst.fen_faction_lookup:
+			faction_int = cst.fen_faction_lookup.find(letter, 0)
+		else:
+			add_piece(letter, p0)
+			faction_int = -1
+			x_idx += 1
+
+
+func add_piece(piece_letter: String, pos: Vector2) -> void:
+	var colour: cst.colour
+	var piece_type: String = piece_letter.to_lower()
+	if (piece_letter == piece_type):
+		colour = cst.colour.BLACK
+	else:
+		colour = cst.colour.WHITE
+	var temp_piece: LogicPiece = lkp.get_logic_piece("a", piece_type, colour)
+	temp_piece.position = pos
+	add_child(temp_piece)
+	all_pieces.push_back(temp_piece)
+ 
+
+func _init():
+	board.init_walls(8, 8, temp_offset)
+	add_child(board)
+	add_pieces_from_fen(cst.full_board)
+
+
 func _ready():
-	var p: Area2D = piece.instantiate()
-	var q: Area2D = piece.instantiate()
-	p.position = Vector2(200, 200)
-	q.position = Vector2(200, 245)
-	q.colour = cst.colour.BLACK
-	add_child(p)
-	add_child(q)
-	
-	var start2 = Time.get_ticks_usec()
-	var out2 = q.get_valid_moves(mvs)
-	var end2 = Time.get_ticks_usec()
-	print(out2, end2-start2)
-	var start = Time.get_ticks_usec()
-	var out = p.get_valid_moves(mvs)
-
-	p.move(Vector2(200, 224500))
-	var end = Time.get_ticks_usec()
-	print(out, end-start)
-	
+	var start_t := Time.get_ticks_usec()
+	for p in all_pieces:
+		p.get_all_moves()
+	var end_t := Time.get_ticks_usec()
+	print(end_t - start_t)

@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://bowuwg1oybgqa"]
+
+[ext_resource type="Script" path="res://scenes/pieces/graphics/PlayerCircle.gd" id="1_dh0ue"]
+[ext_resource type="Script" path="res://scenes/pieces/graphics/GraphicalPiece.gd" id="1_xupue"]
+[ext_resource type="Texture2D" uid="uid://dsfc42cu5anbj" path="res://assets/pieces/icons.png" id="3_d63rk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gtwpo"]
+atlas = ExtResource("3_d63rk")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ah7ft"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gtwpo")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="GraphicalPiece" type="Node2D"]
+z_index = 1
+script = ExtResource("1_xupue")
+
+[node name="Phantom" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="PlayerCircle" type="Node2D" parent="Phantom"]
+script = ExtResource("1_dh0ue")
+
+[node name="Hover" type="CollisionPolygon2D" parent="Phantom"]
+
+[node name="Icon" type="AnimatedSprite2D" parent="."]
+scale = Vector2(3.3, 3.3)
+sprite_frames = SubResource("SpriteFrames_ah7ft")
+offset = Vector2(0, -1)
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+visible = false
+
+[connection signal="mouse_entered" from="Phantom" to="." method="mouse_entered_circle"]

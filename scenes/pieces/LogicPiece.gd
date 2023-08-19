@@ -2,7 +2,7 @@ extends Area2D
 class_name  LogicPiece
 
 @export var colour: int = cst.colour.WHITE
-@export var faction_char: String = "b"
+@export var faction_char: String = "a"
 @export var piece_char: String = "p"
 @onready var shape_cast: ShapeCast2D = $ShapeCast
 
@@ -10,8 +10,14 @@ signal piece_taken
 enum states {IDLE, MOVED, DEAD}
 var state = states.IDLE
 
-var active_mvs: Array[MoveVector] = []
+var mv_states: Array = []
+var active_mvs: Array = []
 var nested_valid_moves: Array = []
+
+func _ready() -> void:
+	# Set radii of shape stuff
+	shape_cast.shape.radius = cst.LOGIC_PIECE_RADIUS
+	$Collision.shape.radius = cst.LOGIC_PIECE_RADIUS
 
 func get_all_moves() -> void:
 	# Loop through all active moves attribute, find valid moves and assign to nested_valid moves attr
@@ -36,7 +42,7 @@ func get_valid_moves(mv: MoveVector) -> Array[Array]:
 
 		var collide_count: int = shape_cast.get_collision_count()
 		if collide_count > 0:
-			var collide_obj: LogicPiece = shape_cast.get_collider(0)
+			var collide_obj: Area2D = shape_cast.get_collider(0)
 			var collide_pos: Vector2 = shape_cast.get_collision_point(0)
 			var delta_norm := (ray_target - ray_start).normalized()
 			end_pos = map_collision_to_point(delta_norm, ray_target, collide_pos, collide_obj, mv.move_type)
@@ -45,10 +51,10 @@ func get_valid_moves(mv: MoveVector) -> Array[Array]:
 		start_points.push_back(ray_start)
 		end_points.push_back(end_pos)
 	return [start_points, end_points]
-
+# in graphics, loop over every mv (& get types) and every start-end to do graphics stuff
 
 func map_collision_to_point(norm_m: Vector2, ray_end: Vector2, collision_point: Vector2,
-							collide_obj: LogicPiece, mv_type: cst.mv_type) -> Vector2:
+							collide_obj: Area2D, mv_type: cst.mv_type) -> Vector2:
 	"""Given collision with object, get correct endpoint for a raycast with given mv_type.
 	For ranged/no_attack, do nothing if enemy or ally. If line and ally, do nothing, if enemy add
 	extra distance to allow taking. If jumping and ally, return 0, if enemy return target position.
@@ -80,12 +86,13 @@ func move(pos: Vector2) -> void:
 
 
 func post_move(_delta: Vector2) -> void:
-	# To be overwritten later
+	# To be overwritten later, for castling or state switching
 	pass
 
 
 func on_overlap(area: LogicPiece) -> void:
 	# If enemy piece impinges on this, delete
+	print(area.colour, colour)
 	var is_enemy = area.colour != colour and colour != cst.colour.NONE
 	if state == states.IDLE and is_enemy:
 		delete()
@@ -97,4 +104,9 @@ func delete() -> void:
 	state = states.DEAD
 	position = Vector2(-1000, -1000)
 	piece_taken.emit()
+	print("deleted")
 	set_process_input(false)
+
+
+func _on_mouse_entered():
+	print(colour, piece_char)

@@ -82,4 +82,4 @@ func play() -> void:
 		pass
 	else:
 		var game_path := "res://scenes/game/game_manager.tscn"
-		cst.load_child_remove_parent(game_path, self)
+		hlp.load_child_remove_parent(game_path, self)

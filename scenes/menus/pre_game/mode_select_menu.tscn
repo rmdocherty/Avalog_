@@ -8,8 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://dgrysv5ovt0f3" path="res://assets/menus/patches/green_patch.png" id="6_5yv6l"]
 [ext_resource type="Texture2D" uid="uid://cjld7p2ub00pu" path="res://assets/menus/patches/yellow_patch.png" id="7_p88lv"]
 [ext_resource type="Texture2D" uid="uid://mdy5i51fsdek" path="res://assets/menus/patches/black_patch.png" id="8_fcm8s"]
+[ext_resource type="Shader" path="res://scenes/pieces/graphics/Piece.gdshader" id="9_hsgah"]
 [ext_resource type="Texture2D" uid="uid://dpyn4s6dq6eh1" path="res://assets/pieces/albion/arthur.png" id="9_jm3eg"]
-[ext_resource type="Shader" path="res://scenes/pieces/Piece.gdshader" id="9_u01ax"]
 [ext_resource type="Texture2D" uid="uid://dokgktl6mq6u2" path="res://assets/pieces/mystery.png" id="10_15kok"]
 [ext_resource type="Texture2D" uid="uid://b3hui022cb4cj" path="res://assets/pieces/rome/count.png" id="10_gmut8"]
 [ext_resource type="Texture2D" uid="uid://m3cmypbyyc6x" path="res://assets/maps/albion_map.png" id="10_imj8j"]
@@ -23,7 +23,7 @@
 [ext_resource type="Texture2D" uid="uid://3jv2m5rj47v0" path="res://assets/maps/morgana.png" id="16_ctpyf"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_eg8xb"]
-shader = ExtResource("9_u01ax")
+shader = ExtResource("9_hsgah")
 shader_parameter/tol = 0.01
 shader_parameter/original_palette_num = null
 shader_parameter/replace_palette_num = null
@@ -190,7 +190,7 @@ animations = [{
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_s0rqv"]
 resource_local_to_scene = true
-shader = ExtResource("9_u01ax")
+shader = ExtResource("9_hsgah")
 shader_parameter/tol = 0.01
 shader_parameter/original_palette_num = null
 shader_parameter/replace_palette_num = null

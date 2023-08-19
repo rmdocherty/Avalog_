@@ -1,6 +1,6 @@
 extends Node
-# if this gets too big, split into 3: constants, settings, helpers 
 
+# Constants
 enum network_types {LOCAL, ONLINE}
 enum modes {CLASSIC, DRAFT, CUSTOM}
 enum factions {ALBION, ROME, BRETAGNE, TURKIYE, MORGANA}
@@ -8,11 +8,23 @@ enum factions {ALBION, ROME, BRETAGNE, TURKIYE, MORGANA}
 enum mv_type {NORMAL, JUMPING, RANGED, NO_ATTACK}
 enum draw_type {LINE, RADIAL}
 enum colour {WHITE, BLACK, NONE}
+enum collide_layers {NONE, PIECES, MOUSE, GFX}
 
 const LOGIC_SQ_W := 50
 const LOGIC_PIECE_RADIUS := 14
 
-enum collide_layers {NONE, PIECES, MOUSE, GFX}
+const WALL_SIZE: float = 100
+
+const ISO := Vector2(16, 8) # 8 is good
+const BOARD_DRAW_SCALE := Vector2(3.75, 3.75)
+const FLAT_DRAW_SCALE := Vector2(1.3, 1.3)
+const PIECE_DRAW_SCALE := Vector2(2.5, 2.5)
+
+# FEN strings
+const fen_faction_lookup = ["a", "i", "f", "t", "m"]
+const faction_lookup = ["a", "r", "b", "t", "m"]
+
+const full_board = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR"
 
 # Game variables: updated during runtime
 var network := network_types.LOCAL
@@ -29,8 +41,5 @@ var uname_2 := "Player 2"
 var total_time_min := 5
 var total_time_seconds := 0
 
+var draw_iso := false
 
-func load_child_remove_parent(node_path: String, parent: Node) -> void:
-	var child: Node = load(node_path).instantiate()
-	get_tree().get_root().add_child(child)
-	get_tree().get_root().remove_child(parent)

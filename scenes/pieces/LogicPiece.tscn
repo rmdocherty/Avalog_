@@ -18,3 +18,4 @@ max_results = 2
 collide_with_areas = true
 
 [connection signal="area_entered" from="." to="." method="on_overlap"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
