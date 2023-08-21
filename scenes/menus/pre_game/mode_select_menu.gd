@@ -81,5 +81,5 @@ func play() -> void:
 	if cst.mode == cst.modes.DRAFT:
 		pass
 	else:
-		var game_path := "res://scenes/game/game_manager.tscn"
+		var game_path := "res://scenes/game/graphics/gfx_game_manager.tscn"
 		hlp.load_child_remove_parent(game_path, self)

@@ -1,0 +1,72 @@
+[gd_scene load_steps=10 format=3 uid="uid://bm7utema3eqfb"]
+
+[ext_resource type="Script" path="res://scenes/game/graphics/gfx_game_manager.gd" id="1_d8ywr"]
+[ext_resource type="Texture2D" uid="uid://m3cmypbyyc6x" path="res://assets/maps/albion_map.png" id="2_gxohm"]
+[ext_resource type="Texture2D" uid="uid://cf7i6n68okt4l" path="res://assets/maps/italia.png" id="3_srfcr"]
+[ext_resource type="Texture2D" uid="uid://d332iqxel0wlx" path="res://assets/maps/bretagne.png" id="4_nm1j0"]
+[ext_resource type="Texture2D" uid="uid://dwg03tquenpps" path="res://assets/maps/turkiye.png" id="5_3x05e"]
+[ext_resource type="Texture2D" uid="uid://3jv2m5rj47v0" path="res://assets/maps/morgana.png" id="6_dgbww"]
+[ext_resource type="Texture2D" uid="uid://qt4nbxukhhu1" path="res://assets/maps/bg.png" id="7_7xh0m"]
+[ext_resource type="Script" path="res://scenes/game/graphics/Camera.gd" id="8_h02n5"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vsrer"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_gxohm")
+}],
+"loop": false,
+"name": &"0",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_srfcr")
+}],
+"loop": false,
+"name": &"1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_nm1j0")
+}],
+"loop": false,
+"name": &"2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_3x05e")
+}],
+"loop": false,
+"name": &"3",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_dgbww")
+}],
+"loop": false,
+"name": &"4",
+"speed": 5.0
+}]
+
+[node name="gfx_game_manager" type="Node2D"]
+script = ExtResource("1_d8ywr")
+
+[node name="board" type="AnimatedSprite2D" parent="."]
+visible = false
+sprite_frames = SubResource("SpriteFrames_vsrer")
+animation = &"4"
+offset = Vector2(16, 0)
+
+[node name="bg" type="Sprite2D" parent="."]
+modulate = Color(0.317647, 0.317647, 0.317647, 0.32549)
+z_index = -10
+scale = Vector2(5, 5)
+texture = ExtResource("7_7xh0m")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(1.75, 1.75)
+script = ExtResource("8_h02n5")

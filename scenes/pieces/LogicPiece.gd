@@ -10,7 +10,6 @@ signal piece_taken
 enum states {IDLE, MOVED, DEAD}
 var state = states.IDLE
 
-var mv_states: Array = []
 var active_mvs: Array = []
 var nested_valid_moves: Array = []
 
@@ -106,7 +105,3 @@ func delete() -> void:
 	piece_taken.emit()
 	print("deleted")
 	set_process_input(false)
-
-
-func _on_mouse_entered():
-	print(colour, piece_char)

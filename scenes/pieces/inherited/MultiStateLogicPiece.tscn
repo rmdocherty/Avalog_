@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://c876tcyno6g6d"]
+
+[ext_resource type="PackedScene" uid="uid://bcfk18fdrro4v" path="res://scenes/pieces/LogicPiece.tscn" id="1_nq3c5"]
+[ext_resource type="Script" path="res://scenes/pieces/inherited/MultiStateLogicPiece.gd" id="2_d8xw4"]
+
+[node name="LogicPiece" instance=ExtResource("1_nq3c5")]
+script = ExtResource("2_d8xw4")

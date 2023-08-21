@@ -10,3 +10,5 @@ script = ExtResource("1_lt0tp")
 [node name="LogicPiece" parent="." instance=ExtResource("1_iim7g")]
 
 [node name="GraphicalPiece" parent="." instance=ExtResource("2_2r1eq")]
+
+[editable path="GraphicalPiece"]

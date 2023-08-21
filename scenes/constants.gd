@@ -41,5 +41,5 @@ var uname_2 := "Player 2"
 var total_time_min := 5
 var total_time_seconds := 0
 
-var draw_iso := false
+var draw_iso := true
 
