@@ -6,11 +6,11 @@ var flip_vec = Vector2(1, 1)
 
 var previous_zoom := target_zoom
 
-var offset_cam_speed = 1.25
-var zoom_cam_speed = 1.25
+var offset_cam_speed := 1.25
+var zoom_cam_speed := 1.25
 
-const MAX_ZOOM = 5
-const MIN_ZOOM = 0.25
+const MAX_ZOOM := 5
+const MIN_ZOOM := 0.25
 
 var window_mode = DisplayServer.window_get_mode()
 
@@ -40,7 +40,7 @@ func movement_zoom_in(fraction: float, pos: Vector2) -> void:
 	zoom_cam_speed = 1.25
 
 	if target_zoom.length() < 4:
-		target_pos = pos #$Graphics.global_position
+		target_pos = pos
 		target_zoom = (1 + fraction) * 1.5 * Vector2(1, 1)
 
 func movement_zoom_out() -> void:
@@ -50,8 +50,8 @@ func movement_zoom_out() -> void:
 	target_zoom = previous_zoom
 
 func clip(current_zoom: Vector2) -> Vector2:
-	var too_small = (current_zoom.length_squared() < 2 * MIN_ZOOM**2)
-	var too_big = (current_zoom.length_squared() > 2 * MAX_ZOOM**2)
+	var too_small := (current_zoom.length_squared() < 2 * MIN_ZOOM**2)
+	var too_big := (current_zoom.length_squared() > 2 * MAX_ZOOM**2)
 	# Clipping
 	if (flip_vec[0] < 0 and too_big):
 		current_zoom = Vector2(-MAX_ZOOM, MAX_ZOOM)
@@ -64,7 +64,7 @@ func clip(current_zoom: Vector2) -> Vector2:
 	return current_zoom
 
 func check_if_valid_event(event: InputEvent) -> bool:
-	var is_valid = false
+	var is_valid := false
 	if event is InputEventMouseButton and (event.button_index == MOUSE_BUTTON_WHEEL_UP or event.button_index == MOUSE_BUTTON_WHEEL_DOWN):
 		is_valid = true
 	for key in [KEY_A, KEY_D, KEY_W, KEY_S, KEY_F]:
@@ -84,13 +84,13 @@ func _input(event: InputEvent) -> void:
 		zoom_out()
 
 	if Input.is_key_pressed(KEY_A):
-		target_pos += cst.norm_to_iso(flip_vec * Vector2(-1, 0))
+		target_pos += hlp.norm_to_iso(flip_vec * Vector2(-1, 0))
 	if Input.is_key_pressed(KEY_D):
-		target_pos += cst.norm_to_iso(flip_vec * Vector2(1, 0))
+		target_pos += hlp.norm_to_iso(flip_vec * Vector2(1, 0))
 	if Input.is_key_pressed(KEY_W):
-		target_pos += cst.norm_to_iso(flip_vec * Vector2(0, -1))
+		target_pos += hlp.norm_to_iso(flip_vec * Vector2(0, -1))
 	if Input.is_key_pressed(KEY_S):
-		target_pos += cst.norm_to_iso(flip_vec * Vector2(0, 1))
+		target_pos += hlp.norm_to_iso(flip_vec * Vector2(0, 1))
 	if Input.is_key_pressed(KEY_F):
 		flip_camera()
 	if Input.is_key_pressed(KEY_V):

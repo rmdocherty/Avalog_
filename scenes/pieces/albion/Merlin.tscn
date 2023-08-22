@@ -1,0 +1,64 @@
+[gd_scene load_steps=10 format=3 uid="uid://hjd3l7m8fvpg"]
+
+[ext_resource type="PackedScene" uid="uid://cfobj247gpa7q" path="res://scenes/pieces/Piece.tscn" id="1_5qevp"]
+[ext_resource type="Shader" path="res://scenes/pieces/graphics/Piece.gdshader" id="2_uoooy"]
+[ext_resource type="Texture2D" uid="uid://cka6nt07n86pk" path="res://assets/pieces/albion/merlin.png" id="3_isdx2"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pr6ca"]
+resource_local_to_scene = true
+shader = ExtResource("2_uoooy")
+shader_parameter/tol = 0.05
+shader_parameter/original_palette_num = null
+shader_parameter/replace_palette_num = null
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6qkj3"]
+atlas = ExtResource("3_isdx2")
+region = Rect2(48, 0, 16, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n8ehs"]
+atlas = ExtResource("3_isdx2")
+region = Rect2(32, 0, 16, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wb2ap"]
+atlas = ExtResource("3_isdx2")
+region = Rect2(0, 0, 16, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_idcn2"]
+atlas = ExtResource("3_isdx2")
+region = Rect2(16, 0, 16, 17)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yvr6f"]
+resource_local_to_scene = true
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6qkj3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n8ehs")
+}],
+"loop": true,
+"name": &"0_attack",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wb2ap")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_idcn2")
+}],
+"loop": true,
+"name": &"0_passive",
+"speed": 3.0
+}]
+
+[node name="Piece" instance=ExtResource("1_5qevp")]
+
+[node name="GraphicalPiece" parent="." index="1"]
+material = SubResource("ShaderMaterial_pr6ca")
+
+[node name="Sprite" parent="GraphicalPiece" index="2"]
+sprite_frames = SubResource("SpriteFrames_yvr6f")
+
+[editable path="GraphicalPiece"]

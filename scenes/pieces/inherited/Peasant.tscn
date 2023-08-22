@@ -1,7 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://crlskmf3fhan8"]
-
-[ext_resource type="PackedScene" uid="uid://bcfk18fdrro4v" path="res://scenes/pieces/LogicPiece.tscn" id="1_bsknn"]
-[ext_resource type="Script" path="res://scenes/pieces/inherited/Peasant.gd" id="2_bpbim"]
-
-[node name="LogicPiece" instance=ExtResource("1_bsknn")]
-script = ExtResource("2_bpbim")

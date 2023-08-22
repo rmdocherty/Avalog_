@@ -18,7 +18,7 @@ const WALL_SIZE: float = 100
 const ISO := Vector2(16, 8) # 8 is good
 const BOARD_DRAW_SCALE := Vector2(3.75, 3.75)
 const FLAT_DRAW_SCALE := Vector2(1.3, 1.3)
-const PIECE_DRAW_SCALE := Vector2(2.5, 2.5)
+var PIECE_DRAW_SCALE := Vector2(2.5, 2.5)
 
 # FEN strings
 const fen_faction_lookup = ["a", "i", "f", "t", "m"]
@@ -32,7 +32,7 @@ var mode := modes.CLASSIC
 
 var chosen_factions: Array[int] = [factions.ALBION, factions.ALBION]
 # in order p1 original, p2 original, p1 remap, p2 remap
-var replace_palettes: Array[int] = [chosen_factions[0], chosen_factions[1], 0, 0]
+var replace_palettes: Array[int] = [chosen_factions[0], chosen_factions[1], 0, 1]
 var chosen_map := factions.ALBION
 
 var uname_1 := "Player 1"

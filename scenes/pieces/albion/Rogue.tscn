@@ -1,0 +1,64 @@
+[gd_scene load_steps=10 format=3 uid="uid://cj1cnf4ucquff"]
+
+[ext_resource type="PackedScene" uid="uid://cfobj247gpa7q" path="res://scenes/pieces/Piece.tscn" id="1_4gq6f"]
+[ext_resource type="Shader" path="res://scenes/pieces/graphics/Piece.gdshader" id="2_o5uii"]
+[ext_resource type="Texture2D" uid="uid://ban074gi5g6r4" path="res://assets/pieces/albion/rogue.png" id="3_gb3wn"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_otgdc"]
+resource_local_to_scene = true
+shader = ExtResource("2_o5uii")
+shader_parameter/tol = 0.05
+shader_parameter/original_palette_num = null
+shader_parameter/replace_palette_num = null
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6f5i6"]
+atlas = ExtResource("3_gb3wn")
+region = Rect2(32, 0, 16, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l6r2v"]
+atlas = ExtResource("3_gb3wn")
+region = Rect2(48, 0, 16, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5lmen"]
+atlas = ExtResource("3_gb3wn")
+region = Rect2(0, 0, 16, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c1dg7"]
+atlas = ExtResource("3_gb3wn")
+region = Rect2(16, 0, 16, 17)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bhqf4"]
+resource_local_to_scene = true
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6f5i6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l6r2v")
+}],
+"loop": true,
+"name": &"0_attack",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5lmen")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c1dg7")
+}],
+"loop": true,
+"name": &"0_passive",
+"speed": 3.0
+}]
+
+[node name="Piece" instance=ExtResource("1_4gq6f")]
+
+[node name="GraphicalPiece" parent="." index="1"]
+material = SubResource("ShaderMaterial_otgdc")
+
+[node name="Sprite" parent="GraphicalPiece" index="2"]
+sprite_frames = SubResource("SpriteFrames_bhqf4")
+
+[editable path="GraphicalPiece"]
