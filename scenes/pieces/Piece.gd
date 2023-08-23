@@ -1,4 +1,5 @@
 extends Node2D
+class_name Piece
 
 var colour: cst.colour
 @onready var graphics := $GraphicalPiece
@@ -31,8 +32,28 @@ func set_graphic_pos(logical_pos: Vector2) -> void:
 	graphics.global_position = hlp.norm_to_iso(cst.BOARD_DRAW_SCALE * norm_pos)
 
 
+func update_lines() -> void:
+	var mvs: Array = logic.active_mvs
+	var nested_vms: Array = logic.nested_valid_moves
+	var N_vm := len(nested_vms)
+	var N_mvs := len(mvs)
+	for i in range(N_vm):
+		var mv_type: cst.mv_type
+		var draw_type: cst.draw_type
+		if i < N_mvs:
+			mv_type = mvs[i].move_type
+			draw_type = mvs[i].draw_type
+		else: # this is for extra moves
+			mv_type = cst.mv_type.NORMAL
+			draw_type = cst.draw_type.LINE
+		var starts: Array[Vector2] = nested_vms[i][0]
+		var ends: Array[Vector2] = nested_vms[i][1]
+		for j in range(len(starts)):
+			var start: Vector2 = starts[j]
+			var end: Vector2 = ends[j]
+			graphics.update_lines_from_fragment(mv_type, draw_type, start, end)
+
 func _ready():
-	#set_graphic_pos(position)
 	if colour == cst.colour.BLACK:
 		graphics.flip_sprite()
 		graphics.change_player_circle("inactive")

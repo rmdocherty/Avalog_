@@ -12,7 +12,7 @@ included here. For certain pieces, have code that rewrites the vectors (i.e forw
 and gets extra moves.
 """
 
-func add_piece(faction_char: String, piece_char: String, colour: cst.colour):
+func add_piece(faction_char: String, piece_char: String, colour: cst.colour) -> Piece:
 	var temp_piece = table[faction_char][piece_char]["piece"].instantiate()
 	var logic_piece: LogicPiece = temp_piece.get_node("LogicPiece")
 	logic_piece = set_logic_piece(logic_piece, faction_char, piece_char, colour)
@@ -40,11 +40,13 @@ func set_logic_piece(node: LogicPiece, faction_char: String, piece_char: String,
 	
 	if temp_dict.has("extra_moves"):
 		node.extra_moves = temp_dict["extra_moves"]
+	
+	if faction_char == "a" and piece_char == "p":
+		node = get_peasant(node, colour )
 
 	node.piece_char = piece_char
 	node.faction_char = faction_char
 	node.colour = colour
-
 	return node
 
 
@@ -55,7 +57,8 @@ func get_peasant(node: LogicPiece, colour: cst.colour) -> LogicPiece:
 	var states = albion_moves.get_pawn_moves(forward)
 	node.mv_states = states
 	node.active_mvs = states[0]
-	node.extra_moves = table["a"]["p"]["extra_moves"]
+	var extra_moves = albion_moves.get_pawn_attacks(forward)
+	node.extra_moves = extra_moves
 	return node
 
 

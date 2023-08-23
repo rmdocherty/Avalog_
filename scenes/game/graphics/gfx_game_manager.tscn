@@ -70,3 +70,9 @@ texture = ExtResource("7_7xh0m")
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(1.75, 1.75)
 script = ExtResource("8_h02n5")
+
+[node name="InitialTimer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[connection signal="timeout" from="InitialTimer" to="." method="start_game"]

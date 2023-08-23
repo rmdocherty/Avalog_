@@ -17,6 +17,8 @@ func _ready() -> void:
 	# Set radii of shape stuff
 	shape_cast.shape.radius = cst.LOGIC_PIECE_RADIUS
 	$Collision.shape.radius = cst.LOGIC_PIECE_RADIUS
+	
+	add_to_group("pieces")
 
 func get_all_moves() -> void:
 	# Loop through all active moves attribute, find valid moves and assign to nested_valid moves attr
@@ -34,7 +36,7 @@ func get_valid_moves(mv: MoveVector) -> Array[Array]:
 	for i in range(mv.N):
 		var end_pos: Vector2
 		var ray_start: Vector2 = cst.LOGIC_SQ_W * mv.from_arr[i]
-		var ray_target: Vector2 = cst.LOGIC_SQ_W * mv.to_arr[i]
+		var ray_target: Vector2 = cst.LOGIC_SQ_W * (mv.to_arr[i] - mv.from_arr[i])
 		shape_cast.position = ray_start
 		shape_cast.target_position = ray_target
 		shape_cast.force_shapecast_update()

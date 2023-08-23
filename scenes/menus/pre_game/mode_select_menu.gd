@@ -82,4 +82,7 @@ func play() -> void:
 		pass
 	else:
 		var game_path := "res://scenes/game/graphics/gfx_game_manager.tscn"
-		hlp.load_child_remove_parent(game_path, self)
+		var child: Node = load(game_path).instantiate()
+		get_tree().get_root().add_child(child)
+		child.init(cst.chosen_fen)
+		get_tree().get_root().remove_child(self)

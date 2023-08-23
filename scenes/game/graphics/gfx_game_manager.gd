@@ -8,12 +8,13 @@ var gfx_offset := Vector2(310, 110)
 const start_x := -4
 const start_y := -4
 
-var all_pieces: Array = []
+var all_pieces: Array[Piece] = []
 
 @onready var board := $board
 
 
-func add_pieces_from_fen(fen_str: String) -> void:
+func add_pieces_from_fen(fen_str: String) -> Array[Piece]:
+	var pieces: Array[Piece] = []
 	var x_idx: int = start_x
 	var y_idx: int = start_y
 	var _faction_int: int = -1
@@ -27,12 +28,13 @@ func add_pieces_from_fen(fen_str: String) -> void:
 		elif letter in cst.fen_faction_lookup:
 			_faction_int = cst.fen_faction_lookup.find(letter, 0)
 		else:
-			add_piece(letter, p0)
+			var piece: Piece = add_piece(letter, p0)
+			pieces.push_back(piece)
 			_faction_int = -1
 			x_idx += 1
+	return pieces
 
-
-func add_piece(piece_letter: String, pos: Vector2) -> void:
+func add_piece(piece_letter: String, pos: Vector2) -> Piece:
 	var colour: cst.colour
 	var piece_type: String = piece_letter.to_lower()
 	if (piece_letter == piece_type):
@@ -44,6 +46,23 @@ func add_piece(piece_letter: String, pos: Vector2) -> void:
 	add_child(temp_piece)
 	temp_piece.init(pos, colour)
 	all_pieces.push_back(temp_piece)
+	return temp_piece
+
+func init(fen: String) -> void:
+	all_pieces = add_pieces_from_fen(fen)
+	game_manager.add_pieces_from_nodes(all_pieces)
+	game_manager.init()
+	$InitialTimer.start()
+	
+
+func start_game() -> void:
+	for p in all_pieces:
+		p.update_lines()
+
+func take_turn(change_player: bool=true) -> void:
+	var _foo = game_manager.take_turn()
+	for p in all_pieces:
+		p.update_lines()
 
 
 func draw_flat_board(h: int, w: int) -> void:
@@ -56,23 +75,19 @@ func draw_flat_board(h: int, w: int) -> void:
 			var rect := Rect2(p0, size)
 			draw_rect(rect, colour)
 
-
 func _draw() -> void:
 	if cst.draw_iso == false:
 		draw_flat_board(8, 8)
 
-
 func _ready() -> void:
-	add_pieces_from_fen(cst.full_board)
 	board.apply_scale(cst.BOARD_DRAW_SCALE)
 	board.play(str(cst.chosen_map))
 	if cst.draw_iso == true:
 		board.show()
-		#pass
+		pass
 	else:
 		board.hide()
 
-
 func _init():
 	add_child(game_manager)
-	
+
