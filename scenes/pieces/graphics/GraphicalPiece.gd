@@ -9,11 +9,6 @@ func mouse_entered_circle() -> void:
 	sprite.play('0_passive')
 	show_lines()
 
-func _mouse_exited_circle() -> void:
-	sprite.play("0_passive")
-	sprite.stop()
-	hide_lines()
-
 func show_lines() -> void:
 	for l in lines:
 		l.show()
@@ -71,20 +66,21 @@ func update_lines_from_fragment(mv_type: cst.mv_type, draw_type: cst.draw_type, 
 			add_points_to_polygon(inner_point, outer_point)
 
 func flip_sprite() -> void:
-	sprite.flip_h = true
+	for s in [sprite, $Phantom/PhantomSprite]:
+		s.flip_h = true
 
 func change_player_circle(state: String) -> void:
 	$Phantom/PlayerCircle.set_colour(state)
 
 func _ready() -> void:
-	sprite.apply_scale(cst.PIECE_DRAW_SCALE)
+	for s in [sprite, $Phantom/PhantomSprite]:
+		s.apply_scale(cst.PIECE_DRAW_SCALE)
 	if cst.draw_iso:
 		sprite.show()
 		$Icon.hide()
 	else:
 		sprite.hide()
 		$Icon.show()
-	#$Phantom/PlayerCircle.set_colour("active")
 	$Phantom/Hover.polygon = $Phantom/PlayerCircle.inner_points
 
 

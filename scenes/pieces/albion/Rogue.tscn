@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cj1cnf4ucquff"]
+[gd_scene load_steps=15 format=3 uid="uid://cj1cnf4ucquff"]
 
 [ext_resource type="PackedScene" uid="uid://cfobj247gpa7q" path="res://scenes/pieces/Piece.tscn" id="1_4gq6f"]
 [ext_resource type="Shader" path="res://scenes/pieces/graphics/Piece.gdshader" id="2_o5uii"]
@@ -10,6 +10,48 @@ shader = ExtResource("2_o5uii")
 shader_parameter/tol = 0.05
 shader_parameter/original_palette_num = null
 shader_parameter/replace_palette_num = null
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_exyap"]
+atlas = ExtResource("3_gb3wn")
+region = Rect2(32, 0, 16, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5nqcq"]
+atlas = ExtResource("3_gb3wn")
+region = Rect2(48, 0, 16, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o5h46"]
+atlas = ExtResource("3_gb3wn")
+region = Rect2(0, 0, 16, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eard5"]
+atlas = ExtResource("3_gb3wn")
+region = Rect2(16, 0, 16, 17)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hjhmg"]
+resource_local_to_scene = true
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_exyap")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5nqcq")
+}],
+"loop": true,
+"name": &"0_attack",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o5h46")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eard5")
+}],
+"loop": true,
+"name": &"0_passive",
+"speed": 3.0
+}]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6f5i6"]
 atlas = ExtResource("3_gb3wn")
@@ -57,6 +99,9 @@ animations = [{
 
 [node name="GraphicalPiece" parent="." index="1"]
 material = SubResource("ShaderMaterial_otgdc")
+
+[node name="PhantomSprite" parent="GraphicalPiece/Phantom" index="2"]
+sprite_frames = SubResource("SpriteFrames_hjhmg")
 
 [node name="Sprite" parent="GraphicalPiece" index="2"]
 sprite_frames = SubResource("SpriteFrames_bhqf4")

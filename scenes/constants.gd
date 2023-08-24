@@ -25,8 +25,8 @@ const fen_faction_lookup = ["a", "i", "f", "t", "m"]
 const faction_lookup = ["a", "r", "b", "t", "m"]
 
 const full_board := "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR"
-const test := "8/8/8/8/8/8/8/R"
-const chosen_fen := full_board
+const test := "8/8/8/p7/1P6/8/2p5/R3K"
+const chosen_fen := test
 
 # Game variables: updated during runtime
 var network := network_types.LOCAL

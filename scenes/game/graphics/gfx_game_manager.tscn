@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bm7utema3eqfb"]
+[gd_scene load_steps=16 format=3 uid="uid://bm7utema3eqfb"]
 
 [ext_resource type="Script" path="res://scenes/game/graphics/gfx_game_manager.gd" id="1_d8ywr"]
 [ext_resource type="Texture2D" uid="uid://m3cmypbyyc6x" path="res://assets/maps/albion_map.png" id="2_gxohm"]
@@ -8,6 +8,12 @@
 [ext_resource type="Texture2D" uid="uid://3jv2m5rj47v0" path="res://assets/maps/morgana.png" id="6_dgbww"]
 [ext_resource type="Texture2D" uid="uid://qt4nbxukhhu1" path="res://assets/maps/bg.png" id="7_7xh0m"]
 [ext_resource type="Script" path="res://scenes/game/graphics/Camera.gd" id="8_h02n5"]
+[ext_resource type="Texture2D" uid="uid://0qfryyre0nss" path="res://assets/menus/buttons/tick_default.png" id="9_viy4r"]
+[ext_resource type="Texture2D" uid="uid://fjk83ocp406b" path="res://assets/menus/buttons/tick_click.png" id="10_laut7"]
+[ext_resource type="Texture2D" uid="uid://b07lm3u7grldq" path="res://assets/menus/buttons/tick_hover.png" id="11_jwlru"]
+[ext_resource type="Texture2D" uid="uid://7l2m8qlcksq0" path="res://assets/menus/buttons/cross_default.png" id="12_kgepf"]
+[ext_resource type="Texture2D" uid="uid://bp14k0akst1tf" path="res://assets/menus/buttons/cross_click.png" id="13_4qeri"]
+[ext_resource type="Texture2D" uid="uid://c3ksaqqkeqpyy" path="res://assets/menus/buttons/cross_hover.png" id="14_uf6ar"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_vsrer"]
 animations = [{
@@ -75,4 +81,21 @@ script = ExtResource("8_h02n5")
 wait_time = 0.2
 one_shot = true
 
+[node name="ConfirmMove" type="TextureButton" parent="."]
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0
+texture_normal = ExtResource("9_viy4r")
+texture_pressed = ExtResource("10_laut7")
+texture_hover = ExtResource("11_jwlru")
+
+[node name="RejectMove" type="TextureButton" parent="."]
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0
+texture_normal = ExtResource("12_kgepf")
+texture_pressed = ExtResource("13_4qeri")
+texture_hover = ExtResource("14_uf6ar")
+
 [connection signal="timeout" from="InitialTimer" to="." method="start_game"]
+[connection signal="pressed" from="RejectMove" to="." method="reset_piece_drag"]

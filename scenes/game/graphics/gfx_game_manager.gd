@@ -9,6 +9,7 @@ const start_x := -4
 const start_y := -4
 
 var all_pieces: Array[Piece] = []
+var selected_piece: Piece
 
 @onready var board := $board
 
@@ -53,17 +54,55 @@ func init(fen: String) -> void:
 	game_manager.add_pieces_from_nodes(all_pieces)
 	game_manager.init()
 	$InitialTimer.start()
-	
+
 
 func start_game() -> void:
 	for p in all_pieces:
 		p.update_lines()
 
-func take_turn(change_player: bool=true) -> void:
-	var _foo = game_manager.take_turn()
-	for p in all_pieces:
-		p.update_lines()
 
+func take_turn(change_player: bool=true) -> void:
+	var _foo = game_manager.take_turn(change_player)
+	for p in all_pieces: # we can assign whether or not turn matches here
+		p.update_lines()
+		p.turn_number = game_manager.turn_number
+
+
+func reset_piece_drag() -> void:
+	selected_piece.reset_drag_hide_phantom()
+	hide_buttons()
+
+func _unhandled_input(_event: InputEvent) -> void:
+	if not selected_piece:
+		return
+	var gfx: GraphicalPiece = selected_piece.get_node("GraphicalPiece")
+	var phantom = gfx.get_node("Phantom")
+	if Input.is_action_just_released("click") and phantom.dragging:
+		phantom.dragging = false
+		gfx.hide_lines()
+		print("released")
+		show_buttons()
+	elif Input.is_action_just_pressed("click"):
+		if phantom.dragging == false:
+			gfx.hide_lines()
+			reset_piece_drag()
+
+func show_buttons() -> void:
+	var global_pos = selected_piece.get_node("GraphicalPiece/Phantom").global_position
+	var i := 0
+	var y_pos := [-28, -8]
+	for btn in [$ConfirmMove, $RejectMove]:
+		btn.global_position = global_pos + Vector2(16, y_pos[i])
+		btn.show()
+		if $Camera2D.flip_vec[0] == -1:
+			btn.flip_h = true
+		else:
+			btn.flip_h = false
+		i += 1
+
+func hide_buttons() -> void:
+	$ConfirmMove.hide()
+	$RejectMove.hide()
 
 func draw_flat_board(h: int, w: int) -> void:
 	# Loop and draw coloured rectangles
