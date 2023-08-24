@@ -49,6 +49,7 @@ func get_valid_moves(mv: MoveVector) -> Array[Array]:
 			end_pos = map_collision_to_point(delta_norm, ray_target, collide_pos, collide_obj, mv.move_type)
 		else:
 			end_pos = cst.LOGIC_SQ_W * mv.to_arr[i]
+		
 		start_points.push_back(ray_start)
 		end_points.push_back(end_pos)
 	return [start_points, end_points]

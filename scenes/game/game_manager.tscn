@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scenes/game/game_manager.gd" id="1_83uxb"]
 
-[node name="game_manager" type="Node2D" groups=["pieces"]]
+[node name="game_manager" type="Node2D"]
 script = ExtResource("1_83uxb")
 
 [node name="InitialTimer" type="Timer" parent="."]

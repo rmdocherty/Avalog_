@@ -18,7 +18,7 @@ func hide_lines() -> void:
 		l.hide()
 
 func create_single_line(poly: Polygon2D, start_point: Vector2, end_point: Vector2, pointed: bool=true):
-	var points = drawing.create_line_points(start_point, end_point, 0.2, pointed, true)
+	var points = drawing.create_line_points(start_point, end_point, cst.LINE_DRAW_WIDTH, pointed, true) # was 0.2
 	poly.polygon = points
 	poly.color = $Phantom/PlayerCircle.default_colour
 	poly.z_index = 0 # set z index of enemies to be -1?

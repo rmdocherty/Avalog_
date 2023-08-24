@@ -80,11 +80,12 @@ func update_lines() -> void:
 			var start: Vector2 = starts[j]
 			var end: Vector2 = ends[j]
 			graphics.update_lines_from_fragment(mv_type, draw_type, start, end)
-
-			flat_starts.push_back(start)
-			flat_ends.push_back(end)
-			flat_mvs.push_back(mv_type)
-			flat_draws.push_back(draw_type)
+			
+			if start.length() < end.length(): # stop moving matching w/ 0 vecs
+				flat_starts.push_back(start)
+				flat_ends.push_back(end)
+				flat_mvs.push_back(mv_type)
+				flat_draws.push_back(draw_type)
 
 
 func _ready():
