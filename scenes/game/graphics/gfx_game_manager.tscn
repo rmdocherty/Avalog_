@@ -83,6 +83,7 @@ one_shot = true
 
 [node name="ConfirmMove" type="TextureButton" parent="."]
 visible = false
+z_index = 100
 offset_right = 40.0
 offset_bottom = 40.0
 texture_normal = ExtResource("9_viy4r")
@@ -91,11 +92,18 @@ texture_hover = ExtResource("11_jwlru")
 
 [node name="RejectMove" type="TextureButton" parent="."]
 visible = false
+z_index = 100
 offset_right = 40.0
 offset_bottom = 40.0
 texture_normal = ExtResource("12_kgepf")
 texture_pressed = ExtResource("13_4qeri")
 texture_hover = ExtResource("14_uf6ar")
 
+[node name="TakeTurnTimer" type="Timer" parent="."]
+wait_time = 0.05
+one_shot = true
+
 [connection signal="timeout" from="InitialTimer" to="." method="start_game"]
+[connection signal="pressed" from="ConfirmMove" to="." method="confirm_move"]
 [connection signal="pressed" from="RejectMove" to="." method="reset_piece_drag"]
+[connection signal="timeout" from="TakeTurnTimer" to="." method="take_turn" binds= [true]]

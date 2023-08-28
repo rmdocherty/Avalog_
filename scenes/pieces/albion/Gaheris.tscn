@@ -96,6 +96,7 @@ animations = [{
 }]
 
 [node name="Piece" instance=ExtResource("1_3os4k")]
+piece_char = "r"
 
 [node name="GraphicalPiece" parent="." index="1"]
 material = SubResource("ShaderMaterial_mq3wr")

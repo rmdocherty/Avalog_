@@ -25,7 +25,8 @@ func add_logic_piece(faction_char: String, piece_char: String, colour: cst.colou
 	return temp_piece
 
 
-func set_logic_piece(node: LogicPiece, faction_char: String, piece_char: String, colour: cst.colour) -> LogicPiece:
+func set_logic_piece(node: LogicPiece, faction_char: String, piece_char: String, 
+					colour: cst.colour, monarch_faction: String="a") -> LogicPiece:
 	# Useful for remapping a Piece's logic node in-place
 
 	# add checks here for weird pieces like pawn or king, and remappings for say aura pieces
@@ -42,7 +43,7 @@ func set_logic_piece(node: LogicPiece, faction_char: String, piece_char: String,
 		node.extra_moves = temp_dict["extra_moves"]
 	
 	if faction_char == "a" and piece_char == "p":
-		node = get_peasant(node, colour )
+		node = get_peasant(node, colour, monarch_faction)
 
 	node.piece_char = piece_char
 	node.faction_char = faction_char
@@ -50,11 +51,11 @@ func set_logic_piece(node: LogicPiece, faction_char: String, piece_char: String,
 	return node
 
 
-func get_peasant(node: LogicPiece, colour: cst.colour) -> LogicPiece:
+func get_peasant(node: LogicPiece, colour: cst.colour, monarch_faction: String="a") -> LogicPiece:
 	var forward := 1
 	if colour == cst.colour.WHITE:
 		forward = -1
-	var states = albion_moves.get_pawn_moves(forward)
+	var states = albion_moves.get_pawn_moves(forward, monarch_faction)
 	node.mv_states = states
 	node.active_mvs = states[0]
 	var extra_moves = albion_moves.get_pawn_attacks(forward)
@@ -92,7 +93,7 @@ var table = {
 		},
 		"k": {
 			"piece": preload("res://scenes/pieces/albion/Arthur.tscn"),
-			"logic": preload("res://scenes/pieces/LogicPiece.tscn"),
+			"logic": preload("res://scenes/pieces/inherited/Arthur.tscn"),
 			"mvs": albion_moves.get_king_moves(),
 			#"extra_moves": albion_moves.get_king_castling_moves()
 		},

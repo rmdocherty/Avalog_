@@ -1,7 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://bw5omsbiw8k76"]
+[gd_scene load_steps=16 format=3 uid="uid://bw5omsbiw8k76"]
 
 [ext_resource type="PackedScene" uid="uid://cfobj247gpa7q" path="res://scenes/pieces/Piece.tscn" id="1_qc263"]
 [ext_resource type="Shader" path="res://scenes/pieces/graphics/Piece.gdshader" id="2_mnbvk"]
+[ext_resource type="Script" path="res://scenes/pieces/inherited/Arthur.gd" id="2_yo7cs"]
 [ext_resource type="Texture2D" uid="uid://dpyn4s6dq6eh1" path="res://assets/pieces/albion/arthur.png" id="3_frxqk"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_22k6p"]
@@ -96,6 +97,9 @@ animations = [{
 }]
 
 [node name="Piece" instance=ExtResource("1_qc263")]
+
+[node name="LogicPiece" parent="." index="0"]
+script = ExtResource("2_yo7cs")
 
 [node name="GraphicalPiece" parent="." index="1"]
 material = SubResource("ShaderMaterial_22k6p")

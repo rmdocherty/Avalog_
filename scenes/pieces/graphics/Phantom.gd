@@ -2,7 +2,7 @@ extends Area2D
 
 var start_click_pos: Vector2
 var dragging := false
-var logic_pos
+var logic_pos: Vector2
 
 @onready var graphics: GraphicalPiece = get_parent()
 @onready var piece: Piece = get_parent().get_parent()

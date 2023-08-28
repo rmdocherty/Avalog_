@@ -17,6 +17,9 @@ func hide_lines() -> void:
 	for l in lines:
 		l.hide()
 
+func reset_lines() -> void:
+	lines = []
+
 func create_single_line(poly: Polygon2D, start_point: Vector2, end_point: Vector2, pointed: bool=true):
 	var points = drawing.create_line_points(start_point, end_point, cst.LINE_DRAW_WIDTH, pointed, true) # was 0.2
 	poly.polygon = points

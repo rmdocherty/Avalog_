@@ -1,5 +1,6 @@
 extends Node2D
 
+
 const Board = preload("res://scenes/game/board/board.tscn")
 var board := Board.instantiate()
 
@@ -22,11 +23,10 @@ func get_moves():
 	var start := Time.get_ticks_usec()
 	for p in all_pieces:
 		p.get_all_moves()
-	#get_tree().call_group("pieces", "get_all_moves")
 	var end := Time.get_ticks_usec()
 	print(end - start)
 
-func take_turn(change_player: bool=true) -> void:
+func take_turn(change_player: bool=true) -> int:
 	if current_turn_colour == cst.colour.WHITE and change_player:
 		current_turn_colour = cst.colour.BLACK
 		turn_number += 1
@@ -35,7 +35,7 @@ func take_turn(change_player: bool=true) -> void:
 		turn_number += 1
 
 	get_moves()
-
+	return turn_number
 
 func init() -> void:
 	# Initial delay to make sure added pieces loaded

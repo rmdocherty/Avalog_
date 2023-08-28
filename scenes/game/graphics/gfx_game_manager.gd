@@ -13,8 +13,9 @@ var selected_piece: Piece
 
 @onready var board := $board
 
-
+# ======================== FEN LOGIC =================
 func add_pieces_from_fen(fen_str: String) -> Array[Piece]:
+	"""Loop through FEN string, initialising new pieces at correct position w/ correct colour."""
 	var pieces: Array[Piece] = []
 	var x_idx: int = start_x
 	var y_idx: int = start_y
@@ -36,6 +37,7 @@ func add_pieces_from_fen(fen_str: String) -> Array[Piece]:
 	return pieces
 
 func add_piece(piece_letter: String, pos: Vector2) -> Piece:
+	"""Query the lookup and get a piece, initialise it then add as a child."""
 	var colour: cst.colour
 	var piece_type: String = piece_letter.to_lower()
 	if (piece_letter == piece_type):
@@ -49,30 +51,36 @@ func add_piece(piece_letter: String, pos: Vector2) -> Piece:
 	all_pieces.push_back(temp_piece)
 	return temp_piece
 
+
+# ======================== GAME LOGIC =================
 func init(fen: String) -> void:
 	all_pieces = add_pieces_from_fen(fen)
 	game_manager.add_pieces_from_nodes(all_pieces)
 	game_manager.init()
+	# short delay here so all nodes can load before we find moves
 	$InitialTimer.start()
-
 
 func start_game() -> void:
 	for p in all_pieces:
-		p.update_lines()
-
+		p.update_lines(p.logic.nested_valid_moves)
 
 func take_turn(change_player: bool=true) -> void:
-	var _foo = game_manager.take_turn(change_player)
+	"""Update the logical game manager (to find all piece's moves), loop through all pieces and 
+	update their graphics (colours, lines, z-index)."""
+	print(game_manager.turn_number)
+	var turn_n: int= game_manager.take_turn(change_player)
 	for p in all_pieces: # we can assign whether or not turn matches here
-		p.update_lines()
-		p.turn_number = game_manager.turn_number
+		var logic: LogicPiece = p.logic
+		p.change_turn(turn_n)
+		p.update_lines(logic.nested_valid_moves)
 
-
+# ======================== MOVE BUTTONS =================
 func reset_piece_drag() -> void:
 	selected_piece.reset_drag_hide_phantom()
 	hide_buttons()
 
 func _unhandled_input(_event: InputEvent) -> void:
+	"""Fall-through for mouse events: i.e if click ends show the buttons."""
 	if not selected_piece:
 		return
 	var gfx: GraphicalPiece = selected_piece.get_node("GraphicalPiece")
@@ -104,6 +112,16 @@ func hide_buttons() -> void:
 	$ConfirmMove.hide()
 	$RejectMove.hide()
 
+func confirm_move() -> void:
+	selected_piece.move_piece()
+	reset_piece_drag()
+	hide_buttons()
+	# we need a short delay jere s.t the physics can update after piece moved
+	await get_tree().physics_frame
+	take_turn(true)
+	
+
+# ======================== DRAWING =================
 func draw_flat_board(h: int, w: int) -> void:
 	# Loop and draw coloured rectangles
 	for y in range(h):
@@ -118,6 +136,8 @@ func _draw() -> void:
 	if cst.draw_iso == false:
 		draw_flat_board(8, 8)
 
+
+# ======================== PROCCESSES =================
 func _ready() -> void:
 	board.apply_scale(cst.BOARD_DRAW_SCALE)
 	board.play(str(cst.chosen_map))

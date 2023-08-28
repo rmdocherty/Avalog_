@@ -9,7 +9,7 @@ func post_move(_delta: Vector2) -> void:
 	active_mvs = mv_states[new_mv_state]
 
 
-func get_all_moves() -> void:
+func get_all_moves() -> Array:
 	# Loop through all active moves attribute, find valid moves and assign to nested_valid moves attr
 	var output: Array = []
 	for mv in active_mvs:
@@ -17,6 +17,7 @@ func get_all_moves() -> void:
 	var attack_mvs: Array[Array] = get_extra_moves(extra_moves)
 	output.push_back(attack_mvs)
 	nested_valid_moves = output
+	return nested_valid_moves
 
 
 func get_extra_moves(extra_mvs: Array[Vector2]) -> Array[Array]:

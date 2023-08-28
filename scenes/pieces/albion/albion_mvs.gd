@@ -42,9 +42,15 @@ func get_knight_moves() -> Array[MoveVector]:
 	return state
 
 
-func get_pawn_moves(dir: float=1) -> Array:
-	var mvs := helper.get_line_mvs([Vector2(0, dir)], cst.mv_type.NO_ATTACK)
-	var states := [[mvs], [mvs]]
+func get_pawn_moves(dir: float=1, monarch_faction: String="a") -> Array:
+	var states: Array
+	var state_1: MoveVector
+	var state_2 := helper.get_line_mvs([Vector2(0, dir)], cst.mv_type.NO_ATTACK)
+	if monarch_faction == "a":
+		state_1 =  helper.get_line_mvs([Vector2(0, dir)], cst.mv_type.NO_ATTACK, 2.0) 
+	else:
+		state_1 = state_2
+	states = [[state_1], [state_2]]
 	return states
 
 

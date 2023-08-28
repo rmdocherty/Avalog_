@@ -2,13 +2,14 @@ extends Area2D
 class_name  LogicPiece
 
 @export var colour: int = cst.colour.WHITE
-@export var faction_char: String = "a"
-@export var piece_char: String = "p"
+var faction_char: String = "a"
+var piece_char: String = "p"
 @onready var shape_cast: ShapeCast2D = $ShapeCast
 
 signal piece_taken
 enum states {IDLE, MOVED, DEAD}
-var state = states.IDLE
+var state := states.IDLE
+var moved := false
 
 var active_mvs: Array = []
 var nested_valid_moves: Array = []
@@ -17,15 +18,15 @@ func _ready() -> void:
 	# Set radii of shape stuff
 	shape_cast.shape.radius = cst.LOGIC_PIECE_RADIUS
 	$Collision.shape.radius = cst.LOGIC_PIECE_RADIUS
-	
-	add_to_group("pieces")
 
-func get_all_moves() -> void:
+
+func get_all_moves() -> Array:
 	# Loop through all active moves attribute, find valid moves and assign to nested_valid moves attr
 	var output: Array = []
 	for mv in active_mvs:
 		output.push_back(get_valid_moves((mv)))
 	nested_valid_moves = output
+	return nested_valid_moves
 
 
 func get_valid_moves(mv: MoveVector) -> Array[Array]:
@@ -66,7 +67,7 @@ func map_collision_to_point(norm_m: Vector2, ray_end: Vector2, collision_point: 
 	var allowed_end_point := collision_point_to_self.length() * norm_m - cst.LOGIC_PIECE_RADIUS * norm_m - epsilon
 	
 	var is_attacking: bool = (collide_obj.colour != self.colour) and (collide_obj.colour != cst.colour.NONE)
-	var is_line: bool = (mv_type == cst.mv_type.NORMAL)
+	var is_line: bool = (mv_type == cst.mv_type.NORMAL || mv_type == cst.mv_type.NO_ATTACK || mv_type == cst.mv_type.RANGED)
 	var is_jumping: bool = (mv_type == cst.mv_type.JUMPING)
 	var attack := int(is_attacking)
 	var line := int(is_line)
@@ -84,6 +85,7 @@ func move(pos: Vector2) -> void:
 	state = states.MOVED
 	var delta: Vector2 = pos - position
 	position = pos
+	moved = true
 	post_move(delta)
 
 

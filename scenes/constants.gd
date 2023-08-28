@@ -15,7 +15,7 @@ const LOGIC_PIECE_RADIUS := 14
 
 const WALL_SIZE: float = 100
 
-const LINE_DRAW_WIDTH = 0.25
+const LINE_DRAW_WIDTH = 0.22 # was 0.2 iirc
 const ISO := Vector2(16, 8) # 8 is good
 const BOARD_DRAW_SCALE := Vector2(3.75, 3.75)
 const FLAT_DRAW_SCALE := Vector2(1.3, 1.3)
@@ -26,8 +26,8 @@ const fen_faction_lookup = ["a", "i", "f", "t", "m"]
 const faction_lookup = ["a", "r", "b", "t", "m"]
 
 const full_board := "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR"
-const test := "8/8/8/p7/1P6/8/2p5/R3K"
-const chosen_fen := full_board#test
+const test := "8/1P6/8/p7/1P6/8/2p4P/R3K2R"
+const chosen_fen := test #test
 
 # Game variables: updated during runtime
 var network := network_types.LOCAL
