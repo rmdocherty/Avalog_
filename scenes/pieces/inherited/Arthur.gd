@@ -39,3 +39,17 @@ func get_extra_moves(extra_mvs: Array[Vector2], old_mvs: Array) -> void:
 					old_mvs[0][0][castle_vec_count + 2] = ray_start
 					old_mvs[0][1][castle_vec_count + 2] = end_pos
 			castle_vec_count += 1
+
+
+func post_move(delta: Vector2) -> void:
+	# Swap matching castle's position
+	var is_long: bool = delta.length() > 1.5 * cst.LOGIC_SQ_W
+	var is_horizontal: bool = (delta[0] * delta[1] == 0)
+	if is_long and is_horizontal:
+		# find most loc of similar vector
+		var vec_loc: int = castling_vectors.find(delta.normalized(), 0)
+		# find castle corresponding to that vector
+		var castle_to_swap: Node2D = castles[vec_loc]
+		var swap_pos := global_position - 2.6 * delta.normalized() * cst.LOGIC_PIECE_RADIUS
+		castle_to_swap.global_position = swap_pos
+		

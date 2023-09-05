@@ -69,8 +69,10 @@ func take_turn(change_player: bool=true) -> void:
 	update their graphics (colours, lines, z-index)."""
 	print(game_manager.turn_number)
 	var turn_n: int= game_manager.take_turn(change_player)
-	for p in all_pieces: # we can assign whether or not turn matches here
+	for p in all_pieces: 
 		var logic: LogicPiece = p.logic
+		# Update positions (i.e for deletions/castling)
+		p.set_graphic_pos(logic.position)
 		p.change_turn(turn_n)
 		p.update_lines(logic.nested_valid_moves)
 
@@ -117,8 +119,9 @@ func confirm_move() -> void:
 	reset_piece_drag()
 	hide_buttons()
 	# we need a short delay jere s.t the physics can update after piece moved
-	await get_tree().physics_frame
-	take_turn(true)
+	#await get_tree().physics_frame
+	$TakeTurnTimer.start()
+	#take_turn(true)
 	
 
 # ======================== DRAWING =================

@@ -80,7 +80,6 @@ func map_collision_to_point(norm_m: Vector2, ray_end: Vector2, collision_point: 
 	var end_point := line_dist + jump_dist
 	return end_point
 
-
 func move(pos: Vector2) -> void:
 	state = states.MOVED
 	var delta: Vector2 = pos - position
@@ -88,25 +87,20 @@ func move(pos: Vector2) -> void:
 	moved = true
 	post_move(delta)
 
-
 func post_move(_delta: Vector2) -> void:
 	# To be overwritten later, for castling or state switching
 	pass
 
-
 func on_overlap(area: LogicPiece) -> void:
 	# If enemy piece impinges on this, delete
-	print(area.colour, colour)
 	var is_enemy = area.colour != colour and colour != cst.colour.NONE
 	if state == states.IDLE and is_enemy:
 		delete()
-
 
 func delete() -> void:
 	# may need to update to be undoable for engine
 	collision_layer = 10
 	state = states.DEAD
 	position = Vector2(-1000, -1000)
-	piece_taken.emit()
 	print("deleted")
 	set_process_input(false)

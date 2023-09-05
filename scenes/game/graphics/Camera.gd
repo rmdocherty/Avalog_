@@ -10,7 +10,7 @@ var offset_cam_speed := 1.25
 var zoom_cam_speed := 1.25
 
 const MAX_ZOOM := 5
-const MIN_ZOOM := 0.25
+const MIN_ZOOM := 0.5
 
 var window_mode = DisplayServer.window_get_mode()
 

@@ -106,6 +106,11 @@ func move_piece() -> void:
 	var current_logical_pos: Vector2 = logic.global_position
 	logic.move(current_logical_pos + to_move)
 	set_graphic_pos(current_logical_pos + to_move)
+	post_move(to_move)
+
+func post_move(delta: Vector2) -> void:
+	# Overwritten later
+	pass
 
 func change_turn(new_turn_number: int) -> void:
 	turn_number = new_turn_number
