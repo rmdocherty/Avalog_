@@ -15,7 +15,7 @@ var grey := Color("#dcdfe3")
 
 var default_colour: Color = blue
 var default_edge: Color = grey
-var current_state: String
+var current_state: String = "active"
 
 func set_colour(state: String) -> void:
 	current_state = state

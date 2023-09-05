@@ -66,7 +66,7 @@ func map_collision_to_point(norm_m: Vector2, ray_end: Vector2, collision_point: 
 	var collision_point_to_self := collision_point - global_position
 	var allowed_end_point := collision_point_to_self.length() * norm_m - cst.LOGIC_PIECE_RADIUS * norm_m - epsilon
 	
-	var is_attacking: bool = (collide_obj.colour != self.colour) and (collide_obj.colour != cst.colour.NONE)
+	var is_attacking: bool = (collide_obj.colour != self.colour) and (collide_obj.colour != cst.colour.NONE) and (mv_type != cst.mv_type.NO_ATTACK)
 	var is_line: bool = (mv_type == cst.mv_type.NORMAL || mv_type == cst.mv_type.NO_ATTACK || mv_type == cst.mv_type.RANGED)
 	var is_jumping: bool = (mv_type == cst.mv_type.JUMPING)
 	var attack := int(is_attacking)
@@ -102,5 +102,4 @@ func delete() -> void:
 	collision_layer = 10
 	state = states.DEAD
 	position = Vector2(-1000, -1000)
-	print("deleted")
 	set_process_input(false)

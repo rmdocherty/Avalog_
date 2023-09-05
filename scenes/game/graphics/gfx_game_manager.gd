@@ -64,17 +64,33 @@ func start_game() -> void:
 	for p in all_pieces:
 		p.update_lines(p.logic.nested_valid_moves)
 
+func y_sort(a, b):
+	var a_pos := hlp.logic_to_iso(a.global_position)[1]
+	var b_pos := hlp.logic_to_iso(b.global_position)[1]
+	return a_pos < b_pos
+
 func take_turn(change_player: bool=true) -> void:
 	"""Update the logical game manager (to find all piece's moves), loop through all pieces and 
 	update their graphics (colours, lines, z-index)."""
 	print(game_manager.turn_number)
-	var turn_n: int= game_manager.take_turn(change_player)
+	var turn_n: int = game_manager.take_turn(change_player)
+	var z_count: int = 0
+	all_pieces.sort_custom(y_sort)
 	for p in all_pieces: 
 		var logic: LogicPiece = p.logic
 		# Update positions (i.e for deletions/castling)
 		p.set_graphic_pos(logic.position)
 		p.change_turn(turn_n)
 		p.update_lines(logic.nested_valid_moves)
+		
+		# Display current turn pieces and further down pieces on top 
+		var z_inc: int
+		if p.colour == game_manager.current_turn_colour:
+			z_inc = 50
+		else:
+			z_inc = 0
+		p.z_index = z_count + z_inc
+		z_count += 1
 
 # ======================== MOVE BUTTONS =================
 func reset_piece_drag() -> void:
@@ -115,13 +131,11 @@ func hide_buttons() -> void:
 	$RejectMove.hide()
 
 func confirm_move() -> void:
-	selected_piece.move_piece()
+	game_manager.move_piece(selected_piece)
 	reset_piece_drag()
 	hide_buttons()
-	# we need a short delay jere s.t the physics can update after piece moved
-	#await get_tree().physics_frame
+	# we need a short delay here s.t the physics can update after piece moved
 	$TakeTurnTimer.start()
-	#take_turn(true)
 	
 
 # ======================== DRAWING =================

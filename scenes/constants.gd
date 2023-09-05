@@ -12,6 +12,8 @@ enum collide_layers {NONE, PIECES, MOUSE, GFX}
 
 const LOGIC_SQ_W := 50
 const LOGIC_PIECE_RADIUS := 14
+const Y_OFFSET := -4
+const X_OFFSET := -4
 
 const WALL_SIZE: float = 100
 
@@ -26,7 +28,7 @@ const fen_faction_lookup = ["a", "i", "f", "t", "m"]
 const faction_lookup = ["a", "r", "b", "t", "m"]
 
 const full_board := "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR"
-const test := "8/1P6/8/p7/1P6/8/2p4P/R3K2R"
+const test := "8/1P6/8/p7/1P6/7p/2p4P/R3K2R"
 const chosen_fen := test #test
 
 # Game variables: updated during runtime

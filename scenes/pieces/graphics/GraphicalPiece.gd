@@ -4,9 +4,13 @@ class_name GraphicalPiece
 var lines: Array[Polygon2D] = []
 var current_polygon := [PackedVector2Array(), PackedVector2Array()]
 @onready var sprite: AnimatedSprite2D = $Sprite
+@onready var circle: Node2D = $Phantom/PlayerCircle
+
+var passive_anim: String = "0_passive"
+var attack_anim: String = "0_attack"
 
 func mouse_entered_circle() -> void:
-	sprite.play('0_passive')
+	sprite.play(passive_anim)
 	show_lines()
 
 func show_lines() -> void:
@@ -23,7 +27,7 @@ func reset_lines() -> void:
 func create_single_line(poly: Polygon2D, start_point: Vector2, end_point: Vector2, pointed: bool=true):
 	var points = drawing.create_line_points(start_point, end_point, cst.LINE_DRAW_WIDTH, pointed, true) # was 0.2
 	poly.polygon = points
-	poly.color = $Phantom/PlayerCircle.default_colour
+	poly.color = circle.default_colour
 	poly.z_index = 0 # set z index of enemies to be -1?
 
 func append_line(logic_start_pos: Vector2, logic_end_pos: Vector2, pointed: bool=true):
@@ -45,7 +49,7 @@ func finish_polygon() -> void:
 	current_polygon[1].reverse()
 	poly.polygon = current_polygon[0] + current_polygon[1]
 	poly.hide()
-	poly.color = $Phantom/PlayerCircle.default_colour
+	poly.color = circle.default_colour
 	poly.z_index = 0
 	poly.apply_scale(cst.BOARD_DRAW_SCALE)
 	lines.push_back(poly)
@@ -73,7 +77,18 @@ func flip_sprite() -> void:
 		s.flip_h = true
 
 func change_player_circle(state: String) -> void:
-	$Phantom/PlayerCircle.set_colour(state)
+	circle.set_colour(state)
+
+func _on_area_entered(area: Area2D):
+	# this is called when an area enters this area (i.e when black queen dragged on white pawn, $area=black queen)
+	if area.dragging:
+		circle.make_yellow()
+		area.get_node("PhantomSprite").play(attack_anim)
+		sprite.play(passive_anim)
+
+func _on_area_exited(_area: Area2D):
+	circle.set_colour(circle.current_state)
+	$Phantom/PhantomSprite.play(passive_anim)
 
 func _ready() -> void:
 	for s in [sprite, $Phantom/PhantomSprite]:
@@ -84,7 +99,7 @@ func _ready() -> void:
 	else:
 		sprite.hide()
 		$Icon.show()
-	$Phantom/Hover.polygon = $Phantom/PlayerCircle.inner_points
+	$Phantom/Hover.polygon = circle.inner_points
 
 
 

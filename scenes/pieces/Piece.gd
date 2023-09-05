@@ -101,14 +101,16 @@ func set_graphic_pos(logical_pos: Vector2) -> void:
 	var norm_pos = logical_pos / cst.LOGIC_SQ_W
 	graphics.global_position = hlp.norm_to_iso(cst.BOARD_DRAW_SCALE * norm_pos)
 
-func move_piece() -> void:
+func move_piece() -> Vector2:
 	var to_move: Vector2 = graphics.get_node("Phantom").logic_pos
-	var current_logical_pos: Vector2 = logic.global_position
-	logic.move(current_logical_pos + to_move)
-	set_graphic_pos(current_logical_pos + to_move)
-	post_move(to_move)
+	var current_logic_pos: Vector2 = logic.global_position
+	var new_logic_pos: Vector2 = current_logic_pos + to_move
+	logic.move(new_logic_pos)
+	set_graphic_pos(new_logic_pos)
+	post_move(new_logic_pos)
+	return new_logic_pos
 
-func post_move(delta: Vector2) -> void:
+func post_move(_delta: Vector2) -> void:
 	# Overwritten later
 	pass
 

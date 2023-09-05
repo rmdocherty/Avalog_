@@ -37,6 +37,36 @@ func take_turn(change_player: bool=true) -> int:
 	get_moves()
 	return turn_number
 
+func move_piece(piece: Piece) -> void:
+	var new_pos := piece.move_piece()
+	var promote: bool = check_for_promotion(piece, new_pos)
+	if promote:
+		promote_piece(piece, new_pos)
+
+func check_for_promotion(piece: Piece, pos: Vector2) -> bool:
+	if piece.piece_char != "p":
+		return false
+	var is_white: bool = piece.colour == cst.colour.WHITE
+	var is_black: bool = piece.colour == cst.colour.BLACK
+	if is_white and pos[1] < cst.LOGIC_SQ_W * (cst.Y_OFFSET + 0.5):
+		return true
+	elif is_black and pos[1] > cst.LOGIC_SQ_W * ((cst.Y_OFFSET + 8) - 1.5):
+		return true
+	else:
+		return false
+
+func promote_piece(piece: Piece, pos: Vector2, gfx: bool=true) -> void:
+	var new_piece: Piece = lkp.add_piece(piece.faction_char, "q", piece.colour)
+	
+	if gfx:
+		print(pos, piece.colour)
+		get_parent().add_child(new_piece)
+		new_piece.init(pos, piece.colour)
+		
+		get_parent().all_pieces.push_back(new_piece)
+		all_pieces.push_back(new_piece.logic)
+	piece.logic.delete()
+
 func init() -> void:
 	# Initial delay to make sure added pieces loaded
 	$InitialTimer.start(0.1)
