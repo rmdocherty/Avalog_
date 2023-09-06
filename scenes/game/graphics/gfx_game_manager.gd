@@ -65,8 +65,9 @@ func start_game() -> void:
 		p.update_lines(p.logic.nested_valid_moves)
 
 func y_sort(a, b):
-	var a_pos := hlp.logic_to_iso(a.global_position)[1]
-	var b_pos := hlp.logic_to_iso(b.global_position)[1]
+	# need to use logical position to make sure it's updated properly
+	var a_pos := hlp.logic_to_iso(a.logic.global_position)[1]
+	var b_pos := hlp.logic_to_iso(b.logic.global_position)[1]
 	return a_pos < b_pos
 
 func take_turn(change_player: bool=true) -> void:
@@ -84,11 +85,9 @@ func take_turn(change_player: bool=true) -> void:
 		p.update_lines(logic.nested_valid_moves)
 		
 		# Display current turn pieces and further down pieces on top 
-		var z_inc: int
+		var z_inc: int = 0
 		if p.colour == game_manager.current_turn_colour:
 			z_inc = 50
-		else:
-			z_inc = 0
 		p.z_index = z_count + z_inc
 		z_count += 1
 

@@ -7,7 +7,7 @@ var piece_char: String = "p"
 @onready var shape_cast: ShapeCast2D = $ShapeCast
 
 signal piece_taken
-enum states {IDLE, MOVED, DEAD}
+enum states {IDLE, MOVED, ATTACKING, DEAD}
 var state := states.IDLE
 var moved := false
 
@@ -94,8 +94,10 @@ func post_move(_delta: Vector2) -> void:
 func on_overlap(area: LogicPiece) -> void:
 	# If enemy piece impinges on this, delete
 	var is_enemy = area.colour != colour and colour != cst.colour.NONE
-	if state == states.IDLE and is_enemy:
+	if state == states.IDLE and is_enemy: # being taken
 		delete()
+	elif state == states.MOVED and is_enemy: # taking
+		state = states.ATTACKING
 
 func delete() -> void:
 	# may need to update to be undoable for engine

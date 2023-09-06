@@ -6,7 +6,7 @@
 [ext_resource type="Shader" path="res://scenes/pieces/graphics/Piece.gdshader" id="4_tii1i"]
 [ext_resource type="Texture2D" uid="uid://drn0dw0ovuc4k" path="res://assets/pieces/albion/peasant.png" id="5_nxsbk"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_g0k1a"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3ria1"]
 resource_local_to_scene = true
 shader = ExtResource("4_tii1i")
 shader_parameter/tol = 0.05
@@ -104,7 +104,7 @@ script = ExtResource("1_lt0tp")
 [node name="LogicPiece" parent="." instance=ExtResource("1_iim7g")]
 
 [node name="GraphicalPiece" parent="." instance=ExtResource("2_2r1eq")]
-material = SubResource("ShaderMaterial_g0k1a")
+material = SubResource("ShaderMaterial_3ria1")
 
 [node name="PlayerCircle" parent="GraphicalPiece/Phantom" index="0"]
 z_index = 1

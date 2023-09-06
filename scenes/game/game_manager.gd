@@ -57,12 +57,10 @@ func check_for_promotion(piece: Piece, pos: Vector2) -> bool:
 
 func promote_piece(piece: Piece, pos: Vector2, gfx: bool=true) -> void:
 	var new_piece: Piece = lkp.add_piece(piece.faction_char, "q", piece.colour)
-	
 	if gfx:
 		print(pos, piece.colour)
 		get_parent().add_child(new_piece)
 		new_piece.init(pos, piece.colour)
-		
 		get_parent().all_pieces.push_back(new_piece)
 		all_pieces.push_back(new_piece.logic)
 	piece.logic.delete()

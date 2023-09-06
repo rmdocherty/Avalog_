@@ -4,6 +4,11 @@ class_name Piece
 var colour: cst.colour
 var turn_number: int = 1
 
+var moving := false
+var total_moved := Vector2(0, 0)
+var to_move := Vector2(0, 0)
+var moving_to_attack := false
+
 
 var flat_starts := PackedVector2Array([])
 var flat_ends := PackedVector2Array([])
@@ -15,6 +20,7 @@ var flat_draws := PackedInt32Array([])
 @export var mixed_move_types = false
 @export var faction_char: String = "a"
 @export var piece_char: String = "p"
+@export var piece_vel: float = 1.
 
 
 # ======================== INIT LOGIC =================
@@ -102,9 +108,9 @@ func set_graphic_pos(logical_pos: Vector2) -> void:
 	graphics.global_position = hlp.norm_to_iso(cst.BOARD_DRAW_SCALE * norm_pos)
 
 func move_piece() -> Vector2:
-	var to_move: Vector2 = graphics.get_node("Phantom").logic_pos
+	var move_dist: Vector2 = graphics.get_node("Phantom").logic_pos
 	var current_logic_pos: Vector2 = logic.global_position
-	var new_logic_pos: Vector2 = current_logic_pos + to_move
+	var new_logic_pos: Vector2 = current_logic_pos + move_dist
 	logic.move(new_logic_pos)
 	set_graphic_pos(new_logic_pos)
 	post_move(new_logic_pos)
@@ -122,14 +128,30 @@ func change_turn(new_turn_number: int) -> void:
 	else:
 		graphics.change_player_circle("inactive")
 
-"""See if I can't get away with updating position here - or maybe just put the
-process() call in graphics and be done with it
-"""
-
-
 # ======================== PROCESSES =================
 func _ready():
 	if colour == cst.colour.BLACK:
 		graphics.flip_sprite()
 		graphics.change_player_circle("inactive")
 	set_shader_params(cst.replace_palettes)
+
+func _process(delta):
+	if moving:
+		var current_dist: float = total_moved.length()
+		var whole_dist: float =  to_move.length()
+		if current_dist < whole_dist:
+			var norm_dist := (whole_dist - current_dist) / whole_dist
+			var moved_along := 0.3 + norm_dist
+			var moved = total_moved.normalized() * delta * piece_vel * moved_along * cst.ANIM_SPEED
+			moved.clamp(cst.LOGIC_SQ_W * Vector2(0.25,0.25), cst.LOGIC_SQ_W * Vector2(1,1))
+			global_position += moved
+			total_moved += moved
+			set_graphic_pos(global_position)
+			
+			if current_dist > whole_dist / 2 and moving_to_attack:
+				pass # do camera zoom in
+		elif current_dist >= whole_dist:
+			moving = false
+			moving_to_attack = false
+			
+		

@@ -37,7 +37,7 @@ func get_rook_moves() -> Array[MoveVector]:
 
 func get_knight_moves() -> Array[MoveVector]:
 	const mag := sqrt(5)
-	var mvs := helper.get_circle_mvs(0, mag, 0, 360, cst.mv_type.JUMPING, true, 32)
+	var mvs := helper.get_circle_mvs(0, mag, 0, 360, cst.mv_type.JUMPING, true, 64)
 	var state: Array[MoveVector] = [mvs]
 	return state
 
