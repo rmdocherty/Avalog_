@@ -22,6 +22,7 @@ func get_moves():
 	# Loop through all pieces, get valid moves, time.
 	var start := Time.get_ticks_usec()
 	for p in all_pieces:
+		p.state = p.states.IDLE
 		p.get_all_moves()
 	var end := Time.get_ticks_usec()
 	print(end - start)
@@ -60,6 +61,7 @@ func promote_piece(piece: Piece, pos: Vector2, gfx: bool=true) -> void:
 	if gfx:
 		print(pos, piece.colour)
 		get_parent().add_child(new_piece)
+		new_piece.hide()
 		new_piece.init(pos, piece.colour)
 		get_parent().all_pieces.push_back(new_piece)
 		all_pieces.push_back(new_piece.logic)

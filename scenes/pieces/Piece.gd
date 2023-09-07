@@ -17,10 +17,12 @@ var flat_draws := PackedInt32Array([])
 
 @onready var graphics: GraphicalPiece = $GraphicalPiece
 @onready var logic: LogicPiece = $LogicPiece
+@onready var gfx_manager = get_parent()
+
 @export var mixed_move_types = false
 @export var faction_char: String = "a"
 @export var piece_char: String = "p"
-@export var piece_vel: float = 1.
+@export var piece_vel: float = 1.5 * cst.LOGIC_SQ_W
 
 
 # ======================== INIT LOGIC =================
@@ -42,7 +44,7 @@ func graphics_init(logic_pos: Vector2, set_colour: cst.colour) -> void:
 	set_shader_params(cst.replace_palettes)
 
 # ======================== GFX LOGIC =================
-func set_shader_params(replace_palettes) -> void:
+func set_shader_params(replace_palettes: Array[int]) -> void:
 	graphics.material.set_shader_parameter("original_palette_num", replace_palettes[colour])
 	graphics.material.set_shader_parameter("replace_palette_num", replace_palettes[colour + 2])
 
@@ -108,12 +110,20 @@ func set_graphic_pos(logical_pos: Vector2) -> void:
 	graphics.global_position = hlp.norm_to_iso(cst.BOARD_DRAW_SCALE * norm_pos)
 
 func move_piece() -> Vector2:
+	# can add a check here if the phantom has overlapping areas & set moving to attack
 	var move_dist: Vector2 = graphics.get_node("Phantom").logic_pos
 	var current_logic_pos: Vector2 = logic.global_position
 	var new_logic_pos: Vector2 = current_logic_pos + move_dist
 	logic.move(new_logic_pos)
-	set_graphic_pos(new_logic_pos)
-	post_move(new_logic_pos)
+	if cst.ANIM_ON:
+		total_moved = Vector2(0, 0)
+		to_move = move_dist
+		print(to_move)
+		moving = true
+	else:
+		set_graphic_pos(new_logic_pos)
+		post_move(new_logic_pos)
+		gfx_manager.after_piece_finished_moving()
 	return new_logic_pos
 
 func post_move(_delta: Vector2) -> void:
@@ -135,23 +145,32 @@ func _ready():
 		graphics.change_player_circle("inactive")
 	set_shader_params(cst.replace_palettes)
 
-func _process(delta):
+func _process(delta: float) -> void:
+	"""If the piece's moved distance has been set, move it along until it reaches that distance with 
+	a speed that ramps down. If more than halfway and it's attacking, start the camera zoom. Once 
+	moving is finished, tell the game manager to do the post move function(s)."""
 	if moving:
+		moving_to_attack = (logic.state == logic.states.ATTACKING)
 		var current_dist: float = total_moved.length()
 		var whole_dist: float =  to_move.length()
 		if current_dist < whole_dist:
 			var norm_dist := (whole_dist - current_dist) / whole_dist
 			var moved_along := 0.3 + norm_dist
-			var moved = total_moved.normalized() * delta * piece_vel * moved_along * cst.ANIM_SPEED
+			var moved := to_move.normalized() * delta * piece_vel * moved_along * cst.ANIM_SPEED * 2
 			moved.clamp(cst.LOGIC_SQ_W * Vector2(0.25,0.25), cst.LOGIC_SQ_W * Vector2(1,1))
-			global_position += moved
 			total_moved += moved
-			set_graphic_pos(global_position)
+			var g_pos := hlp.norm_to_iso(cst.BOARD_DRAW_SCALE * moved / cst.LOGIC_SQ_W)
+			graphics.global_position += g_pos
 			
 			if current_dist > whole_dist / 2 and moving_to_attack:
-				pass # do camera zoom in
+				# dynamic zoom
+				var move_frac := current_dist / whole_dist
+				var camera: Camera2D = gfx_manager.get_node("Camera2D")
+				camera.movement_zoom_in(move_frac, graphics.global_position)
 		elif current_dist >= whole_dist:
+			print("done")
 			moving = false
 			moving_to_attack = false
+			gfx_manager.after_piece_finished_moving()
 			
 		

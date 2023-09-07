@@ -80,6 +80,7 @@ func take_turn(change_player: bool=true) -> void:
 	for p in all_pieces: 
 		var logic: LogicPiece = p.logic
 		# Update positions (i.e for deletions/castling)
+		p.show()
 		p.set_graphic_pos(logic.position)
 		p.change_turn(turn_n)
 		p.update_lines(logic.nested_valid_moves)
@@ -133,9 +134,11 @@ func confirm_move() -> void:
 	game_manager.move_piece(selected_piece)
 	reset_piece_drag()
 	hide_buttons()
+	
+
+func after_piece_finished_moving() -> void:
 	# we need a short delay here s.t the physics can update after piece moved
 	$TakeTurnTimer.start()
-	
 
 # ======================== DRAWING =================
 func draw_flat_board(h: int, w: int) -> void:
