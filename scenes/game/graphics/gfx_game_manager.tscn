@@ -1,19 +1,28 @@
-[gd_scene load_steps=16 format=3 uid="uid://bm7utema3eqfb"]
+[gd_scene load_steps=24 format=3 uid="uid://bm7utema3eqfb"]
 
 [ext_resource type="Script" path="res://scenes/game/graphics/gfx_game_manager.gd" id="1_d8ywr"]
 [ext_resource type="Texture2D" uid="uid://m3cmypbyyc6x" path="res://assets/maps/albion_map.png" id="2_gxohm"]
+[ext_resource type="Texture2D" uid="uid://4u00lliafnki" path="res://assets/menus/in_game/settings.png" id="2_rb4dr"]
+[ext_resource type="Texture2D" uid="uid://b1wpahhpjyt8" path="res://assets/menus/in_game/settings_hover.png" id="3_p1700"]
 [ext_resource type="Texture2D" uid="uid://cf7i6n68okt4l" path="res://assets/maps/italia.png" id="3_srfcr"]
+[ext_resource type="Texture2D" uid="uid://pp0o1v2uxyyh" path="res://assets/menus/in_game/hide_bar.png" id="4_1tb4w"]
 [ext_resource type="Texture2D" uid="uid://d332iqxel0wlx" path="res://assets/maps/bretagne.png" id="4_nm1j0"]
 [ext_resource type="Texture2D" uid="uid://dwg03tquenpps" path="res://assets/maps/turkiye.png" id="5_3x05e"]
+[ext_resource type="Texture2D" uid="uid://bmxyh80lvn6p0" path="res://assets/menus/in_game/hide_bar_pressed.png" id="5_kh2we"]
 [ext_resource type="Texture2D" uid="uid://3jv2m5rj47v0" path="res://assets/maps/morgana.png" id="6_dgbww"]
+[ext_resource type="Texture2D" uid="uid://dd34vjshthfsy" path="res://assets/menus/in_game/hide_bar_hover.png" id="6_n8sr3"]
 [ext_resource type="Texture2D" uid="uid://qt4nbxukhhu1" path="res://assets/maps/bg.png" id="7_7xh0m"]
 [ext_resource type="Script" path="res://scenes/game/graphics/Camera.gd" id="8_h02n5"]
+[ext_resource type="Theme" uid="uid://csq3hvxncciso" path="res://assets/menus/styles/mode_select_theme.tres" id="8_mhaoa"]
 [ext_resource type="Texture2D" uid="uid://0qfryyre0nss" path="res://assets/menus/buttons/tick_default.png" id="9_viy4r"]
 [ext_resource type="Texture2D" uid="uid://fjk83ocp406b" path="res://assets/menus/buttons/tick_click.png" id="10_laut7"]
 [ext_resource type="Texture2D" uid="uid://b07lm3u7grldq" path="res://assets/menus/buttons/tick_hover.png" id="11_jwlru"]
 [ext_resource type="Texture2D" uid="uid://7l2m8qlcksq0" path="res://assets/menus/buttons/cross_default.png" id="12_kgepf"]
 [ext_resource type="Texture2D" uid="uid://bp14k0akst1tf" path="res://assets/menus/buttons/cross_click.png" id="13_4qeri"]
 [ext_resource type="Texture2D" uid="uid://c3ksaqqkeqpyy" path="res://assets/menus/buttons/cross_hover.png" id="14_uf6ar"]
+[ext_resource type="Texture2D" uid="uid://c2qvn2rpc5m04" path="res://assets/menus/in_game/menu_bar_large.png" id="16_8yi0n"]
+
+[sub_resource type="Theme" id="Theme_vxdyh"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_vsrer"]
 animations = [{
@@ -60,6 +69,73 @@ animations = [{
 
 [node name="gfx_game_manager" type="Node2D"]
 script = ExtResource("1_d8ywr")
+
+[node name="GUILayer" type="CanvasLayer" parent="."]
+
+[node name="Settings" type="TextureButton" parent="GUILayer"]
+custom_minimum_size = Vector2(50, 50)
+offset_left = 1090.0
+offset_top = 10.0
+offset_right = 1140.0
+offset_bottom = 60.0
+texture_normal = ExtResource("2_rb4dr")
+texture_hover = ExtResource("3_p1700")
+stretch_mode = 0
+
+[node name="HideBar" type="TextureButton" parent="GUILayer"]
+offset_left = 1090.0
+offset_top = 70.0
+offset_right = 1140.0
+offset_bottom = 120.0
+texture_normal = ExtResource("4_1tb4w")
+texture_pressed = ExtResource("5_kh2we")
+texture_hover = ExtResource("6_n8sr3")
+stretch_mode = 0
+
+[node name="BottomBar" type="MarginContainer" parent="GUILayer"]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -64.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 3
+theme = SubResource("Theme_vxdyh")
+
+[node name="TextureRect" type="TextureRect" parent="GUILayer/BottomBar"]
+layout_mode = 2
+texture = ExtResource("16_8yi0n")
+stretch_mode = 1
+
+[node name="hb1" type="HBoxContainer" parent="GUILayer/BottomBar"]
+layout_mode = 2
+
+[node name="_" type="NinePatchRect" parent="GUILayer/BottomBar/hb1"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+
+[node name="Name1" type="Label" parent="GUILayer/BottomBar/hb1"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme = ExtResource("8_mhaoa")
+text = "Player 1"
+
+[node name="Icons" type="HBoxContainer" parent="GUILayer/BottomBar/hb1"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Name2" type="Label" parent="GUILayer/BottomBar/hb1"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme = ExtResource("8_mhaoa")
+text = "Player 2
+"
+horizontal_alignment = 2
+
+[node name="__" type="NinePatchRect" parent="GUILayer/BottomBar/hb1"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
 
 [node name="board" type="AnimatedSprite2D" parent="."]
 visible = false
