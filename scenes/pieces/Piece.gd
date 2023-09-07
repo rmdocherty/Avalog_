@@ -54,7 +54,7 @@ func reset_drag_hide_phantom(_move_confirmed: bool=false) -> void:
 	$GraphicalPiece/Phantom/PhantomSprite.hide()
 
 func reset_flat_arrs() -> void:
-	graphics.reset_lines()
+	graphics.delete_lines()
 	flat_starts = PackedVector2Array([])
 	flat_ends = PackedVector2Array([])
 	flat_mvs = PackedInt32Array([])
@@ -91,6 +91,12 @@ func update_lines(nested_vms: Array) -> void:
 				flat_mvs.push_back(mv_type)
 				flat_draws.push_back(draw_type)
 
+func play_attack_anim() -> void:
+	var sprite: AnimatedSprite2D = graphics.get_node("Sprite")
+	sprite.play(graphics.attack_anim)
+	await sprite.animation_looped
+	sprite.play(graphics.passive_anim)
+	sprite.stop()
 
 # ======================== MOVE LOGIC =================
 func pos_from_slide(slide: Vector2, mv: Vector2, minimum_dist: Vector2, mouse_delta: Vector2) -> Vector2:
@@ -138,6 +144,13 @@ func change_turn(new_turn_number: int) -> void:
 	else:
 		graphics.change_player_circle("inactive")
 
+func post_gfx_move() -> void:
+	if moving_to_attack:
+		await play_attack_anim()
+	moving = false
+	moving_to_attack = false
+	gfx_manager.after_piece_finished_moving()
+
 # ======================== PROCESSES =================
 func _ready():
 	if colour == cst.colour.BLACK:
@@ -162,15 +175,10 @@ func _process(delta: float) -> void:
 			var g_pos := hlp.norm_to_iso(cst.BOARD_DRAW_SCALE * moved / cst.LOGIC_SQ_W)
 			graphics.global_position += g_pos
 			
-			if current_dist > whole_dist / 2 and moving_to_attack:
+			if current_dist > whole_dist / 2 and moving_to_attack and whole_dist > 100 :
 				# dynamic zoom
 				var move_frac := current_dist / whole_dist
 				var camera: Camera2D = gfx_manager.get_node("Camera2D")
 				camera.movement_zoom_in(move_frac, graphics.global_position)
 		elif current_dist >= whole_dist:
-			print("done")
-			moving = false
-			moving_to_attack = false
-			gfx_manager.after_piece_finished_moving()
-			
-		
+			post_gfx_move()

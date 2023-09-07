@@ -91,7 +91,7 @@ func post_move(_delta: Vector2) -> void:
 	# To be overwritten later, for castling or state switching
 	pass
 
-func on_overlap(area: LogicPiece) -> void:
+func on_overlap(area: Area2D) -> void:
 	# If enemy piece impinges on this, delete
 	var is_enemy = area.colour != colour and colour != cst.colour.NONE
 	if state == states.IDLE and is_enemy: # being taken

@@ -5,13 +5,15 @@ var lines: Array[Polygon2D] = []
 var current_polygon := [PackedVector2Array(), PackedVector2Array()]
 @onready var sprite: AnimatedSprite2D = $Sprite
 @onready var circle: Node2D = $Phantom/PlayerCircle
+@onready var piece: Piece = get_parent()
 
 var passive_anim: String = "0_passive"
 var attack_anim: String = "0_attack"
 
 func mouse_entered_circle() -> void:
-	sprite.play(passive_anim)
-	show_lines()
+	if piece.moving == false:
+		sprite.play(passive_anim)
+		show_lines()
 
 func show_lines() -> void:
 	for l in lines:
@@ -20,6 +22,10 @@ func show_lines() -> void:
 func hide_lines() -> void:
 	for l in lines:
 		l.hide()
+
+func delete_lines() -> void:
+	hide_lines()
+	reset_lines()
 
 func reset_lines() -> void:
 	lines = []

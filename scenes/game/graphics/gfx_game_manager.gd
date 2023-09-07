@@ -138,6 +138,7 @@ func confirm_move() -> void:
 
 func after_piece_finished_moving() -> void:
 	# we need a short delay here s.t the physics can update after piece moved
+	$Camera2D.movement_zoom_out()
 	$TakeTurnTimer.start()
 
 # ======================== DRAWING =================
