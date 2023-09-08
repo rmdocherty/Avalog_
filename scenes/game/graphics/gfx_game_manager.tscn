@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://bm7utema3eqfb"]
+[gd_scene load_steps=34 format=3 uid="uid://bm7utema3eqfb"]
 
 [ext_resource type="Script" path="res://scenes/game/graphics/gfx_game_manager.gd" id="1_d8ywr"]
 [ext_resource type="Texture2D" uid="uid://m3cmypbyyc6x" path="res://assets/maps/albion_map.png" id="2_gxohm"]
@@ -30,6 +30,7 @@
 [ext_resource type="Texture2D" uid="uid://cek3jmpbtqbt" path="res://assets/menus/in_game/zoom_in_hover.png" id="14_7qpf0"]
 [ext_resource type="Texture2D" uid="uid://c3ksaqqkeqpyy" path="res://assets/menus/buttons/cross_hover.png" id="14_uf6ar"]
 [ext_resource type="Texture2D" uid="uid://c2qvn2rpc5m04" path="res://assets/menus/in_game/menu_bar_large.png" id="16_8yi0n"]
+[ext_resource type="PackedScene" uid="uid://bslbobsgv2nl0" path="res://scenes/menus/in_game/game_menu.tscn" id="31_cfp35"]
 
 [sub_resource type="Theme" id="Theme_vxdyh"]
 
@@ -224,6 +225,9 @@ horizontal_alignment = 2
 custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
 
+[node name="game_menu" parent="GUILayer" instance=ExtResource("31_cfp35")]
+visible = false
+
 [node name="board" type="AnimatedSprite2D" parent="."]
 visible = false
 sprite_frames = SubResource("SpriteFrames_vsrer")
@@ -266,12 +270,14 @@ texture_hover = ExtResource("14_uf6ar")
 wait_time = 0.05
 one_shot = true
 
+[connection signal="pressed" from="GUILayer/Settings" to="GUILayer/game_menu" method="show_self"]
 [connection signal="toggled" from="GUILayer/HideBar" to="GUILayer" method="toggle_hide_btn"]
 [connection signal="timeout" from="GUILayer/Clock1/Timer" to="GUILayer/Clock1" method="timeout"]
 [connection signal="timeout" from="GUILayer/Clock2/Timer" to="GUILayer/Clock2" method="timeout"]
 [connection signal="pressed" from="GUILayer/BottomBar/hb1/Icons/ZoomOut" to="Camera2D" method="zoom_out"]
 [connection signal="pressed" from="GUILayer/BottomBar/hb1/Icons/FlipCamera" to="Camera2D" method="flip_camera"]
 [connection signal="pressed" from="GUILayer/BottomBar/hb1/Icons/ZoomIn" to="Camera2D" method="zoom_in"]
+[connection signal="esc_key_pressed" from="Camera2D" to="GUILayer/game_menu" method="esc_pressed"]
 [connection signal="hide_bar_key_pressed" from="Camera2D" to="GUILayer" method="toggle_hide_keypress"]
 [connection signal="timeout" from="InitialTimer" to="." method="start_game"]
 [connection signal="pressed" from="ConfirmMove" to="." method="confirm_move"]

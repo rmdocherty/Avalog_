@@ -103,5 +103,5 @@ func delete() -> void:
 	# may need to update to be undoable for engine
 	collision_layer = 10
 	state = states.DEAD
-	position = Vector2(-1000, -1000)
+	position = Vector2(-10000, -10000)
 	set_process_input(false)

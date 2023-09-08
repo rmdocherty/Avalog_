@@ -15,6 +15,7 @@ const MIN_ZOOM := 0.5
 var window_mode = DisplayServer.window_get_mode()
 
 signal hide_bar_key_pressed
+signal esc_key_pressed
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -97,10 +98,12 @@ func _input(event: InputEvent) -> void:
 		emit_signal("hide_bar_key_pressed")
 	if Input.is_key_label_pressed(KEY_F11) and window_mode == DisplayServer.WINDOW_MODE_WINDOWED:
 		window_mode = DisplayServer.WINDOW_MODE_FULLSCREEN
+		stg.display_mode = "fullscreen"
 		DisplayServer.window_set_mode(window_mode)
 	elif Input.is_key_label_pressed(KEY_F11) and window_mode == DisplayServer.WINDOW_MODE_FULLSCREEN:
 		window_mode = DisplayServer.WINDOW_MODE_WINDOWED
+		stg.display_mode = "windowed"
 		DisplayServer.window_set_mode(window_mode)
 	
 	if Input.is_key_label_pressed(KEY_ESCAPE):
-		get_parent().get_node("GUILayer").show_game_menu()
+		emit_signal("esc_key_pressed")

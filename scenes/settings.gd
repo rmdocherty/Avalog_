@@ -14,6 +14,7 @@ var chosen_fen := test #test
 # Game variables: updated during runtime
 var network := cst.network_types.LOCAL
 var mode := cst.modes.CLASSIC
+var display_mode := "windowed"
 
 var chosen_factions: Array[int] = [cst.factions.ALBION, cst.factions.ALBION]
 # in order p1 original, p2 original, p1 remap, p2 remap
@@ -27,3 +28,7 @@ var total_time_min := 5
 var total_time_seconds := 0
 
 var draw_iso := true
+
+var master_vol := 0.5
+var music_vol := 0.5
+var effects_vol := 0.5
