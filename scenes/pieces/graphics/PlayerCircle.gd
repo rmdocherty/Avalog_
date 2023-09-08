@@ -5,8 +5,8 @@ const outer_radius := inner_radius + 0.2
 const angle_from := 0
 const angle_to := 360
 
-var inner_points: PackedVector2Array = drawing.get_circle_arc_points(Vector2(0,0), inner_radius, angle_from, angle_to, cst.draw_iso)
-var outer_points: PackedVector2Array = drawing.get_circle_arc_points(Vector2(0,0), outer_radius, angle_from, angle_to, cst.draw_iso)
+var inner_points: PackedVector2Array = drawing.get_circle_arc_points(Vector2(0,0), inner_radius, angle_from, angle_to, stg.draw_iso)
+var outer_points: PackedVector2Array = drawing.get_circle_arc_points(Vector2(0,0), outer_radius, angle_from, angle_to, stg.draw_iso)
 
 var red := Color(0.96, 0.29, 0.29, 0.8)
 var blue := Color(0.29, 0.56, 0.96, 0.8)

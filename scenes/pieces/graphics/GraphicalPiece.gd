@@ -31,7 +31,7 @@ func reset_lines() -> void:
 	lines = []
 
 func create_single_line(poly: Polygon2D, start_point: Vector2, end_point: Vector2, pointed: bool=true):
-	var points = drawing.create_line_points(start_point, end_point, cst.LINE_DRAW_WIDTH, pointed, true) # was 0.2
+	var points = drawing.create_line_points(start_point, end_point, stg.LINE_DRAW_WIDTH, pointed, true) # was 0.2
 	poly.polygon = points
 	poly.color = circle.default_colour
 	poly.z_index = 0 # set z index of enemies to be -1?
@@ -98,8 +98,8 @@ func _on_area_exited(_area: Area2D):
 
 func _ready() -> void:
 	for s in [sprite, $Phantom/PhantomSprite]:
-		s.apply_scale(cst.PIECE_DRAW_SCALE)
-	if cst.draw_iso:
+		s.apply_scale(stg.PIECE_DRAW_SCALE)
+	if stg.draw_iso:
 		sprite.show()
 		$Icon.hide()
 	else:

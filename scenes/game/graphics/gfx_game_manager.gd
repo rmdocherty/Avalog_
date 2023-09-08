@@ -155,15 +155,15 @@ func draw_flat_board(h: int, w: int) -> void:
 			draw_rect(rect, colour)
 
 func _draw() -> void:
-	if cst.draw_iso == false:
+	if stg.draw_iso == false:
 		draw_flat_board(8, 8)
 
 
 # ======================== PROCCESSES =================
 func _ready() -> void:
 	board.apply_scale(cst.BOARD_DRAW_SCALE)
-	board.play(str(cst.chosen_map))
-	if cst.draw_iso == true:
+	board.play(str(stg.chosen_map))
+	if stg.draw_iso == true:
 		board.show()
 		pass
 	else:

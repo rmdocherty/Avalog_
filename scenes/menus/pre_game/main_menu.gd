@@ -7,7 +7,7 @@ const overflow_lim := 2000
 @onready var p_layer := $Canv/HSplit/Castle/PBG/PLayer
 
 func load_mode_select_menu(network_mode: int) -> void:
-	cst.network = network_mode as cst.network_types
+	stg.network = network_mode as cst.network_types
 	hlp.load_child_remove_parent("res://scenes/menus/pre_game/mode_select_menu.tscn", self)
 
 func load_codex() -> void:

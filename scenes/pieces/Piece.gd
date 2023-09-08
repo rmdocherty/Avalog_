@@ -41,7 +41,7 @@ func graphics_init(logic_pos: Vector2, set_colour: cst.colour) -> void:
 	if set_colour == cst.colour.BLACK:
 		graphics.flip_sprite()
 		graphics.change_player_circle("inactive")
-	set_shader_params(cst.replace_palettes)
+	set_shader_params(stg.replace_palettes)
 
 # ======================== GFX LOGIC =================
 func set_shader_params(replace_palettes: Array[int]) -> void:
@@ -122,7 +122,7 @@ func move_piece() -> Vector2:
 	var new_logic_pos: Vector2 = current_logic_pos + move_dist
 	logic.move(new_logic_pos)
 	reset_drag_hide_phantom()
-	if cst.ANIM_ON:
+	if stg.ANIM_ON:
 		var sprite: AnimatedSprite2D = graphics.sprite
 		sprite.play(graphics.passive_anim)
 		total_moved = Vector2(0, 0)
@@ -162,7 +162,7 @@ func _ready():
 	if colour == cst.colour.BLACK:
 		graphics.flip_sprite()
 		graphics.change_player_circle("inactive")
-	set_shader_params(cst.replace_palettes)
+	set_shader_params(stg.replace_palettes)
 
 func _process(delta: float) -> void:
 	"""If the piece's moved distance has been set, move it along until it reaches that distance with 
@@ -175,7 +175,7 @@ func _process(delta: float) -> void:
 		if current_dist < whole_dist:
 			var norm_dist := (whole_dist - current_dist) / whole_dist
 			var moved_along := 0.3 + norm_dist
-			var moved := to_move.normalized() * delta * piece_vel * moved_along * cst.ANIM_SPEED * 2
+			var moved := to_move.normalized() * delta * piece_vel * moved_along * stg.ANIM_SPEED * 2
 			moved.clamp(cst.LOGIC_SQ_W * Vector2(0.25,0.25), cst.LOGIC_SQ_W * Vector2(1,1))
 			total_moved += moved
 			var g_pos := hlp.norm_to_iso(cst.BOARD_DRAW_SCALE * moved / cst.LOGIC_SQ_W)
