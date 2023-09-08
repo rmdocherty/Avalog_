@@ -43,8 +43,8 @@ var chosen_factions: Array[int] = [factions.ALBION, factions.ALBION]
 var replace_palettes: Array[int] = [chosen_factions[0], chosen_factions[1], 0, 1]
 var chosen_map := factions.ALBION
 
-var uname_1 := "Player 1"
-var uname_2 := "Player 2"
+var uname_1 := "Arthur"
+var uname_2 := "Lancelot"
 
 var total_time_min := 5
 var total_time_seconds := 0

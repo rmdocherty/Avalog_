@@ -18,17 +18,17 @@ signal hide_bar_key_pressed
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(delta: float) -> void:
 	zoom -= (zoom - target_zoom) * delta * zoom_cam_speed
-	zoom = clip(zoom)
+	#zoom = clip(zoom)
 	
 	offset -= (offset - target_pos) * delta * zoom.length() * offset_cam_speed
 
 func zoom_in() -> void:
-	target_zoom += flip_vec * Vector2(0.1, 0.1)
+	target_zoom = clip(target_zoom + flip_vec * Vector2(0.1, 0.1))
 
 func zoom_out() -> void:
-	target_zoom -= flip_vec * Vector2(0.1, 0.1)
+	target_zoom = clip(target_zoom - flip_vec * Vector2(0.1, 0.1))
 
 func flip_camera() -> void:
 	flip_vec = Vector2( -1 * flip_vec[0], flip_vec[1])
@@ -41,13 +41,13 @@ func movement_zoom_in(fraction: float, pos: Vector2) -> void:
 
 	if target_zoom.length() < 4:
 		target_pos = pos
-		target_zoom = (1 + fraction) * 1.5 * Vector2(1, 1)
+		target_zoom = (1 + fraction) * 1.5 * flip_vec * Vector2(1, 1)
 
 func movement_zoom_out() -> void:
 	offset_cam_speed = 1.25
 	zoom_cam_speed = 1.25
 	target_pos = Vector2(0, 0)
-	target_zoom = previous_zoom
+	target_zoom = previous_zoom * flip_vec
 
 func clip(current_zoom: Vector2) -> Vector2:
 	var too_small := (current_zoom.length_squared() < 2 * MIN_ZOOM**2)

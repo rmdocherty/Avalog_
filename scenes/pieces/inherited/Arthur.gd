@@ -30,7 +30,7 @@ func get_extra_moves(extra_mvs: Array[Vector2], old_mvs: Array) -> void:
 			var collide_count: int = shape_cast.get_collision_count()
 			if collide_count > 0:
 				var collide = shape_cast.get_collider(0)
-				if collide.colour == colour and collide.piece_char == "r":
+				if collide.colour == colour and collide.piece_char == "r" and collide.moved == false:
 					var delta_norm := (ray_target - ray_start).normalized()
 					var collide_pos: Vector2 = shape_cast.get_collision_point(0)
 					var collide_obj := shape_cast.get_collider(0)

@@ -50,7 +50,7 @@ func set_shader_params(replace_palettes: Array[int]) -> void:
 
 func reset_drag_hide_phantom(_move_confirmed: bool=false) -> void:
 	$GraphicalPiece/Phantom.position = Vector2(0, 0)
-	$GraphicalPiece/Sprite.stop()
+	$GraphicalPiece/Phantom.dragging = false
 	$GraphicalPiece/Phantom/PhantomSprite.hide()
 
 func reset_flat_arrs() -> void:
@@ -92,7 +92,7 @@ func update_lines(nested_vms: Array) -> void:
 				flat_draws.push_back(draw_type)
 
 func play_attack_anim() -> void:
-	var sprite: AnimatedSprite2D = graphics.get_node("Sprite")
+	var sprite: AnimatedSprite2D = graphics.sprite
 	sprite.play(graphics.attack_anim)
 	await sprite.animation_looped
 	sprite.play(graphics.passive_anim)
@@ -121,10 +121,12 @@ func move_piece() -> Vector2:
 	var current_logic_pos: Vector2 = logic.global_position
 	var new_logic_pos: Vector2 = current_logic_pos + move_dist
 	logic.move(new_logic_pos)
+	reset_drag_hide_phantom()
 	if cst.ANIM_ON:
+		var sprite: AnimatedSprite2D = graphics.sprite
+		sprite.play(graphics.passive_anim)
 		total_moved = Vector2(0, 0)
 		to_move = move_dist
-		print(to_move)
 		moving = true
 	else:
 		set_graphic_pos(new_logic_pos)
@@ -147,6 +149,10 @@ func change_turn(new_turn_number: int) -> void:
 func post_gfx_move() -> void:
 	if moving_to_attack:
 		await play_attack_anim()
+	var sprite: AnimatedSprite2D = graphics.sprite
+	sprite.play(graphics.passive_anim)
+	sprite.stop()
+
 	moving = false
 	moving_to_attack = false
 	gfx_manager.after_piece_finished_moving()

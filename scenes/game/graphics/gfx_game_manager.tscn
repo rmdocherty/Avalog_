@@ -1,8 +1,9 @@
-[gd_scene load_steps=30 format=3 uid="uid://bm7utema3eqfb"]
+[gd_scene load_steps=33 format=3 uid="uid://bm7utema3eqfb"]
 
 [ext_resource type="Script" path="res://scenes/game/graphics/gfx_game_manager.gd" id="1_d8ywr"]
 [ext_resource type="Texture2D" uid="uid://m3cmypbyyc6x" path="res://assets/maps/albion_map.png" id="2_gxohm"]
 [ext_resource type="Texture2D" uid="uid://4u00lliafnki" path="res://assets/menus/in_game/settings.png" id="2_rb4dr"]
+[ext_resource type="Script" path="res://scenes/game/graphics/GUILayer.gd" id="2_t2map"]
 [ext_resource type="Texture2D" uid="uid://b1wpahhpjyt8" path="res://assets/menus/in_game/settings_hover.png" id="3_p1700"]
 [ext_resource type="Texture2D" uid="uid://cf7i6n68okt4l" path="res://assets/maps/italia.png" id="3_srfcr"]
 [ext_resource type="Texture2D" uid="uid://pp0o1v2uxyyh" path="res://assets/menus/in_game/hide_bar.png" id="4_1tb4w"]
@@ -14,7 +15,9 @@
 [ext_resource type="Texture2D" uid="uid://qt4nbxukhhu1" path="res://assets/maps/bg.png" id="7_7xh0m"]
 [ext_resource type="Script" path="res://scenes/game/graphics/Camera.gd" id="8_h02n5"]
 [ext_resource type="Theme" uid="uid://csq3hvxncciso" path="res://assets/menus/styles/mode_select_theme.tres" id="8_mhaoa"]
+[ext_resource type="Texture2D" uid="uid://cycy4bdqyqc17" path="res://assets/menus/in_game/clock_bg.png" id="8_vwbv6"]
 [ext_resource type="Texture2D" uid="uid://cr8opxamjf2cn" path="res://assets/menus/in_game/zoom_out.png" id="9_6p6pn"]
+[ext_resource type="Script" path="res://scenes/game/graphics/Clock.gd" id="9_nrcpj"]
 [ext_resource type="Texture2D" uid="uid://0qfryyre0nss" path="res://assets/menus/buttons/tick_default.png" id="9_viy4r"]
 [ext_resource type="Texture2D" uid="uid://dq5jnnkhlynnx" path="res://assets/menus/in_game/zoom_out_hover.png" id="10_8cihd"]
 [ext_resource type="Texture2D" uid="uid://fjk83ocp406b" path="res://assets/menus/buttons/tick_click.png" id="10_laut7"]
@@ -77,6 +80,7 @@ animations = [{
 script = ExtResource("1_d8ywr")
 
 [node name="GUILayer" type="CanvasLayer" parent="."]
+script = ExtResource("2_t2map")
 
 [node name="Settings" type="TextureButton" parent="GUILayer"]
 custom_minimum_size = Vector2(50, 50)
@@ -95,10 +99,51 @@ offset_top = 70.0
 offset_right = 1140.0
 offset_bottom = 120.0
 tooltip_text = "GUI Visibility"
+toggle_mode = true
 texture_normal = ExtResource("4_1tb4w")
 texture_pressed = ExtResource("5_kh2we")
 texture_hover = ExtResource("6_n8sr3")
 stretch_mode = 0
+
+[node name="Clock1" type="TextureRect" parent="GUILayer"]
+offset_left = 10.0
+offset_top = 510.0
+offset_right = 138.0
+offset_bottom = 574.0
+texture = ExtResource("8_vwbv6")
+script = ExtResource("9_nrcpj")
+
+[node name="Label" type="Label" parent="GUILayer/Clock1"]
+layout_mode = 0
+offset_top = 2.0
+offset_right = 128.0
+offset_bottom = 66.0
+theme = ExtResource("8_mhaoa")
+text = "5:00"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Timer" type="Timer" parent="GUILayer/Clock1"]
+
+[node name="Clock2" type="TextureRect" parent="GUILayer"]
+offset_left = 1015.0
+offset_top = 510.0
+offset_right = 1143.0
+offset_bottom = 574.0
+texture = ExtResource("8_vwbv6")
+script = ExtResource("9_nrcpj")
+
+[node name="Label" type="Label" parent="GUILayer/Clock2"]
+layout_mode = 0
+offset_top = 2.0
+offset_right = 128.0
+offset_bottom = 66.0
+theme = ExtResource("8_mhaoa")
+text = "5:00"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Timer" type="Timer" parent="GUILayer/Clock2"]
 
 [node name="BottomBar" type="MarginContainer" parent="GUILayer"]
 anchors_preset = 12
@@ -221,6 +266,12 @@ texture_hover = ExtResource("14_uf6ar")
 wait_time = 0.05
 one_shot = true
 
+[connection signal="toggled" from="GUILayer/HideBar" to="GUILayer" method="toggle_hide_btn"]
+[connection signal="timeout" from="GUILayer/Clock1/Timer" to="GUILayer/Clock1" method="timeout"]
+[connection signal="timeout" from="GUILayer/Clock2/Timer" to="GUILayer/Clock2" method="timeout"]
+[connection signal="pressed" from="GUILayer/BottomBar/hb1/Icons/ZoomOut" to="Camera2D" method="zoom_out"]
+[connection signal="pressed" from="GUILayer/BottomBar/hb1/Icons/FlipCamera" to="Camera2D" method="flip_camera"]
+[connection signal="pressed" from="GUILayer/BottomBar/hb1/Icons/ZoomIn" to="Camera2D" method="zoom_in"]
 [connection signal="timeout" from="InitialTimer" to="." method="start_game"]
 [connection signal="pressed" from="ConfirmMove" to="." method="confirm_move"]
 [connection signal="pressed" from="RejectMove" to="." method="reset_piece_drag"]

@@ -508,7 +508,9 @@ stretch_mode = 5
 
 [connection signal="item_selected" from="Canv/Cont/GameMode/Picker" to="." method="game_mode_changed"]
 [connection signal="item_selected" from="Canv/Cont/TimeControl/Picker" to="." method="time_changed"]
+[connection signal="text_changed" from="Canv/Cont/SpritesMapFactions/NameCont/P1/Name" to="." method="name_changed" binds= [0]]
 [connection signal="item_selected" from="Canv/Cont/SpritesMapFactions/NameCont/P1/ColourPicker" to="." method="change_spr_palette" binds= [0]]
+[connection signal="text_changed" from="Canv/Cont/SpritesMapFactions/NameCont/P2/Name" to="." method="name_changed" binds= [1]]
 [connection signal="item_selected" from="Canv/Cont/SpritesMapFactions/NameCont/P2/ColourPicker" to="." method="change_spr_palette" binds= [1]]
 [connection signal="item_selected" from="Canv/Cont/SpritesMapFactions/Factions/P1" to="." method="set_faction" binds= [0]]
 [connection signal="item_selected" from="Canv/Cont/SpritesMapFactions/Factions/Map/Faction" to="." method="set_map"]

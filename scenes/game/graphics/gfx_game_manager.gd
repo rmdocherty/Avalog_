@@ -63,6 +63,7 @@ func init(fen: String) -> void:
 func start_game() -> void:
 	for p in all_pieces:
 		p.update_lines(p.logic.nested_valid_moves)
+	$GUILayer.clock_start_after_move_finished(game_manager.current_turn_colour)
 
 func y_sort(a, b):
 	# need to use logical position to make sure it's updated properly
@@ -75,6 +76,7 @@ func take_turn(change_player: bool=true) -> void:
 	update their graphics (colours, lines, z-index)."""
 	print(game_manager.turn_number)
 	var turn_n: int = game_manager.take_turn(change_player)
+	$GUILayer.clock_start_after_move_finished(game_manager.current_turn_colour)
 	var z_count: int = 0
 	all_pieces.sort_custom(y_sort)
 	for p in all_pieces: 
@@ -132,9 +134,9 @@ func hide_buttons() -> void:
 
 func confirm_move() -> void:
 	game_manager.move_piece(selected_piece)
+	$GUILayer.clock_stop_after_move_confirmed(game_manager.current_turn_colour)
 	reset_piece_drag()
 	hide_buttons()
-	
 
 func after_piece_finished_moving() -> void:
 	# we need a short delay here s.t the physics can update after piece moved
