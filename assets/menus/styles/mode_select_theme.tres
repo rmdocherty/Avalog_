@@ -1,13 +1,47 @@
-[gd_resource type="Theme" load_steps=5 format=3 uid="uid://csq3hvxncciso"]
+[gd_resource type="Theme" load_steps=10 format=3 uid="uid://csq3hvxncciso"]
 
 [ext_resource type="FontFile" uid="uid://q43lkw8hwss5" path="res://assets/menus/styles/Pixuf.ttf" id="1_vdcxi"]
 [ext_resource type="Texture2D" uid="uid://cw7n6bwk6j77v" path="res://assets/menus/styles/down_arrow.png" id="2_fy1r6"]
+[ext_resource type="Texture2D" uid="uid://ctmto4o3rc3u5" path="res://assets/menus/styles/grabber.png" id="2_vrddv"]
+[ext_resource type="Texture2D" uid="uid://ct4ks3otcga66" path="res://assets/menus/styles/grabber_highlight.png" id="3_4863f"]
 [ext_resource type="Texture2D" uid="uid://b6wpwkfi21x1v" path="res://assets/menus/styles/picker_filled.png" id="3_gn3ql"]
 [ext_resource type="Texture2D" uid="uid://c1x8md05b6lok" path="res://assets/menus/styles/picker_unfilled.png" id="4_01tpc"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5lck4"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(1, 1, 1, 0.4)
+corner_detail = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w0x0i"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(1, 1, 1, 0.75)
+corner_detail = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nub6x"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+corner_detail = 6
 
 [resource]
 Button/font_sizes/font_size = 34
 Button/fonts/font = ExtResource("1_vdcxi")
+CheckBox/icons/checked = ExtResource("3_gn3ql")
+CheckBox/icons/unchecked = ExtResource("4_01tpc")
+HSlider/icons/grabber = ExtResource("2_vrddv")
+HSlider/icons/grabber_disabled = null
+HSlider/icons/grabber_highlight = ExtResource("3_4863f")
+HSlider/styles/grabber_area = SubResource("StyleBoxFlat_5lck4")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_w0x0i")
+HSlider/styles/slider = SubResource("StyleBoxFlat_nub6x")
 Label/font_sizes/font_size = 34
 Label/fonts/font = ExtResource("1_vdcxi")
 LineEdit/font_sizes/font_size = 34

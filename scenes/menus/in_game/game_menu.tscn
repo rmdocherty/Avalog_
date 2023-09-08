@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://bslbobsgv2nl0"]
+[gd_scene load_steps=5 format=3 uid="uid://bslbobsgv2nl0"]
 
 [ext_resource type="StyleBox" path="res://assets/menus/styles/outer_panel_theme.tres" id="1_ghqst"]
 [ext_resource type="Texture2D" uid="uid://bwaumvo2l7ve8" path="res://assets/menus/main_menu_bg.png" id="2_03wyk"]
+[ext_resource type="Theme" uid="uid://csq3hvxncciso" path="res://assets/menus/styles/mode_select_theme.tres" id="3_4niey"]
+[ext_resource type="Theme" uid="uid://c8njrprl5cak0" path="res://assets/menus/styles/game_menu_theme.tres" id="3_qru51"]
 
 [node name="game_menu" type="Control"]
 layout_mode = 3
@@ -23,9 +25,9 @@ color = Color(0.341176, 0.341176, 0.341176, 0.729412)
 [node name="Outer" type="Panel" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.35
+anchor_left = 0.3
 anchor_top = 0.2
-anchor_right = 0.65
+anchor_right = 0.7
 anchor_bottom = 0.8
 offset_left = -20.0
 offset_top = -20.0
@@ -74,6 +76,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+tab_alignment = 1
 
 [node name="Container" type="TabContainer" parent="Outer/Contents/Bar"]
 layout_mode = 1
@@ -82,3 +85,197 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_font_sizes/font_size = 34
+tab_alignment = 1
+
+[node name="Game" type="Control" parent="Outer/Contents/Bar/Container"]
+visible = false
+layout_mode = 2
+
+[node name="v" type="VBoxContainer" parent="Outer/Contents/Bar/Container/Game"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 30.0
+offset_top = 30.0
+offset_right = -30.0
+offset_bottom = -30.0
+theme_override_constants/separation = 20
+
+[node name="MainMenu" type="Button" parent="Outer/Contents/Bar/Container/Game/v"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("3_qru51")
+text = "Main Menu"
+
+[node name="Quit" type="Button" parent="Outer/Contents/Bar/Container/Game/v"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("3_qru51")
+text = "Quit"
+
+[node name="Graphics" type="Control" parent="Outer/Contents/Bar/Container"]
+visible = false
+layout_mode = 2
+
+[node name="v" type="VBoxContainer" parent="Outer/Contents/Bar/Container/Graphics"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 30.0
+offset_top = 30.0
+offset_right = -30.0
+offset_bottom = -30.0
+theme_override_constants/separation = 20
+
+[node name="Fullscreen" type="HBoxContainer" parent="Outer/Contents/Bar/Container/Graphics/v"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Outer/Contents/Bar/Container/Graphics/v/Fullscreen"]
+layout_mode = 2
+theme = ExtResource("3_qru51")
+text = "Fullscreen:  "
+
+[node name="HSlider" type="OptionButton" parent="Outer/Contents/Bar/Container/Graphics/v/Fullscreen"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme = ExtResource("3_4niey")
+item_count = 3
+selected = 0
+popup/item_0/text = "Windowed"
+popup/item_0/id = 0
+popup/item_1/text = "Fullscreen"
+popup/item_1/id = 1
+popup/item_2/text = "Borderless"
+popup/item_2/id = 2
+
+[node name="Anims" type="HBoxContainer" parent="Outer/Contents/Bar/Container/Graphics/v"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Outer/Contents/Bar/Container/Graphics/v/Anims"]
+layout_mode = 2
+theme = ExtResource("3_qru51")
+text = "Animations: "
+
+[node name="HSlider" type="CheckBox" parent="Outer/Contents/Bar/Container/Graphics/v/Anims"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+theme = ExtResource("3_4niey")
+icon_alignment = 1
+
+[node name="AnimSpeed" type="HBoxContainer" parent="Outer/Contents/Bar/Container/Graphics/v"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Outer/Contents/Bar/Container/Graphics/v/AnimSpeed"]
+layout_mode = 2
+theme = ExtResource("3_qru51")
+text = "Anim Speed:  "
+
+[node name="HSlider" type="HSlider" parent="Outer/Contents/Bar/Container/Graphics/v/AnimSpeed"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme = ExtResource("3_4niey")
+
+[node name="SpriteSize" type="HBoxContainer" parent="Outer/Contents/Bar/Container/Graphics/v"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Outer/Contents/Bar/Container/Graphics/v/SpriteSize"]
+layout_mode = 2
+theme = ExtResource("3_qru51")
+text = "Sprite Size:   "
+
+[node name="HSlider" type="HSlider" parent="Outer/Contents/Bar/Container/Graphics/v/SpriteSize"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme = ExtResource("3_4niey")
+
+[node name="LineWidth" type="HBoxContainer" parent="Outer/Contents/Bar/Container/Graphics/v"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Outer/Contents/Bar/Container/Graphics/v/LineWidth"]
+layout_mode = 2
+theme = ExtResource("3_qru51")
+text = "Line Width:   "
+
+[node name="HSlider" type="HSlider" parent="Outer/Contents/Bar/Container/Graphics/v/LineWidth"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme = ExtResource("3_4niey")
+
+[node name="Sound" type="Control" parent="Outer/Contents/Bar/Container"]
+layout_mode = 2
+
+[node name="v" type="VBoxContainer" parent="Outer/Contents/Bar/Container/Sound"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 30.0
+offset_top = 30.0
+offset_right = -30.0
+offset_bottom = -30.0
+theme_override_constants/separation = 20
+
+[node name="Mute" type="HBoxContainer" parent="Outer/Contents/Bar/Container/Sound/v"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Outer/Contents/Bar/Container/Sound/v/Mute"]
+layout_mode = 2
+theme = ExtResource("3_qru51")
+text = "Mute: "
+
+[node name="HSlider" type="CheckBox" parent="Outer/Contents/Bar/Container/Sound/v/Mute"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+theme = ExtResource("3_4niey")
+icon_alignment = 1
+
+[node name="Master" type="HBoxContainer" parent="Outer/Contents/Bar/Container/Sound/v"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Outer/Contents/Bar/Container/Sound/v/Master"]
+layout_mode = 2
+theme = ExtResource("3_qru51")
+text = "Master: "
+
+[node name="HSlider" type="HSlider" parent="Outer/Contents/Bar/Container/Sound/v/Master"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme = ExtResource("3_4niey")
+
+[node name="Music" type="HBoxContainer" parent="Outer/Contents/Bar/Container/Sound/v"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Outer/Contents/Bar/Container/Sound/v/Music"]
+layout_mode = 2
+theme = ExtResource("3_qru51")
+text = "Music:   "
+
+[node name="HSlider" type="HSlider" parent="Outer/Contents/Bar/Container/Sound/v/Music"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme = ExtResource("3_4niey")
+
+[node name="Effects" type="HBoxContainer" parent="Outer/Contents/Bar/Container/Sound/v"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Outer/Contents/Bar/Container/Sound/v/Effects"]
+layout_mode = 2
+theme = ExtResource("3_qru51")
+text = "Effects: "
+
+[node name="HSlider" type="HSlider" parent="Outer/Contents/Bar/Container/Sound/v/Effects"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme = ExtResource("3_4niey")
