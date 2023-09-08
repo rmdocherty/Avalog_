@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://bm7utema3eqfb"]
+[gd_scene load_steps=30 format=3 uid="uid://bm7utema3eqfb"]
 
 [ext_resource type="Script" path="res://scenes/game/graphics/gfx_game_manager.gd" id="1_d8ywr"]
 [ext_resource type="Texture2D" uid="uid://m3cmypbyyc6x" path="res://assets/maps/albion_map.png" id="2_gxohm"]
@@ -14,11 +14,17 @@
 [ext_resource type="Texture2D" uid="uid://qt4nbxukhhu1" path="res://assets/maps/bg.png" id="7_7xh0m"]
 [ext_resource type="Script" path="res://scenes/game/graphics/Camera.gd" id="8_h02n5"]
 [ext_resource type="Theme" uid="uid://csq3hvxncciso" path="res://assets/menus/styles/mode_select_theme.tres" id="8_mhaoa"]
+[ext_resource type="Texture2D" uid="uid://cr8opxamjf2cn" path="res://assets/menus/in_game/zoom_out.png" id="9_6p6pn"]
 [ext_resource type="Texture2D" uid="uid://0qfryyre0nss" path="res://assets/menus/buttons/tick_default.png" id="9_viy4r"]
+[ext_resource type="Texture2D" uid="uid://dq5jnnkhlynnx" path="res://assets/menus/in_game/zoom_out_hover.png" id="10_8cihd"]
 [ext_resource type="Texture2D" uid="uid://fjk83ocp406b" path="res://assets/menus/buttons/tick_click.png" id="10_laut7"]
+[ext_resource type="Texture2D" uid="uid://qrvt2e4dlhjq" path="res://assets/menus/in_game/camera_flip.png" id="11_bhsw3"]
 [ext_resource type="Texture2D" uid="uid://b07lm3u7grldq" path="res://assets/menus/buttons/tick_hover.png" id="11_jwlru"]
 [ext_resource type="Texture2D" uid="uid://7l2m8qlcksq0" path="res://assets/menus/buttons/cross_default.png" id="12_kgepf"]
+[ext_resource type="Texture2D" uid="uid://c1ol55mnug0do" path="res://assets/menus/in_game/camera_flip_hover.png" id="12_vdytg"]
 [ext_resource type="Texture2D" uid="uid://bp14k0akst1tf" path="res://assets/menus/buttons/cross_click.png" id="13_4qeri"]
+[ext_resource type="Texture2D" uid="uid://dkdvcsy36iywi" path="res://assets/menus/in_game/zoom_in.png" id="13_i01pi"]
+[ext_resource type="Texture2D" uid="uid://cek3jmpbtqbt" path="res://assets/menus/in_game/zoom_in_hover.png" id="14_7qpf0"]
 [ext_resource type="Texture2D" uid="uid://c3ksaqqkeqpyy" path="res://assets/menus/buttons/cross_hover.png" id="14_uf6ar"]
 [ext_resource type="Texture2D" uid="uid://c2qvn2rpc5m04" path="res://assets/menus/in_game/menu_bar_large.png" id="16_8yi0n"]
 
@@ -78,6 +84,7 @@ offset_left = 1090.0
 offset_top = 10.0
 offset_right = 1140.0
 offset_bottom = 60.0
+tooltip_text = "Settings"
 texture_normal = ExtResource("2_rb4dr")
 texture_hover = ExtResource("3_p1700")
 stretch_mode = 0
@@ -87,6 +94,7 @@ offset_left = 1090.0
 offset_top = 70.0
 offset_right = 1140.0
 offset_bottom = 120.0
+tooltip_text = "GUI Visibility"
 texture_normal = ExtResource("4_1tb4w")
 texture_pressed = ExtResource("5_kh2we")
 texture_hover = ExtResource("6_n8sr3")
@@ -122,6 +130,40 @@ theme = ExtResource("8_mhaoa")
 text = "Player 1"
 
 [node name="Icons" type="HBoxContainer" parent="GUILayer/BottomBar/hb1"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="__" type="NinePatchRect" parent="GUILayer/BottomBar/hb1/Icons"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ZoomOut" type="TextureButton" parent="GUILayer/BottomBar/hb1/Icons"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+tooltip_text = "Zoom Out"
+texture_normal = ExtResource("9_6p6pn")
+texture_hover = ExtResource("10_8cihd")
+stretch_mode = 5
+
+[node name="FlipCamera" type="TextureButton" parent="GUILayer/BottomBar/hb1/Icons"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+tooltip_text = "Flip Camera"
+texture_normal = ExtResource("11_bhsw3")
+texture_hover = ExtResource("12_vdytg")
+stretch_mode = 5
+
+[node name="ZoomIn" type="TextureButton" parent="GUILayer/BottomBar/hb1/Icons"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+tooltip_text = "Zoom In"
+texture_normal = ExtResource("13_i01pi")
+texture_hover = ExtResource("14_7qpf0")
+stretch_mode = 5
+
+[node name="_" type="NinePatchRect" parent="GUILayer/BottomBar/hb1/Icons"]
+custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 

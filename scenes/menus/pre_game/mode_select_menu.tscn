@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://dc1s4ldcnoqel"]
+[gd_scene load_steps=41 format=3 uid="uid://dc1s4ldcnoqel"]
 
 [ext_resource type="Script" path="res://scenes/menus/pre_game/mode_select_menu.gd" id="1_55r0o"]
 [ext_resource type="Texture2D" uid="uid://bwaumvo2l7ve8" path="res://assets/menus/main_menu_bg.png" id="2_j434u"]
@@ -21,6 +21,8 @@
 [ext_resource type="Texture2D" uid="uid://d332iqxel0wlx" path="res://assets/maps/bretagne.png" id="14_ivik3"]
 [ext_resource type="Texture2D" uid="uid://dwg03tquenpps" path="res://assets/maps/turkiye.png" id="15_37f58"]
 [ext_resource type="Texture2D" uid="uid://3jv2m5rj47v0" path="res://assets/maps/morgana.png" id="16_ctpyf"]
+[ext_resource type="Texture2D" uid="uid://ddifocup5i2ig" path="res://assets/menus/buttons/back_arrow.png" id="22_ya475"]
+[ext_resource type="Texture2D" uid="uid://c4dmcfjrgxlje" path="res://assets/menus/buttons/back_arrow_hover.png" id="23_6o4lw"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_eg8xb"]
 shader = ExtResource("9_hsgah")
@@ -494,6 +496,16 @@ custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
 size_flags_stretch_ratio = 3.71
 
+[node name="Back" type="TextureButton" parent="Canv"]
+custom_minimum_size = Vector2(40, 34)
+offset_left = 20.0
+offset_top = 15.0
+offset_right = 90.0
+offset_bottom = 85.0
+texture_normal = ExtResource("22_ya475")
+texture_hover = ExtResource("23_6o4lw")
+stretch_mode = 5
+
 [connection signal="item_selected" from="Canv/Cont/GameMode/Picker" to="." method="game_mode_changed"]
 [connection signal="item_selected" from="Canv/Cont/TimeControl/Picker" to="." method="time_changed"]
 [connection signal="item_selected" from="Canv/Cont/SpritesMapFactions/NameCont/P1/ColourPicker" to="." method="change_spr_palette" binds= [0]]
@@ -502,3 +514,4 @@ size_flags_stretch_ratio = 3.71
 [connection signal="item_selected" from="Canv/Cont/SpritesMapFactions/Factions/Map/Faction" to="." method="set_map"]
 [connection signal="item_selected" from="Canv/Cont/SpritesMapFactions/Factions/P2" to="." method="set_faction" binds= [1]]
 [connection signal="pressed" from="Canv/Cont/PlayButtons/Play" to="." method="play"]
+[connection signal="pressed" from="Canv/Back" to="." method="go_back"]

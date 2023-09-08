@@ -2,7 +2,7 @@ extends Node2D
 
 var sprs: Array[AnimatedSprite2D] = []
 
-# INIT METHODS
+# ======================== INIT METHODS ========================
 func _ready() -> void:
 	# Loop through each player, init sprites and names
 	var names = [cst.uname_1, cst.uname_2]
@@ -31,7 +31,7 @@ func set_names_init(i: int, player_name: String) -> void:
 	var line_edit: LineEdit = get_node(node_str % str(i))
 	line_edit.text = player_name
 	
-# GUI OPTION METHODS
+# ======================== GUI OPTION METHODS ========================
 func game_mode_changed(game_mode: int) -> void:
 	cst.mode = game_mode as cst.modes
 	# Hide faction picker if not CUSTOM game mode
@@ -76,7 +76,10 @@ func set_map(faction: int) -> void:
 	cst.chosen_map = faction as cst.factions
 	$Canv/Cont/SpritesMapFactions/SpritesMapBox/MapParent/Map.play(str(faction))
 
-# PLAY BUTTONS
+func go_back() -> void:
+	hlp.load_child_remove_parent("res://scenes/menus/pre_game/main_menu.tscn", self)
+
+# ======================== PLAY BUTTONS ========================
 func play() -> void:
 	if cst.mode == cst.modes.DRAFT:
 		pass

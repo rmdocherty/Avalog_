@@ -31,6 +31,10 @@ window/stretch/aspect="expand"
 
 project/assembly_name="Avalog_2"
 
+[gui]
+
+theme/custom_font="res://assets/menus/styles/Pixuf.ttf"
+
 [input]
 
 click={
