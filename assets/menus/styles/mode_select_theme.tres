@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=10 format=3 uid="uid://csq3hvxncciso"]
+[gd_resource type="Theme" load_steps=11 format=3 uid="uid://csq3hvxncciso"]
 
 [ext_resource type="FontFile" uid="uid://q43lkw8hwss5" path="res://assets/menus/styles/Pixuf.ttf" id="1_vdcxi"]
 [ext_resource type="Texture2D" uid="uid://cw7n6bwk6j77v" path="res://assets/menus/styles/down_arrow.png" id="2_fy1r6"]
@@ -31,6 +31,15 @@ content_margin_bottom = 4.0
 bg_color = Color(0.1, 0.1, 0.1, 0.6)
 corner_detail = 6
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i66gp"]
+content_margin_left = 10.0
+content_margin_top = 4.0
+content_margin_right = 10.0
+content_margin_bottom = 4.0
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+border_color = Color(1, 1, 1, 0.75)
+corner_detail = 1
+
 [resource]
 Button/font_sizes/font_size = 34
 Button/fonts/font = ExtResource("1_vdcxi")
@@ -54,4 +63,5 @@ OptionButton/icons/arrow = ExtResource("2_fy1r6")
 PopupMenu/fonts/font = ExtResource("1_vdcxi")
 PopupMenu/icons/radio_checked = ExtResource("3_gn3ql")
 PopupMenu/icons/radio_unchecked = ExtResource("4_01tpc")
+TabBar/styles/tab_selected = SubResource("StyleBoxFlat_i66gp")
 Tree/fonts/font = ExtResource("1_vdcxi")

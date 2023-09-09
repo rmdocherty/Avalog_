@@ -13,6 +13,9 @@ func load_mode_select_menu(network_mode: int) -> void:
 func load_codex() -> void:
 	hlp.load_child_remove_parent("res://scenes/menus/codex/codex.tscn", self)
 
+func quit():
+	get_tree().quit()
+
 func _process(_delta: float) -> void:
 	inc += 1
 	if inc % update_per == 0:

@@ -8,7 +8,7 @@ var PIECE_DRAW_SCALE := Vector2(2.2, 2.2)#Vector2(2.5, 2.5) # defo add this as a
 
 # FEN strings
 const full_board := "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR"
-const test := "8/1P6/8/p7/1P6/7p/2p4P/R3K2R"
+const test := "2k5/1P6/8/p7/1P6/7p/2p4P/R3K2R"
 var chosen_fen := test #test
 
 # Game variables: updated during runtime
@@ -23,6 +23,9 @@ var chosen_map := cst.factions.ALBION
 
 var uname_1 := "Arthur"
 var uname_2 := "Lancelot"
+
+var winning_player := cst.colour.WHITE
+var singleplayer_colour := cst.colour.WHITE
 
 var total_time_min := 5
 var total_time_seconds := 0

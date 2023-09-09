@@ -61,8 +61,7 @@ func init(fen: String) -> void:
 	$InitialTimer.start()
 
 func start_game() -> void:
-	for p in all_pieces:
-		p.update_lines(p.logic.nested_valid_moves)
+	take_turn(false)
 	$GUILayer.clock_start_after_move_finished(game_manager.current_turn_colour)
 
 func y_sort(a, b):
@@ -86,6 +85,7 @@ func take_turn(change_player: bool=true) -> void:
 		p.set_graphic_pos(logic.position)
 		p.change_turn(turn_n)
 		p.update_lines(logic.nested_valid_moves)
+		check_win(p)
 		
 		# Display current turn pieces and further down pieces on top 
 		var z_inc: int = 0
@@ -94,6 +94,17 @@ func take_turn(change_player: bool=true) -> void:
 		p.z_index = z_count + z_inc
 		z_count += 1
 
+func check_win(piece: Piece) -> void:
+	var logic: LogicPiece = piece.logic
+	if piece.piece_char == "k" && logic.state == logic.states.DEAD:
+		var win_colour = 1 - piece.colour as cst.colour
+		await get_tree().create_timer(0.75).timeout
+		win(win_colour)
+
+func win(win_colour: cst.colour) -> void:
+	$GUILayer.hide_bar(true)
+	$GUILayer/win_menu.show_winner(win_colour)
+	
 # ======================== MOVE BUTTONS =================
 func reset_piece_drag() -> void:
 	selected_piece.reset_drag_hide_phantom()

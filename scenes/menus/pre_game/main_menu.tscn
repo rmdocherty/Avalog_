@@ -81,6 +81,16 @@ theme = ExtResource("4_mea82")
 text = "Codex
 "
 
+[node name="Quit" type="Button" parent="Canv/HSplit/BG/Cont"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+size_flags_stretch_ratio = 0.7
+theme = ExtResource("4_mea82")
+theme_override_colors/font_hover_color = Color(0.639216, 0, 0, 1)
+theme_override_font_sizes/font_size = 45
+text = "Quit "
+
 [node name="Castle" type="TextureRect" parent="Canv/HSplit"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -99,3 +109,4 @@ texture = ExtResource("6_mba43")
 [connection signal="pressed" from="Canv/HSplit/BG/Cont/Buttons/Local" to="." method="load_mode_select_menu" binds= [0]]
 [connection signal="pressed" from="Canv/HSplit/BG/Cont/Buttons/Online" to="." method="load_mode_select_menu" binds= [1]]
 [connection signal="pressed" from="Canv/HSplit/BG/Cont/Buttons/Codex" to="." method="load_codex"]
+[connection signal="pressed" from="Canv/HSplit/BG/Cont/Quit" to="." method="quit"]

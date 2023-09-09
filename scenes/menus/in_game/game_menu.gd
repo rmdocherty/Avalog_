@@ -13,7 +13,6 @@ func _ready() -> void:
 		set_state(node, values[i])
 	
 func set_state(node: Control, value) -> void:
-	print(value, value is float)
 	if value is float:
 		node.value = value
 	elif value is bool:

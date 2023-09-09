@@ -1,0 +1,113 @@
+[gd_scene load_steps=5 format=3 uid="uid://b37n3b4gwgluv"]
+
+[ext_resource type="Script" path="res://scenes/menus/in_game/win_menu.gd" id="1_8fqqe"]
+[ext_resource type="StyleBox" path="res://assets/menus/styles/outer_panel_theme.tres" id="1_kfjh7"]
+[ext_resource type="Texture2D" uid="uid://bwaumvo2l7ve8" path="res://assets/menus/main_menu_bg.png" id="2_msydq"]
+[ext_resource type="Theme" uid="uid://c8njrprl5cak0" path="res://assets/menus/styles/game_menu_theme.tres" id="4_d1ddt"]
+
+[node name="win_menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8fqqe")
+
+[node name="blur" type="ColorRect" parent="."]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.341176, 0.341176, 0.341176, 0.729412)
+
+[node name="Outer" type="Panel" parent="."]
+z_index = 100
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.3
+anchor_top = 0.3
+anchor_right = 0.7
+anchor_bottom = 0.7
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("1_kfjh7")
+
+[node name="Inner" type="Panel" parent="Outer"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = -5.0
+offset_bottom = -5.0
+
+[node name="Contents" type="Panel" parent="Outer"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -10.0
+
+[node name="bg" type="TextureRect" parent="Outer/Contents"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_msydq")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="v" type="VBoxContainer" parent="Outer/Contents"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.1
+anchor_right = 0.9
+anchor_bottom = 0.9
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="Winner" type="Label" parent="Outer/Contents/v"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme = ExtResource("4_d1ddt")
+theme_override_font_sizes/font_size = 45
+text = "Player 1 Wins!"
+horizontal_alignment = 1
+
+[node name="Rematch" type="Button" parent="Outer/Contents/v"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("4_d1ddt")
+text = "Rematch!"
+
+[node name="MainMenu" type="Button" parent="Outer/Contents/v"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("4_d1ddt")
+text = "Main Menu"
+
+[node name="Quit" type="Button" parent="Outer/Contents/v"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("4_d1ddt")
+text = "Quit"
+
+[connection signal="pressed" from="Outer/Contents/v/Rematch" to="." method="rematch"]
+[connection signal="pressed" from="Outer/Contents/v/MainMenu" to="." method="main_menu"]
+[connection signal="pressed" from="Outer/Contents/v/Quit" to="." method="quit"]

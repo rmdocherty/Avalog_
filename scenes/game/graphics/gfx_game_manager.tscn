@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://bm7utema3eqfb"]
+[gd_scene load_steps=35 format=3 uid="uid://bm7utema3eqfb"]
 
 [ext_resource type="Script" path="res://scenes/game/graphics/gfx_game_manager.gd" id="1_d8ywr"]
 [ext_resource type="Texture2D" uid="uid://m3cmypbyyc6x" path="res://assets/maps/albion_map.png" id="2_gxohm"]
@@ -30,6 +30,7 @@
 [ext_resource type="Texture2D" uid="uid://cek3jmpbtqbt" path="res://assets/menus/in_game/zoom_in_hover.png" id="14_7qpf0"]
 [ext_resource type="Texture2D" uid="uid://c3ksaqqkeqpyy" path="res://assets/menus/buttons/cross_hover.png" id="14_uf6ar"]
 [ext_resource type="Texture2D" uid="uid://c2qvn2rpc5m04" path="res://assets/menus/in_game/menu_bar_large.png" id="16_8yi0n"]
+[ext_resource type="PackedScene" uid="uid://b37n3b4gwgluv" path="res://scenes/menus/in_game/win_menu.tscn" id="19_4y7o1"]
 [ext_resource type="PackedScene" uid="uid://bslbobsgv2nl0" path="res://scenes/menus/in_game/game_menu.tscn" id="31_cfp35"]
 
 [sub_resource type="Theme" id="Theme_vxdyh"]
@@ -107,10 +108,14 @@ texture_hover = ExtResource("6_n8sr3")
 stretch_mode = 0
 
 [node name="Clock1" type="TextureRect" parent="GUILayer"]
-offset_left = 10.0
-offset_top = 510.0
-offset_right = 138.0
-offset_bottom = 574.0
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 15.0
+offset_top = -138.0
+offset_right = 143.0
+offset_bottom = -74.0
+grow_vertical = 0
 texture = ExtResource("8_vwbv6")
 script = ExtResource("9_nrcpj")
 
@@ -127,10 +132,17 @@ vertical_alignment = 1
 [node name="Timer" type="Timer" parent="GUILayer/Clock1"]
 
 [node name="Clock2" type="TextureRect" parent="GUILayer"]
-offset_left = 1015.0
-offset_top = 510.0
-offset_right = 1143.0
-offset_bottom = 574.0
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -143.0
+offset_top = -138.0
+offset_right = -15.0
+offset_bottom = -74.0
+grow_horizontal = 0
+grow_vertical = 0
 texture = ExtResource("8_vwbv6")
 script = ExtResource("9_nrcpj")
 
@@ -226,6 +238,9 @@ custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
 
 [node name="game_menu" parent="GUILayer" instance=ExtResource("31_cfp35")]
+visible = false
+
+[node name="win_menu" parent="GUILayer" instance=ExtResource("19_4y7o1")]
 visible = false
 
 [node name="board" type="AnimatedSprite2D" parent="."]

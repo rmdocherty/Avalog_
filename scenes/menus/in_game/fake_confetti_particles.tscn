@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cqc40x14swvc6"]
+
+[ext_resource type="Script" path="res://scenes/menus/in_game/fake_confetti_particles.gd" id="1"]
+
+[node name="FakeConfettiParticles" type="Node2D"]
+z_index = -1
+script = ExtResource("1")

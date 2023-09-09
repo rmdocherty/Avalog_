@@ -80,6 +80,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("3_4niey")
 tab_alignment = 1
 
 [node name="Container" type="TabContainer" parent="Outer/Contents/Bar"]
@@ -110,12 +111,14 @@ theme_override_constants/separation = 20
 layout_mode = 2
 size_flags_horizontal = 4
 theme = ExtResource("3_qru51")
+theme_override_font_sizes/font_size = 34
 text = "Main Menu"
 
 [node name="Quit" type="Button" parent="Outer/Contents/Bar/Container/Game/v"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme = ExtResource("3_qru51")
+theme_override_font_sizes/font_size = 34
 text = "Quit"
 
 [node name="Graphics" type="Control" parent="Outer/Contents/Bar/Container"]

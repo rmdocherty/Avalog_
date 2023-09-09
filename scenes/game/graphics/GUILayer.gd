@@ -25,12 +25,15 @@ func toggle_hide_keypress() -> void:
 	hidden = not hidden
 	toggle_hide_btn(hidden)
 
-func hide_bar() -> void:
+func hide_bar(hide_btns: bool=false) -> void:
 	var clocks = [$Clock1, $Clock2]
 	for c in clocks:
 		c.hide()
 	$BottomBar.hide()
 	hidden = true
+	if hide_btns:
+		$Settings.hide()
+		$HideBar.hide()
 	
 func show_bar() -> void:
 	var clocks = [$Clock1, $Clock2]

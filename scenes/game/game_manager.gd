@@ -9,6 +9,7 @@ var current_turn_colour: cst.colour = cst.colour.WHITE
 var chage_player_each_turn := true
 
 var all_pieces: Array[LogicPiece] = []
+var alive_pieces: Array[LogicPiece] = []
 
 func _init():
 	board.init_walls(8, 8, cst.LOGIC_SQ_W * Vector2(-4, -4))
@@ -18,10 +19,14 @@ func add_pieces_from_nodes(node_list: Array[Piece]) -> void:
 	for node in node_list:
 		all_pieces.push_back(node.logic)
 
+func alive_filter(p: LogicPiece):
+	return p.state != p.states.DEAD
+
 func get_moves():
 	# Loop through all pieces, get valid moves, time.
 	var start := Time.get_ticks_usec()
-	for p in all_pieces:
+	alive_pieces = all_pieces.filter(alive_filter)
+	for p in alive_pieces:
 		p.state = p.states.IDLE
 		p.get_all_moves()
 	var end := Time.get_ticks_usec()
