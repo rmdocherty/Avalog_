@@ -98,7 +98,7 @@ func _on_area_exited(_area: Area2D):
 
 func _ready() -> void:
 	for s in [sprite, $Phantom/PhantomSprite]:
-		s.apply_scale(stg.PIECE_DRAW_SCALE)
+		s.scale = (stg.PIECE_DRAW_SCALE)
 	if stg.draw_iso:
 		sprite.show()
 		$Icon.hide()

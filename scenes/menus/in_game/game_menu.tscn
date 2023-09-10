@@ -90,6 +90,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("3_4niey")
 theme_override_font_sizes/font_size = 34
 tab_alignment = 1
 
@@ -186,6 +187,7 @@ size_flags_vertical = 4
 theme = ExtResource("3_4niey")
 min_value = 0.5
 max_value = 3.0
+step = 0.1
 value = 0.5
 
 [node name="SpriteSize" type="HBoxContainer" parent="Outer/Contents/Bar/Container/Graphics/v"]
@@ -201,10 +203,9 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 theme = ExtResource("3_4niey")
-min_value = 0.5
-max_value = 3.0
-step = 0.1
-value = 0.5
+max_value = 2.0
+step = 0.05
+value = 1.0
 
 [node name="LineWidth" type="HBoxContainer" parent="Outer/Contents/Bar/Container/Graphics/v"]
 layout_mode = 2

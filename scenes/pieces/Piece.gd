@@ -175,7 +175,7 @@ func _process(delta: float) -> void:
 		if current_dist < whole_dist:
 			var norm_dist := (whole_dist - current_dist) / whole_dist
 			var moved_along := 0.3 + norm_dist
-			var moved := to_move.normalized() * delta * piece_vel * moved_along * stg.ANIM_SPEED
+			var moved := to_move.normalized() * delta * piece_vel * moved_along * stg.ANIM_SPEED * 1.6
 			moved.clamp(cst.LOGIC_SQ_W * Vector2(0.25,0.25), cst.LOGIC_SQ_W * Vector2(1,1))
 			total_moved += moved
 			var g_pos := hlp.norm_to_iso(cst.BOARD_DRAW_SCALE * moved / cst.LOGIC_SQ_W)

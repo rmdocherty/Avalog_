@@ -94,6 +94,14 @@ func take_turn(change_player: bool=true) -> void:
 		p.z_index = z_count + z_inc
 		z_count += 1
 
+func gfx_update() -> void:
+	for p in all_pieces:
+		var old_scale := p.graphics.sprite.scale
+		var new_scale := stg.PIECE_DRAW_SCALE / old_scale 
+		p.graphics.sprite.apply_scale(new_scale) #stg.PIECE_DRAW_SCALE
+		p.graphics.get_node("Phantom/PhantomSprite").apply_scale(new_scale) #stg.PIECE_DRAW_SCALE
+		p.update_lines(p.logic.nested_valid_moves)
+
 func check_win(piece: Piece) -> void:
 	var logic: LogicPiece = piece.logic
 	if piece.piece_char == "k" && logic.state == logic.states.DEAD:

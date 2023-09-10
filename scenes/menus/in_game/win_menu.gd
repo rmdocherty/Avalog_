@@ -2,14 +2,16 @@ extends Control
 
 var confetti_class = preload("res://scenes/menus/in_game/fake_confetti_particles.tscn")
 var player_names: Array[String] = [stg.uname_1, stg.uname_2]
+var shown = false
 
 func show_winner(win_colour: int) -> void:
+	if shown == true:
+		return # early return so we don't double up win screens
+	shown = true
 	show()
-	var is_local := (stg.network == cst.network_types.LOCAL)
-	var has_won := is_local || (stg.singleplayer_colour == win_colour && not is_local )
-	if has_won:
-		var confetti = confetti_class.instantiate()
-		add_child(confetti)
+	var confetti = confetti_class.instantiate()
+	confetti.colors = confetti.colours_list[stg.replace_palettes[win_colour + 2]]
+	add_child(confetti)
 	$Outer/Contents/v/Winner.text = player_names[win_colour] + " wins!"
 
 func main_menu() -> void:

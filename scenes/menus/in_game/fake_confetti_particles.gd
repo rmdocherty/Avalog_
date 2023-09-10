@@ -46,6 +46,64 @@ class_name FakeConfettiParticles
 	Color("#ffa300"),
 	Color("#ffec27")
 ]
+
+var albion_colours: Array = [
+	Color("#3978a8"),
+	Color("#394778"),
+	Color("#2e3d70"),
+	Color("#4784b2"),
+	Color("#323cad"),
+	Color("#4a51a0"),
+	Color("#32398a"),
+	Color("#2e3d70"),
+]
+
+var rome_colours: Array = [
+	Color("#c23131"),
+	Color("#ba3939"),
+	Color("#931515"),
+	Color("#e13939"),
+	Color("#b12c2c"),
+	Color("#a03f3f"),
+	Color("#ad1818"),
+	Color("#a03f3f"),
+]
+
+var bretagne_colours: Array = [
+	Color("#4a791f"),
+	Color("#455f2d"),
+	Color("#315134"),
+	Color("#5c922a"),
+	Color("#428207"),
+	Color("#4b692f"),
+	Color("#3c6814"),
+	Color("#1d3820"),
+]
+
+var turkiye_colours: Array = [
+	Color("#fbeb34"),
+	Color("#bfb333"),
+	Color("#bfb333"),
+	Color("#e0d342"),
+	Color("#89811f"),
+	Color("#a09f4a"),
+	Color("#e9bc18"),
+	Color("#b1a94e"),
+]
+
+var morgana_colours: Array = [
+	Color("#414040"),
+	Color("#1f2123"),
+	Color("#1d1c27"),
+	Color("#7e7782"),
+	Color("#261730"),
+	Color("#1f2123"),
+	Color("#160a1e"),
+	Color("#272020"),
+]
+
+var colours_list = [albion_colours, rome_colours, bretagne_colours, turkiye_colours, morgana_colours]
+
 ## If `true`, the initial position of the particles
 ## can be a random position in @link_name {visibility_rect}.
 ##

@@ -5,3 +5,5 @@
 [node name="FakeConfettiParticles" type="Node2D"]
 z_index = -1
 script = ExtResource("1")
+amount = 200
+size = 4.0

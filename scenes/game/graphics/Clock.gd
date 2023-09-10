@@ -1,5 +1,6 @@
 extends TextureRect
 
+signal time_over
 
 var time_mins := 10
 var time_seconds := 0
@@ -14,10 +15,11 @@ func init(total_time_mins: int, total_time_seconds: int) -> void:
 	if time_mins == time_seconds and time_seconds == 0:
 		hide()
 
-# Called when the node enters the scene tree for the first time.
+# Called when the node enters the scene tree for the first time. foo
 func timeout() -> void:
 	if time_seconds == 0 and time_mins == 0 and running == true  and enabled == true:
 		print("time over!")
+		time_over.emit()
 		running = false
 	elif time_seconds == 0 and running == true  and enabled == true:
 		time_mins -= 1

@@ -1,9 +1,12 @@
 extends Control
+
+signal gfx_changed
+
 var init_vol := stg.master_vol
 var shown := false
 
 func _ready() -> void:
-	var values: Array = [stg.display_mode, stg.ANIM_ON, stg.ANIM_SPEED, stg.PIECE_DRAW_SCALE[0], stg.LINE_DRAW_WIDTH, false, stg.master_vol, stg.music_vol, stg.effects_vol]
+	var values: Array = [stg.display_mode, stg.ANIM_ON, stg.ANIM_SPEED, 1, stg.LINE_DRAW_WIDTH, false, stg.master_vol, stg.music_vol, stg.effects_vol]
 	var names: Array[String] = ["Fullscreen", "Anims", "AnimSpeed", "SpriteSize", "LineWidth", "Mute", "Master", "Music", "Effects"]
 	
 	for i in range(len(values)):
@@ -69,10 +72,12 @@ func set_anim_speed(value: float) -> void:
 	stg.ANIM_SPEED = value
 
 func set_sprite_size(value: float) -> void:
-	stg.PIECE_DRAW_SCALE = Vector2(value, value)
+	stg.PIECE_DRAW_SCALE = value * 2.2 * Vector2(1, 1)
+	gfx_changed.emit()
 
 func set_line_width(value: float) -> void:
 	stg.LINE_DRAW_WIDTH = value
+	gfx_changed.emit()
 
 # ======================== SOUND ========================
 func mute(button_state: bool) -> void:
