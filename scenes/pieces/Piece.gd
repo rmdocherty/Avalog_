@@ -123,6 +123,7 @@ func move_piece() -> Vector2:
 	logic.move(new_logic_pos)
 	reset_drag_hide_phantom()
 	if stg.ANIM_ON:
+		$Audio/Move.play()
 		var sprite: AnimatedSprite2D = graphics.sprite
 		sprite.play(graphics.passive_anim)
 		total_moved = Vector2(0, 0)
@@ -147,7 +148,9 @@ func change_turn(new_turn_number: int) -> void:
 		graphics.change_player_circle("inactive")
 
 func post_gfx_move() -> void:
+	$Audio/Move.stop()
 	if moving_to_attack:
+		$Audio/AttackDelay.start()
 		await play_attack_anim()
 	var sprite: AnimatedSprite2D = graphics.sprite
 	sprite.play(graphics.passive_anim)

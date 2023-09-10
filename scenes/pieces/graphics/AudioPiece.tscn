@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://bc53legwu4s01"]
+
+[ext_resource type="AudioStream" uid="uid://uy2xuoey0g2d" path="res://assets/sfx/footsteps.mp3" id="1_7huud"]
+[ext_resource type="AudioStream" uid="uid://b5jjs18xkn2w4" path="res://assets/sfx/dagger.mp3" id="2_ymlow"]
+
+[node name="Audio" type="Node2D"]
+
+[node name="Move" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_7huud")
+bus = &"sfx"
+
+[node name="Attack" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_ymlow")
+bus = &"sfx"
+
+[node name="AttackDelay" type="Timer" parent="."]
+wait_time = 0.005
+one_shot = true
+
+[connection signal="timeout" from="AttackDelay" to="Attack" method="play"]
