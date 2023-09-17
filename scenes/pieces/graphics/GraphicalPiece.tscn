@@ -106,7 +106,10 @@ sprite_frames = SubResource("SpriteFrames_rhgxa")
 animation = &"0_passive"
 offset = Vector2(0, -4)
 
+[node name="IdleAnimationTimer" type="Timer" parent="."]
+
 [connection signal="area_entered" from="Phantom" to="." method="_on_area_entered"]
 [connection signal="area_exited" from="Phantom" to="." method="_on_area_exited"]
 [connection signal="mouse_entered" from="Phantom" to="." method="mouse_entered_circle"]
 [connection signal="mouse_exited" from="Phantom" to="Phantom" method="mouse_exited_circle"]
+[connection signal="timeout" from="IdleAnimationTimer" to="." method="idle_anim_timer_trigger"]

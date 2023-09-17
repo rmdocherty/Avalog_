@@ -4,6 +4,7 @@ signal gfx_changed
 
 var init_vol := stg.master_vol
 var shown := false
+var prev_master_vol := 1.
 
 func _ready() -> void:
 	var values: Array = [stg.display_mode, stg.ANIM_ON, stg.ANIM_SPEED, 1, stg.LINE_DRAW_WIDTH, false, stg.master_vol, stg.music_vol, stg.effects_vol]
@@ -80,17 +81,28 @@ func set_line_width(value: float) -> void:
 	gfx_changed.emit()
 
 # ======================== SOUND ========================
+func change_volume(value: float, bus_name: String) -> void:
+	var bus := AudioServer.get_bus_index(bus_name)
+	AudioServer.set_bus_volume_db(bus, linear_to_db(value))
+	
+
 func mute(button_state: bool) -> void:
 	if button_state == true:
-		pass # set master vol to 0
+		prev_master_vol = stg.master_vol
+		stg.master_vol = 0
+		change_volume(0, "Master")
 	else:
-		pass
+		stg.master_vol = prev_master_vol
+		change_volume(prev_master_vol, "Master")
 
 func set_master_vol(value: float) -> void:
 	stg.master_vol = value
+	change_volume(value, "Master")
 
 func set_music_vol(value: float) -> void:
 	stg.music_vol = value
+	change_volume(value, "music")
 
 func set_effects_vol(value: float) -> void:
 	stg.effects_vol = value
+	change_volume(value, "sfx")

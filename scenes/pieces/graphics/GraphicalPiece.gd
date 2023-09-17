@@ -1,6 +1,8 @@
 extends Node2D
 class_name GraphicalPiece
 
+var rng = RandomNumberGenerator.new()
+
 var lines: Array[Polygon2D] = []
 var current_polygon := [PackedVector2Array(), PackedVector2Array()]
 @onready var sprite: AnimatedSprite2D = $Sprite
@@ -95,6 +97,22 @@ func _on_area_entered(area: Area2D):
 func _on_area_exited(_area: Area2D):
 	circle.set_colour(circle.current_state)
 	$Phantom/PhantomSprite.play(passive_anim)
+	
+func start_idle_timer():
+	var random_time = rng.randf_range(4, 36)
+	$IdleAnimationTimer.start(random_time)
+
+func idle_anim_timer_trigger():
+	var random_num = rng.randi_range(0, 9)
+	if random_num >= 7 and stg.ANIM_ON:
+		for i in range(2):
+			await idle_anim_play()
+		sprite.stop()
+	start_idle_timer()
+
+func idle_anim_play():
+	sprite.play(passive_anim)
+	await sprite.animation_looped
 
 func _ready() -> void:
 	for s in [sprite, $Phantom/PhantomSprite]:
@@ -106,6 +124,7 @@ func _ready() -> void:
 		sprite.hide()
 		$Icon.show()
 	$Phantom/Hover.polygon = circle.inner_points
+	start_idle_timer()
 
 
 

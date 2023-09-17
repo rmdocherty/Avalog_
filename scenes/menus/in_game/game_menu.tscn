@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://bslbobsgv2nl0"]
+[gd_scene load_steps=9 format=3 uid="uid://bslbobsgv2nl0"]
 
 [ext_resource type="Script" path="res://scenes/menus/in_game/game_menu.gd" id="1_0pd8u"]
 [ext_resource type="StyleBox" path="res://assets/menus/styles/outer_panel_theme.tres" id="1_ghqst"]
 [ext_resource type="Texture2D" uid="uid://bwaumvo2l7ve8" path="res://assets/menus/main_menu_bg.png" id="2_03wyk"]
 [ext_resource type="Theme" uid="uid://csq3hvxncciso" path="res://assets/menus/styles/mode_select_theme.tres" id="3_4niey"]
+[ext_resource type="StyleBox" path="res://assets/menus/styles/inner_panel_theme.tres" id="3_q1l3d"]
 [ext_resource type="Theme" uid="uid://c8njrprl5cak0" path="res://assets/menus/styles/game_menu_theme.tres" id="3_qru51"]
 [ext_resource type="Texture2D" uid="uid://dg8ysvtcwk2qu" path="res://assets/menus/in_game/game_menu_close.png" id="6_81k8r"]
 [ext_resource type="Texture2D" uid="uid://bvcot4l5sx2so" path="res://assets/menus/in_game/game_menu_close_hover.png" id="7_igeuw"]
@@ -50,6 +51,7 @@ offset_left = 5.0
 offset_top = 5.0
 offset_right = -5.0
 offset_bottom = -5.0
+theme_override_styles/panel = ExtResource("3_q1l3d")
 
 [node name="Contents" type="Panel" parent="Outer"]
 layout_mode = 1

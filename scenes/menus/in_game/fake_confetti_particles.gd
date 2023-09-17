@@ -102,8 +102,9 @@ var morgana_colours: Array = [
 	Color("#272020"),
 ]
 
-var colours_list = [albion_colours, rome_colours, bretagne_colours, turkiye_colours, morgana_colours]
+var colours_list: Array = [albion_colours, rome_colours, bretagne_colours, turkiye_colours, morgana_colours]
 
+@onready var audio: Array = [$c1, $c2]
 ## If `true`, the initial position of the particles
 ## can be a random position in @link_name {visibility_rect}.
 ##
@@ -134,6 +135,7 @@ func _process(delta: float) -> void:
 
 	if timer > timer_wait_time:
 		timer = 0.0
+		_play_explosions()
 
 		if one_shot:
 			self.emitting = false
@@ -156,6 +158,11 @@ func _draw() -> void:
 				particle.position, ((particle.size.x + particle.size.y) / 2) / 2, particle.color
 			)
 
+func _play_explosions() -> void:
+	var idx := randi_range(0, len(audio) - 1)
+	var audio_node = audio[idx]
+	audio_node.play()
+	
 
 func _create_particles() -> void:
 	particles.clear()
