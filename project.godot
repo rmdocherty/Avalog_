@@ -22,6 +22,7 @@ stg="*res://scenes/settings.gd"
 hlp="*res://scenes/helper.gd"
 lkp="*res://scenes/game/lookup.gd"
 drawing="*res://scenes/pieces/graphics/drawing.gd"
+steam="*res://scenes/steam.gd"
 
 [display]
 

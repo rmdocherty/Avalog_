@@ -292,12 +292,13 @@ layout_mode = 2
 theme_override_constants/separation = 75
 
 [node name="Name" type="LineEdit" parent="Canv/Cont/SpritesMapFactions/NameCont/P1"]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 theme = ExtResource("3_4xegf")
 text = "Arthur"
 placeholder_text = "Arthur
 "
-expand_to_text_length = true
+max_length = 20
 
 [node name="ColourPicker" type="OptionButton" parent="Canv/Cont/SpritesMapFactions/NameCont/P1"]
 layout_mode = 2
