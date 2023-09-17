@@ -61,6 +61,8 @@ func update_item_list(new_data: Array, look: cst.look_types=cst.look_types.HOST)
 	for item in new_data:
 		add_item(item, game_list, look, first_item)
 		first_item = false
+	if selected_idx > -1:
+		game_list.select(selected_idx)
 
 func add_your_lobby(new_data: Array) -> Array:
 	var your_lobby: Array = [stg.uname_1, stg.mode, stg.total_time_min, 0]
@@ -166,7 +168,7 @@ func _on_Lobby_Match_List(lobbies: Array) -> void:
 		
 		var current_entry = [LOBBY_NAME, int(LOBBY_MODE), int(LOBBY_TIME), LOBBY]
 		# no double add lobby
-		if LOBBY_ID > 0 && LOBBY_ID != LOBBY:
+		if LOBBY_ID != LOBBY:
 			new_data.push_back(current_entry)
 	data = new_data
 	update_item_list(new_data, stg.look_type)
