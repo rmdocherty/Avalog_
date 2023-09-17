@@ -24,4 +24,3 @@ func _initialize_Steam() -> void:
 		IS_OWNED = Steam.isSubscribed()
 		STEAM_USERNAME = Steam.getPersonaName()
 		print("Hello " + STEAM_USERNAME)
-		stg.uname_1 = STEAM_USERNAME

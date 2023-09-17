@@ -4,7 +4,16 @@ var sprs: Array[AnimatedSprite2D] = []
 
 # ======================== INIT METHODS ========================
 func _ready() -> void:
-	# Loop through each player, init sprites and names
+	if stg.network == cst.network_types.ONLINE:
+		$Canv/Cont/PlayButtons/OnlineOptions.show()
+		$Canv/Cont/SpritesMapFactions/SpritesMapBox/P2Parent/Sprite.hide()
+		$Canv/Cont/SpritesMapFactions/NameCont/P2.hide()
+		$Canv/Cont/SpritesMapFactions/Factions/P2.hide()
+		stg.uname_1 = steam.STEAM_USERNAME
+		$Canv/Cont/SpritesMapFactions/NameCont/P1/Name.editable = false
+	else:
+		stg.uname_1 = "Player 1"
+	# Loop through each player, "Player 1es and names
 	var names = [stg.uname_1, stg.uname_2]
 	for i in [1, 2]:
 		set_names_init(i, names[i - 1])
@@ -12,12 +21,7 @@ func _ready() -> void:
 		sprs.push_back(spr)
 		set_faction(stg.chosen_factions[i - 1], i - 1)
 	change_spr_palette(1, 1)
-	if stg.network == cst.network_types.ONLINE:
-		$Canv/Cont/PlayButtons/OnlineOptions.show()
-		$Canv/Cont/SpritesMapFactions/SpritesMapBox/P2Parent/Sprite.hide()
-		$Canv/Cont/SpritesMapFactions/NameCont/P2.hide()
-		$Canv/Cont/SpritesMapFactions/Factions/P2.hide()
-		$Canv/Cont/SpritesMapFactions/NameCont/P1/Name.editable = false
+	
 
 func set_sprites_init(i: int) -> AnimatedSprite2D:
 	# Play passive anim, flip enemy sprite, set shader parameters
