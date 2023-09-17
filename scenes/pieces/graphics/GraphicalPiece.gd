@@ -1,6 +1,8 @@
 extends Node2D
 class_name GraphicalPiece
 
+signal invalid_input
+
 var rng = RandomNumberGenerator.new()
 
 var lines: Array[Polygon2D] = []

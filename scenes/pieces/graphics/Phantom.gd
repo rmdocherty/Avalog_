@@ -1,5 +1,6 @@
 extends Area2D
 
+
 var start_click_pos: Vector2
 var dragging := false
 var logic_pos: Vector2
@@ -16,6 +17,9 @@ func _input_event(_viewport, event: InputEvent, _shape_idx) -> void:
 		gfx_game_manager.selected_piece = piece
 		print("click start")
 		$PhantomSprite.show()
+	
+	if Input.is_action_just_pressed("click") and not turn_matches:
+		graphics.invalid_input.emit()
 
 	if event.is_action_pressed("click") and turn_matches:
 		dragging = true

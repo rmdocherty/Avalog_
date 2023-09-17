@@ -160,6 +160,9 @@ func post_gfx_move() -> void:
 	moving_to_attack = false
 	gfx_manager.after_piece_finished_moving()
 
+func invalid_audio() -> void:
+	$Audio/Invalid.play()
+
 # ======================== PROCESSES =================
 func _ready():
 	if colour == cst.colour.BLACK:

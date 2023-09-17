@@ -80,6 +80,7 @@ func lobby_selected(idx: int) -> void:
 	$Canv/h/h2/Join.disabled = false
 
 func back() -> void:
+	_leave_lobby()
 	hlp.load_child_remove_parent("res://scenes/menus/pre_game/mode_select_menu.tscn", self)
 
 func init_graphics() -> void:
@@ -114,7 +115,7 @@ func _ready() -> void:
 	Steam.lobby_joined.connect(_on_Lobby_Joined)
 	#Steam.lobby_invite.connect(_on_Lobby_Invite)
 	Steam.lobby_chat_update.connect(_on_Lobby_Chat_Update)
-	Steam.join_requested.connect(_on_Lobby_Join_Requested)
+	#Steam.join_requested.connect(_on_Lobby_Join_Requested)
 
 	if stg.look_type == cst.look_types.AUTO:
 		game_filter = stg.mode
@@ -159,7 +160,6 @@ func _get_lobbies() -> void:
 func _on_Lobby_Match_List(lobbies: Array) -> void:
 	var new_data = []
 	for LOBBY in lobbies:
-		# Pull lobby data from Steam, these are specific to our example
 		var LOBBY_NAME: String = Steam.getLobbyData(LOBBY, "name")
 		var LOBBY_MODE: String = Steam.getLobbyData(LOBBY, "mode")
 		var LOBBY_TIME: String = Steam.getLobbyData(LOBBY, "time")
@@ -219,11 +219,21 @@ func _on_Lobby_Chat_Update(_lobby_id: int, change_id: int, _making_change_id: in
 	var CHANGER: String = Steam.getFriendPersonaName(change_id)
 	# If a player has joined the lobby
 	if chat_state == 1:
+		OTHER_PLAYER = {"steam_id":change_id, "steam_name":CHANGER}
 		print(str(CHANGER)+" has joined the lobby.")
 
+func _leave_lobby() -> void:
+	# If in a lobby, leave it
+	if LOBBY_ID != 0:
+		Steam.leaveLobby(LOBBY_ID)
 
 func _process(delta: float) -> void:
 	if time_elapsed > UPDATE_T:
 		_get_lobbies()
 		time_elapsed = 0
 	time_elapsed += delta
+
+func _notification(what):
+	# Close lobby if leaving early
+	if what == MainLoop.NOTIFICATION_PREDELETE:
+		_leave_lobby()
