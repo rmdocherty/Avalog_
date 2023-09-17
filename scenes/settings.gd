@@ -2,7 +2,7 @@ extends Node
 
 var ANIM_SPEED := 1.
 var ANIM_ON := true
-var LINE_DRAW_WIDTH := 0.22 # was 0.2 iirc
+var LINE_DRAW_WIDTH := 0.20 # was 0.2 iirc
 
 var PIECE_DRAW_SCALE := Vector2(2.2, 2.2)#Vector2(2.5, 2.5) # defo add this as a slider - 2 is interesting
 
@@ -15,6 +15,8 @@ var chosen_fen := test #test
 var network := cst.network_types.LOCAL
 var mode := cst.modes.CLASSIC
 var display_mode := "windowed"
+
+var look_type := cst.look_types.AUTO
 
 var chosen_factions: Array[int] = [cst.factions.ALBION, cst.factions.ALBION]
 # in order p1 original, p2 original, p1 remap, p2 remap

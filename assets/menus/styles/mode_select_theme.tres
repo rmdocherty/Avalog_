@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=17 format=3 uid="uid://csq3hvxncciso"]
+[gd_resource type="Theme" load_steps=20 format=3 uid="uid://csq3hvxncciso"]
 
 [ext_resource type="FontFile" uid="uid://q43lkw8hwss5" path="res://assets/menus/styles/Pixuf.ttf" id="1_vdcxi"]
 [ext_resource type="Texture2D" uid="uid://cw7n6bwk6j77v" path="res://assets/menus/styles/down_arrow.png" id="2_fy1r6"]
@@ -52,6 +52,30 @@ bg_color = Color(0.1, 0.1, 0.1, 0.6)
 border_color = Color(1, 1, 1, 0.75)
 corner_detail = 1
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lenqf"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(1, 1, 1, 0.635294)
+corner_detail = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_678bg"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(1, 1, 1, 0.75)
+corner_detail = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_getyc"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.74902, 0.74902, 0.74902, 0.74902)
+corner_detail = 6
+
 [resource]
 Button/font_sizes/font_size = 34
 Button/fonts/font = ExtResource("1_vdcxi")
@@ -63,6 +87,7 @@ HSlider/icons/grabber_highlight = ExtResource("3_4863f")
 HSlider/styles/grabber_area = SubResource("StyleBoxFlat_5lck4")
 HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_w0x0i")
 HSlider/styles/slider = SubResource("StyleBoxFlat_nub6x")
+ItemList/font_sizes/font_size = 34
 Label/font_sizes/font_size = 34
 Label/fonts/font = ExtResource("1_vdcxi")
 LineEdit/font_sizes/font_size = 34
@@ -83,3 +108,6 @@ TabBar/styles/tab_selected = SubResource("StyleBoxEmpty_vppf7")
 TabBar/styles/tab_unselected = SubResource("StyleBoxEmpty_dtxb6")
 TabContainer/styles/tab_selected = SubResource("StyleBoxFlat_e2b37")
 Tree/fonts/font = ExtResource("1_vdcxi")
+VScrollBar/styles/grabber = SubResource("StyleBoxFlat_lenqf")
+VScrollBar/styles/grabber_highlight = SubResource("StyleBoxFlat_678bg")
+VScrollBar/styles/grabber_pressed = SubResource("StyleBoxFlat_getyc")

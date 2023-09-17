@@ -81,11 +81,24 @@ func go_back() -> void:
 
 # ======================== PLAY BUTTONS ========================
 func play() -> void:
+	time_changed($Canv/Cont/TimeControl/Picker.selected)
+	game_mode_changed($Canv/Cont/GameMode/Picker.selected)
 	if stg.mode == cst.modes.DRAFT:
 		pass
-	else:
+	elif stg.network == cst.network_types.LOCAL:
 		var game_path := "res://scenes/game/graphics/gfx_game_manager.tscn"
 		var child: Node = load(game_path).instantiate()
 		get_tree().get_root().add_child(child)
 		child.init(stg.chosen_fen)
 		get_tree().get_root().remove_child(self)
+	elif stg.network == cst.network_types.ONLINE:
+		stg.look_type = cst.look_types.AUTO
+		hlp.load_child_remove_parent("res://scenes/menus/pre_game/BrowseGames.tscn", self)
+
+func host() -> void:
+	stg.look_type = cst.look_types.HOST
+	hlp.load_child_remove_parent("res://scenes/menus/pre_game/BrowseGames.tscn", self)
+
+func browse() -> void:
+	stg.look_type = cst.look_types.BROWSE
+	hlp.load_child_remove_parent("res://scenes/menus/pre_game/BrowseGames.tscn", self)

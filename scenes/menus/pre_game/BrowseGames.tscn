@@ -1,0 +1,188 @@
+[gd_scene load_steps=11 format=3 uid="uid://dchuxrjpr5siw"]
+
+[ext_resource type="Texture2D" uid="uid://bwaumvo2l7ve8" path="res://assets/menus/main_menu_bg.png" id="1_48r7h"]
+[ext_resource type="Script" path="res://scenes/menus/pre_game/BrowseGames.gd" id="1_lmsvp"]
+[ext_resource type="Theme" uid="uid://csq3hvxncciso" path="res://assets/menus/styles/mode_select_theme.tres" id="2_feqec"]
+[ext_resource type="StyleBox" uid="uid://dgafqg6h41c3n" path="res://assets/menus/styles/steam_btn_style.tres" id="3_rw2im"]
+[ext_resource type="StyleBox" uid="uid://cfx3bp5d46vw" path="res://assets/menus/styles/play_btn_style.tres" id="4_w0bm8"]
+[ext_resource type="Texture2D" uid="uid://ddifocup5i2ig" path="res://assets/menus/buttons/back_arrow.png" id="5_yd327"]
+[ext_resource type="PackedScene" uid="uid://bil260bj1obb8" path="res://scenes/menus/pre_game/Waiting.tscn" id="6_r8nk8"]
+[ext_resource type="Texture2D" uid="uid://c4dmcfjrgxlje" path="res://assets/menus/buttons/back_arrow_hover.png" id="6_u0084"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c5t3t"]
+bg_color = Color(0.227451, 0.262745, 0.392157, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+expand_margin_left = 4.0
+expand_margin_top = 4.0
+expand_margin_right = 4.0
+expand_margin_bottom = 4.0
+shadow_size = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qa23y"]
+bg_color = Color(0.298039, 0.698039, 0.376471, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+expand_margin_left = 4.0
+expand_margin_top = 4.0
+expand_margin_right = 4.0
+expand_margin_bottom = 4.0
+shadow_size = 10
+
+[node name="BrowseGames" type="Node2D"]
+script = ExtResource("1_lmsvp")
+
+[node name="Canv" type="CanvasLayer" parent="."]
+
+[node name="BG" type="TextureRect" parent="Canv"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -252.0
+offset_bottom = 252.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_48r7h")
+expand_mode = 4
+stretch_mode = 1
+
+[node name="GameList" type="ItemList" parent="Canv"]
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.15
+anchor_right = 0.9
+anchor_bottom = 0.8
+offset_left = -0.200005
+offset_top = -0.200005
+offset_right = 0.200073
+offset_bottom = 3.59998
+theme = ExtResource("2_feqec")
+allow_search = false
+
+[node name="h" type="HBoxContainer" parent="Canv"]
+custom_minimum_size = Vector2(0, 70)
+anchors_preset = -1
+anchor_top = 0.9
+anchor_right = 1.0
+anchor_bottom = 0.95
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="_" type="HBoxContainer" parent="Canv/h"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+size_flags_stretch_ratio = 3.71
+
+[node name="Filters" type="Label" parent="Canv/h"]
+layout_mode = 2
+theme = ExtResource("2_feqec")
+text = "Filters:"
+
+[node name="GameType" type="OptionButton" parent="Canv/h"]
+layout_mode = 2
+theme = ExtResource("2_feqec")
+item_count = 4
+selected = 0
+popup/item_0/text = "All Modes"
+popup/item_0/id = 0
+popup/item_1/text = "Classic"
+popup/item_1/id = 1
+popup/item_2/text = "Draft"
+popup/item_2/id = 2
+popup/item_3/text = "Custom"
+popup/item_3/id = 3
+
+[node name="Time" type="OptionButton" parent="Canv/h"]
+layout_mode = 2
+theme = ExtResource("2_feqec")
+item_count = 5
+selected = 0
+popup/item_0/text = "All Times"
+popup/item_0/id = 0
+popup/item_1/text = "5+0"
+popup/item_1/id = 1
+popup/item_2/text = "10+0"
+popup/item_2/id = 2
+popup/item_3/text = "30+0"
+popup/item_3/id = 3
+popup/item_4/text = "Unlimited"
+popup/item_4/id = 4
+
+[node name="h2" type="HBoxContainer" parent="Canv/h"]
+layout_mode = 2
+size_flags_horizontal = 10
+theme_override_constants/separation = 40
+
+[node name="Invite" type="Button" parent="Canv/h/h2"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme = ExtResource("2_feqec")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = ExtResource("3_rw2im")
+theme_override_styles/hover = SubResource("StyleBoxFlat_c5t3t")
+text = "Invite
+"
+
+[node name="Join" type="Button" parent="Canv/h/h2"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme = ExtResource("2_feqec")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = ExtResource("4_w0bm8")
+theme_override_styles/hover = SubResource("StyleBoxFlat_qa23y")
+disabled = true
+text = "Join!"
+
+[node name="Waiting" parent="Canv/h/h2" instance=ExtResource("6_r8nk8")]
+layout_mode = 2
+
+[node name="__" type="HBoxContainer" parent="Canv/h"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+size_flags_stretch_ratio = 3.71
+
+[node name="Back" type="TextureButton" parent="Canv"]
+custom_minimum_size = Vector2(40, 34)
+offset_left = 20.0
+offset_top = 15.0
+offset_right = 90.0
+offset_bottom = 85.0
+texture_normal = ExtResource("5_yd327")
+texture_hover = ExtResource("6_u0084")
+stretch_mode = 5
+
+[node name="Lobbies" type="Label" parent="Canv"]
+offset_left = 120.0
+offset_top = 32.0
+offset_right = 263.0
+offset_bottom = 74.0
+theme = ExtResource("2_feqec")
+theme_override_font_sizes/font_size = 44
+text = "Lobbies"
+
+[node name="Searching" parent="Canv" instance=ExtResource("6_r8nk8")]
+custom_minimum_size = Vector2(550, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -208.0
+offset_top = -24.0
+offset_right = 208.0
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 0.937255)
+theme_override_font_sizes/font_size = 60
+text = "Searching for Match"
+original_text = "Searching for Match"
+
+[connection signal="item_selected" from="Canv/GameList" to="." method="lobby_selected"]
+[connection signal="item_selected" from="Canv/h/GameType" to="." method="update_filter" binds= [0]]
+[connection signal="item_selected" from="Canv/h/Time" to="." method="update_filter" binds= [1]]
+[connection signal="pressed" from="Canv/Back" to="." method="back"]

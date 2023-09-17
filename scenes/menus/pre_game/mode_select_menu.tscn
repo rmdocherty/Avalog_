@@ -270,7 +270,7 @@ text = "Time Control:"
 layout_mode = 2
 theme = ExtResource("3_4xegf")
 item_count = 4
-selected = 0
+selected = 2
 popup/item_0/text = "5+0"
 popup/item_0/id = 0
 popup/item_1/text = "10+0"
@@ -515,5 +515,7 @@ stretch_mode = 5
 [connection signal="item_selected" from="Canv/Cont/SpritesMapFactions/Factions/P1" to="." method="set_faction" binds= [0]]
 [connection signal="item_selected" from="Canv/Cont/SpritesMapFactions/Factions/Map/Faction" to="." method="set_map"]
 [connection signal="item_selected" from="Canv/Cont/SpritesMapFactions/Factions/P2" to="." method="set_faction" binds= [1]]
+[connection signal="pressed" from="Canv/Cont/PlayButtons/OnlineOptions/Host" to="." method="host"]
+[connection signal="pressed" from="Canv/Cont/PlayButtons/OnlineOptions/Browse" to="." method="browse"]
 [connection signal="pressed" from="Canv/Cont/PlayButtons/Play" to="." method="play"]
 [connection signal="pressed" from="Canv/Back" to="." method="go_back"]

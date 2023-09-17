@@ -104,7 +104,7 @@ func start_idle_timer():
 
 func idle_anim_timer_trigger():
 	var random_num = rng.randi_range(0, 9)
-	if random_num >= 7 and stg.ANIM_ON:
+	if random_num >= 6 and stg.ANIM_ON:
 		for i in range(2):
 			await idle_anim_play()
 		sprite.stop()
