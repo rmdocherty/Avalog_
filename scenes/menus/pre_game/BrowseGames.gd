@@ -4,7 +4,7 @@ var game_filter := -1
 var time_filter := -1
 
 var time_elapsed: float = 0
-var UPDATE_T: float = 1.5
+var UPDATE_T: float = 1.
 
 var selected_idx: int = -1
 var data: Array = [["Lancelot", 0, 10], ["Merlin", 1, 999], ["Percival", 2, 15], ["Accolon", 1, 5], ["Foo", 0, 5], ["Lancelot", 0, 10], ["Merlin", 1, 999], ["Percival", 2, 15], ["Accolon", 1, 5], ["Foo", 0, 5], ["Lancelot", 0, 10], ["Merlin", 1, 999], ["Percival", 2, 15], ["Accolon", 1, 5], ["Foo", 0, 5]]
@@ -116,6 +116,10 @@ func _ready() -> void:
 	Steam.lobby_chat_update.connect(_on_Lobby_Chat_Update)
 	Steam.join_requested.connect(_on_Lobby_Join_Requested)
 
+	if stg.look_type == cst.look_types.AUTO:
+		game_filter = stg.mode
+		time_filter = stg.total_time_min
+
 	#update_item_list(data, stg.look_type)
 	if stg.look_type == cst.look_types.HOST:
 		_create_Lobby()
@@ -160,10 +164,16 @@ func _on_Lobby_Match_List(lobbies: Array) -> void:
 		var LOBBY_MODE: String = Steam.getLobbyData(LOBBY, "mode")
 		var LOBBY_TIME: String = Steam.getLobbyData(LOBBY, "time")
 		
-		var current_entry = [LOBBY_NAME, LOBBY_MODE, LOBBY_TIME, LOBBY]
-		data.push_back(current_entry)
+		var current_entry = [LOBBY_NAME, int(LOBBY_MODE), int(LOBBY_TIME), LOBBY]
+		# no double add lobby
+		if LOBBY_ID > 0 && LOBBY_ID != LOBBY:
+			new_data.push_back(current_entry)
 	data = new_data
 	update_item_list(new_data, stg.look_type)
+
+func join() -> void:
+	var lobby_id = data[selected_idx][3]
+	_join_Lobby(lobby_id)
 
 func _join_Lobby(lobby_id: int) -> void:
 	print("Attempting to join lobby "+str(lobby_id)+"...")

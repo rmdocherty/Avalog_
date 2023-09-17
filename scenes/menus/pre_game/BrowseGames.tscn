@@ -185,4 +185,5 @@ original_text = "Searching for Match"
 [connection signal="item_selected" from="Canv/GameList" to="." method="lobby_selected"]
 [connection signal="item_selected" from="Canv/h/GameType" to="." method="update_filter" binds= [0]]
 [connection signal="item_selected" from="Canv/h/Time" to="." method="update_filter" binds= [1]]
+[connection signal="pressed" from="Canv/h/h2/Join" to="." method="join"]
 [connection signal="pressed" from="Canv/Back" to="." method="back"]
