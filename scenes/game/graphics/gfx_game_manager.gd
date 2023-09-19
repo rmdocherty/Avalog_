@@ -14,12 +14,44 @@ var selected_piece: Piece
 @onready var board := $board
 
 # ======================== FEN LOGIC =================
+func invert_str(s: String) -> String:
+	var out: String = ""
+	for i in range(s.length() - 1, -1, -1):
+		var c = s[i]
+		if c == "Q":
+			c = "K"
+		elif c == "q":
+			c = "k"
+		elif c == "K":
+			c = "Q"
+		elif c == "k":
+			c = "q"
+		out += c
+	return out
+
+func assemble_fen(other_half_fen: String) -> String:
+	var FEN: String = ""
+	var your_fen: String = stg.half_FEN
+	var opponent_fen: String = other_half_fen
+	if stg.player_colour == cst.WHITE:
+		your_fen = stg.half_FEN.to_upper()
+		FEN = opponent_fen + "8/8/8/8" + invert_str(your_fen)
+	else:
+		opponent_fen = other_half_fen.to_upper()
+		FEN = your_fen + "8/8/8/8" + invert_str(opponent_fen)
+	return FEN
+
+func fen_recieved(other_half_fen: String) -> void:
+	var fen = assemble_fen(other_half_fen)
+	init(fen)
+
 func add_pieces_from_fen(fen_str: String) -> Array[Piece]:
 	"""Loop through FEN string, initialising new pieces at correct position w/ correct colour."""
 	var pieces: Array[Piece] = []
 	var x_idx: int = start_x
 	var y_idx: int = start_y
 	var _faction_int: int = -1
+	var i := 0
 	for letter in fen_str:
 		var p0 := Vector2((x_idx + 0.5) * cst.LOGIC_SQ_W, (y_idx + 0.5) * cst.LOGIC_SQ_W)
 		if letter == '/':
@@ -30,13 +62,14 @@ func add_pieces_from_fen(fen_str: String) -> Array[Piece]:
 		elif letter in cst.fen_faction_lookup:
 			_faction_int = cst.fen_faction_lookup.find(letter, 0)
 		else:
-			var piece: Piece = add_piece(letter, p0)
+			var piece: Piece = add_piece(letter, p0, i)
+			i += 1
 			pieces.push_back(piece)
 			_faction_int = -1
 			x_idx += 1
 	return pieces
 
-func add_piece(piece_letter: String, pos: Vector2) -> Piece:
+func add_piece(piece_letter: String, pos: Vector2, piece_n: int) -> Piece:
 	"""Query the lookup and get a piece, initialise it then add as a child."""
 	var colour: cst.colour
 	var piece_type: String = piece_letter.to_lower()
@@ -47,7 +80,7 @@ func add_piece(piece_letter: String, pos: Vector2) -> Piece:
 	
 	var temp_piece = lkp.add_piece("a", piece_type, colour)
 	add_child(temp_piece)
-	temp_piece.init(pos, colour)
+	temp_piece.init(pos, colour, piece_n)
 	all_pieces.push_back(temp_piece)
 	return temp_piece
 
@@ -155,9 +188,19 @@ func confirm_move() -> void:
 	var move_dist: Vector2 = selected_piece.graphics.get_node("Phantom").logic_pos
 	move_piece_dist(selected_piece, move_dist)
 
+func send_move(piece: Piece, move_dist: Vector2) -> void:
+	var packet: Dictionary = {"type":"move", "piece_n":piece.piece_n, "pos":move_dist}
+	$P2P._send_P2P_packet(stg.OTHER_PLAYER_ID, packet)
+
+func recieve_move(piece_n: int, move_dist: Vector2) -> void:
+	var piece: Piece = all_pieces[piece_n]
+	move_piece_dist(piece, move_dist)
+
 func move_piece_dist(piece: Piece, move_dist: Vector2) -> void:
 	game_manager.move_piece(piece, move_dist)
 	$GUILayer.clock_stop_after_move_confirmed(game_manager.current_turn_colour)
+	if $P2P.connected:
+		send_move(piece, move_dist)
 	reset_piece_drag()
 	hide_buttons()
 
@@ -181,6 +224,11 @@ func _draw() -> void:
 	if stg.draw_iso == false:
 		draw_flat_board(8, 8)
 
+
+# ======================== CONNECTION ========================
+func back() -> void:
+	if $P2P.connected:
+		$P2P._close_connection()
 
 # ======================== PROCCESSES =================
 func _ready() -> void:

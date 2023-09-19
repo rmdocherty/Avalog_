@@ -3,6 +3,7 @@ class_name Piece
 
 var colour: cst.colour
 var turn_number: int = 1
+var piece_n: int = 0
 
 var moving := false
 var total_moved := Vector2(0, 0)
@@ -26,8 +27,9 @@ var flat_draws := PackedInt32Array([])
 
 
 # ======================== INIT LOGIC =================
-func init(logic_pos: Vector2, set_colour: cst.colour) -> void:
+func init(logic_pos: Vector2, set_colour: cst.colour, n: int) -> void:
 	colour = set_colour
+	piece_n = n
 	set_logic_pos(logic_pos)
 	graphics_init(logic_pos, set_colour)
 

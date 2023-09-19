@@ -69,7 +69,7 @@ func promote_piece(piece: LogicPiece, pos: Vector2, gfx: bool=true) -> LogicPiec
 	if gfx:
 		get_parent().add_child(new_piece)
 		new_piece.hide()
-		new_piece.init(pos, piece.colour)
+		new_piece.init(pos, piece.colour, len(all_pieces))
 		get_parent().all_pieces.push_back(new_piece)
 		all_pieces.push_back(new_piece.logic)
 	piece.delete()

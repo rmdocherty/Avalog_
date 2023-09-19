@@ -304,3 +304,5 @@ one_shot = true
 [connection signal="pressed" from="ConfirmMove" to="." method="confirm_move"]
 [connection signal="pressed" from="RejectMove" to="." method="reset_piece_drag"]
 [connection signal="timeout" from="TakeTurnTimer" to="." method="take_turn" binds= [true]]
+[connection signal="fen_recieved" from="P2P" to="." method="fen_recieved"]
+[connection signal="move_sent" from="P2P" to="." method="recieve_move"]
