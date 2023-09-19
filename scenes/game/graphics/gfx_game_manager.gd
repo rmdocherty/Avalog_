@@ -152,7 +152,11 @@ func hide_buttons() -> void:
 	$RejectMove.hide()
 
 func confirm_move() -> void:
-	game_manager.move_piece(selected_piece)
+	var move_dist: Vector2 = selected_piece.graphics.get_node("Phantom").logic_pos
+	move_piece_dist(selected_piece, move_dist)
+
+func move_piece_dist(piece: Piece, move_dist: Vector2) -> void:
+	game_manager.move_piece(piece, move_dist)
 	$GUILayer.clock_stop_after_move_confirmed(game_manager.current_turn_colour)
 	reset_piece_drag()
 	hide_buttons()

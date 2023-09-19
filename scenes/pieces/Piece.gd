@@ -115,9 +115,8 @@ func set_graphic_pos(logical_pos: Vector2) -> void:
 	var norm_pos = logical_pos / cst.LOGIC_SQ_W
 	graphics.global_position = hlp.norm_to_iso(cst.BOARD_DRAW_SCALE * norm_pos)
 
-func move_piece() -> Vector2:
+func move_piece(move_dist: Vector2) -> Vector2:
 	# can add a check here if the phantom has overlapping areas & set moving to attack
-	var move_dist: Vector2 = graphics.get_node("Phantom").logic_pos
 	var current_logic_pos: Vector2 = logic.global_position
 	var new_logic_pos: Vector2 = current_logic_pos + move_dist
 	logic.move(new_logic_pos)

@@ -23,6 +23,7 @@ var chosen_factions: Array[int] = [cst.factions.ALBION, cst.factions.ALBION]
 var replace_palettes: Array[int] = [chosen_factions[0], chosen_factions[1], 0, 1]
 var chosen_map := cst.factions.ALBION
 
+var OTHER_PLAYER_ID: int = -1
 
 var uname_1 := "Player 1"
 var uname_2 := "Player 2"
@@ -30,7 +31,7 @@ var uname_2 := "Player 2"
 var winning_player := cst.colour.WHITE
 var singleplayer_colour := cst.colour.WHITE
 
-var total_time_min := 5
+var total_time_min := 30
 var total_time_seconds := 0
 
 var draw_iso := true

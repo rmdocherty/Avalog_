@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://bm7utema3eqfb"]
+[gd_scene load_steps=36 format=3 uid="uid://bm7utema3eqfb"]
 
 [ext_resource type="Script" path="res://scenes/game/graphics/gfx_game_manager.gd" id="1_d8ywr"]
 [ext_resource type="Texture2D" uid="uid://m3cmypbyyc6x" path="res://assets/maps/albion_map.png" id="2_gxohm"]
@@ -32,6 +32,7 @@
 [ext_resource type="Texture2D" uid="uid://c2qvn2rpc5m04" path="res://assets/menus/in_game/menu_bar_large.png" id="16_8yi0n"]
 [ext_resource type="PackedScene" uid="uid://b37n3b4gwgluv" path="res://scenes/menus/in_game/win_menu.tscn" id="19_4y7o1"]
 [ext_resource type="PackedScene" uid="uid://bslbobsgv2nl0" path="res://scenes/menus/in_game/game_menu.tscn" id="31_cfp35"]
+[ext_resource type="PackedScene" uid="uid://8tre3shcbkkj" path="res://scenes/game/P2P.tscn" id="33_3ytpy"]
 
 [sub_resource type="Theme" id="Theme_vxdyh"]
 
@@ -284,6 +285,8 @@ texture_hover = ExtResource("14_uf6ar")
 [node name="TakeTurnTimer" type="Timer" parent="."]
 wait_time = 0.05
 one_shot = true
+
+[node name="P2P" parent="." instance=ExtResource("33_3ytpy")]
 
 [connection signal="pressed" from="GUILayer/Settings" to="GUILayer/game_menu" method="show_self"]
 [connection signal="toggled" from="GUILayer/HideBar" to="GUILayer" method="toggle_hide_btn"]

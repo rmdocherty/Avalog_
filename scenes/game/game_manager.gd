@@ -48,8 +48,8 @@ func take_turn(change_player: bool=true) -> int:
 	get_moves()
 	return turn_number
 
-func move_piece(piece: Piece) -> void:
-	piece.move_piece()
+func move_piece(piece: Piece, move_dist: Vector2) -> void:
+	piece.move_piece(move_dist)
 
 func check_for_promotion(piece: LogicPiece, pos: Vector2) -> bool:
 	if piece.piece_char != "p":

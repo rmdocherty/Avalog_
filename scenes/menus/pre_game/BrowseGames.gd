@@ -112,28 +112,28 @@ enum LOBBY_AVAILABILITY {PRIVATE, FRIENDS, PUBLIC, INVISIBLE}
 
 
 func _ready() -> void:
-	Steam.lobby_created.connect(_on_Lobby_Created)
-	Steam.lobby_match_list.connect(_on_Lobby_Match_List)
-	Steam.lobby_joined.connect(_on_Lobby_Joined)
+	Steam.lobby_created.connect(_on_lobby_created)
+	Steam.lobby_match_list.connect(_on_lobby_match_list)
+	Steam.lobby_joined.connect(_on_lobby_joined)
 	#Steam.lobby_invite.connect(_on_Lobby_Invite)
-	Steam.lobby_chat_update.connect(_on_Lobby_Chat_Update)
+	Steam.lobby_chat_update.connect(_on_lobby_chat_update)
 	#Steam.join_requested.connect(_on_Lobby_Join_Requested)
 
 	if stg.look_type == cst.look_types.AUTO:
 		game_filter = stg.mode
 		time_filter = stg.total_time_min
+		# add search code here
 
-	#update_item_list(data, stg.look_type)
 	if stg.look_type == cst.look_types.HOST:
-		_create_Lobby()
+		_create_lobby()
 	_get_lobbies()
 	init_graphics()
 
-func _create_Lobby() -> void:
+func _create_lobby() -> void:
 	if LOBBY_ID == 0:
 		Steam.createLobby(Steam.LOBBY_TYPE_PUBLIC, LOBBY_MAX_MEMBERS)
 
-func _on_Lobby_Created(connection: int, lobby_id: int) -> void:
+func _on_lobby_created(connection: int, lobby_id: int) -> void:
 	if connection == 1:
 		# Set the lobby ID
 		LOBBY_ID = lobby_id
@@ -159,7 +159,7 @@ func _get_lobbies() -> void:
 	Steam.requestLobbyList()
 	
 
-func _on_Lobby_Match_List(lobbies: Array) -> void:
+func _on_lobby_match_list(lobbies: Array) -> void:
 	var new_data = []
 	for LOBBY in lobbies:
 		var LOBBY_NAME: String = Steam.getLobbyData(LOBBY, "name")
@@ -175,20 +175,19 @@ func _on_Lobby_Match_List(lobbies: Array) -> void:
 
 func join() -> void:
 	var lobby_id = data[selected_idx][3]
-	_join_Lobby(lobby_id)
+	_join_lobby(lobby_id)
 
-func _join_Lobby(lobby_id: int) -> void:
+func _join_lobby(lobby_id: int) -> void:
 	print("Attempting to join lobby "+str(lobby_id)+"...")
 	Steam.joinLobby(lobby_id)
 
-func _on_Lobby_Joined(lobby_id: int, _permissions: int, _locked: bool, response: int) -> void:
+func _on_lobby_joined(lobby_id: int, _permissions: int, _locked: bool, response: int) -> void:
 	# If joining was successful
 	if response == 1:
-		# Set this lobby ID as your lobby ID
 		LOBBY_ID = lobby_id
-		OTHER_PLAYER = _get_other_player()
-		print(OTHER_PLAYER)
-		#_make_P2P_Handshake()
+		if stg.look_type != cst.look_types.HOST:
+			OTHER_PLAYER = _get_other_player()
+			start_game(OTHER_PLAYER["steam_id"])
 	else:
 		var FAIL_REASON: String
 		match response:
@@ -209,20 +208,21 @@ func _get_other_player() -> Dictionary:
 	var MEMBER_STEAM_NAME: String = Steam.getFriendPersonaName(MEMBER_STEAM_ID)
 	return {"steam_id":MEMBER_STEAM_ID, "steam_name":MEMBER_STEAM_NAME}
 
-func _on_Lobby_Join_Requested(lobby_id: int, friendID: int) -> void:
+func _on_lobby_join_requested(lobby_id: int, friendID: int) -> void:
 	# Called when user clicks steam invite/friends list whilst in-game
 	var OWNER_NAME: String = Steam.getFriendPersonaName(friendID)
 	print("Joining "+str(OWNER_NAME)+"'s lobby...")
 	# Attempt to join the lobby
-	_join_Lobby(lobby_id)
+	_join_lobby(lobby_id)
 
-func _on_Lobby_Chat_Update(_lobby_id: int, change_id: int, _making_change_id: int, chat_state: int) -> void:
+func _on_lobby_chat_update(_lobby_id: int, change_id: int, _making_change_id: int, chat_state: int) -> void:
 	# Get the user who has made the lobby change
 	var CHANGER: String = Steam.getFriendPersonaName(change_id)
 	# If a player has joined the lobby
-	if chat_state == 1:
+	if chat_state == 1 and stg.look_type != cst.look_types.HOST:
+		OTHER_PLAYER = _get_other_player()
 		OTHER_PLAYER = {"steam_id":change_id, "steam_name":CHANGER}
-		print(str(CHANGER)+" has joined the lobby.")
+		start_game(change_id)
 
 func _leave_lobby() -> void:
 	# If in a lobby, leave it
@@ -239,3 +239,6 @@ func _notification(what):
 	# Close lobby if leaving early
 	if what == MainLoop.NOTIFICATION_PREDELETE:
 		_leave_lobby()
+
+func start_game(other_player_id: int) -> void:
+	stg.OTHER_PLAYER_ID = other_player_id
