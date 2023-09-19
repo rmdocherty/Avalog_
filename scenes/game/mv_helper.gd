@@ -34,7 +34,7 @@ func get_line_mvs(lines: Array[Vector2], type: cst.mv_type, scale: float=1.0) ->
 
 
 func get_circle_mvs(inner_mag: float, outer_mag: float, angle_from: float, angle_to: float, 
-					mv_type: int=cst.JUMPING, delta_inner: bool=false, n_incs: int=32) -> MoveVector:
+					mv_type: int=cst.mv_type.JUMPING, delta_inner: bool=false, n_incs: int=32) -> MoveVector:
 	# Get circular move vector spanning from inner mag to outer mag and between given angles.
 	if delta_inner:
 		inner_mag = outer_mag - 0.2 * cst.LOGIC_PIECE_RADIUS / cst.LOGIC_SQ_W

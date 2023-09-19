@@ -43,6 +43,8 @@ func assemble_fen(other_half_fen: String) -> String:
 
 func fen_recieved(other_half_fen: String) -> void:
 	var fen = assemble_fen(other_half_fen)
+	if stg.player_colour == cst.colour.BLACK:
+		$Camera2D.flip_camera()
 	init(fen)
 
 func add_pieces_from_fen(fen_str: String) -> Array[Piece]:

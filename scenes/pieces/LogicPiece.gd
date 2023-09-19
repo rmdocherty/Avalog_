@@ -47,7 +47,7 @@ func get_valid_moves(mv: MoveVector) -> Array[Array]:
 			var collide_obj: Area2D = shape_cast.get_collider(0)
 			var collide_pos: Vector2 = shape_cast.get_collision_point(0)
 			var delta_norm := (ray_target - ray_start).normalized()
-			end_pos = map_collision_to_point(delta_norm, ray_target, collide_pos, collide_obj, mv.move_type)
+			end_pos = map_collision_to_point(delta_norm, cst.LOGIC_SQ_W * mv.to_arr[i], collide_pos, collide_obj, mv.move_type)
 		else:
 			end_pos = cst.LOGIC_SQ_W * mv.to_arr[i]
 		
@@ -75,7 +75,7 @@ func map_collision_to_point(norm_m: Vector2, ray_end: Vector2, collision_point: 
 	
 	var line_attack := 2 * cst.LOGIC_PIECE_RADIUS * norm_m
 	var line_dist := (line * allowed_end_point) + (line * attack * line_attack)
-	var jump_dist := (jump * attack * ray_end) + (1 - jump * attack) * Vector2(0, 0)
+	var jump_dist := (jump * attack * ray_end) #* Vector2(0, 0)
 
 	var end_point := line_dist + jump_dist
 	return end_point
