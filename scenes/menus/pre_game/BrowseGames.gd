@@ -219,7 +219,7 @@ func _on_lobby_chat_update(_lobby_id: int, change_id: int, _making_change_id: in
 	# Get the user who has made the lobby change
 	var CHANGER: String = Steam.getFriendPersonaName(change_id)
 	# If a player has joined the lobby
-	if chat_state == 1 and stg.look_type != cst.look_types.HOST:
+	if chat_state == 1 and stg.look_type == cst.look_types.HOST:
 		OTHER_PLAYER = _get_other_player()
 		OTHER_PLAYER = {"steam_id":change_id, "steam_name":CHANGER}
 		start_game(change_id)
@@ -242,3 +242,8 @@ func _notification(what):
 
 func start_game(other_player_id: int) -> void:
 	stg.OTHER_PLAYER_ID = other_player_id
+	var game_path := "res://scenes/game/graphics/gfx_game_manager.tscn"
+	var child: Node = load(game_path).instantiate()
+	get_tree().get_root().add_child(child)
+	child.init(stg.chosen_fen)
+	get_tree().get_root().remove_child(self)
