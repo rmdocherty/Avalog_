@@ -245,5 +245,5 @@ func start_game(other_player_id: int) -> void:
 	var game_path := "res://scenes/game/graphics/gfx_game_manager.tscn"
 	var child: Node = load(game_path).instantiate()
 	get_tree().get_root().add_child(child)
-	child.init(stg.chosen_fen)
+	#child.init(stg.chosen_fen)
 	get_tree().get_root().remove_child(self)

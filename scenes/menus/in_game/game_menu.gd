@@ -33,7 +33,7 @@ func show_self() -> void:
 func back() -> void:
 	var home_menu = load("res://scenes/menus/pre_game/main_menu.tscn").instantiate()
 	#get_tree().change_scene_to_file("res://scenes/menus/main_menu.tscn")
-	get_parent().back()
+	get_parent().get_parent().back()
 	get_tree().get_root().add_child(home_menu)
 	get_tree().get_root().remove_child(get_parent().get_parent())
 
