@@ -39,6 +39,7 @@ func assemble_fen(other_half_fen: String) -> String:
 	else:
 		opponent_fen = other_half_fen.to_upper()
 		FEN = your_fen + "8/8/8/8" + invert_str(opponent_fen)
+	print(FEN)
 	return FEN
 
 func fen_recieved(other_half_fen: String) -> void:
@@ -196,8 +197,11 @@ func send_move(piece: Piece, move_dist: Vector2) -> void:
 	$P2P._send_P2P_packet(stg.OTHER_PLAYER_ID, packet)
 
 func recieve_move(piece_n: int, move_dist: Vector2) -> void:
-	var piece: Piece = all_pieces[piece_n]
-	selected_piece = piece
+	var piece: Piece
+	for p in all_pieces:
+		if p.piece_n == piece_n:
+			piece = p
+			selected_piece = p
 	move_piece_dist(piece, move_dist)
 
 func move_piece_dist(piece: Piece, move_dist: Vector2, send:bool=false) -> void:
