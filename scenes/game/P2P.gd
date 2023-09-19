@@ -70,7 +70,7 @@ func _handle_packet(packet: Dictionary) -> void:
 		fen_recieved.emit(packet["half_fen"])
 	if packet["type"] == "move":
 		var piece_n: int = packet["piece_n"]
-		var piece_pos: int = packet["pos"]
+		var piece_pos: Vector2 = packet["pos"]
 		move_sent.emit(piece_n, piece_pos)
 
 func _on_P2P_session_connect_fail(steamID: int, session_error: int) -> void:

@@ -33,7 +33,7 @@ func assemble_fen(other_half_fen: String) -> String:
 	var FEN: String = ""
 	var your_fen: String = stg.half_FEN
 	var opponent_fen: String = other_half_fen
-	if stg.player_colour == cst.WHITE:
+	if stg.player_colour == cst.colour.WHITE:
 		your_fen = stg.half_FEN.to_upper()
 		FEN = opponent_fen + "8/8/8/8" + invert_str(your_fen)
 	else:
@@ -186,20 +186,22 @@ func hide_buttons() -> void:
 
 func confirm_move() -> void:
 	var move_dist: Vector2 = selected_piece.graphics.get_node("Phantom").logic_pos
-	move_piece_dist(selected_piece, move_dist)
+	move_piece_dist(selected_piece, move_dist, true)
 
 func send_move(piece: Piece, move_dist: Vector2) -> void:
 	var packet: Dictionary = {"type":"move", "piece_n":piece.piece_n, "pos":move_dist}
+	print(str(steam.STEAM_ID) + "  " + str(stg.OTHER_PLAYER_ID))
 	$P2P._send_P2P_packet(stg.OTHER_PLAYER_ID, packet)
 
 func recieve_move(piece_n: int, move_dist: Vector2) -> void:
 	var piece: Piece = all_pieces[piece_n]
+	selected_piece = piece
 	move_piece_dist(piece, move_dist)
 
-func move_piece_dist(piece: Piece, move_dist: Vector2) -> void:
+func move_piece_dist(piece: Piece, move_dist: Vector2, send:bool=false) -> void:
 	game_manager.move_piece(piece, move_dist)
 	$GUILayer.clock_stop_after_move_confirmed(game_manager.current_turn_colour)
-	if $P2P.connected:
+	if $P2P.connected and send:
 		send_move(piece, move_dist)
 	reset_piece_drag()
 	hide_buttons()
