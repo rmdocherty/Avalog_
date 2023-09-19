@@ -42,6 +42,7 @@ func _read_P2P_packet() -> void:
 		var PACKET_CODE: PackedByteArray = PACKET['data']
 		var READABLE: Dictionary = bytes_to_var(PACKET_CODE)
 		print("Packet: "+str(READABLE))
+		_handle_packet(READABLE)
 
 
 func _send_P2P_packet(target: int, packet_data: Dictionary) -> void:
