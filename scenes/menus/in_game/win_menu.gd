@@ -7,6 +7,8 @@ var shown = false
 func show_winner(win_colour: int) -> void:
 	if shown == true:
 		return # early return so we don't double up win screens
+	if stg.player_colour == 1: # invert if online and other player
+		win_colour = 1 - win_colour 
 	shown = true
 	show()
 	var confetti = confetti_class.instantiate()

@@ -49,9 +49,36 @@ func clock_stop_after_move_confirmed(current_turn_colour: int) -> void:
 		$Clock2.running = false
 
 func clock_start_after_move_finished(current_turn_colour: int) -> void:
+	var clocks = [$Clock1, $Clock2]
+	var names = [$BottomBar/hb1/Name1, $BottomBar/hb1/Name2]
+	for i in range(2):
+		var color := i as cst.colour
+		var state := 0
+		var clock = clocks[i]
+		var panel = clock.get_node("Highlight")
+		var text = names[i]
+		if current_turn_colour == i:
+			clock.running = true
+			clock.get_node("Timer").start(1)
+			state = 1
+		set_colours(state, color, panel, text)
+	
+	"""
 	if current_turn_colour == cst.colour.WHITE:
 		$Clock1.running = true
 		$Clock1/Timer.start(1)
 	elif current_turn_colour == cst.colour.BLACK:
 		$Clock2.running = true
 		$Clock2/Timer.start(1)
+	"""
+
+func set_colours(state: int, color: cst.colour, panel_node: Panel, text_node: Label) -> void:
+	var text_colour := Color(1., 1., 1., 1.)
+	var panel_colour := Color(0.518, 0.494, 0.529) 
+	if state == 1:
+		text_colour = cst.faction_colours[stg.replace_palettes[color + 2]]
+		panel_colour = cst.faction_colours[stg.replace_palettes[color + 2]]
+	var new_sb: StyleBoxFlat = panel_node.get_theme_stylebox("panel").duplicate()
+	new_sb.border_color = panel_colour
+	panel_node.add_theme_stylebox_override("panel", new_sb)
+	text_node.add_theme_color_override("font_color", text_colour)

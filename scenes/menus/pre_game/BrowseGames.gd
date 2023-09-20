@@ -242,6 +242,7 @@ func _notification(what):
 
 func start_game(other_player_id: int) -> void:
 	stg.OTHER_PLAYER_ID = other_player_id
+	stg.uname_2 = OTHER_PLAYER["steam_name"]
 	var game_path := "res://scenes/game/graphics/gfx_game_manager.tscn"
 	var child: Node = load(game_path).instantiate()
 	get_tree().get_root().add_child(child)

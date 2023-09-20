@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://bm7utema3eqfb"]
+[gd_scene load_steps=37 format=3 uid="uid://bm7utema3eqfb"]
 
 [ext_resource type="Script" path="res://scenes/game/graphics/gfx_game_manager.gd" id="1_d8ywr"]
 [ext_resource type="Texture2D" uid="uid://m3cmypbyyc6x" path="res://assets/maps/albion_map.png" id="2_gxohm"]
@@ -21,6 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://0qfryyre0nss" path="res://assets/menus/buttons/tick_default.png" id="9_viy4r"]
 [ext_resource type="Texture2D" uid="uid://dq5jnnkhlynnx" path="res://assets/menus/in_game/zoom_out_hover.png" id="10_8cihd"]
 [ext_resource type="Texture2D" uid="uid://fjk83ocp406b" path="res://assets/menus/buttons/tick_click.png" id="10_laut7"]
+[ext_resource type="StyleBox" uid="uid://cnnt3rs11wvex" path="res://assets/menus/styles/highlight_sb.tres" id="10_wgxv4"]
 [ext_resource type="Texture2D" uid="uid://qrvt2e4dlhjq" path="res://assets/menus/in_game/camera_flip.png" id="11_bhsw3"]
 [ext_resource type="Texture2D" uid="uid://b07lm3u7grldq" path="res://assets/menus/buttons/tick_hover.png" id="11_jwlru"]
 [ext_resource type="Texture2D" uid="uid://7l2m8qlcksq0" path="res://assets/menus/buttons/cross_default.png" id="12_kgepf"]
@@ -120,6 +121,14 @@ grow_vertical = 0
 texture = ExtResource("8_vwbv6")
 script = ExtResource("9_nrcpj")
 
+[node name="Highlight" type="Panel" parent="GUILayer/Clock1"]
+z_index = 10
+custom_minimum_size = Vector2(128, 64)
+layout_mode = 0
+offset_right = 128.0
+offset_bottom = 64.0
+theme_override_styles/panel = ExtResource("10_wgxv4")
+
 [node name="Label" type="Label" parent="GUILayer/Clock1"]
 layout_mode = 0
 offset_top = 2.0
@@ -146,6 +155,13 @@ grow_horizontal = 0
 grow_vertical = 0
 texture = ExtResource("8_vwbv6")
 script = ExtResource("9_nrcpj")
+
+[node name="Highlight" type="Panel" parent="GUILayer/Clock2"]
+z_index = 10
+custom_minimum_size = Vector2(128, 64)
+offset_right = 128.0
+offset_bottom = 64.0
+theme_override_styles/panel = ExtResource("10_wgxv4")
 
 [node name="Label" type="Label" parent="GUILayer/Clock2"]
 layout_mode = 0

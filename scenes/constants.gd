@@ -20,6 +20,8 @@ const X_OFFSET := -4
 const WALL_SIZE: float = 100
 const ISO := Vector2(16, 8) # 8 is good
 
+const faction_colours = [Color("#3978a8"), Color("#c23131"), Color("#4a791f"), Color("#fbeb34"), Color("#414040")]
+
 const fen_faction_lookup = ["a", "i", "f", "t", "m"]
 const faction_lookup = ["a", "r", "b", "t", "m"]
 
