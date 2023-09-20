@@ -3,6 +3,7 @@ extends Node
 signal move_sent(piece_num: int, new_pos: Vector2)
 signal emote_sent
 signal fen_recieved(half_fen: String)
+signal rematch_request
 
 var connected: bool = stg.OTHER_PLAYER_ID > -1 and stg.network == cst.network_types.ONLINE
 var is_host := stg.look_type == cst.look_types.HOST

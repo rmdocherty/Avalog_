@@ -5,16 +5,17 @@ var player_names: Array[String] = [stg.uname_1, stg.uname_2]
 var shown = false
 
 func show_winner(win_colour: int) -> void:
+	var correct_player_name := win_colour as cst.colour 
 	if shown == true:
 		return # early return so we don't double up win screens
 	if stg.player_colour == 1: # invert if online and other player
-		win_colour = 1 - win_colour 
+		correct_player_name = 1 - win_colour as cst.colour
 	shown = true
 	show()
 	var confetti = confetti_class.instantiate()
 	confetti.colors = confetti.colours_list[stg.replace_palettes[win_colour + 2]]
 	add_child(confetti)
-	$Outer/Contents/v/Winner.text = player_names[win_colour] + " wins!"
+	$Outer/Contents/v/Winner.text = player_names[correct_player_name] + " wins!"
 
 func main_menu() -> void:
 	var home_menu = load("res://scenes/menus/pre_game/main_menu.tscn").instantiate()

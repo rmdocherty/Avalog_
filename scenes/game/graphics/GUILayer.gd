@@ -43,23 +43,21 @@ func show_bar() -> void:
 	hidden = false
 
 func clock_stop_after_move_confirmed(current_turn_colour: int) -> void:
+	# need to fix this in line with below!
 	if current_turn_colour == cst.colour.WHITE:
 		$Clock1.running = false
 	elif current_turn_colour == cst.colour.BLACK:
 		$Clock2.running = false
 
 func clock_start_after_move_finished(current_turn_colour: int) -> void:
-	# Fix later: loop through as normal (i.e don't swap orders, just use color toggle to idx properly)
 	var clocks = [$Clock1, $Clock2]
 	var names = [$BottomBar/hb1/Name1, $BottomBar/hb1/Name2]
-
 	for i in range(2):
 		var color := (i + stg.player_colour) % 2 as cst.colour
 		var state := 0
 		var clock = clocks[i]
 		var panel = clock.get_node("Highlight")
 		var text = names[i]
-		print(str(stg.player_colour) + " " + str(current_turn_colour) + " " + str(color))
 		if current_turn_colour == color:
 			clock.running = true
 			clock.get_node("Timer").start(1)

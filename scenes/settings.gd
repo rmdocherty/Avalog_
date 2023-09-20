@@ -18,7 +18,7 @@ var mode := cst.modes.CLASSIC
 var display_mode := "windowed"
 
 var look_type := cst.look_types.AUTO
-var player_colour: cst.colour = 0
+var player_colour: cst.colour = cst.colour.WHITE
 
 var chosen_factions: Array[int] = [cst.factions.ALBION, cst.factions.ALBION]
 # in order p1 original, p2 original, p1 remap, p2 remap

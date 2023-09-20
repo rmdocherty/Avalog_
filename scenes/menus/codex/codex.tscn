@@ -1,3 +1,280 @@
-[gd_scene format=3 uid="uid://sdv2rkfsnmu4"]
+[gd_scene load_steps=34 format=3 uid="uid://sdv2rkfsnmu4"]
+
+[ext_resource type="Texture2D" uid="uid://bwaumvo2l7ve8" path="res://assets/menus/main_menu_bg.png" id="1_kuv8j"]
+[ext_resource type="Script" path="res://scenes/menus/codex/codex.gd" id="1_qrc13"]
+[ext_resource type="Texture2D" uid="uid://dryr0kdcjfbga" path="res://assets/menus/codex/desk.png" id="2_egmb7"]
+[ext_resource type="Texture2D" uid="uid://ddifocup5i2ig" path="res://assets/menus/buttons/back_arrow.png" id="3_ihmuu"]
+[ext_resource type="Texture2D" uid="uid://c4dmcfjrgxlje" path="res://assets/menus/buttons/back_arrow_hover.png" id="4_rn3wl"]
+[ext_resource type="Texture2D" uid="uid://dc883kjn16ida" path="res://assets/menus/codex/closed.png" id="6_hnsml"]
+[ext_resource type="Texture2D" uid="uid://e7xkxtehiydl" path="res://assets/menus/codex/default.png" id="7_0ydif"]
+[ext_resource type="Texture2D" uid="uid://34qr7aa2scwj" path="res://assets/menus/codex/flip_left/1.png" id="8_i7ayk"]
+[ext_resource type="Texture2D" uid="uid://cgiaj5klddr18" path="res://assets/menus/codex/flip_left/2.png" id="9_ycy33"]
+[ext_resource type="Texture2D" uid="uid://bxka1cxdaw6al" path="res://assets/menus/codex/flip_left/3.png" id="10_mak2f"]
+[ext_resource type="Texture2D" uid="uid://wgd4f5n8mhvx" path="res://assets/menus/codex/flip_left/4.png" id="11_ybb6n"]
+[ext_resource type="Texture2D" uid="uid://bd0gh3ntqlb2x" path="res://assets/menus/codex/flip_left/5.png" id="12_p2s6m"]
+[ext_resource type="Texture2D" uid="uid://cmy6fgf2jltrt" path="res://assets/menus/codex/flip_left/6.png" id="13_hdd5r"]
+[ext_resource type="Texture2D" uid="uid://bng78c3j0jmxi" path="res://assets/menus/codex/flip_left/7.png" id="14_5s072"]
+[ext_resource type="Texture2D" uid="uid://03eeg50ve8g5" path="res://assets/menus/codex/flip_left/9.png" id="15_utbhq"]
+[ext_resource type="Texture2D" uid="uid://cbga40qjb8hf4" path="res://assets/menus/codex/flip_right/1.png" id="16_1uu85"]
+[ext_resource type="Texture2D" uid="uid://7e34bsyrb72j" path="res://assets/menus/codex/flip_right/2.png" id="17_74bo3"]
+[ext_resource type="Texture2D" uid="uid://bvq8w521uf55b" path="res://assets/menus/codex/flip_right/3.png" id="18_m7sxv"]
+[ext_resource type="Texture2D" uid="uid://d4g3bk2lbft6f" path="res://assets/menus/codex/flip_right/4.png" id="19_0beo5"]
+[ext_resource type="Texture2D" uid="uid://c4wwhr8twjhbr" path="res://assets/menus/codex/flip_right/5.png" id="20_jbbfy"]
+[ext_resource type="Texture2D" uid="uid://dsfgh2egvssma" path="res://assets/menus/codex/flip_right/6.png" id="21_x5d4g"]
+[ext_resource type="Texture2D" uid="uid://var5xqgulqmw" path="res://assets/menus/codex/flip_right/7.png" id="22_xybs1"]
+[ext_resource type="Texture2D" uid="uid://ch72b2v8hu7ws" path="res://assets/menus/codex/flip_right/8.png" id="23_75vxy"]
+[ext_resource type="Texture2D" uid="uid://dysw7luemp0tk" path="res://assets/menus/codex/flip_right/9.png" id="24_sdiic"]
+[ext_resource type="Texture2D" uid="uid://xwt4vrk23irn" path="res://assets/menus/codex/open/1.png" id="25_sswre"]
+[ext_resource type="Texture2D" uid="uid://b0kciiygw64a1" path="res://assets/menus/codex/open/2.png" id="26_24b74"]
+[ext_resource type="Texture2D" uid="uid://d1xep8cthsnp6" path="res://assets/menus/codex/open/3.png" id="27_fdg66"]
+[ext_resource type="Texture2D" uid="uid://f4xycrtk527s" path="res://assets/menus/codex/open/4.png" id="28_s5im0"]
+[ext_resource type="Texture2D" uid="uid://drepx46ew4yom" path="res://assets/menus/codex/open/5.png" id="29_i3fyr"]
+[ext_resource type="LabelSettings" uid="uid://d14io4jqr07s3" path="res://assets/menus/styles/codex_text_style.tres" id="30_l75xq"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_43hx1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_hnsml")
+}],
+"loop": false,
+"name": &"closed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_0ydif")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("25_sswre")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_24b74")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_fdg66")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_s5im0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_i3fyr")
+}],
+"loop": false,
+"name": &"open",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_i7ayk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_ycy33")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_mak2f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_ybb6n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_p2s6m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_hdd5r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_5s072")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_utbhq")
+}],
+"loop": false,
+"name": &"turn_left",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("16_1uu85")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_74bo3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_m7sxv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_0beo5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_jbbfy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_x5d4g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_xybs1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_75vxy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_sdiic")
+}],
+"loop": false,
+"name": &"turn_right",
+"speed": 12.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8mlct"]
+size = Vector2(326, 143)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8dktx"]
+size = Vector2(326, 417)
 
 [node name="codex" type="Node2D"]
+script = ExtResource("1_qrc13")
+
+[node name="Parent" type="CanvasLayer" parent="."]
+
+[node name="bg" type="TextureRect" parent="Parent"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_kuv8j")
+expand_mode = 4
+stretch_mode = 1
+
+[node name="table" type="Sprite2D" parent="Parent"]
+position = Vector2(197, 55)
+texture = ExtResource("2_egmb7")
+centered = false
+
+[node name="Back" type="TextureButton" parent="Parent"]
+custom_minimum_size = Vector2(40, 34)
+offset_left = 20.0
+offset_top = 15.0
+offset_right = 90.0
+offset_bottom = 85.0
+texture_normal = ExtResource("3_ihmuu")
+texture_hover = ExtResource("4_rn3wl")
+stretch_mode = 5
+
+[node name="Book" type="Area2D" parent="Parent"]
+
+[node name="Sprite" type="AnimatedSprite2D" parent="Parent/Book"]
+position = Vector2(577, 324)
+sprite_frames = SubResource("SpriteFrames_43hx1")
+animation = &"turn_right"
+
+[node name="Page" type="Control" parent="Parent/Book"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Parent/Book/Page"]
+top_level = true
+layout_mode = 0
+offset_left = 289.0
+offset_top = 269.0
+offset_right = 529.0
+offset_bottom = 423.0
+rotation = -0.00872665
+
+[node name="SubViewport" type="SubViewport" parent="Parent/Book/Page/SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(240, 144)
+render_target_update_mode = 4
+
+[node name="LoreText" type="RichTextLabel" parent="Parent/Book/Page"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.5
+anchor_right = 0.325
+anchor_bottom = 1.35
+offset_left = 626.0
+offset_top = 187.0
+offset_right = 873.0
+offset_bottom = 425.0
+rotation = 0.00523599
+mouse_filter = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+bbcode_enabled = true
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+
+[node name="Attribution" type="Label" parent="Parent/Book/Page"]
+layout_mode = 0
+offset_left = 626.0
+offset_top = 490.0
+offset_right = 861.0
+offset_bottom = 518.0
+rotation = 0.00872665
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "- Historia"
+
+[node name="Title" type="Label" parent="Parent/Book/Page"]
+layout_mode = 0
+offset_left = 302.0
+offset_top = 169.0
+offset_right = 527.0
+offset_bottom = 217.0
+rotation = -0.0174533
+label_settings = ExtResource("30_l75xq")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Faction" type="Label" parent="Parent/Book/Page"]
+layout_mode = 0
+offset_left = 266.0
+offset_top = 233.0
+offset_right = 384.0
+offset_bottom = 259.0
+rotation = -0.0349066
+label_settings = ExtResource("30_l75xq")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="PieceType" type="Label" parent="Parent/Book/Page"]
+layout_mode = 0
+offset_left = 450.0
+offset_top = 226.0
+offset_right = 568.0
+offset_bottom = 252.0
+rotation = 0.00872665
+label_settings = ExtResource("30_l75xq")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="RulesText" type="RichTextLabel" parent="Parent/Book/Page"]
+layout_mode = 0
+offset_left = 307.0
+offset_top = 436.0
+offset_right = 527.0
+offset_bottom = 511.0
+rotation = -0.00872665
+bbcode_enabled = true
+
+[node name="LeftPage" type="Area2D" parent="Parent/Book"]
+position = Vector2(407, 487.5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Parent/Book/LeftPage"]
+shape = SubResource("RectangleShape2D_8mlct")
+
+[node name="RightPage" type="Area2D" parent="Parent/Book"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Parent/Book/RightPage"]
+position = Vector2(742, 351)
+shape = SubResource("RectangleShape2D_8dktx")
+
+[connection signal="pressed" from="Parent/Back" to="." method="back"]
+[connection signal="input_event" from="Parent/Book/LeftPage" to="." method="page_click" binds= [-1]]
+[connection signal="input_event" from="Parent/Book/RightPage" to="." method="page_click" binds= [1]]
