@@ -8,6 +8,8 @@ var gfx_offset := Vector2(310, 110)
 const start_x := -4
 const start_y := -4
 
+var change_player_each_turn: bool = true
+
 var all_pieces: Array[Piece] = []
 var selected_piece: Piece
 
@@ -99,6 +101,16 @@ func init(fen: String) -> void:
 	# short delay here so all nodes can load before we find moves
 	$InitialTimer.start()
 
+func custom_init(map: int, FEN: String) -> void:
+	$GUILayer.hide()
+	$board.play(str(map))
+	#add_pieces_from_fen(FEN)
+	init(FEN)
+	#for p in all_pieces:
+	#	p.set_shader_params(stg.replace_palettes)
+	#take_turn(false)
+	#all_pieces[0].graphics.show_lines()
+
 func start_game() -> void:
 	take_turn(false)
 	$GUILayer.clock_start_after_move_finished(game_manager.current_turn_colour)
@@ -108,6 +120,10 @@ func y_sort(a, b):
 	var a_pos := hlp.logic_to_iso(a.logic.global_position)[1]
 	var b_pos := hlp.logic_to_iso(b.logic.global_position)[1]
 	return a_pos < b_pos
+
+func take_turn_timer_trigger() -> void:
+	take_turn(change_player_each_turn)
+
 
 func take_turn(change_player: bool=true) -> void:
 	"""Update the logical game manager (to find all piece's moves), loop through all pieces and 
@@ -151,7 +167,13 @@ func check_win(piece: Piece) -> void:
 func win(win_colour: cst.colour) -> void:
 	$GUILayer.hide_bar(true)
 	$GUILayer/win_menu.show_winner(win_colour)
-	
+
+func remove_all() -> void:
+	game_manager.delete_all_pieces()
+	for p in all_pieces:
+		p.set_graphic_pos(p.logic.position)
+	all_pieces = []
+
 # ======================== MOVE BUTTONS =================
 func reset_piece_drag() -> void:
 	selected_piece.reset_drag_hide_phantom()

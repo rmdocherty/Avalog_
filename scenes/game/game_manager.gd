@@ -75,10 +75,16 @@ func promote_piece(piece: LogicPiece, pos: Vector2, gfx: bool=true) -> LogicPiec
 	piece.delete()
 	return new_piece.logic
 
+func delete_all_pieces() -> void:
+	for p in all_pieces:
+		p.delete()
+	all_pieces = []
+	alive_pieces = []
+
 func init() -> void:
 	# Initial delay to make sure added pieces loaded
 	$InitialTimer.start(0.1)
 
 func start_game() -> void:
-	$InitialTimer.queue_free()
+	#$InitialTimer.queue_free()
 	take_turn(false)

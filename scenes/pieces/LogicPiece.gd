@@ -94,7 +94,7 @@ func post_move(_delta: Vector2) -> void:
 func on_overlap(area: Area2D) -> void:
 	# If enemy piece impinges on this, delete
 	var is_enemy = area.colour != colour and colour != cst.colour.NONE
-	if ((area.state == states.MOVED) || (area.state == states.ATTACKING)) and is_enemy: # being taken
+	if is_enemy and ((area.state == states.MOVED) || (area.state == states.ATTACKING)) : # being taken
 		delete()
 	elif state == states.MOVED and is_enemy: # taking
 		state = states.ATTACKING

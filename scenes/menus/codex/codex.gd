@@ -1,6 +1,6 @@
 extends Node2D
 
-var minigameClass = preload("res://scenes/game/graphics/gfx_game_manager.tscn")
+#var minigameClass = preload("res://scenes/game/graphics/gfx_game_manager.tscn")
 var minigame
 
 var tabClass = preload("res://scenes/menus/codex/Tab.tscn")
@@ -20,17 +20,18 @@ var book: Area2D
 var sprite: AnimatedSprite2D
 var page := 0
 
-func _ready():
+func _ready() -> void:
 	book = $Parent/Book
 	
 	load_page_data(0)
-	minigame = minigameClass.instantiate()
+	minigame = load("res://scenes/game/graphics/gfx_game_manager.tscn").instantiate()
 	$Parent/Book/Page/SubViewportContainer/SubViewport.add_child(minigame)
 	#minigame.global_position = Vector2(350, 400)
-	#minigame.get_node("bg").hide()
-	#minigame.custom_init(0, stg.full_board)
-	#minigame.get_node("Camera2D").target_zoom = Vector2(1, 1)
-	#minigame.get_node("Camera2D").target_pos = Vector2(-40, -25)
+	minigame.get_node("bg").hide()
+	minigame.custom_init(0, "")
+	minigame.change_player_each_turn = false
+	minigame.get_node("Camera2D").target_zoom = Vector2(1, 1)
+	#minigame.get_node("Camera2D").target_pos = Vector2(40, 25)
 	
 	sprite = book.get_node("Sprite")
 	sprite.play("closed")
@@ -60,7 +61,7 @@ func tab_click(faction_idx: int) -> void:
 	var new_page = page_lookup[faction_idx]
 	turn_to_page(page, new_page)
 
-func turn_to_page(old_idx: int, new_idx: int):
+func turn_to_page(old_idx: int, new_idx: int) -> void:
 	if new_idx == 31:
 		return
 	$Parent/Book/Page.modulate.a = 0
@@ -88,10 +89,9 @@ func load_page_data(idx: int) -> void:
 			label.label_settings.font_color =  cst.faction_colours[faction_int]
 		$Parent/Book/Page/RulesText.text = data["tooltip"]
 		$Parent/Book/Page/Attribution.text = data["author"]
-		var AFEN = "8/8/8/4%s%s/8/8/8/8" % [cst.fen_faction_lookup[faction_int], type_lookup[type_int]]
-		#minigame.chage_player_each_turn = false
-		#minigame.remove_all()
-		#minigame.custom_init(faction_int, AFEN)
+		var AFEN = "8/8/8/4%s%s/8/8/8/8" % [cst.fen_faction_lookup[faction_int], type_lookup[type_int].to_upper()]
+		minigame.remove_all()
+		minigame.custom_init(faction_int, AFEN)
 	else:
 		for N in $Parent/Book/Page.get_children():
 			N.hide()
@@ -99,7 +99,7 @@ func load_page_data(idx: int) -> void:
 	$Parent/Book/Page/LoreText.text = data["lore"]
 
 
-func _process(delta):
+func _process(delta: float) -> void:
 	if state == TEXT_APPEAR:
 		$Parent/Book/Page.modulate.a += 1.5 * delta
 		$Parent/Book/Page/SubViewportContainer.modulate.a += 1.5 * delta

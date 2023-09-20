@@ -191,7 +191,11 @@ offset_bottom = 423.0
 rotation = -0.00872665
 
 [node name="SubViewport" type="SubViewport" parent="Parent/Book/Page/SubViewportContainer"]
+transparent_bg = true
 handle_input_locally = false
+canvas_item_default_texture_filter = 0
+physics_object_picking = true
+gui_embed_subwindows = true
 size = Vector2i(240, 144)
 render_target_update_mode = 4
 
@@ -261,6 +265,7 @@ offset_top = 436.0
 offset_right = 527.0
 offset_bottom = 511.0
 rotation = -0.00872665
+theme_override_colors/default_color = Color(0, 0, 0, 1)
 bbcode_enabled = true
 
 [node name="LeftPage" type="Area2D" parent="Parent/Book"]
