@@ -159,6 +159,7 @@ script = ExtResource("9_nrcpj")
 [node name="Highlight" type="Panel" parent="GUILayer/Clock2"]
 z_index = 10
 custom_minimum_size = Vector2(128, 64)
+layout_mode = 0
 offset_right = 128.0
 offset_bottom = 64.0
 theme_override_styles/panel = ExtResource("10_wgxv4")
