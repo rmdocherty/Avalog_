@@ -49,6 +49,7 @@ func clock_stop_after_move_confirmed(current_turn_colour: int) -> void:
 		$Clock2.running = false
 
 func clock_start_after_move_finished(current_turn_colour: int) -> void:
+	
 	var clocks = [$Clock1, $Clock2] if stg.player_colour == 0 else [$Clock2, $Clock1]
 	var names = [$BottomBar/hb1/Name1, $BottomBar/hb1/Name2] if stg.player_colour == 0 else [$BottomBar/hb1/Name2, $BottomBar/hb1/Name1]
 	for i in range(2):
@@ -57,6 +58,7 @@ func clock_start_after_move_finished(current_turn_colour: int) -> void:
 		var clock = clocks[i]
 		var panel = clock.get_node("Highlight")
 		var text = names[i]
+		print(str(stg.player_colour) + " " + str(current_turn_colour) + " " + str(color))
 		if current_turn_colour == color:
 			clock.running = true
 			clock.get_node("Timer").start(1)
