@@ -47,7 +47,7 @@ func fen_recieved(other_half_fen: String) -> void:
 	if stg.player_colour == cst.colour.BLACK:
 		$Camera2D.flip_camera()
 		var o = stg.replace_palettes
-		var new_palettes = [o[1], o[0], o[3], o[2]]
+		var new_palettes: Array[int] = [o[1], o[0], o[3], o[2]]
 		stg.replace_palettes = new_palettes
 	init(fen)
 

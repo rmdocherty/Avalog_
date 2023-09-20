@@ -49,9 +49,10 @@ func clock_stop_after_move_confirmed(current_turn_colour: int) -> void:
 		$Clock2.running = false
 
 func clock_start_after_move_finished(current_turn_colour: int) -> void:
-	
-	var clocks = [$Clock1, $Clock2] if stg.player_colour == 0 else [$Clock2, $Clock1]
-	var names = [$BottomBar/hb1/Name1, $BottomBar/hb1/Name2] if stg.player_colour == 0 else [$BottomBar/hb1/Name2, $BottomBar/hb1/Name1]
+	# Fix later: loop through as normal (i.e don't swap orders, just use color toggle to idx properly)
+	var clocks = [$Clock1, $Clock2]
+	var names = [$BottomBar/hb1/Name1, $BottomBar/hb1/Name2]
+
 	for i in range(2):
 		var color := (i + stg.player_colour) % 2 as cst.colour
 		var state := 0
