@@ -1,10 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://b37n3b4gwgluv"]
+[gd_scene load_steps=10 format=3 uid="uid://b37n3b4gwgluv"]
 
 [ext_resource type="Script" path="res://scenes/menus/in_game/win_menu.gd" id="1_8fqqe"]
 [ext_resource type="StyleBox" uid="uid://cegc8oqlrlab8" path="res://assets/menus/styles/outer_panel_theme.tres" id="1_kfjh7"]
 [ext_resource type="Texture2D" uid="uid://bwaumvo2l7ve8" path="res://assets/menus/main_menu_bg.png" id="2_msydq"]
 [ext_resource type="StyleBox" path="res://assets/menus/styles/inner_panel_theme.tres" id="3_invu6"]
 [ext_resource type="Theme" uid="uid://c8njrprl5cak0" path="res://assets/menus/styles/game_menu_theme.tres" id="4_d1ddt"]
+[ext_resource type="Texture2D" uid="uid://dg8ysvtcwk2qu" path="res://assets/menus/in_game/game_menu_close.png" id="6_t8gys"]
+[ext_resource type="Texture2D" uid="uid://bvcot4l5sx2so" path="res://assets/menus/in_game/game_menu_close_hover.png" id="7_rp4pl"]
+[ext_resource type="Texture2D" uid="uid://bqhydc1s3f626" path="res://assets/menus/in_game/rematch_accept.png" id="8_rn45x"]
+[ext_resource type="Texture2D" uid="uid://dt6aipnvxbirj" path="res://assets/menus/in_game/rematch_accept_hover.png" id="9_83bas"]
 
 [node name="win_menu" type="Control"]
 layout_mode = 3
@@ -92,11 +96,38 @@ theme_override_font_sizes/font_size = 45
 text = "Player 1 Wins!"
 horizontal_alignment = 1
 
-[node name="Rematch" type="Button" parent="Outer/Contents/v"]
+[node name="r_cont" type="HBoxContainer" parent="Outer/Contents/v"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Rematch" type="Button" parent="Outer/Contents/v/r_cont"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme = ExtResource("4_d1ddt")
 text = "Rematch!"
+
+[node name="Rematch_text" type="Button" parent="Outer/Contents/v/r_cont"]
+visible = false
+layout_mode = 2
+theme = ExtResource("4_d1ddt")
+disabled = true
+text = "Rematch:"
+
+[node name="Reject" type="TextureButton" parent="Outer/Contents/v/r_cont"]
+visible = false
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+texture_normal = ExtResource("6_t8gys")
+texture_hover = ExtResource("7_rp4pl")
+stretch_mode = 0
+
+[node name="Accept" type="TextureButton" parent="Outer/Contents/v/r_cont"]
+visible = false
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+texture_normal = ExtResource("8_rn45x")
+texture_hover = ExtResource("9_83bas")
+stretch_mode = 0
 
 [node name="MainMenu" type="Button" parent="Outer/Contents/v"]
 layout_mode = 2
@@ -110,6 +141,8 @@ size_flags_horizontal = 4
 theme = ExtResource("4_d1ddt")
 text = "Quit"
 
-[connection signal="pressed" from="Outer/Contents/v/Rematch" to="." method="rematch"]
+[connection signal="pressed" from="Outer/Contents/v/r_cont/Rematch" to="." method="rematch"]
+[connection signal="pressed" from="Outer/Contents/v/r_cont/Reject" to="." method="rematch_rejected"]
+[connection signal="pressed" from="Outer/Contents/v/r_cont/Accept" to="." method="rematch_accepted"]
 [connection signal="pressed" from="Outer/Contents/v/MainMenu" to="." method="main_menu"]
 [connection signal="pressed" from="Outer/Contents/v/Quit" to="." method="quit"]

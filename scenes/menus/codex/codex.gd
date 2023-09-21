@@ -55,7 +55,6 @@ func _ready() -> void:
 
 func page_click(_viewport, _event: InputEvent, _shape_idx, dir: int) -> void:
 	if Input.is_action_just_pressed("click") and state == OPEN:
-		$Parent/Book/Flip.play()
 		turn_to_page(page, page + dir)
 
 func tab_click(faction_idx: int) -> void:
@@ -63,8 +62,9 @@ func tab_click(faction_idx: int) -> void:
 	turn_to_page(page, new_page)
 
 func turn_to_page(old_idx: int, new_idx: int) -> void:
-	if new_idx == 7:
+	if new_idx == 7 or new_idx == -1:
 		return
+	$Parent/Book/Flip.play()
 	$Parent/Book/Page.modulate.a = 0
 	$Parent/Book/Page/SubViewportContainer.modulate.a = 0
 	if old_idx < new_idx:

@@ -183,7 +183,7 @@ animation = &"turn_right"
 
 [node name="Flip" type="AudioStreamPlayer" parent="Parent/Book"]
 stream = ExtResource("31_h648a")
-volume_db = -7.967
+volume_db = -15.0
 
 [node name="Page" type="Control" parent="Parent/Book"]
 modulate = Color(1, 1, 1, 0)

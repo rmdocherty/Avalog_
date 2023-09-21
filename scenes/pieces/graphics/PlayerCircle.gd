@@ -23,7 +23,7 @@ func set_colour(state: String) -> void:
 	if state == "active":
 		default_colour = blue
 	elif state == "paused":
-		default_colour = grey
+		default_colour = dark_grey
 	else:
 		default_colour = red
 	queue_redraw()

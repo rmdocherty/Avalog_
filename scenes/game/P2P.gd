@@ -4,6 +4,8 @@ signal move_sent(piece_num: int, new_pos: Vector2)
 signal emote_sent
 signal fen_recieved(half_fen: String)
 signal rematch_request
+signal rematch_accept
+signal rematch_reject
 
 var connected: bool = stg.OTHER_PLAYER_ID > -1 and stg.network == cst.network_types.ONLINE
 var is_host := stg.look_type == cst.look_types.HOST
@@ -64,6 +66,7 @@ func _handle_packet(packet: Dictionary) -> void:
 	if packet["type"] == "setup" and not is_host:
 		var colour_set := packet["colour"] as cst.colour
 		stg.player_colour = colour_set
+		stg.opponent_half_FEN = packet["half_fen"]
 		fen_recieved.emit(packet["half_fen"])
 		var resp_packet = {"type":"setup_respond", "half_fen":stg.half_FEN}
 		_send_P2P_packet(stg.OTHER_PLAYER_ID, resp_packet)
@@ -73,6 +76,13 @@ func _handle_packet(packet: Dictionary) -> void:
 		var piece_n: int = packet["piece_n"]
 		var piece_pos: Vector2 = packet["pos"]
 		move_sent.emit(piece_n, piece_pos)
+	if packet["type"] == "rematch_request":
+		rematch_request.emit()
+	if packet["type"] == "rematch_accept":
+		stg.player_colour = 1 - stg.player_colour as cst.colour
+		fen_recieved.emit(stg.opponent_half_FEN)
+	if packet["type"] == "rematch_reject":
+		rematch_reject.emit()
 
 func _on_P2P_session_connect_fail(steamID: int, session_error: int) -> void:
 	if session_error == 0:

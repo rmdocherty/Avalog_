@@ -9,6 +9,7 @@ var PIECE_DRAW_SCALE := Vector2(2.2, 2.2)#Vector2(2.5, 2.5) # defo add this as a
 # FEN strings
 const full_board := "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR"
 var half_FEN := "rnbqkbnr/pppppppp/"
+var opponent_half_FEN := "rnbqkbnr/pppppppp/"
 const test := "r1k4n/1P6/8/p7/1P6/7p/2p2p1P/R3K2R"
 var chosen_fen := test #test
 

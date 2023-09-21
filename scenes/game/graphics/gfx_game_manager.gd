@@ -260,6 +260,17 @@ func _draw() -> void:
 func back() -> void:
 	if $P2P.connected:
 		$P2P._close_connection()
+	
+func request_remtach() -> void:
+	var packet = {"type":"rematch_request"}
+	$P2P._send_P2P_packet(stg.OTHER_PLAYER_ID, packet)
+	
+
+func accept_rematch() -> void:
+	stg.player_colour = 1 - stg.player_colour as cst.colour
+	var packet = {"type":"rematch_accept"}
+	$P2P._send_P2P_packet(stg.OTHER_PLAYER_ID, packet)
+	fen_recieved(stg.opponent_half_FEN)
 
 # ======================== PROCCESSES =================
 func _ready() -> void:

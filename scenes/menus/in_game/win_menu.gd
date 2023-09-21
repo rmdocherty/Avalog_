@@ -1,5 +1,9 @@
 extends Control
 
+signal rematch_reject
+signal rematch_accept
+signal rematch_request
+
 var confetti_class = preload("res://scenes/menus/in_game/fake_confetti_particles.tscn")
 var player_names: Array[String] = [stg.uname_1, stg.uname_2]
 var shown = false
@@ -27,6 +31,21 @@ func rematch() -> void:
 		var mode_menu = load("res://scenes/menus/pre_game/mode_select_menu.tscn").instantiate()
 		get_tree().get_root().add_child(mode_menu)
 		get_tree().get_root().remove_child(get_parent().get_parent())
+	else:
+		rematch_request.emit()
+
+
+func rematch_requested() -> void:
+	$Outer/Contents/v/r_cont/Rematch.hide()
+	$Outer/Contents/v/r_cont/Rematch_text.show()
+	$Outer/Contents/v/r_cont/Reject.show()
+	$Outer/Contents/v/r_cont/Accept.show()
+
+func rematch_accepted() -> void:
+	rematch_accept.emit()
+
+func rematch_rejected() -> void:
+	rematch_reject.emit()
 
 func quit() -> void:
 	get_tree().quit()

@@ -12,16 +12,22 @@ var logic_pos: Vector2
 func _input_event(_viewport, event: InputEvent, _shape_idx) -> void:
 	var turn_colour: cst.colour = ((piece.turn_number + 1) % 2) as cst.colour
 	var turn_matches: bool = (turn_colour == piece.colour)
-	if Input.is_action_just_pressed("click") and turn_matches:
+	var your_piece: bool = (turn_colour == stg.player_colour) or stg.network == cst.network_types.LOCAL
+	
+	if Input.is_action_just_pressed("click") and turn_matches and your_piece:
 		start_click_pos = get_global_mouse_position()
 		gfx_game_manager.selected_piece = piece
 		print("click start")
 		$PhantomSprite.show()
+	elif Input.is_action_just_pressed("click"):
+		graphics.invalid_input.emit()
 	
+	"""
 	if Input.is_action_just_pressed("click") and not turn_matches:
 		graphics.invalid_input.emit()
-
-	if event.is_action_pressed("click") and turn_matches:
+	"""
+	
+	if event.is_action_pressed("click") and turn_matches and your_piece:
 		dragging = true
 
 	if event.is_action_released("click") and turn_matches:
