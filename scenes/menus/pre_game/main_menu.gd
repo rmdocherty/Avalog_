@@ -13,6 +13,9 @@ func load_mode_select_menu(network_mode: int) -> void:
 func load_codex() -> void:
 	hlp.load_child_remove_parent("res://scenes/menus/codex/codex.tscn", self)
 
+func load_credits() -> void:
+	hlp.load_child_remove_parent("res://scenes/menus/pre_game/Credits.tscn", self)
+
 func quit():
 	get_tree().quit()
 

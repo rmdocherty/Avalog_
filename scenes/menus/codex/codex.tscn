@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://sdv2rkfsnmu4"]
+[gd_scene load_steps=37 format=3 uid="uid://sdv2rkfsnmu4"]
 
 [ext_resource type="Texture2D" uid="uid://bwaumvo2l7ve8" path="res://assets/menus/main_menu_bg.png" id="1_kuv8j"]
 [ext_resource type="Script" path="res://scenes/menus/codex/codex.gd" id="1_qrc13"]
@@ -30,6 +30,7 @@
 [ext_resource type="Texture2D" uid="uid://f4xycrtk527s" path="res://assets/menus/codex/open/4.png" id="28_s5im0"]
 [ext_resource type="Texture2D" uid="uid://drepx46ew4yom" path="res://assets/menus/codex/open/5.png" id="29_i3fyr"]
 [ext_resource type="LabelSettings" uid="uid://d14io4jqr07s3" path="res://assets/menus/styles/codex_text_style.tres" id="30_l75xq"]
+[ext_resource type="FontFile" uid="uid://dig8hjpqiefp" path="res://assets/menus/styles/Bitfantasy.ttf" id="31_aro0g"]
 [ext_resource type="AudioStream" uid="uid://c6ofdtvw61vvl" path="res://assets/sfx/page_flip.wav" id="31_h648a"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_43hx1"]
@@ -131,6 +132,11 @@ animations = [{
 "name": &"turn_right",
 "speed": 12.0
 }]
+
+[sub_resource type="LabelSettings" id="LabelSettings_6ejxr"]
+font = ExtResource("31_aro0g")
+font_size = 32
+font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8mlct"]
 size = Vector2(326, 143)
@@ -237,7 +243,8 @@ offset_top = 169.0
 offset_right = 527.0
 offset_bottom = 217.0
 rotation = -0.0174533
-label_settings = ExtResource("30_l75xq")
+text = "The Mother, the Maiden, the Crone"
+label_settings = SubResource("LabelSettings_6ejxr")
 horizontal_alignment = 1
 autowrap_mode = 3
 

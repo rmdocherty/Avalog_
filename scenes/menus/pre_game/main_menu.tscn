@@ -81,9 +81,21 @@ theme = ExtResource("4_mea82")
 text = "Codex
 "
 
-[node name="Quit" type="Button" parent="Canv/HSplit/BG/Cont"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Canv/HSplit/BG/Cont"]
 layout_mode = 2
-size_flags_horizontal = 8
+
+[node name="Credits" type="Button" parent="Canv/HSplit/BG/Cont/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+size_flags_stretch_ratio = 0.7
+theme = ExtResource("4_mea82")
+theme_override_font_sizes/font_size = 45
+text = " Credits"
+
+[node name="Quit" type="Button" parent="Canv/HSplit/BG/Cont/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
 size_flags_vertical = 8
 size_flags_stretch_ratio = 0.7
 theme = ExtResource("4_mea82")
@@ -109,4 +121,5 @@ texture = ExtResource("6_mba43")
 [connection signal="pressed" from="Canv/HSplit/BG/Cont/Buttons/Local" to="." method="load_mode_select_menu" binds= [0]]
 [connection signal="pressed" from="Canv/HSplit/BG/Cont/Buttons/Online" to="." method="load_mode_select_menu" binds= [1]]
 [connection signal="pressed" from="Canv/HSplit/BG/Cont/Buttons/Codex" to="." method="load_codex"]
-[connection signal="pressed" from="Canv/HSplit/BG/Cont/Quit" to="." method="quit"]
+[connection signal="pressed" from="Canv/HSplit/BG/Cont/HBoxContainer/Credits" to="." method="load_credits"]
+[connection signal="pressed" from="Canv/HSplit/BG/Cont/HBoxContainer/Quit" to="." method="quit"]
