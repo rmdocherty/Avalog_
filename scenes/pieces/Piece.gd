@@ -161,7 +161,9 @@ func change_turn(new_turn_number: int) -> void:
 func post_gfx_move() -> void:
 	$Audio/Move.stop()
 	if moving_to_attack:
-		$Audio/AttackDelay.start()
+		$Audio/AttackDelay.start()# problem here: if timer too short get nasty repeat
+	# if too long then won't play till afer attack animation bc of await
+		#$Audio/Attack.play()
 		await play_attack_anim()
 	var sprite: AnimatedSprite2D = graphics.sprite
 	sprite.play(graphics.passive_anim)

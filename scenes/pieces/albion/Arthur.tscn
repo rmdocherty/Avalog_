@@ -4,7 +4,7 @@
 [ext_resource type="Shader" path="res://scenes/pieces/graphics/Piece.gdshader" id="2_mnbvk"]
 [ext_resource type="Script" path="res://scenes/pieces/inherited/Arthur.gd" id="2_yo7cs"]
 [ext_resource type="Texture2D" uid="uid://dpyn4s6dq6eh1" path="res://assets/pieces/albion/arthur.png" id="3_frxqk"]
-[ext_resource type="AudioStream" uid="uid://b27ppm2csqcgs" path="res://assets/sfx/medium_sword.mp3" id="5_bef5o"]
+[ext_resource type="AudioStream" uid="uid://d3chte7exh4vc" path="res://assets/sfx/medium_sword.wav" id="5_72voh"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_22k6p"]
 resource_local_to_scene = true
@@ -55,6 +55,10 @@ animations = [{
 "speed": 3.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_5gyf0"]
+atlas = ExtResource("3_frxqk")
+region = Rect2(16, 0, 16, 17)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_3s7it"]
 atlas = ExtResource("3_frxqk")
 region = Rect2(32, 0, 16, 17)
@@ -67,14 +71,13 @@ region = Rect2(48, 0, 16, 17)
 atlas = ExtResource("3_frxqk")
 region = Rect2(0, 0, 16, 17)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5gyf0"]
-atlas = ExtResource("3_frxqk")
-region = Rect2(16, 0, 16, 17)
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_0p61l"]
 resource_local_to_scene = true
 animations = [{
 "frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5gyf0")
+}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_3s7it")
 }, {
@@ -114,7 +117,7 @@ sprite_frames = SubResource("SpriteFrames_0p61l")
 animation = &"0_attack"
 
 [node name="Attack" parent="Audio" index="1"]
-stream = ExtResource("5_bef5o")
+stream = ExtResource("5_72voh")
 
 [editable path="GraphicalPiece"]
 [editable path="Audio"]

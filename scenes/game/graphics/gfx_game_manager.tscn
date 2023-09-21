@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://bm7utema3eqfb"]
+[gd_scene load_steps=38 format=3 uid="uid://bm7utema3eqfb"]
 
 [ext_resource type="Script" path="res://scenes/game/graphics/gfx_game_manager.gd" id="1_d8ywr"]
 [ext_resource type="Texture2D" uid="uid://m3cmypbyyc6x" path="res://assets/maps/albion_map.png" id="2_gxohm"]
@@ -34,6 +34,7 @@
 [ext_resource type="PackedScene" uid="uid://b37n3b4gwgluv" path="res://scenes/menus/in_game/win_menu.tscn" id="19_4y7o1"]
 [ext_resource type="PackedScene" uid="uid://bslbobsgv2nl0" path="res://scenes/menus/in_game/game_menu.tscn" id="31_cfp35"]
 [ext_resource type="PackedScene" uid="uid://8tre3shcbkkj" path="res://scenes/game/P2P.tscn" id="33_3ytpy"]
+[ext_resource type="AudioStream" uid="uid://dr2icdpr8kf2t" path="res://assets/sfx/state_change.wav" id="35_dq4sq"]
 
 [sub_resource type="Theme" id="Theme_vxdyh"]
 
@@ -304,6 +305,9 @@ wait_time = 0.05
 one_shot = true
 
 [node name="P2P" parent="." instance=ExtResource("33_3ytpy")]
+
+[node name="Promote" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("35_dq4sq")
 
 [connection signal="pressed" from="GUILayer/Settings" to="GUILayer/game_menu" method="show_self"]
 [connection signal="toggled" from="GUILayer/HideBar" to="GUILayer" method="toggle_hide_btn"]

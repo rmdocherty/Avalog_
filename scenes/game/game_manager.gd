@@ -1,5 +1,6 @@
 extends Node2D
 
+signal promotion
 
 const Board = preload("res://scenes/game/board/board.tscn")
 var board := Board.instantiate()
@@ -57,8 +58,10 @@ func check_for_promotion(piece: LogicPiece, pos: Vector2) -> bool:
 	var is_white: bool = piece.colour == cst.colour.WHITE
 	var is_black: bool = piece.colour == cst.colour.BLACK
 	if is_white and pos[1] < cst.LOGIC_SQ_W * (cst.Y_OFFSET + 1):
+		promotion.emit()
 		return true
 	elif is_black and pos[1] > cst.LOGIC_SQ_W * ((cst.Y_OFFSET + 8) - 1.5):
+		promotion.emit()
 		return true
 	else:
 		return false

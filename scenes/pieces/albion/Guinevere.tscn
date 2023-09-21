@@ -107,4 +107,8 @@ sprite_frames = SubResource("SpriteFrames_mcxmk")
 [node name="Sprite" parent="GraphicalPiece" index="2"]
 sprite_frames = SubResource("SpriteFrames_mj7rk")
 
+[node name="Attack" parent="Audio" index="1"]
+volume_db = 2.0
+
 [editable path="GraphicalPiece"]
+[editable path="Audio"]

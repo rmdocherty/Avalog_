@@ -1,8 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://cj1cnf4ucquff"]
+[gd_scene load_steps=16 format=3 uid="uid://cj1cnf4ucquff"]
 
 [ext_resource type="PackedScene" uid="uid://cfobj247gpa7q" path="res://scenes/pieces/Piece.tscn" id="1_4gq6f"]
 [ext_resource type="Shader" path="res://scenes/pieces/graphics/Piece.gdshader" id="2_o5uii"]
 [ext_resource type="Texture2D" uid="uid://ban074gi5g6r4" path="res://assets/pieces/albion/rogue.png" id="3_gb3wn"]
+[ext_resource type="AudioStream" uid="uid://draknrwfpohv5" path="res://assets/sfx/double_dagger.wav" id="4_fajbo"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_otgdc"]
 resource_local_to_scene = true
@@ -107,4 +108,8 @@ sprite_frames = SubResource("SpriteFrames_hjhmg")
 [node name="Sprite" parent="GraphicalPiece" index="2"]
 sprite_frames = SubResource("SpriteFrames_bhqf4")
 
+[node name="Attack" parent="Audio" index="1"]
+stream = ExtResource("4_fajbo")
+
 [editable path="GraphicalPiece"]
+[editable path="Audio"]

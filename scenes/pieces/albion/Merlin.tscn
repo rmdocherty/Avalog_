@@ -1,8 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://hjd3l7m8fvpg"]
+[gd_scene load_steps=22 format=3 uid="uid://hjd3l7m8fvpg"]
 
 [ext_resource type="PackedScene" uid="uid://cfobj247gpa7q" path="res://scenes/pieces/Piece.tscn" id="1_5qevp"]
 [ext_resource type="Shader" path="res://scenes/pieces/graphics/Piece.gdshader" id="2_uoooy"]
 [ext_resource type="Texture2D" uid="uid://cka6nt07n86pk" path="res://assets/pieces/albion/merlin.png" id="3_isdx2"]
+[ext_resource type="AudioStream" uid="uid://w6m6owhbwihd" path="res://assets/sfx/light_magic.wav" id="4_1k4wa"]
+[ext_resource type="Texture2D" uid="uid://bh2dmx1ox42rs" path="res://assets/pieces/albion/magic.png" id="4_7mhss"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pr6ca"]
 resource_local_to_scene = true
@@ -61,6 +63,26 @@ region = Rect2(48, 0, 16, 17)
 atlas = ExtResource("3_isdx2")
 region = Rect2(32, 0, 16, 17)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_768cl"]
+atlas = ExtResource("4_7mhss")
+region = Rect2(0, 0, 16, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4lmm4"]
+atlas = ExtResource("4_7mhss")
+region = Rect2(16, 0, 16, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_id2ox"]
+atlas = ExtResource("4_7mhss")
+region = Rect2(32, 0, 16, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jqat3"]
+atlas = ExtResource("4_7mhss")
+region = Rect2(48, 0, 16, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_35odt"]
+atlas = ExtResource("4_7mhss")
+region = Rect2(64, 0, 16, 17)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_wb2ap"]
 atlas = ExtResource("3_isdx2")
 region = Rect2(0, 0, 16, 17)
@@ -78,10 +100,25 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_n8ehs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_768cl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4lmm4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_id2ox")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jqat3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_35odt")
 }],
 "loop": true,
 "name": &"0_attack",
-"speed": 3.0
+"speed": 6.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -98,7 +135,13 @@ animations = [{
 [node name="Piece" instance=ExtResource("1_5qevp")]
 piece_char = "b"
 
-[node name="GraphicalPiece" parent="." index="1"]
+[node name="Attack" parent="Audio" index="1"]
+stream = ExtResource("4_1k4wa")
+
+[node name="AttackDelay" parent="Audio" index="2"]
+wait_time = 0.005
+
+[node name="GraphicalPiece" parent="." index="2"]
 material = SubResource("ShaderMaterial_pr6ca")
 
 [node name="PhantomSprite" parent="GraphicalPiece/Phantom" index="2"]
@@ -106,5 +149,7 @@ sprite_frames = SubResource("SpriteFrames_do0wa")
 
 [node name="Sprite" parent="GraphicalPiece" index="2"]
 sprite_frames = SubResource("SpriteFrames_yvr6f")
+animation = &"0_attack"
 
+[editable path="Audio"]
 [editable path="GraphicalPiece"]

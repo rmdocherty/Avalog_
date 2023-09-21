@@ -31,6 +31,7 @@ stretch_mode = 1
 
 [node name="Back" type="TextureButton" parent="."]
 custom_minimum_size = Vector2(40, 34)
+layout_mode = 0
 offset_left = 20.0
 offset_top = 15.0
 offset_right = 90.0

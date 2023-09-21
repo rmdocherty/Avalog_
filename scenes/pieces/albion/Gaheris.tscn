@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://cfobj247gpa7q" path="res://scenes/pieces/Piece.tscn" id="1_3os4k"]
 [ext_resource type="Shader" path="res://scenes/pieces/graphics/Piece.gdshader" id="2_xocd0"]
 [ext_resource type="Texture2D" uid="uid://dgp2ipqqjofvl" path="res://assets/pieces/albion/gaheris.png" id="3_gmmhd"]
-[ext_resource type="AudioStream" uid="uid://q7wre45cjhrg" path="res://assets/sfx/axe.mp3" id="4_87txc"]
+[ext_resource type="AudioStream" uid="uid://6okifos3et43" path="res://assets/sfx/axe.wav" id="4_3ie5b"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mq3wr"]
 resource_local_to_scene = true
@@ -125,7 +125,7 @@ sprite_frames = SubResource("SpriteFrames_kyi5w")
 animation = &"0_attack"
 
 [node name="Attack" parent="Audio" index="1"]
-stream = ExtResource("4_87txc")
+stream = ExtResource("4_3ie5b")
 
 [editable path="GraphicalPiece"]
 [editable path="Audio"]

@@ -32,6 +32,7 @@ func rematch() -> void:
 		get_tree().get_root().add_child(mode_menu)
 		get_tree().get_root().remove_child(get_parent().get_parent())
 	else:
+		#rematch_requested()
 		rematch_request.emit()
 
 
