@@ -142,11 +142,23 @@ func post_move(_delta: Vector2) -> void:
 
 func change_turn(new_turn_number: int) -> void:
 	turn_number = new_turn_number
+	var online: bool = stg.network == cst.network_types.ONLINE
 	var turn_matches: bool = (new_turn_number + 1) % 2 == colour
-	if turn_matches:
+	var your_turn: bool = stg.player_colour == (new_turn_number + 1) % 2
+	var your_piece: bool = stg.player_colour == colour
+	if turn_matches and not online:
 		graphics.change_player_circle("active")
-	else:
+	elif not turn_matches and not online:
 		graphics.change_player_circle("inactive")
+	elif your_turn and online:
+		graphics.change_player_circle("active")
+	elif not your_turn and your_piece and online:
+		graphics.change_player_circle("paused")
+	elif your_turn and your_piece and online:
+		graphics.change_player_circle("active")
+	elif not your_piece and online:
+		graphics.change_player_circle("inactive")
+	
 
 func post_gfx_move() -> void:
 	$Audio/Move.stop()

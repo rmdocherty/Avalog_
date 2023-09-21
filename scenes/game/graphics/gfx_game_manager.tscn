@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scenes/game/graphics/gfx_game_manager.gd" id="1_d8ywr"]
 [ext_resource type="Texture2D" uid="uid://m3cmypbyyc6x" path="res://assets/maps/albion_map.png" id="2_gxohm"]
 [ext_resource type="Texture2D" uid="uid://4u00lliafnki" path="res://assets/menus/in_game/settings.png" id="2_rb4dr"]
-[ext_resource type="Script" path="res://scenes/game/graphics/GUILayer.gd" id="2_t2map"]
+[ext_resource type="Script" path="res://scenes/game/GUILayer.gd" id="2_t2map"]
 [ext_resource type="Texture2D" uid="uid://b1wpahhpjyt8" path="res://assets/menus/in_game/settings_hover.png" id="3_p1700"]
 [ext_resource type="Texture2D" uid="uid://cf7i6n68okt4l" path="res://assets/maps/italia.png" id="3_srfcr"]
 [ext_resource type="Texture2D" uid="uid://pp0o1v2uxyyh" path="res://assets/menus/in_game/hide_bar.png" id="4_1tb4w"]

@@ -1,7 +1,7 @@
 extends Control
 
-const MOVE_SPEED: float = -15
-const WRAP_ROUND_Y: int = -1000
+const MOVE_SPEED: float = -18
+const WRAP_ROUND_Y: int = -1250
 const RESET_Y: int = 700
 var moving: bool = false
 
@@ -69,6 +69,12 @@ var data = {
 		"Aseprite Sprite Editor",
 		"Tiled Map Editor",
 		"Godot Steam Library",
-		"rfxgen fx generator"
-	]
+		"rfxgen fx generator",
+		"",
+		""
+	],
+	"": [
+		"Avalog = Avalon (mystical arthurian island) + Analog (chess)",
+		"do you like my joke tell me i'm clever better yet tell other people i'm clever"
+	],
 }

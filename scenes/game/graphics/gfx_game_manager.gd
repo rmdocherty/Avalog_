@@ -104,12 +104,10 @@ func init(fen: String) -> void:
 func custom_init(map: int, FEN: String) -> void:
 	$GUILayer.hide()
 	$board.play(str(map))
-	#add_pieces_from_fen(FEN)
 	init(FEN)
 	#for p in all_pieces:
 	#	p.set_shader_params(stg.replace_palettes)
 	#take_turn(false)
-	#all_pieces[0].graphics.show_lines()
 
 func start_game() -> void:
 	take_turn(false)
