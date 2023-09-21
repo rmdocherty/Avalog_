@@ -150,8 +150,6 @@ func change_turn(new_turn_number: int) -> void:
 		graphics.change_player_circle("active")
 	elif not turn_matches and not online:
 		graphics.change_player_circle("inactive")
-	elif your_turn and online:
-		graphics.change_player_circle("active")
 	elif not your_turn and your_piece and online:
 		graphics.change_player_circle("paused")
 	elif your_turn and your_piece and online:

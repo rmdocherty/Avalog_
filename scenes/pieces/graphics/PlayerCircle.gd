@@ -11,6 +11,7 @@ var outer_points: PackedVector2Array = drawing.get_circle_arc_points(Vector2(0,0
 var red := Color(0.96, 0.29, 0.29, 0.8)
 var blue := Color(0.29, 0.56, 0.96, 0.8)
 var yellow := Color(0.92, 0.8, 0.2, 0.8)
+var dark_grey := Color("#919191")
 var grey := Color("#dcdfe3")
 
 var default_colour: Color = blue
