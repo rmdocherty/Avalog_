@@ -127,5 +127,8 @@ animation = &"0_attack"
 [node name="Attack" parent="Audio" index="1"]
 stream = ExtResource("4_3ie5b")
 
+[node name="AttackDelay" parent="Audio" index="2"]
+wait_time = 0.8
+
 [editable path="GraphicalPiece"]
 [editable path="Audio"]

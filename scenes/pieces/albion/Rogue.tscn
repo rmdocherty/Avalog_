@@ -99,7 +99,13 @@ animations = [{
 [node name="Piece" instance=ExtResource("1_4gq6f")]
 piece_char = "n"
 
-[node name="GraphicalPiece" parent="." index="1"]
+[node name="Attack" parent="Audio" index="1"]
+stream = ExtResource("4_fajbo")
+
+[node name="AttackDelay" parent="Audio" index="2"]
+wait_time = 0.33
+
+[node name="GraphicalPiece" parent="." index="2"]
 material = SubResource("ShaderMaterial_otgdc")
 
 [node name="PhantomSprite" parent="GraphicalPiece/Phantom" index="2"]
@@ -108,8 +114,5 @@ sprite_frames = SubResource("SpriteFrames_hjhmg")
 [node name="Sprite" parent="GraphicalPiece" index="2"]
 sprite_frames = SubResource("SpriteFrames_bhqf4")
 
-[node name="Attack" parent="Audio" index="1"]
-stream = ExtResource("4_fajbo")
-
-[editable path="GraphicalPiece"]
 [editable path="Audio"]
+[editable path="GraphicalPiece"]

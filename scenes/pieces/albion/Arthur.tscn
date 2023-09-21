@@ -83,6 +83,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_vk7mg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3s7it")
 }],
 "loop": true,
 "name": &"0_attack",
@@ -118,6 +121,9 @@ animation = &"0_attack"
 
 [node name="Attack" parent="Audio" index="1"]
 stream = ExtResource("5_72voh")
+
+[node name="AttackDelay" parent="Audio" index="2"]
+wait_time = 0.8
 
 [editable path="GraphicalPiece"]
 [editable path="Audio"]

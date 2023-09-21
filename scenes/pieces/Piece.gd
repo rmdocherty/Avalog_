@@ -9,6 +9,7 @@ var moving := false
 var total_moved := Vector2(0, 0)
 var to_move := Vector2(0, 0)
 var moving_to_attack := false
+var move_ended := false
 
 
 var flat_starts := PackedVector2Array([])
@@ -118,6 +119,7 @@ func set_graphic_pos(logical_pos: Vector2) -> void:
 	graphics.global_position = hlp.norm_to_iso(cst.BOARD_DRAW_SCALE * norm_pos)
 
 func move_piece(move_dist: Vector2) -> Vector2:
+	move_ended = false
 	# can add a check here if the phantom has overlapping areas & set moving to attack
 	var current_logic_pos: Vector2 = logic.global_position
 	var new_logic_pos: Vector2 = current_logic_pos + move_dist
@@ -159,11 +161,10 @@ func change_turn(new_turn_number: int) -> void:
 	
 
 func post_gfx_move() -> void:
+	move_ended = true
 	$Audio/Move.stop()
 	if moving_to_attack:
-		$Audio/AttackDelay.start()# problem here: if timer too short get nasty repeat
-	# if too long then won't play till afer attack animation bc of await
-		#$Audio/Attack.play()
+		$Audio/AttackDelay.start()
 		await play_attack_anim()
 	var sprite: AnimatedSprite2D = graphics.sprite
 	sprite.play(graphics.passive_anim)
@@ -205,5 +206,5 @@ func _process(delta: float) -> void:
 				var move_frac := current_dist / whole_dist
 				var camera: Camera2D = gfx_manager.get_node("Camera2D")
 				camera.movement_zoom_in(move_frac, graphics.global_position)
-		elif current_dist >= whole_dist:
+		elif current_dist >= whole_dist and move_ended == false:
 			post_gfx_move()
