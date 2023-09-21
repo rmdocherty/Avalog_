@@ -112,3 +112,7 @@ visible = false
 position = Vector2(-8, 0)
 sprite_frames = SubResource("SpriteFrames_h2clh")
 animation = &"0"
+
+[connection signal="input_event" from="Hover" to="." method="_on_hover_input_event"]
+[connection signal="mouse_entered" from="Hover" to="." method="_on_hover_mouse_entered"]
+[connection signal="mouse_exited" from="Hover" to="." method="_on_hover_mouse_exited"]

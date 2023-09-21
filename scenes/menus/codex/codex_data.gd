@@ -1,15 +1,15 @@
 extends Node
 
-const MALORY = "- Thomas Malory, Le Morte D'Arthur"
-const HISTORY = "- Friar Morgan, Historia"
+const MALORY = "- Malory, Le Morte D'Arthur"
+const HISTORY = "- Morgan, Historia"
 
 const codex_data = {
 	"0": {
 		"name": "",
 		"faction": 0,
 		"type": "",
-		"tooltip": "",
-		"lore": "Welcome to Avalog!\n\nAvalog is continuous chess game - pieces aren't just stuck to discrete squares on the board.\nThere are some slight changes to normal chess:\n1) No check - take the King to win.\n2) Auto-promotion to queen.\n3) No en-passant\n4) The King can castle into/out of check.\n\nThere are other factions, with similar pieces that are available in Draft or Custom mode. This enchanted book (try clicking the pieces!) explains how they move and their story.\n\nHave fun!",
+		"tooltip": "", # TODO: Change will be to are in final
+		"lore": "Welcome to Avalog!\n\nAvalog is continuous chess game - pieces aren't just stuck to discrete squares on the board.\nThere are some slight changes to normal chess:\n1) No check - take the King to win.\n2) Auto-promotion to queen.\n3) No en-passant\n4) The King can castle into/out of check.\n\nThere are other factions, with similar pieces that will be available in Draft or Custom mode. This enchanted book (try clicking the pieces!) explains how they move and their story.\n\nHave fun!",
 		"author": ""
 		},
 	"1": {
@@ -41,8 +41,8 @@ const codex_data = {
 		"faction": 0,
 		"type": "n",
 		"tooltip": "[color=red]Jumping[/color] in a circle",
-		"lore": "", #a wanted description from town
-		"author": "- Friar Morgan, Historia"
+		"lore": "The older chivalry was slowly breaking up, and a new, wealthy burgher and trading community was rapidly gaining influence in the land; whilst the clergy, corrupted by excess of wealth and power, had strained, almost to breaking, the controlling force of religion. It was therefore natural that in these latter days a class of women should arise to avail themselves of the unique opportunities of the time—women who, loving liberty and hating oppression, took the law into their own hands and executed a rough and ready justice between the rich and the poor which embodied the best traditions of knight-errantry, whilst they themselves lived a free and merry life on the tolls they exacted from their wealthy victims.", #a wanted description from town
+		"author": "- *Ebbutt, Hero-Myths & Legends ..."
 	},
 	"5": {
 		"name": "Gaheris",
@@ -58,7 +58,7 @@ const codex_data = {
 		"type": "p",
 		"tooltip": "[color=red]No attack[/color] forward.\n[color=red]Attacks[/color] diagonally.",
 		"lore": "‘Now herkneth,’ quod the Miller, ‘alle and some!\nBut first I make a protestacioun\nThat I am dronke, I knowe it by my soun;\nAnd therfore, if that I misspeke or seye,\nWyte it the ale of Southwerk, I yow preye;\nFor I wol telle a legende and a lyf\nBothe of a Carpenter, and of his wyf,\nHow that a clerk hath set the wrightes cappe.’",
-		"author": "- Thomas Chaucer"
+		"author": "- Chaucer, the Canterbury Tales"
 	},
 	"7": {
 		"name": "Count Lucius",

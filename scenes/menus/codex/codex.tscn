@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://sdv2rkfsnmu4"]
+[gd_scene load_steps=35 format=3 uid="uid://sdv2rkfsnmu4"]
 
 [ext_resource type="Texture2D" uid="uid://bwaumvo2l7ve8" path="res://assets/menus/main_menu_bg.png" id="1_kuv8j"]
 [ext_resource type="Script" path="res://scenes/menus/codex/codex.gd" id="1_qrc13"]
@@ -30,6 +30,7 @@
 [ext_resource type="Texture2D" uid="uid://f4xycrtk527s" path="res://assets/menus/codex/open/4.png" id="28_s5im0"]
 [ext_resource type="Texture2D" uid="uid://drepx46ew4yom" path="res://assets/menus/codex/open/5.png" id="29_i3fyr"]
 [ext_resource type="LabelSettings" uid="uid://d14io4jqr07s3" path="res://assets/menus/styles/codex_text_style.tres" id="30_l75xq"]
+[ext_resource type="AudioStream" uid="uid://c6ofdtvw61vvl" path="res://assets/sfx/page_flip.wav" id="31_h648a"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_43hx1"]
 animations = [{
@@ -174,6 +175,10 @@ position = Vector2(577, 324)
 sprite_frames = SubResource("SpriteFrames_43hx1")
 animation = &"turn_right"
 
+[node name="Flip" type="AudioStreamPlayer" parent="Parent/Book"]
+stream = ExtResource("31_h648a")
+volume_db = -7.967
+
 [node name="Page" type="Control" parent="Parent/Book"]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 3
@@ -265,6 +270,7 @@ offset_top = 436.0
 offset_right = 527.0
 offset_bottom = 511.0
 rotation = -0.00872665
+mouse_filter = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 bbcode_enabled = true
 
