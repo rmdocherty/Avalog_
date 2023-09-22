@@ -24,3 +24,14 @@
 - [Donate on Patreon](https://www.patreon.com/AvalogGames)
 - [Youtube](https://www.youtube.com/@AvalogGames)
 - Music by Olly Flaig: [Bandcamp](https://ollyflaig.bandcamp.com/) and [Spotify](https://open.spotify.com/artist/5sUt08IDBSAIeApGm9eHfZ?si=6eg4XAdUQCWA4vVU5aA1IA)
+
+<h4>Installation:</h4>
+
+0) Clone the repo
+1) Download the Godot Game Engine (4.1.1): https://godotengine.org/
+2) Download the Godot Steam addon (godotsteam-gdextension-plugin.zip): https://github.com/CoaguCo-Industries/GodotSteam/releases/tag/v4.3-gde
+3) Create the `addons` folder in the repo's root folder
+4) Extract and place the `godotsteam` folder into the `addons` folder
+5) Create a file called `steam_appid.txt` in the repo's root folder, enter the correct appid and save
+6) (Optional) Start Steam
+7) Open the Godot Editor and run the project!

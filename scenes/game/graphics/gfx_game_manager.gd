@@ -98,7 +98,7 @@ func init(fen: String) -> void:
 	all_pieces = add_pieces_from_fen(fen)
 	game_manager.add_pieces_from_nodes(all_pieces)
 	game_manager.init()
-	game_manager.connect("promotion", $Promote.play)
+	
 	# short delay here so all nodes can load before we find moves
 	$InitialTimer.start()
 
@@ -275,6 +275,7 @@ func accept_rematch() -> void:
 
 # ======================== PROCCESSES =================
 func _ready() -> void:
+	game_manager.connect("promotion", $Promote.play)
 	board.apply_scale(cst.BOARD_DRAW_SCALE)
 	board.play(str(stg.chosen_map))
 	if stg.draw_iso == true:
