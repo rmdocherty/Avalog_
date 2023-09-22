@@ -43,11 +43,19 @@ func show_bar() -> void:
 	hidden = false
 
 func clock_stop_after_move_confirmed(current_turn_colour: int) -> void:
+	"""
 	# need to fix this in line with below!
 	if current_turn_colour == cst.colour.WHITE:
 		$Clock1.running = false
 	elif current_turn_colour == cst.colour.BLACK:
 		$Clock2.running = false
+	"""
+	
+	var clocks = [$Clock1, $Clock2]
+	for i in range(2):
+		var color := (i + stg.player_colour) % 2 as cst.colour
+		if current_turn_colour == color:
+			clocks[i].running = false
 
 func clock_start_after_move_finished(current_turn_colour: int) -> void:
 	var clocks = [$Clock1, $Clock2]

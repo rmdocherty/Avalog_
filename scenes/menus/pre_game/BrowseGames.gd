@@ -12,6 +12,8 @@ var data: Array = [["Lancelot", 0, 10], ["Merlin", 1, 999], ["Percival", 2, 15],
 var game_names: Array[String] = ["Classic", "Draft", "Custom"]
 var times: Array[int] = [-1, 5, 10, 30, 999]
 
+var auto_joined = false
+
 # ======================== DISPLAY ========================
 func matches_filter(item: Array, g_filter: int=-1, t_filter: int=-1) -> bool:
 	var out = true
@@ -118,11 +120,11 @@ func _ready() -> void:
 	#Steam.lobby_invite.connect(_on_Lobby_Invite)
 	Steam.lobby_chat_update.connect(_on_lobby_chat_update)
 	#Steam.join_requested.connect(_on_Lobby_Join_Requested)
-
+	
+	
 	if stg.look_type == cst.look_types.AUTO:
 		game_filter = stg.mode
 		time_filter = stg.total_time_min
-		# add search code here
 
 	if stg.look_type == cst.look_types.HOST:
 		_create_lobby()
@@ -170,8 +172,19 @@ func _on_lobby_match_list(lobbies: Array) -> void:
 		# no double add lobby
 		if LOBBY_ID != LOBBY:
 			new_data.push_back(current_entry)
+			# auto join first matching lobby
+			if stg.look_type == cst.look_types.AUTO:
+				stg.look_type = cst.look_types.BROWSE
+				auto_joined = true
+				_join_lobby(LOBBY)
 	data = new_data
 	update_item_list(new_data, stg.look_type)
+	# no matching lobbies
+	if stg.look_type == cst.look_types.AUTO and len(data) == 0:
+		if stg.look_type == cst.look_types.HOST:
+			auto_joined = true
+			_create_lobby()
+		
 
 func join() -> void:
 	var lobby_id = data[selected_idx][3]
