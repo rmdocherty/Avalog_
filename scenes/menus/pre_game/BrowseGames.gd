@@ -172,19 +172,21 @@ func _on_lobby_match_list(lobbies: Array) -> void:
 		# no double add lobby
 		if LOBBY_ID != LOBBY:
 			new_data.push_back(current_entry)
-			# auto join first matching lobby
-			if stg.look_type == cst.look_types.AUTO:
-				stg.look_type = cst.look_types.BROWSE
-				auto_joined = true
-				_join_lobby(LOBBY)
+			
 	data = new_data
 	update_item_list(new_data, stg.look_type)
 	# no matching lobbies
-	if stg.look_type == cst.look_types.AUTO and len(data) == 0:
-		if stg.look_type == cst.look_types.HOST:
+	if stg.look_type == cst.look_types.AUTO and len(new_data) == 0 and auto_joined == false:
+		stg.look_type = cst.look_types.HOST
+		auto_joined = true
+		_create_lobby()
+	# auto join first matching lobby
+	elif stg.look_type == cst.look_types.AUTO and len(new_data) > 0 and auto_joined == false:
+		var join_lobby: int = lobbies[0]
+		if LOBBY_ID != join_lobby:
+			stg.look_type = cst.look_types.BROWSE
 			auto_joined = true
-			_create_lobby()
-		
+			_join_lobby(lobbies[0])
 
 func join() -> void:
 	var lobby_id = data[selected_idx][3]
