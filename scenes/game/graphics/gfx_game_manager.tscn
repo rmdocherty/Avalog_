@@ -327,6 +327,7 @@ stream = ExtResource("35_dq4sq")
 
 [connection signal="pressed" from="GUILayer/Settings" to="GUILayer/game_menu" method="show_self"]
 [connection signal="toggled" from="GUILayer/HideBar" to="GUILayer" method="toggle_hide_btn"]
+[connection signal="toggled" from="GUILayer/FlatView" to="." method="show_board"]
 [connection signal="time_over" from="GUILayer/Clock1" to="." method="win" binds= [1]]
 [connection signal="timeout" from="GUILayer/Clock1/Timer" to="GUILayer/Clock1" method="timeout"]
 [connection signal="time_over" from="GUILayer/Clock2" to="." method="win" binds= [0]]

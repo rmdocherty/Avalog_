@@ -114,9 +114,12 @@ func pos_from_slide(slide: Vector2, mv: Vector2, minimum_dist: Vector2, mouse_de
 func set_logic_pos(logical_pos: Vector2) -> void:
 	logic.global_position = logical_pos
 
-func set_graphic_pos(logical_pos: Vector2) -> void:
+func set_graphic_pos(logical_pos: Vector2, iso: bool=true) -> void:
 	var norm_pos = logical_pos / cst.LOGIC_SQ_W
-	graphics.global_position = hlp.norm_to_iso(cst.BOARD_DRAW_SCALE * norm_pos)
+	if iso:
+		graphics.global_position = hlp.norm_to_iso(cst.BOARD_DRAW_SCALE * norm_pos)
+	else:
+		graphics.global_position = logical_pos
 
 func move_piece(move_dist: Vector2) -> Vector2:
 	move_ended = false
@@ -198,7 +201,12 @@ func _process(delta: float) -> void:
 			var moved := to_move.normalized() * delta * piece_vel * moved_along * stg.ANIM_SPEED * 1.6
 			moved.clamp(cst.LOGIC_SQ_W * Vector2(0.25,0.25), cst.LOGIC_SQ_W * Vector2(1,1))
 			total_moved += moved
-			var g_pos := hlp.norm_to_iso(cst.BOARD_DRAW_SCALE * moved / cst.LOGIC_SQ_W)
+
+			var g_pos: Vector2
+			if stg.draw_iso:
+				g_pos = hlp.norm_to_iso(cst.BOARD_DRAW_SCALE * moved / cst.LOGIC_SQ_W)
+			else:
+				g_pos = moved
 			graphics.global_position += g_pos
 			
 			if current_dist > whole_dist / 2 and moving_to_attack and whole_dist > 100 :

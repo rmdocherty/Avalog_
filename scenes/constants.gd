@@ -26,4 +26,4 @@ const fen_faction_lookup = ["a", "i", "f", "t", "m"]
 const faction_lookup = ["a", "r", "b", "t", "m"]
 
 const BOARD_DRAW_SCALE := Vector2(3.75, 3.75)
-const FLAT_DRAW_SCALE := Vector2(1.3, 1.3)
+const FLAT_DRAW_SCALE := Vector2(1, 1)

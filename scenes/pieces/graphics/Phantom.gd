@@ -21,12 +21,7 @@ func _input_event(_viewport, event: InputEvent, _shape_idx) -> void:
 		$PhantomSprite.show()
 	elif Input.is_action_just_pressed("click"):
 		graphics.invalid_input.emit()
-	
-	"""
-	if Input.is_action_just_pressed("click") and not turn_matches:
-		graphics.invalid_input.emit()
-	"""
-	
+
 	if event.is_action_pressed("click") and turn_matches and your_piece:
 		dragging = true
 
@@ -42,7 +37,13 @@ func mouse_exited_circle() -> void:
 func _process(_delta: float) -> void:
 	if dragging:
 		var mouse_delta_screen := (get_global_mouse_position() - start_click_pos)
-		var mouse_delta_logic := hlp.iso_to_logic(mouse_delta_screen / cst.BOARD_DRAW_SCALE)
+		var mouse_delta_logic: Vector2
+
+		if stg.draw_iso:
+			mouse_delta_logic = hlp.iso_to_logic(mouse_delta_screen / cst.BOARD_DRAW_SCALE)
+		else:
+			mouse_delta_logic = mouse_delta_screen
+	
 		var projections: Array[float] = []
 		for i in range(len(piece.flat_starts)):
 			var is_line := (piece.flat_draws[i] == cst.draw_type.LINE)
@@ -63,4 +64,8 @@ func _process(_delta: float) -> void:
 		var most_similar_delta := piece.flat_ends[loc] - piece.flat_starts[loc]
 		var slide = mouse_delta_logic.length() * most_similar_delta.normalized()
 		logic_pos = piece.pos_from_slide(slide, piece.flat_ends[loc], piece.flat_starts[loc], mouse_delta_logic)
-		position = hlp.logic_to_iso(cst.BOARD_DRAW_SCALE * logic_pos)
+		
+		if stg.draw_iso:
+			position = hlp.logic_to_iso(cst.BOARD_DRAW_SCALE * logic_pos)
+		else:
+			position = logic_pos

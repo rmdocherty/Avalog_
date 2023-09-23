@@ -28,6 +28,11 @@ func set_colour(state: String) -> void:
 		default_colour = red
 	queue_redraw()
 
+func change_draw_mode(iso: bool) -> void:
+	inner_points = drawing.get_circle_arc_points(Vector2(0,0), inner_radius, angle_from, angle_to, iso)
+	outer_points = drawing.get_circle_arc_points(Vector2(0,0), outer_radius, angle_from, angle_to, iso)
+	queue_redraw()
+
 func make_yellow() -> void:
 	default_colour = yellow
 	queue_redraw()

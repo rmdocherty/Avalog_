@@ -19,6 +19,7 @@ func mouse_entered_circle() -> void:
 		sprite.play(passive_anim)
 		show_lines()
 
+# ======================= LINES =======================
 func show_lines() -> void:
 	for l in lines:
 		l.show()
@@ -35,7 +36,7 @@ func reset_lines() -> void:
 	lines = []
 
 func create_single_line(poly: Polygon2D, start_point: Vector2, end_point: Vector2, pointed: bool=true):
-	var points = drawing.create_line_points(start_point, end_point, stg.LINE_DRAW_WIDTH, pointed, true) # was 0.2
+	var points = drawing.create_line_points(start_point, end_point, stg.LINE_DRAW_WIDTH, pointed, stg.draw_iso) # was 0.2
 	poly.polygon = points
 	poly.color = circle.default_colour
 	poly.z_index = 0 # set z index of enemies to be -1?
@@ -82,6 +83,7 @@ func update_lines_from_fragment(mv_type: cst.mv_type, draw_type: cst.draw_type, 
 			var outer_point = (end + delta / 2) / cst.LOGIC_SQ_W
 			add_points_to_polygon(inner_point, outer_point)
 
+# ======================= LINES =======================
 func flip_sprite() -> void:
 	for s in [sprite, $Phantom/PhantomSprite]:
 		s.flip_h = true
@@ -100,6 +102,8 @@ func _on_area_exited(_area: Area2D):
 	circle.set_colour(circle.current_state)
 	$Phantom/PhantomSprite.play(passive_anim)
 	
+	
+# ======================= ANIMS =======================
 func start_idle_timer():
 	var random_time = rng.randf_range(4, 36)
 	$IdleAnimationTimer.start(random_time)
@@ -116,15 +120,22 @@ func idle_anim_play():
 	sprite.play(passive_anim)
 	await sprite.animation_looped
 
-func _ready() -> void:
-	for s in [sprite, $Phantom/PhantomSprite]:
-		s.scale = (stg.PIECE_DRAW_SCALE)
-	if stg.draw_iso:
+# ======================= ISO STUFF =======================
+func update_iso(iso: bool) -> void:
+	if iso:
 		sprite.show()
 		$Icon.hide()
 	else:
 		sprite.hide()
 		$Icon.show()
+	$Phantom/PlayerCircle.change_draw_mode(iso)
+
+
+# ======================= PROCESSES =======================
+func _ready() -> void:
+	for s in [sprite, $Phantom/PhantomSprite]:
+		s.scale = (stg.PIECE_DRAW_SCALE)
+	update_iso(stg.draw_iso)
 	$Phantom/Hover.polygon = circle.inner_points
 	start_idle_timer()
 

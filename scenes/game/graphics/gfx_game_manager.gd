@@ -3,10 +3,12 @@ extends Node2D
 const LogicGameManager = preload("res://scenes/game/game_manager.tscn")
 var game_manager := LogicGameManager.instantiate()
 
-const colours: Array[Color] = [Color.BLANCHED_ALMOND, Color.SADDLE_BROWN]
-var gfx_offset := Vector2(310, 110)
+const colours: Array[Color] = [Color("#d9a066"), Color("#8f563b")]
+
 const start_x := -4
 const start_y := -4
+
+var gfx_offset := cst.FLAT_DRAW_SCALE * cst.LOGIC_SQ_W * Vector2(start_x, start_y)
 
 var change_player_each_turn: bool = true
 
@@ -143,7 +145,7 @@ func take_turn(change_player: bool=true) -> void:
 		var logic: LogicPiece = p.logic
 		# Update positions (i.e for deletions/castling)
 		p.show()
-		p.set_graphic_pos(logic.position)
+		p.set_graphic_pos(logic.position, stg.draw_iso)
 		p.change_turn(turn_n)
 		p.update_lines(logic.nested_valid_moves)
 		check_win(p)
@@ -161,6 +163,8 @@ func gfx_update() -> void:
 		var new_scale := stg.PIECE_DRAW_SCALE / old_scale 
 		p.graphics.sprite.apply_scale(new_scale) #stg.PIECE_DRAW_SCALE
 		p.graphics.get_node("Phantom/PhantomSprite").apply_scale(new_scale) #stg.PIECE_DRAW_SCALE
+		p.set_graphic_pos(p.logic.position, stg.draw_iso)
+		p.graphics.update_iso(stg.draw_iso)
 		p.update_lines(p.logic.nested_valid_moves)
 
 func check_win(piece: Piece) -> void:
@@ -273,6 +277,15 @@ func _draw() -> void:
 	if stg.draw_iso == false:
 		draw_flat_board(8, 8)
 
+func show_board(is_flat: bool) -> void:
+	print(is_flat)
+	stg.draw_iso = not is_flat
+	if not is_flat:
+		$board.show()
+	else:
+		$board.hide()
+	gfx_update()
+	queue_redraw()
 
 # ======================== CONNECTION ========================
 func back() -> void:
