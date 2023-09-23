@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://0onsrcirqqt4"]
+
+[ext_resource type="Script" path="res://scenes/menus/pre_game/Music.gd" id="1_8vvbl"]
+[ext_resource type="AudioStream" uid="uid://bki18jhtkapii" path="res://assets/music/main_theme_loopable.mp3" id="2_3nmrv"]
+[ext_resource type="AudioStream" uid="uid://cell0mw4aatc4" path="res://assets/music/game_loopable.mp3" id="3_akg0g"]
+[ext_resource type="AudioStream" uid="uid://cpsal53fg7ikn" path="res://assets/music/time_out_loopable.mp3" id="4_yl1uy"]
+
+[node name="Music" type="Node2D"]
+script = ExtResource("1_8vvbl")
+
+[node name="MenuMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_3nmrv")
+volume_db = -15.0
+pitch_scale = 0.95
+
+[node name="DefaultMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_akg0g")
+volume_db = -10.0
+pitch_scale = 0.95
+
+[node name="TimeOutMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_yl1uy")
+volume_db = -10.0
+pitch_scale = 0.95
+
+[connection signal="finished" from="MenuMusic" to="." method="track_timeout"]
+[connection signal="finished" from="DefaultMusic" to="." method="track_timeout"]
+[connection signal="finished" from="TimeOutMusic" to="." method="track_timeout"]

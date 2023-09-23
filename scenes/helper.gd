@@ -1,9 +1,12 @@
 extends Node
 
 
-func load_child_remove_parent(node_path: String, parent: Node) -> void:
+func load_child_remove_parent(node_path: String, parent: Node, pass_node: Node=null) -> void:
 	var child: Node = load(node_path).instantiate()
 	get_tree().get_root().add_child(child)
+	if pass_node != null:
+		parent.remove_child(pass_node)
+		child.add_child(pass_node)
 	get_tree().get_root().remove_child(parent)
 
 func norm_to_iso(vec: Vector2) -> Vector2:

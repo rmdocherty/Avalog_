@@ -6,7 +6,9 @@ const RESET_Y: int = 700
 var moving: bool = false
 
 func back() -> void:
-	hlp.load_child_remove_parent("res://scenes/menus/pre_game/main_menu.tscn", self)
+	var music = find_child("MenuMusic", true, false)
+	print(music)
+	hlp.load_child_remove_parent("res://scenes/menus/pre_game/main_menu.tscn", self, music)
 
 func parse_entry(key: String, value) -> void:
 	var current_str := ""
@@ -50,7 +52,10 @@ func _process(delta: float):
 
 var data = {
 	"Created by:": "Ronan Docherty",
-	"Music": ["Olly Flaig"],
+	"Music": [
+		"8-Bit Music Pack for RPGs by Francesco Fabrizio", 
+		"Trailer by Olly Flaig"
+		],
 	"SFX": [
 		"Adapted from Freesound", 
 		"Footsteps - audioninja001"

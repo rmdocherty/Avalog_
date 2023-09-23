@@ -157,6 +157,7 @@ func _get_lobbies() -> void:
 	if time_filter > -1:
 		Steam.addRequestLobbyListStringFilter("time", str(stg.total_time_min), Steam.LOBBY_COMPARISON_EQUAL)
 	Steam.addRequestLobbyListDistanceFilter(Steam.LOBBY_DISTANCE_FILTER_FAR) # Set distance to far
+	Steam.addRequestLobbyListFilterSlotsAvailable(1)
 	Steam.addRequestLobbyListResultCountFilter(200)
 	Steam.requestLobbyList()
 	

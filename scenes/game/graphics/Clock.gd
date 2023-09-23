@@ -28,6 +28,9 @@ func timeout() -> void:
 	elif running == true  and enabled == true:
 		time_seconds -= 1
 		update()
+	
+	if time_mins <= 5:
+		Music.switch_tracks(Music.tracks.TIME)
 		
 
 func int_to_str(i: int) -> String:

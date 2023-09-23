@@ -31,6 +31,7 @@ func show_self() -> void:
 	show()
 
 func back() -> void:
+	Music.switch_tracks(Music.tracks.MENU)
 	var home_menu = load("res://scenes/menus/pre_game/main_menu.tscn").instantiate()
 	#get_tree().change_scene_to_file("res://scenes/menus/main_menu.tscn")
 	get_parent().get_parent().back()
