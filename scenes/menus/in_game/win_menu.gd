@@ -22,6 +22,7 @@ func show_winner(win_colour: int) -> void:
 	$Outer/Contents/v/Winner.text = player_names[correct_player_name] + " wins!"
 
 func main_menu() -> void:
+	Music.switch_tracks(Music.tracks.MENU)
 	var home_menu = load("res://scenes/menus/pre_game/main_menu.tscn").instantiate()
 	get_tree().get_root().add_child(home_menu)
 	get_tree().get_root().remove_child(get_parent().get_parent())

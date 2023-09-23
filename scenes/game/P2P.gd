@@ -1,6 +1,6 @@
 extends Node
 
-signal move_sent(piece_num: int, new_pos: Vector2)
+signal move_sent(piece_num: int, new_pos: Vector2, t_min: int, t_sec: int)
 signal emote_sent
 signal fen_recieved(half_fen: String)
 signal rematch_request
@@ -75,7 +75,9 @@ func _handle_packet(packet: Dictionary) -> void:
 	if packet["type"] == "move":
 		var piece_n: int = packet["piece_n"]
 		var piece_pos: Vector2 = packet["pos"]
-		move_sent.emit(piece_n, piece_pos)
+		var t_min: int = packet["t_min"]
+		var t_sec: int = packet["t_sec"]
+		move_sent.emit(piece_n, piece_pos, t_min, t_sec)
 	if packet["type"] == "rematch_request":
 		rematch_request.emit()
 	if packet["type"] == "rematch_accept":

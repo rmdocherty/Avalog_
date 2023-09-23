@@ -95,6 +95,8 @@ func add_piece(piece_letter: String, pos: Vector2, piece_n: int) -> Piece:
 
 # ======================== GAME LOGIC =================
 func init(fen: String) -> void:
+	remove_all()
+	$GUILayer/win_menu.hide()
 	if stg.total_time_min <=5:
 		Music.switch_tracks(Music.tracks.TIME)
 	else:
@@ -219,18 +221,28 @@ func confirm_move() -> void:
 	var move_dist: Vector2 = selected_piece.graphics.get_node("Phantom").logic_pos
 	move_piece_dist(selected_piece, move_dist, true)
 
+
 func send_move(piece: Piece, move_dist: Vector2) -> void:
-	var packet: Dictionary = {"type":"move", "piece_n":piece.piece_n, "pos":move_dist}
+	var clock: Node = $GUILayer/Clock1
+	var t_min: int = clock.time_mins
+	var t_sec: int = clock.time_seconds
+
+	var packet: Dictionary = {"type":"move", "piece_n":piece.piece_n, "pos":move_dist, "t_min": t_min, "t_sec": t_sec}
 	print(str(steam.STEAM_ID) + "  " + str(stg.OTHER_PLAYER_ID))
 	$P2P._send_P2P_packet(stg.OTHER_PLAYER_ID, packet)
 
-func recieve_move(piece_n: int, move_dist: Vector2) -> void:
+func recieve_move(piece_n: int, move_dist: Vector2, t_min: int, t_sec: int) -> void:
 	var piece: Piece
 	for p in all_pieces:
 		if p.piece_n == piece_n:
 			piece = p
 			selected_piece = p
 	move_piece_dist(piece, move_dist)
+	# Update opponent's clock with their local time
+	var clock: Node = $GUILayer/Clock2
+	clock.time_mins = t_min
+	clock.time_seconds = t_sec
+	
 
 func move_piece_dist(piece: Piece, move_dist: Vector2, send:bool=false) -> void:
 	game_manager.move_piece(piece, move_dist)
