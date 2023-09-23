@@ -105,3 +105,4 @@ func delete() -> void:
 	state = states.DEAD
 	position = Vector2(-10000, -10000)
 	set_process_input(false)
+	#queue_free()

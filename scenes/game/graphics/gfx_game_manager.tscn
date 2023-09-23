@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://bm7utema3eqfb"]
+[gd_scene load_steps=41 format=3 uid="uid://bm7utema3eqfb"]
 
 [ext_resource type="Script" path="res://scenes/game/graphics/gfx_game_manager.gd" id="1_d8ywr"]
 [ext_resource type="Texture2D" uid="uid://m3cmypbyyc6x" path="res://assets/maps/albion_map.png" id="2_gxohm"]
@@ -13,14 +13,17 @@
 [ext_resource type="Texture2D" uid="uid://3jv2m5rj47v0" path="res://assets/maps/morgana.png" id="6_dgbww"]
 [ext_resource type="Texture2D" uid="uid://dd34vjshthfsy" path="res://assets/menus/in_game/hide_bar_hover.png" id="6_n8sr3"]
 [ext_resource type="Texture2D" uid="uid://qt4nbxukhhu1" path="res://assets/maps/bg.png" id="7_7xh0m"]
+[ext_resource type="Texture2D" uid="uid://bp5e1mjf67om6" path="res://assets/menus/in_game/flat_view.png" id="8_eyvsq"]
 [ext_resource type="Script" path="res://scenes/game/graphics/Camera.gd" id="8_h02n5"]
 [ext_resource type="Theme" uid="uid://csq3hvxncciso" path="res://assets/menus/styles/mode_select_theme.tres" id="8_mhaoa"]
 [ext_resource type="Texture2D" uid="uid://cycy4bdqyqc17" path="res://assets/menus/in_game/clock_bg.png" id="8_vwbv6"]
 [ext_resource type="Texture2D" uid="uid://cr8opxamjf2cn" path="res://assets/menus/in_game/zoom_out.png" id="9_6p6pn"]
+[ext_resource type="Texture2D" uid="uid://cbr05va7702ko" path="res://assets/menus/in_game/iso_view.png" id="9_co3x6"]
 [ext_resource type="Script" path="res://scenes/game/graphics/Clock.gd" id="9_nrcpj"]
 [ext_resource type="Texture2D" uid="uid://0qfryyre0nss" path="res://assets/menus/buttons/tick_default.png" id="9_viy4r"]
 [ext_resource type="Texture2D" uid="uid://dq5jnnkhlynnx" path="res://assets/menus/in_game/zoom_out_hover.png" id="10_8cihd"]
 [ext_resource type="Texture2D" uid="uid://fjk83ocp406b" path="res://assets/menus/buttons/tick_click.png" id="10_laut7"]
+[ext_resource type="Texture2D" uid="uid://cbnmrhjlbbmof" path="res://assets/menus/in_game/flat_view_hover.png" id="10_ss5ir"]
 [ext_resource type="StyleBox" uid="uid://cnnt3rs11wvex" path="res://assets/menus/styles/highlight_sb.tres" id="10_wgxv4"]
 [ext_resource type="Texture2D" uid="uid://qrvt2e4dlhjq" path="res://assets/menus/in_game/camera_flip.png" id="11_bhsw3"]
 [ext_resource type="Texture2D" uid="uid://b07lm3u7grldq" path="res://assets/menus/buttons/tick_hover.png" id="11_jwlru"]
@@ -108,6 +111,19 @@ toggle_mode = true
 texture_normal = ExtResource("4_1tb4w")
 texture_pressed = ExtResource("5_kh2we")
 texture_hover = ExtResource("6_n8sr3")
+stretch_mode = 0
+
+[node name="FlatView" type="TextureButton" parent="GUILayer"]
+custom_minimum_size = Vector2(50, 50)
+offset_left = 1030.0
+offset_top = 10.0
+offset_right = 1080.0
+offset_bottom = 60.0
+tooltip_text = "Flat View"
+toggle_mode = true
+texture_normal = ExtResource("8_eyvsq")
+texture_pressed = ExtResource("9_co3x6")
+texture_hover = ExtResource("10_ss5ir")
 stretch_mode = 0
 
 [node name="Clock1" type="TextureRect" parent="GUILayer"]

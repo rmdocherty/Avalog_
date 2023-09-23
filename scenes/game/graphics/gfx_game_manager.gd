@@ -97,6 +97,7 @@ func add_piece(piece_letter: String, pos: Vector2, piece_n: int) -> Piece:
 func init(fen: String) -> void:
 	remove_all()
 	$GUILayer/win_menu.hide_winner()
+	$GUILayer.show_bar()
 	if stg.total_time_min <=5:
 		Music.switch_tracks(Music.tracks.TIME)
 	else:

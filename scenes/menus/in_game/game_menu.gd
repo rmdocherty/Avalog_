@@ -36,7 +36,10 @@ func back() -> void:
 	#get_tree().change_scene_to_file("res://scenes/menus/main_menu.tscn")
 	get_parent().get_parent().back()
 	get_tree().get_root().add_child(home_menu)
-	get_tree().get_root().remove_child(get_parent().get_parent())
+	#get_tree().get_root().remove_child(get_parent().get_parent())
+	
+	get_parent().get_parent().queue_free()
+	print_orphan_nodes()
 
 func _on_color_rect_gui_input(_event: InputEvent) -> void:
 	var is_click: bool = Input.is_action_just_pressed("click")

@@ -7,7 +7,9 @@ func load_child_remove_parent(node_path: String, parent: Node, pass_node: Node=n
 	if pass_node != null:
 		parent.remove_child(pass_node)
 		child.add_child(pass_node)
-	get_tree().get_root().remove_child(parent)
+	#get_tree().get_root().remove_child(parent)
+	parent.queue_free()
+	#print_orphan_nodes()
 
 func norm_to_iso(vec: Vector2) -> Vector2:
 	var screen_x = (vec[0] - vec[1]) * cst.ISO[0] / 2.

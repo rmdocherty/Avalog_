@@ -472,11 +472,13 @@ theme_override_constants/separation = 30
 
 [node name="Host" type="Button" parent="Canv/Cont/PlayButtons/OnlineOptions"]
 layout_mode = 2
+tooltip_text = "Create a lobby"
 theme = ExtResource("3_4xegf")
 text = "Host"
 
 [node name="Browse" type="Button" parent="Canv/Cont/PlayButtons/OnlineOptions"]
 layout_mode = 2
+tooltip_text = "Look at existing lobbies"
 theme = ExtResource("3_4xegf")
 text = "Browse"
 

@@ -79,6 +79,8 @@ size_flags_stretch_ratio = 3.71
 
 [node name="Filters" type="Label" parent="Canv/h"]
 layout_mode = 2
+tooltip_text = "Filter lobbies by game type or time control"
+mouse_filter = 1
 theme = ExtResource("2_feqec")
 text = "Filters:"
 
@@ -130,6 +132,7 @@ text = "Invite
 [node name="Join" type="Button" parent="Canv/h/h2"]
 layout_mode = 2
 size_flags_horizontal = 8
+tooltip_text = "Join selected lobby"
 theme = ExtResource("2_feqec")
 theme_override_font_sizes/font_size = 40
 theme_override_styles/normal = ExtResource("4_w0bm8")
@@ -139,6 +142,8 @@ text = "Join!"
 
 [node name="Waiting" parent="Canv/h/h2" instance=ExtResource("6_r8nk8")]
 layout_mode = 2
+tooltip_text = "Waiting for player to join"
+mouse_filter = 1
 
 [node name="__" type="HBoxContainer" parent="Canv/h"]
 custom_minimum_size = Vector2(60, 0)
