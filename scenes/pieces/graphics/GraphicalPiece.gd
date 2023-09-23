@@ -50,9 +50,16 @@ func append_line(logic_start_pos: Vector2, logic_end_pos: Vector2, pointed: bool
 	lines.push_back(poly)
 
 func add_points_to_polygon(inner_point: Vector2, outer_point: Vector2) -> void:
+	if stg.draw_iso:
+		inner_point = hlp.norm_to_iso(inner_point)
+		outer_point = hlp.norm_to_iso(outer_point)
+	else:
+		inner_point *= cst.LOGIC_PIECE_RADIUS
+		outer_point *= cst.LOGIC_PIECE_RADIUS
+	
 	if inner_point != Vector2(0, 0):
-		current_polygon[0].push_back(hlp.norm_to_iso(inner_point))
-	current_polygon[1].push_back(hlp.norm_to_iso(outer_point))
+		current_polygon[0].push_back(inner_point)
+	current_polygon[1].push_back(outer_point)
 
 func finish_polygon() -> void:
 	var poly = Polygon2D.new()
@@ -85,7 +92,7 @@ func update_lines_from_fragment(mv_type: cst.mv_type, draw_type: cst.draw_type, 
 
 # ======================= LINES =======================
 func flip_sprite() -> void:
-	for s in [sprite, $Phantom/PhantomSprite]:
+	for s in [sprite, $Phantom/PhantomSprite, $Icon]:
 		s.flip_h = true
 
 func change_player_circle(state: String) -> void:
