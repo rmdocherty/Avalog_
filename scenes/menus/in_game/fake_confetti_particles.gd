@@ -127,7 +127,7 @@ var timer: float = 0.0
 
 func _ready() -> void:
 	set_process(false)
-	self.emitting = not Engine.is_editor_hint()
+	#self.emitting = not Engine.is_editor_hint()
 
 
 func _process(delta: float) -> void:

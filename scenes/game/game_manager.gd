@@ -85,6 +85,9 @@ func delete_all_pieces() -> void:
 	alive_pieces = []
 
 func init() -> void:
+	# Add this here for rematches
+	turn_number = 1
+	current_turn_colour = cst.colour.WHITE
 	# Initial delay to make sure added pieces loaded
 	$InitialTimer.start(0.1)
 

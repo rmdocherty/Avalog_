@@ -96,7 +96,7 @@ func add_piece(piece_letter: String, pos: Vector2, piece_n: int) -> Piece:
 # ======================== GAME LOGIC =================
 func init(fen: String) -> void:
 	remove_all()
-	$GUILayer/win_menu.hide()
+	$GUILayer/win_menu.hide_winner()
 	if stg.total_time_min <=5:
 		Music.switch_tracks(Music.tracks.TIME)
 	else:

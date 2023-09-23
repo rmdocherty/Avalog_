@@ -5,6 +5,7 @@ signal rematch_accept
 signal rematch_request
 
 var confetti_class = preload("res://scenes/menus/in_game/fake_confetti_particles.tscn")
+var confetti: Node2D = confetti_class.instantiate()
 var player_names: Array[String] = [stg.uname_1, stg.uname_2]
 var shown = false
 
@@ -16,10 +17,14 @@ func show_winner(win_colour: int) -> void:
 		correct_player_name = 1 - win_colour as cst.colour
 	shown = true
 	show()
-	var confetti = confetti_class.instantiate()
 	confetti.colors = confetti.colours_list[stg.replace_palettes[win_colour + 2]]
-	add_child(confetti)
+	confetti._set_emitting(true)
 	$Outer/Contents/v/Winner.text = player_names[correct_player_name] + " wins!"
+
+func hide_winner() -> void:
+	confetti._set_emitting(false)
+	hide()
+	
 
 func main_menu() -> void:
 	Music.switch_tracks(Music.tracks.MENU)
@@ -33,7 +38,6 @@ func rematch() -> void:
 		get_tree().get_root().add_child(mode_menu)
 		get_tree().get_root().remove_child(get_parent().get_parent())
 	else:
-		#rematch_requested()
 		rematch_request.emit()
 
 
@@ -53,5 +57,6 @@ func quit() -> void:
 	get_tree().quit()
 
 func _ready():
-	pass
+	confetti.emitting = false
+	add_child(confetti)
 	#show_winner(cst.colour.WHITE)
