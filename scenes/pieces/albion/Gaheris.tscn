@@ -1,9 +1,10 @@
-[gd_scene load_steps=18 format=3 uid="uid://cf8uxwumhew03"]
+[gd_scene load_steps=21 format=3 uid="uid://cf8uxwumhew03"]
 
 [ext_resource type="PackedScene" uid="uid://cfobj247gpa7q" path="res://scenes/pieces/Piece.tscn" id="1_3os4k"]
 [ext_resource type="Shader" path="res://scenes/pieces/graphics/Piece.gdshader" id="2_xocd0"]
 [ext_resource type="Texture2D" uid="uid://dgp2ipqqjofvl" path="res://assets/pieces/albion/gaheris.png" id="3_gmmhd"]
 [ext_resource type="AudioStream" uid="uid://6okifos3et43" path="res://assets/sfx/axe.wav" id="4_3ie5b"]
+[ext_resource type="Texture2D" uid="uid://dsfc42cu5anbj" path="res://assets/pieces/icons.png" id="4_q4jn8"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mq3wr"]
 resource_local_to_scene = true
@@ -59,6 +60,22 @@ animations = [{
 "loop": true,
 "name": &"0_passive",
 "speed": 3.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mkr38"]
+atlas = ExtResource("4_q4jn8")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8458r"]
+resource_local_to_scene = true
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mkr38")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jcx81"]
@@ -119,6 +136,9 @@ material = SubResource("ShaderMaterial_mq3wr")
 [node name="PhantomSprite" parent="GraphicalPiece/Phantom" index="2"]
 sprite_frames = SubResource("SpriteFrames_ehsrr")
 animation = &"0_attack"
+
+[node name="Icon" parent="GraphicalPiece" index="1"]
+sprite_frames = SubResource("SpriteFrames_8458r")
 
 [node name="Sprite" parent="GraphicalPiece" index="2"]
 sprite_frames = SubResource("SpriteFrames_kyi5w")

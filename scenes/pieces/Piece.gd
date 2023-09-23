@@ -53,6 +53,7 @@ func set_shader_params(replace_palettes: Array[int]) -> void:
 
 func reset_drag_hide_phantom(_move_confirmed: bool=false) -> void:
 	$GraphicalPiece/Phantom.position = Vector2(0, 0)
+	$GraphicalPiece/Icon.position = Vector2(0, 0)
 	$GraphicalPiece/Phantom.dragging = false
 	$GraphicalPiece/Phantom/PhantomSprite.hide()
 

@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://dsfc42cu5anbj" path="res://assets/pieces/icons.png" id="6_6hxmq"]
 [ext_resource type="PackedScene" uid="uid://bc53legwu4s01" path="res://scenes/pieces/graphics/AudioPiece.tscn" id="6_saumb"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_1bq23"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6w0wn"]
 resource_local_to_scene = true
 shader = ExtResource("2_vbty6")
 shader_parameter/tol = 0.05
@@ -121,7 +121,7 @@ script = ExtResource("1_38s2e")
 [node name="LogicPiece" parent="." instance=ExtResource("1_jcbdf")]
 
 [node name="GraphicalPiece" parent="." instance=ExtResource("2_pu88p")]
-material = SubResource("ShaderMaterial_1bq23")
+material = SubResource("ShaderMaterial_6w0wn")
 
 [node name="PhantomSprite" parent="GraphicalPiece/Phantom" index="2"]
 sprite_frames = SubResource("SpriteFrames_0qtaa")

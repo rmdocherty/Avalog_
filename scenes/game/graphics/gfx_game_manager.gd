@@ -278,7 +278,6 @@ func _draw() -> void:
 		draw_flat_board(8, 8)
 
 func show_board(is_flat: bool) -> void:
-	print(is_flat)
 	stg.draw_iso = not is_flat
 	if not is_flat:
 		$board.show()

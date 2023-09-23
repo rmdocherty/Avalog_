@@ -12,16 +12,19 @@ script = ExtResource("1_8vvbl")
 stream = ExtResource("2_3nmrv")
 volume_db = -15.0
 pitch_scale = 0.95
+bus = &"music"
 
 [node name="DefaultMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_akg0g")
 volume_db = -10.0
 pitch_scale = 0.95
+bus = &"music"
 
 [node name="TimeOutMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_yl1uy")
 volume_db = -10.0
 pitch_scale = 0.95
+bus = &"music"
 
 [connection signal="finished" from="MenuMusic" to="." method="track_timeout"]
 [connection signal="finished" from="DefaultMusic" to="." method="track_timeout"]

@@ -18,7 +18,8 @@ func _input_event(_viewport, event: InputEvent, _shape_idx) -> void:
 		start_click_pos = get_global_mouse_position()
 		gfx_game_manager.selected_piece = piece
 		print("click start")
-		$PhantomSprite.show()
+		if stg.draw_iso:
+			$PhantomSprite.show()
 	elif Input.is_action_just_pressed("click"):
 		graphics.invalid_input.emit()
 
@@ -68,4 +69,5 @@ func _process(_delta: float) -> void:
 		if stg.draw_iso:
 			position = hlp.logic_to_iso(cst.BOARD_DRAW_SCALE * logic_pos)
 		else:
+			graphics.get_node("Icon").position = logic_pos
 			position = logic_pos
