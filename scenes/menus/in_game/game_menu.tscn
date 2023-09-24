@@ -124,6 +124,28 @@ theme = ExtResource("3_qru51")
 theme_override_font_sizes/font_size = 34
 text = "Quit"
 
+[node name="_" type="HBoxContainer" parent="Outer/Contents/Bar/Container/Game/v"]
+layout_mode = 2
+
+[node name="__" type="HBoxContainer" parent="Outer/Contents/Bar/Container/Game/v"]
+layout_mode = 2
+
+[node name="Classic" type="HBoxContainer" parent="Outer/Contents/Bar/Container/Game/v"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Outer/Contents/Bar/Container/Game/v/Classic"]
+layout_mode = 2
+theme = ExtResource("3_qru51")
+text = "Classic Icons"
+
+[node name="HSlider" type="CheckBox" parent="Outer/Contents/Bar/Container/Game/v/Classic"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+theme = ExtResource("3_4niey")
+disabled = true
+icon_alignment = 1
+
 [node name="Graphics" type="Control" parent="Outer/Contents/Bar/Container"]
 visible = false
 layout_mode = 2
@@ -318,6 +340,7 @@ stretch_mode = 0
 [connection signal="gui_input" from="blur" to="." method="_on_color_rect_gui_input"]
 [connection signal="pressed" from="Outer/Contents/Bar/Container/Game/v/MainMenu" to="." method="back"]
 [connection signal="pressed" from="Outer/Contents/Bar/Container/Game/v/Quit" to="." method="quit"]
+[connection signal="toggled" from="Outer/Contents/Bar/Container/Game/v/Classic/HSlider" to="." method="toggle_classic_icons"]
 [connection signal="item_selected" from="Outer/Contents/Bar/Container/Graphics/v/Fullscreen/HSlider" to="." method="set_display_mode"]
 [connection signal="toggled" from="Outer/Contents/Bar/Container/Graphics/v/Anims/HSlider" to="." method="toggle_anims"]
 [connection signal="value_changed" from="Outer/Contents/Bar/Container/Graphics/v/AnimSpeed/HSlider" to="." method="set_anim_speed"]

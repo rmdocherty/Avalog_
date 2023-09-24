@@ -1,9 +1,11 @@
-[gd_scene load_steps=18 format=3 uid="uid://uwqg4jr6ndsd"]
+[gd_scene load_steps=20 format=3 uid="uid://uwqg4jr6ndsd"]
 
 [ext_resource type="PackedScene" uid="uid://cfobj247gpa7q" path="res://scenes/pieces/Piece.tscn" id="1_0pcbm"]
 [ext_resource type="Shader" path="res://scenes/pieces/graphics/Piece.gdshader" id="2_hfbxj"]
 [ext_resource type="Texture2D" uid="uid://dyctgi0pcokr3" path="res://assets/pieces/albion/guinevere.png" id="3_lpbpt"]
+[ext_resource type="Texture2D" uid="uid://dj6jeqy0kdn2g" path="res://assets/pieces/classic/Q.png" id="4_dm8bu"]
 [ext_resource type="Texture2D" uid="uid://dsfc42cu5anbj" path="res://assets/pieces/icons.png" id="4_kraqd"]
+[ext_resource type="Texture2D" uid="uid://or4g7j8ojljw" path="res://assets/pieces/classic/q.png" id="5_4m12a"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ngo1a"]
 resource_local_to_scene = true
@@ -54,16 +56,32 @@ animations = [{
 "speed": 3.0
 }]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_qd8kh"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_gsdhh"]
 atlas = ExtResource("4_kraqd")
-region = Rect2(32, 0, 8, 8)
+region = Rect2(96, 0, 24, 24)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_7smjm"]
 resource_local_to_scene = true
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_qd8kh")
+"texture": ExtResource("4_dm8bu")
+}],
+"loop": false,
+"name": &"0",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_4m12a")
+}],
+"loop": false,
+"name": &"1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gsdhh")
 }],
 "loop": false,
 "name": &"default",
@@ -123,6 +141,7 @@ sprite_frames = SubResource("SpriteFrames_mcxmk")
 
 [node name="Icon" parent="GraphicalPiece" index="1"]
 sprite_frames = SubResource("SpriteFrames_7smjm")
+animation = &"default"
 
 [node name="Sprite" parent="GraphicalPiece" index="2"]
 sprite_frames = SubResource("SpriteFrames_mj7rk")

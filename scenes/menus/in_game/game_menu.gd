@@ -16,6 +16,9 @@ func _ready() -> void:
 		var node: Control = get_node(node_path)
 		set_state(node, values[i])
 	
+	if stg.mode == cst.modes.CLASSIC:
+		$Outer/Contents/Bar/Container/Game/v/Classic/HSlider.disabled = false
+	
 func set_state(node: Control, value) -> void:
 	if value is float:
 		node.value = value
@@ -33,10 +36,8 @@ func show_self() -> void:
 func back() -> void:
 	Music.switch_tracks(Music.tracks.MENU)
 	var home_menu = load("res://scenes/menus/pre_game/main_menu.tscn").instantiate()
-	#get_tree().change_scene_to_file("res://scenes/menus/main_menu.tscn")
 	get_parent().get_parent().back()
 	get_tree().get_root().add_child(home_menu)
-	#get_tree().get_root().remove_child(get_parent().get_parent())
 	
 	get_parent().get_parent().queue_free()
 
@@ -60,6 +61,13 @@ func close_pressed() -> void:
 
 func quit() -> void:
 	get_tree().quit()
+
+func toggle_classic_icons(state: bool) -> void:
+	stg.classic_icons = state
+	if state == true:
+		get_parent().get_parent().show_board(true)
+		stg.draw_iso = false
+	gfx_changed.emit()
 
 # ======================== GRAPHICS ========================
 func set_display_mode(option: int) -> void:

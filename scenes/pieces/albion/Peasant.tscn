@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bluf4peoqb36t"]
+[gd_scene load_steps=23 format=3 uid="uid://bluf4peoqb36t"]
 
 [ext_resource type="Script" path="res://scenes/pieces/Piece.gd" id="1_38s2e"]
 [ext_resource type="PackedScene" uid="uid://crlskmf3fhan8" path="res://scenes/pieces/inherited/LogicPawn.tscn" id="1_jcbdf"]
@@ -6,9 +6,11 @@
 [ext_resource type="Shader" path="res://scenes/pieces/graphics/Piece.gdshader" id="2_vbty6"]
 [ext_resource type="Texture2D" uid="uid://drn0dw0ovuc4k" path="res://assets/pieces/albion/peasant.png" id="3_vyn0m"]
 [ext_resource type="Texture2D" uid="uid://dsfc42cu5anbj" path="res://assets/pieces/icons.png" id="6_6hxmq"]
+[ext_resource type="Texture2D" uid="uid://b050d58pv4p0n" path="res://assets/pieces/classic/P.png" id="6_jxai7"]
 [ext_resource type="PackedScene" uid="uid://bc53legwu4s01" path="res://scenes/pieces/graphics/AudioPiece.tscn" id="6_saumb"]
+[ext_resource type="Texture2D" uid="uid://cmado0pd2kdr3" path="res://assets/pieces/classic/p.png" id="7_25l27"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_6w0wn"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tx2xa"]
 resource_local_to_scene = true
 shader = ExtResource("2_vbty6")
 shader_parameter/tol = 0.05
@@ -57,16 +59,32 @@ animations = [{
 "speed": 3.0
 }]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_gtwpo"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_p460w"]
 atlas = ExtResource("6_6hxmq")
-region = Rect2(0, 0, 8, 8)
+region = Rect2(0, 0, 24, 24)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_cni4d"]
 resource_local_to_scene = true
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_gtwpo")
+"texture": ExtResource("6_jxai7")
+}],
+"loop": false,
+"name": &"0",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_25l27")
+}],
+"loop": false,
+"name": &"1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p460w")
 }],
 "loop": false,
 "name": &"default",
@@ -121,17 +139,19 @@ script = ExtResource("1_38s2e")
 [node name="LogicPiece" parent="." instance=ExtResource("1_jcbdf")]
 
 [node name="GraphicalPiece" parent="." instance=ExtResource("2_pu88p")]
-material = SubResource("ShaderMaterial_6w0wn")
+material = SubResource("ShaderMaterial_tx2xa")
 
 [node name="PhantomSprite" parent="GraphicalPiece/Phantom" index="2"]
 sprite_frames = SubResource("SpriteFrames_0qtaa")
 
 [node name="Icon" parent="GraphicalPiece" index="1"]
+use_parent_material = true
 sprite_frames = SubResource("SpriteFrames_cni4d")
 
 [node name="Sprite" parent="GraphicalPiece" index="2"]
 use_parent_material = true
 sprite_frames = SubResource("SpriteFrames_mhstg")
+animation = &"0_attack"
 
 [node name="Audio" parent="." instance=ExtResource("6_saumb")]
 

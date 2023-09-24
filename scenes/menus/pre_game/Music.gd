@@ -54,5 +54,8 @@ func track_timeout() -> void:
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	for bus_name in ["Master", "music", "sfx"]:
+		var bus := AudioServer.get_bus_index(bus_name)
+		AudioServer.set_bus_volume_db(bus, linear_to_db(0.5))
 	await get_tree().create_timer(1).timeout
 	play_track(tracks.MENU)

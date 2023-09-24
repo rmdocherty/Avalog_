@@ -1,10 +1,12 @@
-[gd_scene load_steps=19 format=3 uid="uid://cj1cnf4ucquff"]
+[gd_scene load_steps=21 format=3 uid="uid://cj1cnf4ucquff"]
 
 [ext_resource type="PackedScene" uid="uid://cfobj247gpa7q" path="res://scenes/pieces/Piece.tscn" id="1_4gq6f"]
 [ext_resource type="Shader" path="res://scenes/pieces/graphics/Piece.gdshader" id="2_o5uii"]
 [ext_resource type="Texture2D" uid="uid://ban074gi5g6r4" path="res://assets/pieces/albion/rogue.png" id="3_gb3wn"]
 [ext_resource type="Texture2D" uid="uid://dsfc42cu5anbj" path="res://assets/pieces/icons.png" id="4_clvyp"]
 [ext_resource type="AudioStream" uid="uid://draknrwfpohv5" path="res://assets/sfx/double_dagger.wav" id="4_fajbo"]
+[ext_resource type="Texture2D" uid="uid://dq473j1intfvl" path="res://assets/pieces/classic/N.png" id="4_p30ye"]
+[ext_resource type="Texture2D" uid="uid://cidwevhosuoi6" path="res://assets/pieces/classic/n.png" id="5_hhx1u"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_otgdc"]
 resource_local_to_scene = true
@@ -55,16 +57,32 @@ animations = [{
 "speed": 3.0
 }]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_55ryj"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_a8rw7"]
 atlas = ExtResource("4_clvyp")
-region = Rect2(16, 0, 8, 8)
+region = Rect2(48, 0, 24, 24)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_fq68s"]
 resource_local_to_scene = true
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_55ryj")
+"texture": ExtResource("4_p30ye")
+}],
+"loop": false,
+"name": &"0",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_hhx1u")
+}],
+"loop": false,
+"name": &"1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a8rw7")
 }],
 "loop": false,
 "name": &"default",
@@ -124,6 +142,7 @@ sprite_frames = SubResource("SpriteFrames_hjhmg")
 
 [node name="Icon" parent="GraphicalPiece" index="1"]
 sprite_frames = SubResource("SpriteFrames_fq68s")
+animation = &"default"
 
 [node name="Sprite" parent="GraphicalPiece" index="2"]
 sprite_frames = SubResource("SpriteFrames_bhqf4")

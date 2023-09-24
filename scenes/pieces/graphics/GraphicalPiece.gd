@@ -135,8 +135,15 @@ func update_iso(iso: bool) -> void:
 	else:
 		sprite.hide()
 		$Icon.show()
-	$Phantom/PlayerCircle.change_draw_mode(iso)
+	circle.change_draw_mode(iso)
+	$Phantom/Hover.polygon = circle.inner_points
 
+func classic_icons_toggle(state: bool) -> void:
+	if state == true and stg.mode == cst.modes.CLASSIC:
+		var colour_s: String = str(piece.colour)
+		$Icon.play(colour_s)
+	else:
+		$Icon.play("default")
 
 # ======================= PROCESSES =======================
 func _ready() -> void:

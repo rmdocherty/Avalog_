@@ -96,28 +96,26 @@ func add_piece(piece_letter: String, pos: Vector2, piece_n: int) -> Piece:
 
 
 # ======================== GAME LOGIC =================
-func init(fen: String) -> void:
+func init(fen: String, track: int=1) -> void:
 	remove_all()
 	$GUILayer/win_menu.hide_winner()
 	$GUILayer.show_bar()
-	if stg.total_time_min <=5:
+
+	if stg.total_time_min == 5:
 		Music.switch_tracks(Music.tracks.TIME)
-	else:
-		Music.switch_tracks(Music.tracks.GAME)
+	else:	
+		Music.switch_tracks(track)
+
 	all_pieces = add_pieces_from_fen(fen)
 	game_manager.add_pieces_from_nodes(all_pieces)
 	game_manager.init()
-	
 	# short delay here so all nodes can load before we find moves
 	$InitialTimer.start()
 
 func custom_init(map: int, FEN: String) -> void:
 	$GUILayer.hide()
 	$board.play(str(map))
-	init(FEN)
-	#for p in all_pieces:
-	#	p.set_shader_params(stg.replace_palettes)
-	#take_turn(false)
+	init(FEN, Music.tracks.MENU)
 
 func start_game() -> void:
 	take_turn(false)
@@ -163,9 +161,11 @@ func gfx_update() -> void:
 		var new_scale := stg.PIECE_DRAW_SCALE / old_scale 
 		p.graphics.sprite.apply_scale(new_scale) #stg.PIECE_DRAW_SCALE
 		p.graphics.get_node("Phantom/PhantomSprite").apply_scale(new_scale) #stg.PIECE_DRAW_SCALE
+		p.graphics.classic_icons_toggle(stg.classic_icons)
 		p.set_graphic_pos(p.logic.position, stg.draw_iso)
 		p.graphics.update_iso(stg.draw_iso)
 		p.update_lines(p.logic.nested_valid_moves)
+
 
 func check_win(piece: Piece) -> void:
 	var logic: LogicPiece = piece.logic

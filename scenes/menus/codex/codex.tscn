@@ -293,6 +293,11 @@ shape = SubResource("RectangleShape2D_8mlct")
 position = Vector2(742, 351)
 shape = SubResource("RectangleShape2D_8dktx")
 
+[node name="ShowLines" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
 [connection signal="pressed" from="Parent/Back" to="." method="back"]
 [connection signal="input_event" from="Parent/Book/LeftPage" to="." method="page_click" binds= [-1]]
 [connection signal="input_event" from="Parent/Book/RightPage" to="." method="page_click" binds= [1]]
+[connection signal="timeout" from="ShowLines" to="." method="show_piece_lines"]

@@ -30,8 +30,8 @@ func _ready() -> void:
 	minigame.get_node("bg").hide()
 	minigame.custom_init(0, "")
 	minigame.change_player_each_turn = false
-	minigame.get_node("Camera2D").target_zoom = Vector2(1, 1)
-	#minigame.get_node("Camera2D").target_pos = Vector2(40, 25)
+	minigame.get_node("Camera2D").target_zoom = Vector2(1.4, 1.4)
+	minigame.get_node("Camera2D").target_pos = Vector2(8, -8)
 	
 	sprite = book.get_node("Sprite")
 	sprite.play("closed")
@@ -93,12 +93,15 @@ func load_page_data(idx: int) -> void:
 		var AFEN = "8/8/8/4%s%s/8/8/8/8" % [cst.fen_faction_lookup[faction_int], type_lookup[type_int].to_upper()]
 		minigame.remove_all()
 		minigame.custom_init(faction_int, AFEN)
+		$ShowLines.start()
 	else:
 		for N in $Parent/Book/Page.get_children():
 			N.hide()
 		$Parent/Book/Page/LoreText.show()
 	$Parent/Book/Page/LoreText.text = data["lore"]
 
+func show_piece_lines() -> void:
+	minigame.all_pieces[0].graphics.mouse_entered_circle()
 
 func _process(delta: float) -> void:
 	if state == TEXT_APPEAR:

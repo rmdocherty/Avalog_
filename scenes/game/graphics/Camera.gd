@@ -32,8 +32,9 @@ func zoom_out() -> void:
 	target_zoom = clip(target_zoom - flip_vec * Vector2(0.1, 0.1))
 
 func flip_camera() -> void:
-	flip_vec = Vector2( -1 * flip_vec[0], flip_vec[1])
-	target_zoom = Vector2(-1, 1) * Vector2(target_zoom[0], target_zoom[1])
+	var flip: Vector2 = Vector2(-1, 1)
+	flip_vec *= flip
+	target_zoom = flip * Vector2(target_zoom[0], target_zoom[1])
 	zoom = target_zoom
 
 func movement_zoom_in(fraction: float, pos: Vector2) -> void:

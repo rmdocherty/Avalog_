@@ -38,6 +38,7 @@ var total_time_min := 30
 var total_time_seconds := 0
 
 var draw_iso := true
+var classic_icons := false
 
 var master_vol := 0.5
 var music_vol := 0.5

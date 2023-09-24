@@ -62,7 +62,7 @@ func map_collision_to_point(norm_m: Vector2, ray_end: Vector2, collision_point: 
 	For ranged/no_attack, do nothing if enemy or ally. If line and ally, do nothing, if enemy add
 	extra distance to allow taking. If jumping and ally, return 0, if enemy return target position.
 	Written to be 'branchless' using int flags rather than if/else blocks (probably an unnecessary optimization)."""
-	var epsilon :=  0.5 * norm_m # small offset to avoid same colour collisions
+	var epsilon :=  0.5 * cst.LOGIC_PIECE_RADIUS * norm_m # small offset to avoid same colour collisions
 	var collision_point_to_self := collision_point - global_position
 	var allowed_end_point := collision_point_to_self.length() * norm_m - cst.LOGIC_PIECE_RADIUS * norm_m - epsilon
 	

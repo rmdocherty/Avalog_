@@ -1,7 +1,7 @@
 extends Control
 
 const MOVE_SPEED: float = -18
-const WRAP_ROUND_Y: int = -1250
+const WRAP_ROUND_Y: int = -1310
 const RESET_Y: int = 700
 var moving: bool = false
 
@@ -39,10 +39,6 @@ func _ready():
 		parse_entry(key, value)
 	await get_tree().create_timer(0.75).timeout
 	moving = true
-	
-	
-	
-	#$Control.position = Vector2(0, 0)
 
 func _process(delta: float):
 	if moving:
@@ -64,6 +60,7 @@ var data = {
 		"Sprites adapted from Gustavo Vituri",
 		"Desk & Book by Humble Pixel",
 		"Confetti script adapted from hiulit",
+		"'Classic' pieces by Cburnett"
 	],
 	"Fonts": [
 		"Bitfantasy by Nimble Beasts Collective",
