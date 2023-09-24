@@ -328,6 +328,33 @@ max_value = 1.0
 step = 0.05
 value = 0.05
 
+[node name="Track" type="HBoxContainer" parent="Outer/Contents/Bar/Container/Sound/v"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Outer/Contents/Bar/Container/Sound/v/Track"]
+layout_mode = 2
+theme = ExtResource("3_qru51")
+text = "Track: "
+
+[node name="HSlider" type="OptionButton" parent="Outer/Contents/Bar/Container/Sound/v/Track"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme = ExtResource("3_4niey")
+item_count = 6
+popup/item_0/text = "Melancholy"
+popup/item_0/id = 0
+popup/item_1/text = "Peaceful"
+popup/item_1/id = 1
+popup/item_2/text = "Frantic"
+popup/item_2/id = 2
+popup/item_3/text = "Beginning"
+popup/item_3/id = 3
+popup/item_4/text = "Embark"
+popup/item_4/id = 4
+popup/item_5/text = "Groovy"
+popup/item_5/id = 5
+
 [node name="Close" type="TextureButton" parent="Outer/Contents"]
 layout_mode = 0
 offset_left = 430.0
@@ -350,4 +377,5 @@ stretch_mode = 0
 [connection signal="value_changed" from="Outer/Contents/Bar/Container/Sound/v/Master/HSlider" to="." method="set_master_vol"]
 [connection signal="value_changed" from="Outer/Contents/Bar/Container/Sound/v/Music/HSlider" to="." method="set_music_vol"]
 [connection signal="value_changed" from="Outer/Contents/Bar/Container/Sound/v/Effects/HSlider" to="." method="set_effects_vol"]
+[connection signal="item_selected" from="Outer/Contents/Bar/Container/Sound/v/Track/HSlider" to="." method="set_track"]
 [connection signal="pressed" from="Outer/Contents/Close" to="." method="close_pressed"]

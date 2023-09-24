@@ -6,9 +6,10 @@ var init_vol := stg.master_vol
 var shown := false
 var prev_master_vol := 1.
 
+
 func _ready() -> void:
-	var values: Array = [stg.display_mode, stg.ANIM_ON, stg.ANIM_SPEED, 1, stg.LINE_DRAW_WIDTH, false, stg.master_vol, stg.music_vol, stg.effects_vol]
-	var names: Array[String] = ["Fullscreen", "Anims", "AnimSpeed", "SpriteSize", "LineWidth", "Mute", "Master", "Music", "Effects"]
+	var values: Array = [stg.display_mode, stg.ANIM_ON, stg.ANIM_SPEED, 1., stg.LINE_DRAW_WIDTH, false, stg.master_vol, stg.music_vol, stg.effects_vol, Music.playing_track]
+	var names: Array[String] = ["Fullscreen", "Anims", "AnimSpeed", "SpriteSize", "LineWidth", "Mute", "Master", "Music", "Effects", "Track"]
 	
 	for i in range(len(values)):
 		var tab := "/Graphics/v/" if i < 5 else "/Sound/v/"
@@ -27,6 +28,8 @@ func set_state(node: Control, value) -> void:
 	elif value is String:
 		var val = 0 if value == "windowed" else 1
 		node.selected = val
+	elif value is int:
+		node.selected = value
 
 # ======================== GAME ========================
 func show_self() -> void:
@@ -118,3 +121,6 @@ func set_music_vol(value: float) -> void:
 func set_effects_vol(value: float) -> void:
 	stg.effects_vol = value
 	change_volume(value, "sfx")
+
+func set_track(value: int) -> void:
+	Music.switch_tracks(value)

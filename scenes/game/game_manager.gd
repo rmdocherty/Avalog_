@@ -31,11 +31,13 @@ func get_moves():
 		p.state = p.states.IDLE
 		p.get_all_moves()
 		# need to check here (as opposed to when moved) to avoid double taking when promoting whilst taking
+		
+	var end := Time.get_ticks_usec()
+	for p in alive_pieces:
 		var promote: bool = check_for_promotion(p, p.global_position)
 		if promote:
 			var new_logic = promote_piece(p, p.global_position)
 			new_logic.get_all_moves()
-	var end := Time.get_ticks_usec()
 	print(end - start)
 
 func take_turn(change_player: bool=true) -> int:

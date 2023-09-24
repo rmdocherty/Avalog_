@@ -34,6 +34,7 @@ func hide_bar(hide_btns: bool=false) -> void:
 	if hide_btns:
 		$Settings.hide()
 		$HideBar.hide()
+		$FlatView.hide()
 	
 func show_bar() -> void:
 	var clocks = [$Clock1, $Clock2]

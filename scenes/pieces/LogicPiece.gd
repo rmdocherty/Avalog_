@@ -10,6 +10,7 @@ signal piece_taken
 enum states {IDLE, MOVED, ATTACKING, DEAD}
 var state := states.IDLE
 var moved := false
+var dragging := false
 
 var active_mvs: Array = []
 var nested_valid_moves: Array = []

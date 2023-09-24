@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Avalog_2"
+config/name="Avalog"
 run/main_scene="res://scenes/menus/pre_game/main_menu.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
 config/icon="res://icon.png"

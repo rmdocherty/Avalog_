@@ -11,6 +11,8 @@ var to_move := Vector2(0, 0)
 var moving_to_attack := false
 var move_ended := false
 
+var dragging := false
+
 
 var flat_starts := PackedVector2Array([])
 var flat_ends := PackedVector2Array([])

@@ -1,10 +1,12 @@
 extends Node2D
 
-enum tracks {MENU, GAME, TIME}
+enum tracks {MENU, GAME, TIME, BEGINNING, EMBARK, GROOVY}
+var track_names: Array[String] = ["Melancholy", "Peaceful", "Frantic", "Beginning", "Embark", "Groovy"]
+@onready var track_nodes: Array[AudioStreamPlayer] = [$Melancholy, $Peaceful, $Frantic, $Beginning, $Embark, $Groovy]
 var playing_track: tracks
 var target_track: int = -1
 
-var FADE_TIME := 15
+var FADE_TIME := 12
 var current_fade_time := 0.
 
 const default_vol_db := -15
@@ -13,12 +15,7 @@ const default_vol_linear := db_to_linear(default_vol_db)
 
 func get_track(track_n: tracks) -> AudioStreamPlayer:
 	var out: AudioStreamPlayer
-	if track_n == 0:
-		out = $MenuMusic
-	elif track_n == 1:
-		out = $DefaultMusic
-	elif track_n == 2:
-		out = $TimeOutMusic
+	out = track_nodes[track_n]
 	return out
 
 func play_track(track_n: tracks) -> void:

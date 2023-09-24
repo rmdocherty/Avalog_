@@ -210,12 +210,14 @@ func show_buttons() -> void:
 	var i := 0
 	var y_pos := [-28, -8]
 	for btn in [$ConfirmMove, $RejectMove]:
-		btn.global_position = global_pos + Vector2(16, y_pos[i])
-		btn.show()
+		var x := 16
 		if $Camera2D.flip_vec[0] == -1:
 			btn.flip_h = true
+			x = -32
 		else:
 			btn.flip_h = false
+		btn.global_position = global_pos + Vector2(x, y_pos[i])
+		btn.show()
 		i += 1
 
 func hide_buttons() -> void:
