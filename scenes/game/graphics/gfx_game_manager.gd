@@ -145,7 +145,7 @@ func take_turn(change_player: bool=true) -> void:
 		p.show()
 		p.set_graphic_pos(logic.position, stg.draw_iso)
 		p.change_turn(turn_n)
-		p.update_lines(logic.nested_valid_moves)
+		#p.update_lines(logic.nested_valid_moves)
 		check_win(p)
 		
 		# Display current turn pieces and further down pieces on top 

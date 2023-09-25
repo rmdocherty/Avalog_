@@ -15,6 +15,8 @@ var passive_anim: String = "0_passive"
 var attack_anim: String = "0_attack"
 
 func mouse_entered_circle() -> void:
+	# maybe change this later, or remove previous call
+	piece.update_lines(piece.logic.nested_valid_moves)
 	if piece.moving == false:
 		sprite.play(passive_anim)
 		show_lines()
