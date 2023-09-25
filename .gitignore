@@ -2,3 +2,4 @@
 .godot/
 .gitattributes
 Avalog_2*
+addons/*

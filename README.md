@@ -14,7 +14,7 @@
 
 
 <h1 align="center">
-<img src="https://cdn.cloudflare.steamstatic.com/steam/apps/2480820/extras/game_gif_convert.gif?t=1690132788" width="600">
+<img src="https://rmdocherty.github.io/images/avalog.gif" width="600">
 </h1>
 
 <h4>Links:</h4>

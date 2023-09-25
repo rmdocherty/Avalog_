@@ -4,8 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://bwaumvo2l7ve8" path="res://assets/menus/main_menu_bg.png" id="2_pmftf"]
 [ext_resource type="LabelSettings" uid="uid://c7k4afipkahja" path="res://assets/menus/styles/main_menu_text.tres" id="3_cvsod"]
 [ext_resource type="Theme" uid="uid://8r67cpau5hxr" path="res://assets/menus/styles/main_menu_theme.tres" id="4_mea82"]
-[ext_resource type="Texture2D" uid="uid://d4gwmnxfwxfk1" path="res://assets/menus/parallax/main_menu_bg_no_sky.png" id="5_ghm66"]
-[ext_resource type="Texture2D" uid="uid://ddkq35ua8lkkx" path="res://assets/menus/parallax/sky.jpeg" id="6_mba43"]
+[ext_resource type="Texture2D" uid="uid://vrkixkp3cpox" path="res://assets/menus/parallax/burg_eltz.png" id="5_j57kx"]
+[ext_resource type="Texture2D" uid="uid://ih057uvntdla" path="res://assets/menus/parallax/sky.png" id="6_qudjo"]
 
 [node name="MainMenu" type="Node2D"]
 script = ExtResource("1_2yqao")
@@ -106,7 +106,7 @@ text = "Quit "
 [node name="Castle" type="TextureRect" parent="Canv/HSplit"]
 layout_mode = 2
 size_flags_horizontal = 3
-texture = ExtResource("5_ghm66")
+texture = ExtResource("5_j57kx")
 
 [node name="PBG" type="ParallaxBackground" parent="Canv/HSplit/Castle"]
 
@@ -116,7 +116,7 @@ motion_mirroring = Vector2(1356, 0)
 [node name="PSky" type="Sprite2D" parent="Canv/HSplit/Castle/PBG/PLayer"]
 position = Vector2(1122.71, 197.5)
 scale = Vector2(4.425, 4.425)
-texture = ExtResource("6_mba43")
+texture = ExtResource("6_qudjo")
 
 [connection signal="pressed" from="Canv/HSplit/BG/Cont/Buttons/Local" to="." method="load_mode_select_menu" binds= [0]]
 [connection signal="pressed" from="Canv/HSplit/BG/Cont/Buttons/Online" to="." method="load_mode_select_menu" binds= [1]]

@@ -1,7 +1,7 @@
 extends Control
 
 const MOVE_SPEED: float = -18
-const WRAP_ROUND_Y: int = -1310
+const WRAP_ROUND_Y: int = -1340
 const RESET_Y: int = 700
 var moving: bool = false
 
@@ -60,7 +60,8 @@ var data = {
 		"Sprites adapted from Gustavo Vituri",
 		"Desk & Book by Humble Pixel",
 		"Confetti script adapted from hiulit",
-		"'Classic' pieces by Cburnett"
+		"'Classic' pieces by Cburnett",
+		"Burg Eltz castle photo adapted from Timo Rüßler"
 	],
 	"Fonts": [
 		"Bitfantasy by Nimble Beasts Collective",
