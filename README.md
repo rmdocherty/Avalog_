@@ -14,9 +14,9 @@
 - **Lore!** Explore some of the Arthurian (and definitely not Arthurian) mythology.
 
 
-<h1 align="center">
-<img src="https://rmdocherty.github.io/images/avalog_optimized.gif" width="600">
-</h1>
+<p align="center">
+<img src="https://rmdocherty.github.io/images/avalog_optimized.gif">
+</p>
 
 <h4>Links:</h4>
 
