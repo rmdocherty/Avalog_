@@ -4,7 +4,7 @@ var extra_moves: Array[Vector2] = []
 var castling_vectors: Array[Vector2] = [Vector2(1, 0), Vector2(-1, 0)]
 var castles: Array = [0, 0]
 
-func get_all_moves() -> Array:
+func get_all_moves(_turn_n: int) -> Array:
 	# Loop through all active moves attribute, find valid moves and assign to nested_valid moves attr
 	var output: Array = []
 	for mv in active_mvs:

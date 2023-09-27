@@ -97,7 +97,7 @@ func play() -> void:
 		var child: Node = load(game_path).instantiate()
 		get_tree().get_root().add_child(child)
 		child.init(stg.chosen_fen)
-		queue_free()
+		self.queue_free()
 		#get_tree().get_root().remove_child(self)
 	elif stg.network == cst.network_types.ONLINE:
 		stg.look_type = cst.look_types.AUTO

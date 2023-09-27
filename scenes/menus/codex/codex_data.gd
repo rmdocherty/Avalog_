@@ -9,7 +9,7 @@ const codex_data = {
 		"faction": 0,
 		"type": "",
 		"tooltip": "", # TODO: Change will be to are in final
-		"lore": "Welcome to Avalog!\n\nAvalog is continuous chess game - pieces aren't just stuck to discrete squares on the board.\nThere are some slight changes to normal chess:\n1) No check - take the King to win.\n2) Auto-promotion to queen.\n3) No en-passant\n4) The King can castle into/out of check.\n\nThere are other factions, with similar pieces that will be available in Draft or Custom mode. This enchanted book (try clicking the pieces!) explains how they move and their story.\n\nHave fun!",
+		"lore": "Welcome to Avalog!\n\nAvalog is continuous chess game - pieces aren't just stuck to discrete squares on the board.\nThere are some slight changes to normal chess:\n1) No check - take the King to win!\n2) Auto-promotion to queen.\n3) En-passant in 'Classic' mode only\n4) The King can castle into/out of check.\n\nThere are other factions, with similar pieces that will be available in Draft or Custom mode. This enchanted book (try clicking the pieces!) explains how they move and their story.\n\nHave fun!",
 		"author": ""
 		},
 	"1": {

@@ -10,7 +10,7 @@ var PIECE_DRAW_SCALE := Vector2(2.2, 2.2)#Vector2(2.5, 2.5) # defo add this as a
 const full_board := "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR"
 var half_FEN := "rnbqkbnr/pppppppp/"
 var opponent_half_FEN := "rnbqkbnr/pppppppp/"
-const test := "r1kQ3n/1P6/4B/p7/1P6/7p/2p2prP/R3K2R"
+const test := "r1kQ2pn/1P6/p3B2P/2r/1P6/7p/2p2prP/R3K2R"
 const marketing := "8/8/8/8/8/8/1k/R"
 var chosen_fen := test #test
 

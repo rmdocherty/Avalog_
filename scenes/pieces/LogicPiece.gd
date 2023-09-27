@@ -21,7 +21,7 @@ func _ready() -> void:
 	$Collision.shape.radius = cst.LOGIC_PIECE_RADIUS
 
 
-func get_all_moves() -> Array:
+func get_all_moves(_turn_n: int) -> Array:
 	# Loop through all active moves attribute, find valid moves and assign to nested_valid moves attr
 	var output: Array = []
 	for mv in active_mvs:

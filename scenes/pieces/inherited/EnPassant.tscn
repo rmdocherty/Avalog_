@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://c34icdmp5yuem"]
+
+[ext_resource type="PackedScene" uid="uid://bcfk18fdrro4v" path="res://scenes/pieces/LogicPiece.tscn" id="1_upypg"]
+[ext_resource type="Script" path="res://scenes/pieces/inherited/EnPassant.gd" id="2_gn1i5"]
+
+[node name="LogicPiece" instance=ExtResource("1_upypg")]
+collision_layer = 16
+collision_mask = 16
+script = ExtResource("2_gn1i5")
