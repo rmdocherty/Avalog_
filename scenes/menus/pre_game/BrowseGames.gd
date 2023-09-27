@@ -146,21 +146,49 @@ func _on_lobby_created(connection: int, lobby_id: int) -> void:
 		Steam.setLobbyData(lobby_id, "name", steam.STEAM_USERNAME)
 		Steam.setLobbyData(lobby_id, "mode", str(stg.mode))
 		Steam.setLobbyData(lobby_id, "time", str(stg.total_time_min))
+		Steam.setLobbyData(lobby_id, "private", str(stg.private))
 		# Allow P2P connections to fallback to being relayed through Steam if needed
 		var RELAY: bool = Steam.allowP2PPacketRelay(true)
 		print("Allowing Steam to be relay backup: "+str(RELAY))
 
 func _get_lobbies() -> void:
-	# This will fire the _on_Lobby_Match_List() when complete
+	# If in private mode, only look at friend's lobbies
+	if stg.private:
+		var lobbies := _get_friends_lobbies()
+		_on_lobby_match_list(lobbies)
+	else:
+		_get_global_lobbies()
+
+
+func _get_global_lobbies() -> void:
 	if game_filter > -1:
 		Steam.addRequestLobbyListStringFilter("mode", str(stg.mode), Steam.LOBBY_COMPARISON_EQUAL)
 	if time_filter > -1:
 		Steam.addRequestLobbyListStringFilter("time", str(stg.total_time_min), Steam.LOBBY_COMPARISON_EQUAL)
+	Steam.addRequestLobbyListStringFilter("private", str(false), Steam.LOBBY_COMPARISON_EQUAL)
 	Steam.addRequestLobbyListDistanceFilter(Steam.LOBBY_DISTANCE_FILTER_FAR) # Set distance to far
 	Steam.addRequestLobbyListFilterSlotsAvailable(1)
 	Steam.addRequestLobbyListResultCountFilter(200)
 	Steam.requestLobbyList()
-	
+
+
+func _get_friends_lobbies() -> Array:
+	var results: Array = []
+	for i in range(0, Steam.getFriendCount()):
+		var steam_id: int = Steam.getFriendByIndex(i, Steam.FRIEND_FLAG_IMMEDIATE)
+		var game_info: Dictionary = Steam.getFriendGamePlayed(steam_id)
+		if game_info == {}: # friend is not playing a game
+			continue
+		else:
+			# Check if it's the same game as ours
+			var app_id: int = game_info['id']
+			var lobby = game_info['lobby']
+			if app_id != Steam.getAppID() or lobby is String:
+				# Either not in this game, or not in a lobby
+				continue
+			else:
+				results.append(lobby)
+	return results
 
 func _on_lobby_match_list(lobbies: Array) -> void:
 	var new_data = []

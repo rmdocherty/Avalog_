@@ -74,7 +74,7 @@ func map_collision_to_point(norm_m: Vector2, ray_end: Vector2, collision_point: 
 	var line := int(is_line)
 	var jump := int(is_jumping)
 	
-	var line_attack := 2 * cst.LOGIC_PIECE_RADIUS * norm_m
+	var line_attack := 2.5 * cst.LOGIC_PIECE_RADIUS * norm_m
 	var line_dist := (line * allowed_end_point) + (line * attack * line_attack)
 	var jump_dist := (jump * attack * ray_end) #* Vector2(0, 0)
 

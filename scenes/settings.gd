@@ -20,6 +20,7 @@ var mode := cst.modes.CLASSIC
 var display_mode := "windowed"
 
 var look_type := cst.look_types.AUTO
+var private := false
 var player_colour: cst.colour = cst.colour.WHITE
 
 var chosen_factions: Array[int] = [cst.factions.ALBION, cst.factions.ALBION]

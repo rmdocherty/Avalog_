@@ -482,6 +482,12 @@ tooltip_text = "Look at existing lobbies"
 theme = ExtResource("3_4xegf")
 text = "Browse"
 
+[node name="Private" type="CheckBox" parent="Canv/Cont/PlayButtons/OnlineOptions"]
+layout_mode = 2
+theme = ExtResource("3_4xegf")
+theme_override_font_sizes/font_size = 32
+text = " Friends Only"
+
 [node name="spacer" type="HBoxContainer" parent="Canv/Cont/PlayButtons"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -522,5 +528,6 @@ stretch_mode = 5
 [connection signal="item_selected" from="Canv/Cont/SpritesMapFactions/Factions/P2" to="." method="set_faction" binds= [1]]
 [connection signal="pressed" from="Canv/Cont/PlayButtons/OnlineOptions/Host" to="." method="host"]
 [connection signal="pressed" from="Canv/Cont/PlayButtons/OnlineOptions/Browse" to="." method="browse"]
+[connection signal="toggled" from="Canv/Cont/PlayButtons/OnlineOptions/Private" to="." method="private"]
 [connection signal="pressed" from="Canv/Cont/PlayButtons/Play" to="." method="play"]
 [connection signal="pressed" from="Canv/Back" to="." method="go_back"]

@@ -168,7 +168,7 @@ func change_turn(new_turn_number: int) -> void:
 func post_gfx_move() -> void:
 	move_ended = true
 	$Audio/Move.stop()
-	if moving_to_attack:
+	if moving_to_attack and stg.classic_icons == false:
 		$Audio/AttackDelay.start()
 		await play_attack_anim()
 	var sprite: AnimatedSprite2D = graphics.sprite
@@ -200,6 +200,8 @@ func _process(delta: float) -> void:
 		if current_dist < whole_dist:
 			var norm_dist := (whole_dist - current_dist) / whole_dist
 			var moved_along := 0.3 + norm_dist
+			if stg.classic_icons == true:
+				moved_along = 1
 			var moved := to_move.normalized() * delta * piece_vel * moved_along * stg.ANIM_SPEED * 1.6
 			moved.clamp(cst.LOGIC_SQ_W * Vector2(0.25,0.25), cst.LOGIC_SQ_W * Vector2(1,1))
 			total_moved += moved
@@ -211,7 +213,7 @@ func _process(delta: float) -> void:
 				g_pos = moved
 			graphics.global_position += g_pos
 			
-			if current_dist > whole_dist / 2 and moving_to_attack and whole_dist > 100 :
+			if current_dist > whole_dist / 2 and moving_to_attack and whole_dist > 100 and stg.draw_iso == true:
 				# dynamic zoom
 				var move_frac := current_dist / whole_dist
 				var camera: Camera2D = gfx_manager.get_node("Camera2D")

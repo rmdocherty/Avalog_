@@ -103,6 +103,9 @@ func play() -> void:
 		stg.look_type = cst.look_types.AUTO
 		hlp.load_child_remove_parent("res://scenes/menus/pre_game/BrowseGames.tscn", self)
 
+func private(state: bool) -> void:
+	stg.private = state
+
 func host() -> void:
 	stg.look_type = cst.look_types.HOST
 	hlp.load_child_remove_parent("res://scenes/menus/pre_game/BrowseGames.tscn", self)
