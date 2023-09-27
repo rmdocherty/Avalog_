@@ -12,7 +12,7 @@ var half_FEN := "rnbqkbnr/pppppppp/"
 var opponent_half_FEN := "rnbqkbnr/pppppppp/"
 const test := "r1kQ3n/1P6/4B/p7/1P6/7p/2p2prP/R3K2R"
 const marketing := "8/8/8/8/8/8/1k/R"
-var chosen_fen := marketing #test
+var chosen_fen := test #test
 
 # Game variables: updated during runtime
 var network := cst.network_types.LOCAL

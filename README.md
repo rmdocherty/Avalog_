@@ -15,7 +15,7 @@
 
 
 <h1 align="center">
-<img src="https://rmdocherty.github.io/images/avalog.gif" width="600">
+<img src="https://rmdocherty.github.io/images/avalog_optimized.gif" width="600">
 </h1>
 
 <h4>Links:</h4>
