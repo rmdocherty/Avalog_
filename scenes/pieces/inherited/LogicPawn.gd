@@ -18,7 +18,7 @@ func post_move(delta: Vector2) -> void:
 	var is_long: bool = delta.length() > 1.5 * cst.LOGIC_SQ_W
 	var is_vertical: bool = (delta[0] == 0)
 	
-	if is_long and is_vertical:
+	if is_long and is_vertical and stg.mode == cst.modes.CLASSIC:
 		en_passant_possible = true
 		en_passant_node = en_passant_class.instantiate()
 		en_passant_turn_n = turn_number
