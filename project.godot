@@ -10,10 +10,47 @@ config_version=5
 
 [application]
 
-config/name="Avalog_2"
-run/main_scene="res://scenes/menus/main_menu.tscn"
+config/name="Avalog"
+run/main_scene="res://scenes/menus/pre_game/main_menu.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
 config/icon="res://icon.png"
+
+[autoload]
+
+cst="*res://scenes/constants.gd"
+stg="*res://scenes/settings.gd"
+hlp="*res://scenes/helper.gd"
+lkp="*res://scenes/game/lookup.gd"
+drawing="*res://scenes/pieces/graphics/drawing.gd"
+steam="*res://scenes/steam.gd"
+Music="*res://scenes/menus/pre_game/Music.tscn"
+
+[display]
+
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
+
+[dotnet]
+
+project/assembly_name="Avalog_2"
+
+[gui]
+
+theme/custom_font="res://assets/menus/styles/Pixuf.ttf"
+
+[input]
+
+click={
+"deadzone": 0.5,
+"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":0,"position":Vector2(0, 0),"global_position":Vector2(0, 0),"factor":1.0,"button_index":1,"canceled":false,"pressed":false,"double_click":false,"script":null)
+]
+}
+
+[layer_names]
+
+2d_physics/layer_1="Logic"
+2d_physics/layer_2="Mouse"
+2d_physics/layer_5="en_passant"
 
 [rendering]
 

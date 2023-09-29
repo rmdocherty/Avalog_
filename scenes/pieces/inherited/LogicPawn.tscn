@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://crlskmf3fhan8"]
+
+[ext_resource type="PackedScene" uid="uid://bcfk18fdrro4v" path="res://scenes/pieces/LogicPiece.tscn" id="1_eqa2u"]
+[ext_resource type="Script" path="res://scenes/pieces/inherited/LogicPawn.gd" id="2_cqipv"]
+
+[node name="LogicPiece" instance=ExtResource("1_eqa2u")]
+collision_layer = 17
+collision_mask = 17
+script = ExtResource("2_cqipv")

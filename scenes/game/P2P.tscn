@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://8tre3shcbkkj"]
+
+[ext_resource type="Script" path="res://scenes/game/P2P.gd" id="1_71itt"]
+
+[node name="P2P" type="Node"]
+script = ExtResource("1_71itt")

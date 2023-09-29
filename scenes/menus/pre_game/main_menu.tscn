@@ -1,0 +1,125 @@
+[gd_scene load_steps=7 format=3 uid="uid://bfta3kebila53"]
+
+[ext_resource type="Script" path="res://scenes/menus/pre_game/main_menu.gd" id="1_2yqao"]
+[ext_resource type="Texture2D" uid="uid://bwaumvo2l7ve8" path="res://assets/menus/main_menu_bg.png" id="2_pmftf"]
+[ext_resource type="LabelSettings" uid="uid://c7k4afipkahja" path="res://assets/menus/styles/main_menu_text.tres" id="3_cvsod"]
+[ext_resource type="Theme" uid="uid://8r67cpau5hxr" path="res://assets/menus/styles/main_menu_theme.tres" id="4_mea82"]
+[ext_resource type="Texture2D" uid="uid://vrkixkp3cpox" path="res://assets/menus/parallax/burg_eltz.png" id="5_j57kx"]
+[ext_resource type="Texture2D" uid="uid://ih057uvntdla" path="res://assets/menus/parallax/sky.png" id="6_qudjo"]
+
+[node name="MainMenu" type="Node2D"]
+script = ExtResource("1_2yqao")
+
+[node name="Canv" type="CanvasLayer" parent="."]
+
+[node name="HSplit" type="HBoxContainer" parent="Canv"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = -1
+
+[node name="BG" type="TextureRect" parent="Canv/HSplit"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.63
+texture = ExtResource("2_pmftf")
+stretch_mode = 1
+
+[node name="Cont" type="VBoxContainer" parent="Canv/HSplit/BG"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.05
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 60
+
+[node name="Banner" type="ColorRect" parent="Canv/HSplit/BG/Cont"]
+custom_minimum_size = Vector2(0, 120)
+layout_mode = 2
+color = Color(0.0901961, 0.360784, 0.545098, 1)
+
+[node name="Label" type="Label" parent="Canv/HSplit/BG/Cont/Banner"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Avalog"
+label_settings = ExtResource("3_cvsod")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Buttons" type="VBoxContainer" parent="Canv/HSplit/BG/Cont"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 80
+
+[node name="Local" type="Button" parent="Canv/HSplit/BG/Cont/Buttons"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("4_mea82")
+text = "Local"
+
+[node name="Online" type="Button" parent="Canv/HSplit/BG/Cont/Buttons"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("4_mea82")
+text = "Online
+"
+
+[node name="Codex" type="Button" parent="Canv/HSplit/BG/Cont/Buttons"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("4_mea82")
+text = "Codex
+"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Canv/HSplit/BG/Cont"]
+layout_mode = 2
+
+[node name="Credits" type="Button" parent="Canv/HSplit/BG/Cont/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+size_flags_stretch_ratio = 0.7
+theme = ExtResource("4_mea82")
+theme_override_font_sizes/font_size = 45
+text = " Credits"
+
+[node name="Quit" type="Button" parent="Canv/HSplit/BG/Cont/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 8
+size_flags_stretch_ratio = 0.7
+theme = ExtResource("4_mea82")
+theme_override_colors/font_hover_color = Color(0.639216, 0, 0, 1)
+theme_override_font_sizes/font_size = 45
+text = "Quit "
+
+[node name="Castle" type="TextureRect" parent="Canv/HSplit"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("5_j57kx")
+
+[node name="PBG" type="ParallaxBackground" parent="Canv/HSplit/Castle"]
+
+[node name="PLayer" type="ParallaxLayer" parent="Canv/HSplit/Castle/PBG"]
+motion_mirroring = Vector2(1356, 0)
+
+[node name="PSky" type="Sprite2D" parent="Canv/HSplit/Castle/PBG/PLayer"]
+position = Vector2(1122.71, 197.5)
+scale = Vector2(4.425, 4.425)
+texture = ExtResource("6_qudjo")
+
+[connection signal="pressed" from="Canv/HSplit/BG/Cont/Buttons/Local" to="." method="load_mode_select_menu" binds= [0]]
+[connection signal="pressed" from="Canv/HSplit/BG/Cont/Buttons/Online" to="." method="load_mode_select_menu" binds= [1]]
+[connection signal="pressed" from="Canv/HSplit/BG/Cont/Buttons/Codex" to="." method="load_codex"]
+[connection signal="pressed" from="Canv/HSplit/BG/Cont/HBoxContainer/Credits" to="." method="load_credits"]
+[connection signal="pressed" from="Canv/HSplit/BG/Cont/HBoxContainer/Quit" to="." method="quit"]

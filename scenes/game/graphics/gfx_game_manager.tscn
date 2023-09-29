@@ -1,0 +1,350 @@
+[gd_scene load_steps=41 format=3 uid="uid://bm7utema3eqfb"]
+
+[ext_resource type="Script" path="res://scenes/game/graphics/gfx_game_manager.gd" id="1_d8ywr"]
+[ext_resource type="Texture2D" uid="uid://m3cmypbyyc6x" path="res://assets/maps/albion_map.png" id="2_gxohm"]
+[ext_resource type="Texture2D" uid="uid://4u00lliafnki" path="res://assets/menus/in_game/settings.png" id="2_rb4dr"]
+[ext_resource type="Script" path="res://scenes/game/GUILayer.gd" id="2_t2map"]
+[ext_resource type="Texture2D" uid="uid://b1wpahhpjyt8" path="res://assets/menus/in_game/settings_hover.png" id="3_p1700"]
+[ext_resource type="Texture2D" uid="uid://cf7i6n68okt4l" path="res://assets/maps/italia.png" id="3_srfcr"]
+[ext_resource type="Texture2D" uid="uid://pp0o1v2uxyyh" path="res://assets/menus/in_game/hide_bar.png" id="4_1tb4w"]
+[ext_resource type="Texture2D" uid="uid://d332iqxel0wlx" path="res://assets/maps/bretagne.png" id="4_nm1j0"]
+[ext_resource type="Texture2D" uid="uid://dwg03tquenpps" path="res://assets/maps/turkiye.png" id="5_3x05e"]
+[ext_resource type="Texture2D" uid="uid://bmxyh80lvn6p0" path="res://assets/menus/in_game/hide_bar_pressed.png" id="5_kh2we"]
+[ext_resource type="Texture2D" uid="uid://3jv2m5rj47v0" path="res://assets/maps/morgana.png" id="6_dgbww"]
+[ext_resource type="Texture2D" uid="uid://dd34vjshthfsy" path="res://assets/menus/in_game/hide_bar_hover.png" id="6_n8sr3"]
+[ext_resource type="Texture2D" uid="uid://qt4nbxukhhu1" path="res://assets/maps/bg.png" id="7_7xh0m"]
+[ext_resource type="Texture2D" uid="uid://bp5e1mjf67om6" path="res://assets/menus/in_game/flat_view.png" id="8_eyvsq"]
+[ext_resource type="Script" path="res://scenes/game/graphics/Camera.gd" id="8_h02n5"]
+[ext_resource type="Theme" uid="uid://csq3hvxncciso" path="res://assets/menus/styles/mode_select_theme.tres" id="8_mhaoa"]
+[ext_resource type="Texture2D" uid="uid://cycy4bdqyqc17" path="res://assets/menus/in_game/clock_bg.png" id="8_vwbv6"]
+[ext_resource type="Texture2D" uid="uid://cr8opxamjf2cn" path="res://assets/menus/in_game/zoom_out.png" id="9_6p6pn"]
+[ext_resource type="Texture2D" uid="uid://cbr05va7702ko" path="res://assets/menus/in_game/iso_view.png" id="9_co3x6"]
+[ext_resource type="Script" path="res://scenes/game/graphics/Clock.gd" id="9_nrcpj"]
+[ext_resource type="Texture2D" uid="uid://0qfryyre0nss" path="res://assets/menus/buttons/tick_default.png" id="9_viy4r"]
+[ext_resource type="Texture2D" uid="uid://dq5jnnkhlynnx" path="res://assets/menus/in_game/zoom_out_hover.png" id="10_8cihd"]
+[ext_resource type="Texture2D" uid="uid://fjk83ocp406b" path="res://assets/menus/buttons/tick_click.png" id="10_laut7"]
+[ext_resource type="Texture2D" uid="uid://cbnmrhjlbbmof" path="res://assets/menus/in_game/flat_view_hover.png" id="10_ss5ir"]
+[ext_resource type="StyleBox" uid="uid://cnnt3rs11wvex" path="res://assets/menus/styles/highlight_sb.tres" id="10_wgxv4"]
+[ext_resource type="Texture2D" uid="uid://qrvt2e4dlhjq" path="res://assets/menus/in_game/camera_flip.png" id="11_bhsw3"]
+[ext_resource type="Texture2D" uid="uid://b07lm3u7grldq" path="res://assets/menus/buttons/tick_hover.png" id="11_jwlru"]
+[ext_resource type="Texture2D" uid="uid://7l2m8qlcksq0" path="res://assets/menus/buttons/cross_default.png" id="12_kgepf"]
+[ext_resource type="Texture2D" uid="uid://c1ol55mnug0do" path="res://assets/menus/in_game/camera_flip_hover.png" id="12_vdytg"]
+[ext_resource type="Texture2D" uid="uid://bp14k0akst1tf" path="res://assets/menus/buttons/cross_click.png" id="13_4qeri"]
+[ext_resource type="Texture2D" uid="uid://dkdvcsy36iywi" path="res://assets/menus/in_game/zoom_in.png" id="13_i01pi"]
+[ext_resource type="Texture2D" uid="uid://cek3jmpbtqbt" path="res://assets/menus/in_game/zoom_in_hover.png" id="14_7qpf0"]
+[ext_resource type="Texture2D" uid="uid://c3ksaqqkeqpyy" path="res://assets/menus/buttons/cross_hover.png" id="14_uf6ar"]
+[ext_resource type="Texture2D" uid="uid://c2qvn2rpc5m04" path="res://assets/menus/in_game/menu_bar_large.png" id="16_8yi0n"]
+[ext_resource type="PackedScene" uid="uid://b37n3b4gwgluv" path="res://scenes/menus/in_game/win_menu.tscn" id="19_4y7o1"]
+[ext_resource type="PackedScene" uid="uid://bslbobsgv2nl0" path="res://scenes/menus/in_game/game_menu.tscn" id="31_cfp35"]
+[ext_resource type="PackedScene" uid="uid://8tre3shcbkkj" path="res://scenes/game/P2P.tscn" id="33_3ytpy"]
+[ext_resource type="AudioStream" uid="uid://dr2icdpr8kf2t" path="res://assets/sfx/state_change.wav" id="35_dq4sq"]
+
+[sub_resource type="Theme" id="Theme_vxdyh"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vsrer"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_gxohm")
+}],
+"loop": false,
+"name": &"0",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_srfcr")
+}],
+"loop": false,
+"name": &"1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_nm1j0")
+}],
+"loop": false,
+"name": &"2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_3x05e")
+}],
+"loop": false,
+"name": &"3",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_dgbww")
+}],
+"loop": false,
+"name": &"4",
+"speed": 5.0
+}]
+
+[node name="gfx_game_manager" type="Node2D"]
+script = ExtResource("1_d8ywr")
+
+[node name="GUILayer" type="CanvasLayer" parent="."]
+script = ExtResource("2_t2map")
+
+[node name="Settings" type="TextureButton" parent="GUILayer"]
+custom_minimum_size = Vector2(50, 50)
+offset_left = 1090.0
+offset_top = 10.0
+offset_right = 1140.0
+offset_bottom = 60.0
+tooltip_text = "Settings"
+texture_normal = ExtResource("2_rb4dr")
+texture_hover = ExtResource("3_p1700")
+stretch_mode = 0
+
+[node name="HideBar" type="TextureButton" parent="GUILayer"]
+offset_left = 1090.0
+offset_top = 70.0
+offset_right = 1140.0
+offset_bottom = 120.0
+tooltip_text = "GUI Visibility"
+toggle_mode = true
+texture_normal = ExtResource("4_1tb4w")
+texture_pressed = ExtResource("5_kh2we")
+texture_hover = ExtResource("6_n8sr3")
+stretch_mode = 0
+
+[node name="FlatView" type="TextureButton" parent="GUILayer"]
+custom_minimum_size = Vector2(50, 50)
+offset_left = 1030.0
+offset_top = 10.0
+offset_right = 1080.0
+offset_bottom = 60.0
+tooltip_text = "Flat View"
+toggle_mode = true
+texture_normal = ExtResource("8_eyvsq")
+texture_pressed = ExtResource("9_co3x6")
+texture_hover = ExtResource("10_ss5ir")
+stretch_mode = 0
+
+[node name="Clock1" type="TextureRect" parent="GUILayer"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 15.0
+offset_top = -138.0
+offset_right = 143.0
+offset_bottom = -74.0
+grow_vertical = 0
+texture = ExtResource("8_vwbv6")
+script = ExtResource("9_nrcpj")
+
+[node name="Highlight" type="Panel" parent="GUILayer/Clock1"]
+z_index = 10
+custom_minimum_size = Vector2(128, 64)
+layout_mode = 0
+offset_right = 128.0
+offset_bottom = 64.0
+theme_override_styles/panel = ExtResource("10_wgxv4")
+
+[node name="Label" type="Label" parent="GUILayer/Clock1"]
+layout_mode = 0
+offset_top = 2.0
+offset_right = 128.0
+offset_bottom = 66.0
+theme = ExtResource("8_mhaoa")
+text = "5:00"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Timer" type="Timer" parent="GUILayer/Clock1"]
+
+[node name="Clock2" type="TextureRect" parent="GUILayer"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -143.0
+offset_top = -138.0
+offset_right = -15.0
+offset_bottom = -74.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("8_vwbv6")
+script = ExtResource("9_nrcpj")
+
+[node name="Highlight" type="Panel" parent="GUILayer/Clock2"]
+z_index = 10
+custom_minimum_size = Vector2(128, 64)
+layout_mode = 0
+offset_right = 128.0
+offset_bottom = 64.0
+theme_override_styles/panel = ExtResource("10_wgxv4")
+
+[node name="Label" type="Label" parent="GUILayer/Clock2"]
+layout_mode = 0
+offset_top = 2.0
+offset_right = 128.0
+offset_bottom = 66.0
+theme = ExtResource("8_mhaoa")
+text = "5:00"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Timer" type="Timer" parent="GUILayer/Clock2"]
+
+[node name="BottomBar" type="MarginContainer" parent="GUILayer"]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -64.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 3
+theme = SubResource("Theme_vxdyh")
+
+[node name="TextureRect" type="TextureRect" parent="GUILayer/BottomBar"]
+layout_mode = 2
+texture = ExtResource("16_8yi0n")
+stretch_mode = 1
+
+[node name="hb1" type="HBoxContainer" parent="GUILayer/BottomBar"]
+layout_mode = 2
+
+[node name="_" type="NinePatchRect" parent="GUILayer/BottomBar/hb1"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+
+[node name="Name1" type="Label" parent="GUILayer/BottomBar/hb1"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme = ExtResource("8_mhaoa")
+text = "Player 1"
+
+[node name="Icons" type="HBoxContainer" parent="GUILayer/BottomBar/hb1"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="__" type="NinePatchRect" parent="GUILayer/BottomBar/hb1/Icons"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ZoomOut" type="TextureButton" parent="GUILayer/BottomBar/hb1/Icons"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+tooltip_text = "Zoom Out"
+texture_normal = ExtResource("9_6p6pn")
+texture_hover = ExtResource("10_8cihd")
+stretch_mode = 5
+
+[node name="FlipCamera" type="TextureButton" parent="GUILayer/BottomBar/hb1/Icons"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+tooltip_text = "Flip Camera"
+texture_normal = ExtResource("11_bhsw3")
+texture_hover = ExtResource("12_vdytg")
+stretch_mode = 5
+
+[node name="ZoomIn" type="TextureButton" parent="GUILayer/BottomBar/hb1/Icons"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+tooltip_text = "Zoom In"
+texture_normal = ExtResource("13_i01pi")
+texture_hover = ExtResource("14_7qpf0")
+stretch_mode = 5
+
+[node name="_" type="NinePatchRect" parent="GUILayer/BottomBar/hb1/Icons"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Name2" type="Label" parent="GUILayer/BottomBar/hb1"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme = ExtResource("8_mhaoa")
+text = "Player 2
+"
+horizontal_alignment = 2
+
+[node name="__" type="NinePatchRect" parent="GUILayer/BottomBar/hb1"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+
+[node name="game_menu" parent="GUILayer" instance=ExtResource("31_cfp35")]
+visible = false
+
+[node name="win_menu" parent="GUILayer" instance=ExtResource("19_4y7o1")]
+visible = false
+
+[node name="board" type="AnimatedSprite2D" parent="."]
+visible = false
+sprite_frames = SubResource("SpriteFrames_vsrer")
+animation = &"4"
+offset = Vector2(16, 0.5)
+
+[node name="bg" type="Sprite2D" parent="."]
+modulate = Color(0.317647, 0.317647, 0.317647, 0.32549)
+z_index = -10
+scale = Vector2(5, 5)
+texture = ExtResource("7_7xh0m")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(1.75, 1.75)
+script = ExtResource("8_h02n5")
+
+[node name="InitialTimer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="ConfirmMove" type="TextureButton" parent="."]
+visible = false
+z_index = 100
+offset_right = 40.0
+offset_bottom = 40.0
+texture_normal = ExtResource("9_viy4r")
+texture_pressed = ExtResource("10_laut7")
+texture_hover = ExtResource("11_jwlru")
+
+[node name="RejectMove" type="TextureButton" parent="."]
+visible = false
+z_index = 100
+offset_right = 40.0
+offset_bottom = 40.0
+texture_normal = ExtResource("12_kgepf")
+texture_pressed = ExtResource("13_4qeri")
+texture_hover = ExtResource("14_uf6ar")
+
+[node name="TakeTurnTimer" type="Timer" parent="."]
+wait_time = 0.05
+one_shot = true
+
+[node name="P2P" parent="." instance=ExtResource("33_3ytpy")]
+
+[node name="Promote" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("35_dq4sq")
+
+[connection signal="pressed" from="GUILayer/Settings" to="GUILayer/game_menu" method="show_self"]
+[connection signal="toggled" from="GUILayer/HideBar" to="GUILayer" method="toggle_hide_btn"]
+[connection signal="toggled" from="GUILayer/FlatView" to="." method="show_board"]
+[connection signal="time_over" from="GUILayer/Clock1" to="." method="win" binds= [1]]
+[connection signal="timeout" from="GUILayer/Clock1/Timer" to="GUILayer/Clock1" method="timeout"]
+[connection signal="time_over" from="GUILayer/Clock2" to="." method="win" binds= [0]]
+[connection signal="timeout" from="GUILayer/Clock2/Timer" to="GUILayer/Clock2" method="timeout"]
+[connection signal="pressed" from="GUILayer/BottomBar/hb1/Icons/ZoomOut" to="Camera2D" method="zoom_out"]
+[connection signal="pressed" from="GUILayer/BottomBar/hb1/Icons/FlipCamera" to="Camera2D" method="flip_camera"]
+[connection signal="pressed" from="GUILayer/BottomBar/hb1/Icons/ZoomIn" to="Camera2D" method="zoom_in"]
+[connection signal="gfx_changed" from="GUILayer/game_menu" to="." method="gfx_update"]
+[connection signal="rematch_accept" from="GUILayer/win_menu" to="." method="accept_rematch"]
+[connection signal="rematch_request" from="GUILayer/win_menu" to="." method="request_remtach"]
+[connection signal="esc_key_pressed" from="Camera2D" to="GUILayer/game_menu" method="esc_pressed"]
+[connection signal="hide_bar_key_pressed" from="Camera2D" to="GUILayer" method="toggle_hide_keypress"]
+[connection signal="timeout" from="InitialTimer" to="." method="start_game"]
+[connection signal="pressed" from="ConfirmMove" to="." method="confirm_move"]
+[connection signal="pressed" from="RejectMove" to="." method="reset_piece_drag"]
+[connection signal="timeout" from="TakeTurnTimer" to="." method="take_turn_timer_trigger"]
+[connection signal="fen_recieved" from="P2P" to="." method="fen_recieved"]
+[connection signal="move_sent" from="P2P" to="." method="recieve_move"]
+[connection signal="rematch_reject" from="P2P" to="GUILayer/game_menu" method="back"]
+[connection signal="rematch_request" from="P2P" to="GUILayer/win_menu" method="rematch_requested"]

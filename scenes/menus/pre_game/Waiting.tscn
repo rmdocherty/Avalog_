@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bil260bj1obb8"]
+
+[ext_resource type="Theme" uid="uid://csq3hvxncciso" path="res://assets/menus/styles/mode_select_theme.tres" id="1_ob76g"]
+[ext_resource type="Script" path="res://scenes/menus/pre_game/Waiting.gd" id="2_1wq3x"]
+
+[node name="Waiting" type="Label"]
+custom_minimum_size = Vector2(150, 0)
+theme = ExtResource("1_ob76g")
+theme_override_colors/font_color = Color(0.792157, 0.792157, 0.792157, 0.937255)
+text = "Waiting"
+script = ExtResource("2_1wq3x")

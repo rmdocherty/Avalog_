@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://bv4vyqf1jpufa"]
+
+[ext_resource type="Script" path="res://scenes/game/game_manager.gd" id="1_83uxb"]
+
+[node name="game_manager" type="Node2D"]
+script = ExtResource("1_83uxb")
+
+[node name="InitialTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[node name="TakeTurnTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[connection signal="timeout" from="InitialTimer" to="." method="start_game"]
+[connection signal="timeout" from="TakeTurnTimer" to="." method="take_turn" binds= [true]]

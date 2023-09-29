@@ -1,6 +1,14 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://8r67cpau5hxr"]
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://8r67cpau5hxr"]
 
 [ext_resource type="FontFile" uid="uid://dig8hjpqiefp" path="res://assets/menus/styles/Bitfantasy.ttf" id="1_4nt2o"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_teye8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_s1ae1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wlg4d"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5bh5e"]
 
 [resource]
 /font_sizes/Button = 28
@@ -9,3 +17,7 @@ Button/colors/font_color = Color(1, 1, 1, 1)
 Button/colors/font_hover_color = Color(0.0901961, 0.360784, 0.545098, 1)
 Button/font_sizes/font_size = 60
 Button/fonts/font = ExtResource("1_4nt2o")
+Button/styles/focus = SubResource("StyleBoxEmpty_teye8")
+Button/styles/hover = SubResource("StyleBoxEmpty_s1ae1")
+Button/styles/normal = SubResource("StyleBoxEmpty_wlg4d")
+Button/styles/pressed = SubResource("StyleBoxEmpty_5bh5e")

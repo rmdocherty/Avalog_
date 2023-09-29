@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://bc53legwu4s01"]
+
+[ext_resource type="AudioStream" uid="uid://uy2xuoey0g2d" path="res://assets/sfx/footsteps.mp3" id="1_7huud"]
+[ext_resource type="AudioStream" uid="uid://b4fol8uj4n5tx" path="res://assets/sfx/hit.wav" id="2_btt7x"]
+[ext_resource type="AudioStream" uid="uid://c3jj7pqdiqobm" path="res://assets/sfx/invalid.wav" id="3_rqlaq"]
+
+[node name="Audio" type="Node2D"]
+
+[node name="Move" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_7huud")
+bus = &"sfx"
+
+[node name="Attack" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_btt7x")
+bus = &"sfx"
+
+[node name="AttackDelay" type="Timer" parent="."]
+wait_time = 0.01
+one_shot = true
+
+[node name="Invalid" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_rqlaq")
+
+[connection signal="timeout" from="AttackDelay" to="Attack" method="play"]

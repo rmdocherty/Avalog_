@@ -1,0 +1,45 @@
+[gd_scene load_steps=8 format=3 uid="uid://0onsrcirqqt4"]
+
+[ext_resource type="Script" path="res://scenes/menus/pre_game/Music.gd" id="1_8vvbl"]
+[ext_resource type="AudioStream" uid="uid://dcs001y4568xx" path="res://assets/music/melancholy.ogg" id="2_l0s6k"]
+[ext_resource type="AudioStream" uid="uid://4gqw74v7b48o" path="res://assets/music/peaceful.ogg" id="3_6b207"]
+[ext_resource type="AudioStream" uid="uid://bi3jthv4shr0f" path="res://assets/music/frantic.ogg" id="4_0fvdo"]
+[ext_resource type="AudioStream" uid="uid://c8mj4kg52mddb" path="res://assets/music/embark.ogg" id="5_amkdn"]
+[ext_resource type="AudioStream" uid="uid://wpi2ndpouwjm" path="res://assets/music/beginning.ogg" id="6_la1k3"]
+[ext_resource type="AudioStream" uid="uid://e6mn5dw1vo5s" path="res://assets/music/groovy.ogg" id="7_j4cpw"]
+
+[node name="Music" type="Node2D"]
+script = ExtResource("1_8vvbl")
+
+[node name="Melancholy" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_l0s6k")
+pitch_scale = 0.95
+bus = &"music"
+
+[node name="Peaceful" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_6b207")
+pitch_scale = 0.95
+bus = &"music"
+
+[node name="Frantic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_0fvdo")
+bus = &"music"
+
+[node name="Embark" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_amkdn")
+bus = &"music"
+
+[node name="Beginning" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_la1k3")
+bus = &"music"
+
+[node name="Groovy" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_j4cpw")
+bus = &"music"
+
+[connection signal="finished" from="Melancholy" to="." method="track_timeout"]
+[connection signal="finished" from="Peaceful" to="." method="track_timeout"]
+[connection signal="finished" from="Frantic" to="." method="track_timeout"]
+[connection signal="finished" from="Embark" to="." method="track_timeout"]
+[connection signal="finished" from="Beginning" to="." method="track_timeout"]
+[connection signal="finished" from="Groovy" to="." method="track_timeout"]

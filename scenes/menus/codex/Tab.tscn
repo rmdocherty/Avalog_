@@ -1,0 +1,118 @@
+[gd_scene load_steps=15 format=3 uid="uid://8ek32canry71"]
+
+[ext_resource type="Texture2D" uid="uid://d20neshsvbpo7" path="res://assets/menus/codex/tabs/4.png" id="1_6hvkb"]
+[ext_resource type="Script" path="res://scenes/menus/codex/Tab.gd" id="1_nplxl"]
+[ext_resource type="Texture2D" uid="uid://cbe7ykq23pxkc" path="res://assets/menus/codex/tabs/5.png" id="2_xy5vi"]
+[ext_resource type="Texture2D" uid="uid://b3jgg7f0qqg7e" path="res://assets/menus/codex/tabs/1.png" id="3_7nuv7"]
+[ext_resource type="Texture2D" uid="uid://dv444bam4wmam" path="res://assets/menus/codex/tabs/2.png" id="4_v0kha"]
+[ext_resource type="Texture2D" uid="uid://b7gfoheyiufxy" path="res://assets/menus/codex/tabs/3.png" id="5_8hj2s"]
+[ext_resource type="Texture2D" uid="uid://bvovwllxi34ac" path="res://assets/menus/patches/blue_patch.png" id="7_p0rii"]
+[ext_resource type="Texture2D" uid="uid://ciqg5qdoi8xdu" path="res://assets/menus/patches/red_patch.png" id="8_saejf"]
+[ext_resource type="Texture2D" uid="uid://dgrysv5ovt0f3" path="res://assets/menus/patches/green_patch.png" id="9_kd5gd"]
+[ext_resource type="Texture2D" uid="uid://cjld7p2ub00pu" path="res://assets/menus/patches/yellow_patch.png" id="10_ycjuq"]
+[ext_resource type="Texture2D" uid="uid://mdy5i51fsdek" path="res://assets/menus/patches/black_patch.png" id="11_pboka"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hrqaf"]
+size = Vector2(32, 26)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3ocly"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_6hvkb")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_xy5vi")
+}],
+"loop": false,
+"name": &"hover",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_7nuv7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_v0kha")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_8hj2s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_6hvkb")
+}],
+"loop": false,
+"name": &"open",
+"speed": 10.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_h2clh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_p0rii")
+}],
+"loop": false,
+"name": &"0",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_saejf")
+}],
+"loop": false,
+"name": &"1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_kd5gd")
+}],
+"loop": false,
+"name": &"2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_ycjuq")
+}],
+"loop": false,
+"name": &"3",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_pboka")
+}],
+"loop": false,
+"name": &"4",
+"speed": 5.0
+}]
+
+[node name="Tab" type="Node2D"]
+script = ExtResource("1_nplxl")
+
+[node name="Hover" type="Area2D" parent="."]
+z_index = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hover"]
+position = Vector2(-8, 0)
+shape = SubResource("RectangleShape2D_hrqaf")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="Hover"]
+sprite_frames = SubResource("SpriteFrames_3ocly")
+
+[node name="Icon" type="AnimatedSprite2D" parent="Hover"]
+visible = false
+position = Vector2(-8, 0)
+sprite_frames = SubResource("SpriteFrames_h2clh")
+animation = &"0"
+
+[connection signal="input_event" from="Hover" to="." method="_on_hover_input_event"]
+[connection signal="mouse_entered" from="Hover" to="." method="_on_hover_mouse_entered"]
+[connection signal="mouse_exited" from="Hover" to="." method="_on_hover_mouse_exited"]

@@ -1,0 +1,381 @@
+[gd_scene load_steps=9 format=3 uid="uid://bslbobsgv2nl0"]
+
+[ext_resource type="Script" path="res://scenes/menus/in_game/game_menu.gd" id="1_0pd8u"]
+[ext_resource type="StyleBox" uid="uid://cegc8oqlrlab8" path="res://assets/menus/styles/outer_panel_theme.tres" id="1_ghqst"]
+[ext_resource type="Texture2D" uid="uid://bwaumvo2l7ve8" path="res://assets/menus/main_menu_bg.png" id="2_03wyk"]
+[ext_resource type="Theme" uid="uid://csq3hvxncciso" path="res://assets/menus/styles/mode_select_theme.tres" id="3_4niey"]
+[ext_resource type="StyleBox" path="res://assets/menus/styles/inner_panel_theme.tres" id="3_q1l3d"]
+[ext_resource type="Theme" uid="uid://c8njrprl5cak0" path="res://assets/menus/styles/game_menu_theme.tres" id="3_qru51"]
+[ext_resource type="Texture2D" uid="uid://dg8ysvtcwk2qu" path="res://assets/menus/in_game/game_menu_close.png" id="6_81k8r"]
+[ext_resource type="Texture2D" uid="uid://bvcot4l5sx2so" path="res://assets/menus/in_game/game_menu_close_hover.png" id="7_igeuw"]
+
+[node name="game_menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0pd8u")
+
+[node name="blur" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.341176, 0.341176, 0.341176, 0.729412)
+
+[node name="Outer" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.3
+anchor_top = 0.2
+anchor_right = 0.7
+anchor_bottom = 0.8
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("1_ghqst")
+
+[node name="Inner" type="Panel" parent="Outer"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = -5.0
+offset_bottom = -5.0
+theme_override_styles/panel = ExtResource("3_q1l3d")
+
+[node name="Contents" type="Panel" parent="Outer"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -10.0
+
+[node name="bg" type="TextureRect" parent="Outer/Contents"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_03wyk")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="Bar" type="TabBar" parent="Outer/Contents"]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_4niey")
+tab_alignment = 1
+
+[node name="Container" type="TabContainer" parent="Outer/Contents/Bar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_4niey")
+theme_override_font_sizes/font_size = 34
+tab_alignment = 1
+
+[node name="Game" type="Control" parent="Outer/Contents/Bar/Container"]
+layout_mode = 2
+
+[node name="v" type="VBoxContainer" parent="Outer/Contents/Bar/Container/Game"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 30.0
+offset_top = 30.0
+offset_right = -30.0
+offset_bottom = -30.0
+theme_override_constants/separation = 20
+
+[node name="MainMenu" type="Button" parent="Outer/Contents/Bar/Container/Game/v"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("3_qru51")
+theme_override_font_sizes/font_size = 34
+text = "Main Menu"
+
+[node name="Quit" type="Button" parent="Outer/Contents/Bar/Container/Game/v"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("3_qru51")
+theme_override_font_sizes/font_size = 34
+text = "Quit"
+
+[node name="_" type="HBoxContainer" parent="Outer/Contents/Bar/Container/Game/v"]
+layout_mode = 2
+
+[node name="__" type="HBoxContainer" parent="Outer/Contents/Bar/Container/Game/v"]
+layout_mode = 2
+
+[node name="Classic" type="HBoxContainer" parent="Outer/Contents/Bar/Container/Game/v"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Outer/Contents/Bar/Container/Game/v/Classic"]
+layout_mode = 2
+theme = ExtResource("3_qru51")
+text = "Classic Icons"
+
+[node name="HSlider" type="CheckBox" parent="Outer/Contents/Bar/Container/Game/v/Classic"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+theme = ExtResource("3_4niey")
+disabled = true
+icon_alignment = 1
+
+[node name="Graphics" type="Control" parent="Outer/Contents/Bar/Container"]
+visible = false
+layout_mode = 2
+
+[node name="v" type="VBoxContainer" parent="Outer/Contents/Bar/Container/Graphics"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 30.0
+offset_top = 30.0
+offset_right = -30.0
+offset_bottom = -30.0
+theme_override_constants/separation = 20
+
+[node name="Fullscreen" type="HBoxContainer" parent="Outer/Contents/Bar/Container/Graphics/v"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Outer/Contents/Bar/Container/Graphics/v/Fullscreen"]
+layout_mode = 2
+theme = ExtResource("3_qru51")
+text = "Fullscreen:  "
+
+[node name="HSlider" type="OptionButton" parent="Outer/Contents/Bar/Container/Graphics/v/Fullscreen"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme = ExtResource("3_4niey")
+item_count = 2
+selected = 0
+popup/item_0/text = "Windowed"
+popup/item_0/id = 0
+popup/item_1/text = "Fullscreen"
+popup/item_1/id = 1
+
+[node name="Anims" type="HBoxContainer" parent="Outer/Contents/Bar/Container/Graphics/v"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Outer/Contents/Bar/Container/Graphics/v/Anims"]
+layout_mode = 2
+theme = ExtResource("3_qru51")
+text = "Animations: "
+
+[node name="HSlider" type="CheckBox" parent="Outer/Contents/Bar/Container/Graphics/v/Anims"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+theme = ExtResource("3_4niey")
+icon_alignment = 1
+
+[node name="AnimSpeed" type="HBoxContainer" parent="Outer/Contents/Bar/Container/Graphics/v"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Outer/Contents/Bar/Container/Graphics/v/AnimSpeed"]
+layout_mode = 2
+theme = ExtResource("3_qru51")
+text = "Anim Speed:  "
+
+[node name="HSlider" type="HSlider" parent="Outer/Contents/Bar/Container/Graphics/v/AnimSpeed"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme = ExtResource("3_4niey")
+min_value = 0.01
+max_value = 2.0
+step = 0.05
+value = 1.01
+
+[node name="SpriteSize" type="HBoxContainer" parent="Outer/Contents/Bar/Container/Graphics/v"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Outer/Contents/Bar/Container/Graphics/v/SpriteSize"]
+layout_mode = 2
+theme = ExtResource("3_qru51")
+text = "Sprite Size:   "
+
+[node name="HSlider" type="HSlider" parent="Outer/Contents/Bar/Container/Graphics/v/SpriteSize"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme = ExtResource("3_4niey")
+max_value = 2.0
+step = 0.05
+value = 1.0
+
+[node name="LineWidth" type="HBoxContainer" parent="Outer/Contents/Bar/Container/Graphics/v"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Outer/Contents/Bar/Container/Graphics/v/LineWidth"]
+layout_mode = 2
+theme = ExtResource("3_qru51")
+text = "Line Width:   "
+
+[node name="HSlider" type="HSlider" parent="Outer/Contents/Bar/Container/Graphics/v/LineWidth"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme = ExtResource("3_4niey")
+min_value = 0.05
+max_value = 0.35
+step = 0.01
+value = 0.2
+
+[node name="Sound" type="Control" parent="Outer/Contents/Bar/Container"]
+visible = false
+layout_mode = 2
+
+[node name="v" type="VBoxContainer" parent="Outer/Contents/Bar/Container/Sound"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 30.0
+offset_top = 30.0
+offset_right = -30.0
+offset_bottom = -30.0
+theme_override_constants/separation = 20
+
+[node name="Mute" type="HBoxContainer" parent="Outer/Contents/Bar/Container/Sound/v"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Outer/Contents/Bar/Container/Sound/v/Mute"]
+layout_mode = 2
+theme = ExtResource("3_qru51")
+text = "Mute: "
+
+[node name="HSlider" type="CheckBox" parent="Outer/Contents/Bar/Container/Sound/v/Mute"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+theme = ExtResource("3_4niey")
+icon_alignment = 1
+
+[node name="Master" type="HBoxContainer" parent="Outer/Contents/Bar/Container/Sound/v"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Outer/Contents/Bar/Container/Sound/v/Master"]
+layout_mode = 2
+theme = ExtResource("3_qru51")
+text = "Master: "
+
+[node name="HSlider" type="HSlider" parent="Outer/Contents/Bar/Container/Sound/v/Master"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme = ExtResource("3_4niey")
+max_value = 1.0
+step = 0.05
+
+[node name="Music" type="HBoxContainer" parent="Outer/Contents/Bar/Container/Sound/v"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Outer/Contents/Bar/Container/Sound/v/Music"]
+layout_mode = 2
+theme = ExtResource("3_qru51")
+text = "Music:   "
+
+[node name="HSlider" type="HSlider" parent="Outer/Contents/Bar/Container/Sound/v/Music"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme = ExtResource("3_4niey")
+max_value = 1.0
+step = 0.05
+
+[node name="Effects" type="HBoxContainer" parent="Outer/Contents/Bar/Container/Sound/v"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Outer/Contents/Bar/Container/Sound/v/Effects"]
+layout_mode = 2
+theme = ExtResource("3_qru51")
+text = "Effects: "
+
+[node name="HSlider" type="HSlider" parent="Outer/Contents/Bar/Container/Sound/v/Effects"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme = ExtResource("3_4niey")
+max_value = 1.0
+step = 0.05
+value = 0.05
+
+[node name="Track" type="HBoxContainer" parent="Outer/Contents/Bar/Container/Sound/v"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Outer/Contents/Bar/Container/Sound/v/Track"]
+layout_mode = 2
+theme = ExtResource("3_qru51")
+text = "Track: "
+
+[node name="HSlider" type="OptionButton" parent="Outer/Contents/Bar/Container/Sound/v/Track"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme = ExtResource("3_4niey")
+item_count = 6
+popup/item_0/text = "Melancholy"
+popup/item_0/id = 0
+popup/item_1/text = "Peaceful"
+popup/item_1/id = 1
+popup/item_2/text = "Frantic"
+popup/item_2/id = 2
+popup/item_3/text = "Beginning"
+popup/item_3/id = 3
+popup/item_4/text = "Embark"
+popup/item_4/id = 4
+popup/item_5/text = "Groovy"
+popup/item_5/id = 5
+
+[node name="Close" type="TextureButton" parent="Outer/Contents"]
+layout_mode = 0
+offset_left = 430.0
+offset_right = 470.0
+offset_bottom = 40.0
+texture_normal = ExtResource("6_81k8r")
+texture_hover = ExtResource("7_igeuw")
+stretch_mode = 0
+
+[connection signal="gui_input" from="blur" to="." method="_on_color_rect_gui_input"]
+[connection signal="pressed" from="Outer/Contents/Bar/Container/Game/v/MainMenu" to="." method="back"]
+[connection signal="pressed" from="Outer/Contents/Bar/Container/Game/v/Quit" to="." method="quit"]
+[connection signal="toggled" from="Outer/Contents/Bar/Container/Game/v/Classic/HSlider" to="." method="toggle_classic_icons"]
+[connection signal="item_selected" from="Outer/Contents/Bar/Container/Graphics/v/Fullscreen/HSlider" to="." method="set_display_mode"]
+[connection signal="toggled" from="Outer/Contents/Bar/Container/Graphics/v/Anims/HSlider" to="." method="toggle_anims"]
+[connection signal="value_changed" from="Outer/Contents/Bar/Container/Graphics/v/AnimSpeed/HSlider" to="." method="set_anim_speed"]
+[connection signal="value_changed" from="Outer/Contents/Bar/Container/Graphics/v/SpriteSize/HSlider" to="." method="set_sprite_size"]
+[connection signal="value_changed" from="Outer/Contents/Bar/Container/Graphics/v/LineWidth/HSlider" to="." method="set_line_width"]
+[connection signal="toggled" from="Outer/Contents/Bar/Container/Sound/v/Mute/HSlider" to="." method="mute"]
+[connection signal="value_changed" from="Outer/Contents/Bar/Container/Sound/v/Master/HSlider" to="." method="set_master_vol"]
+[connection signal="value_changed" from="Outer/Contents/Bar/Container/Sound/v/Music/HSlider" to="." method="set_music_vol"]
+[connection signal="value_changed" from="Outer/Contents/Bar/Container/Sound/v/Effects/HSlider" to="." method="set_effects_vol"]
+[connection signal="item_selected" from="Outer/Contents/Bar/Container/Sound/v/Track/HSlider" to="." method="set_track"]
+[connection signal="pressed" from="Outer/Contents/Close" to="." method="close_pressed"]

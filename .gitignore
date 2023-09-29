@@ -1,0 +1,5 @@
+# Godot 4+ specific ignores
+.godot/
+.gitattributes
+Avalog_2*
+addons/*

@@ -1,0 +1,118 @@
+[gd_scene load_steps=15 format=3 uid="uid://bowuwg1oybgqa"]
+
+[ext_resource type="Script" path="res://scenes/pieces/graphics/PlayerCircle.gd" id="1_dh0ue"]
+[ext_resource type="Shader" path="res://scenes/pieces/graphics/Piece.gdshader" id="1_oo8db"]
+[ext_resource type="Script" path="res://scenes/pieces/graphics/GraphicalPiece.gd" id="1_xupue"]
+[ext_resource type="Texture2D" uid="uid://dsfc42cu5anbj" path="res://assets/pieces/icons.png" id="3_d63rk"]
+[ext_resource type="Script" path="res://scenes/pieces/graphics/Phantom.gd" id="3_e6yv0"]
+[ext_resource type="Texture2D" uid="uid://drn0dw0ovuc4k" path="res://assets/pieces/albion/peasant.png" id="4_hcl6p"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7l5da"]
+resource_local_to_scene = true
+shader = ExtResource("1_oo8db")
+shader_parameter/tol = 0.05
+shader_parameter/original_palette_num = null
+shader_parameter/replace_palette_num = null
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hdo8w"]
+atlas = ExtResource("4_hcl6p")
+region = Rect2(32, 0, 16, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b01m2"]
+atlas = ExtResource("4_hcl6p")
+region = Rect2(48, 0, 16, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bttcx"]
+atlas = ExtResource("4_hcl6p")
+region = Rect2(0, 0, 16, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o2gd6"]
+atlas = ExtResource("4_hcl6p")
+region = Rect2(16, 0, 16, 17)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rhgxa"]
+resource_local_to_scene = true
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hdo8w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b01m2")
+}],
+"loop": true,
+"name": &"0_attack",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bttcx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o2gd6")
+}],
+"loop": true,
+"name": &"0_passive",
+"speed": 3.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gtwpo"]
+atlas = ExtResource("3_d63rk")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ah7ft"]
+resource_local_to_scene = true
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gtwpo")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="GraphicalPiece" type="Node2D"]
+z_index = 1
+material = SubResource("ShaderMaterial_7l5da")
+script = ExtResource("1_xupue")
+
+[node name="Phantom" type="Area2D" parent="."]
+use_parent_material = true
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("3_e6yv0")
+
+[node name="PlayerCircle" type="Node2D" parent="Phantom"]
+script = ExtResource("1_dh0ue")
+
+[node name="Hover" type="CollisionPolygon2D" parent="Phantom"]
+
+[node name="PhantomSprite" type="AnimatedSprite2D" parent="Phantom"]
+visible = false
+self_modulate = Color(1, 1, 1, 0.490196)
+z_index = 3
+use_parent_material = true
+sprite_frames = SubResource("SpriteFrames_rhgxa")
+animation = &"0_passive"
+offset = Vector2(0, -4)
+
+[node name="Icon" type="AnimatedSprite2D" parent="."]
+visible = false
+z_index = 2
+sprite_frames = SubResource("SpriteFrames_ah7ft")
+offset = Vector2(0, -1)
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+z_index = 2
+sprite_frames = SubResource("SpriteFrames_rhgxa")
+animation = &"0_passive"
+offset = Vector2(0, -4)
+
+[node name="IdleAnimationTimer" type="Timer" parent="."]
+
+[connection signal="area_entered" from="Phantom" to="." method="_on_area_entered"]
+[connection signal="area_exited" from="Phantom" to="." method="_on_area_exited"]
+[connection signal="mouse_entered" from="Phantom" to="." method="mouse_entered_circle"]
+[connection signal="mouse_exited" from="Phantom" to="Phantom" method="mouse_exited_circle"]
+[connection signal="timeout" from="IdleAnimationTimer" to="." method="idle_anim_timer_trigger"]

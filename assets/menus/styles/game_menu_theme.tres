@@ -1,0 +1,23 @@
+[gd_resource type="Theme" load_steps=5 format=3 uid="uid://c8njrprl5cak0"]
+
+[ext_resource type="FontFile" uid="uid://q43lkw8hwss5" path="res://assets/menus/styles/Pixuf.ttf" id="1_vdcxi"]
+[ext_resource type="Texture2D" uid="uid://cw7n6bwk6j77v" path="res://assets/menus/styles/down_arrow.png" id="2_fy1r6"]
+[ext_resource type="Texture2D" uid="uid://b6wpwkfi21x1v" path="res://assets/menus/styles/picker_filled.png" id="3_gn3ql"]
+[ext_resource type="Texture2D" uid="uid://c1x8md05b6lok" path="res://assets/menus/styles/picker_unfilled.png" id="4_01tpc"]
+
+[resource]
+Button/font_sizes/font_size = 30
+Button/fonts/font = ExtResource("1_vdcxi")
+Label/font_sizes/font_size = 34
+Label/fonts/font = ExtResource("1_vdcxi")
+LineEdit/font_sizes/font_size = 34
+LineEdit/fonts/font = ExtResource("1_vdcxi")
+OptionButton/colors/font_color = Color(1, 1, 1, 1)
+OptionButton/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
+OptionButton/font_sizes/font_size = 34
+OptionButton/fonts/font = ExtResource("1_vdcxi")
+OptionButton/icons/arrow = ExtResource("2_fy1r6")
+PopupMenu/fonts/font = ExtResource("1_vdcxi")
+PopupMenu/icons/radio_checked = ExtResource("3_gn3ql")
+PopupMenu/icons/radio_unchecked = ExtResource("4_01tpc")
+Tree/fonts/font = ExtResource("1_vdcxi")
