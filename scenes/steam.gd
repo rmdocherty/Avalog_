@@ -6,6 +6,8 @@ var IS_ONLINE: bool = false
 var STEAM_ID: int = 0
 var STEAM_USERNAME := ""
 
+signal init_failed
+
 func _ready() -> void:
 	_initialize_Steam()
 	_check_command_line()
@@ -22,6 +24,7 @@ func _initialize_Steam() -> void:
 
 	if INIT['status'] != 1:
 		print("Failed to initialize Steam. "+str(INIT['verbal']))
+		init_failed.emit()
 	else:
 		IS_ONLINE = Steam.loggedOn()
 		STEAM_ID = Steam.getSteamID()

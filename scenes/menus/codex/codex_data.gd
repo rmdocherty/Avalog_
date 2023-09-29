@@ -3,7 +3,7 @@ extends Node
 const MALORY = "- Malory, Le Morte D'Arthur"
 const HISTORY = "- Morgan, Historia"
 
-const codex_data = {
+const codex_data: Dictionary = {
 	"0": {
 		"name": "",
 		"faction": 0,

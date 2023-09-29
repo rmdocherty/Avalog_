@@ -4,6 +4,7 @@ var sprs: Array[AnimatedSprite2D] = []
 
 # ======================== INIT METHODS ========================
 func _ready() -> void:
+	# Init scene and set values of menu items to the values in esttings
 	if stg.network == cst.network_types.ONLINE:
 		$Canv/Cont/PlayButtons/OnlineOptions.show()
 		$Canv/Cont/SpritesMapFactions/SpritesMapBox/P2Parent/Sprite.hide()
@@ -17,7 +18,7 @@ func _ready() -> void:
 	var names = [stg.uname_1, stg.uname_2]
 	for i in [1, 2]:
 		set_names_init(i, names[i - 1])
-		var spr = set_sprites_init(i)
+		var spr := set_sprites_init(i)
 		sprs.push_back(spr)
 		set_faction(stg.chosen_factions[i - 1], i - 1)
 	change_spr_palette(1, 1)
@@ -93,13 +94,14 @@ func play() -> void:
 	if stg.mode == cst.modes.DRAFT:
 		pass
 	elif stg.network == cst.network_types.LOCAL:
+		# If 'Play' clicked and local, start game.
 		var game_path := "res://scenes/game/graphics/gfx_game_manager.tscn"
 		var child: Node = load(game_path).instantiate()
 		get_tree().get_root().add_child(child)
 		child.init(stg.chosen_fen)
 		self.queue_free()
-		#get_tree().get_root().remove_child(self)
 	elif stg.network == cst.network_types.ONLINE:
+		# If 'Play' clicked and online, begin automatchmaking 
 		stg.look_type = cst.look_types.AUTO
 		hlp.load_child_remove_parent("res://scenes/menus/pre_game/BrowseGames.tscn", self)
 

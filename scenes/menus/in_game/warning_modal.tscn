@@ -1,0 +1,123 @@
+[gd_scene load_steps=8 format=3 uid="uid://cws1g47a6vcvy"]
+
+[ext_resource type="Script" path="res://scenes/menus/in_game/warning_modal.gd" id="1_t8vgk"]
+[ext_resource type="StyleBox" uid="uid://cegc8oqlrlab8" path="res://assets/menus/styles/outer_panel_theme.tres" id="2_ecmqp"]
+[ext_resource type="StyleBox" path="res://assets/menus/styles/inner_panel_theme.tres" id="3_oh3dk"]
+[ext_resource type="Texture2D" uid="uid://bwaumvo2l7ve8" path="res://assets/menus/main_menu_bg.png" id="4_cfv46"]
+[ext_resource type="Texture2D" uid="uid://dg8ysvtcwk2qu" path="res://assets/menus/in_game/game_menu_close.png" id="5_cea1b"]
+[ext_resource type="Texture2D" uid="uid://bvcot4l5sx2so" path="res://assets/menus/in_game/game_menu_close_hover.png" id="6_jth41"]
+[ext_resource type="Theme" uid="uid://c8njrprl5cak0" path="res://assets/menus/styles/game_menu_theme.tres" id="7_xcasy"]
+
+[node name="WarningModal" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_t8vgk")
+
+[node name="blur" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.341176, 0.341176, 0.341176, 0.729412)
+
+[node name="Outer" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.2
+anchor_top = 0.2
+anchor_right = 0.8
+anchor_bottom = 0.6
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("2_ecmqp")
+
+[node name="Inner" type="Panel" parent="Outer"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = -5.0
+offset_bottom = -5.0
+theme_override_styles/panel = ExtResource("3_oh3dk")
+
+[node name="Contents" type="Panel" parent="Outer"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -10.0
+
+[node name="bg" type="TextureRect" parent="Outer/Contents"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_cfv46")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="Close" type="TextureButton" parent="Outer/Contents"]
+layout_mode = 0
+offset_left = 670.0
+offset_right = 710.0
+offset_bottom = 40.0
+texture_normal = ExtResource("5_cea1b")
+texture_hover = ExtResource("6_jth41")
+stretch_mode = 0
+
+[node name="v" type="VBoxContainer" parent="Outer/Contents"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.05
+anchor_right = 0.95
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 15
+
+[node name="_" type="VBoxContainer" parent="Outer/Contents/v"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Outer/Contents/v"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("7_xcasy")
+theme_override_colors/font_color = Color(0.909804, 0.721569, 0, 1)
+theme_override_font_sizes/font_size = 44
+text = "Warning!"
+
+[node name="Text" type="Label" parent="Outer/Contents/v"]
+layout_mode = 2
+theme = ExtResource("7_xcasy")
+theme_override_font_sizes/font_size = 28
+text = "Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsumLorem ipsumLorem ipsum Lorem ipsum Lorem ipsum"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="MainMenu" type="Button" parent="Outer/Contents/v"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("7_xcasy")
+theme_override_font_sizes/font_size = 34
+text = "Main Menu"
+
+[connection signal="gui_input" from="blur" to="." method="on_bg_click"]
+[connection signal="pressed" from="Outer/Contents/Close" to="." method="close"]

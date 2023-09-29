@@ -16,10 +16,20 @@ func load_codex() -> void:
 func load_credits() -> void:
 	hlp.load_child_remove_parent("res://scenes/menus/pre_game/Credits.tscn", self)
 
-func quit():
+func quit() -> void:
 	get_tree().quit()
 
+func steam_failed() -> void:
+	print("foo bar")
+	var warning: Control = load("res://scenes/menus/in_game/warning_modal.tscn").instantiate()
+	warning.init("Steam failed to start, multiplayer won't work.", false)
+	$Canv.add_child(warning)
+
+func _init() -> void:
+	steam.init_failed.connect(steam_failed )
+
 func _process(_delta: float) -> void:
+	# Reset parallax layer
 	inc += 1
 	if inc % update_per == 0:
 		p_layer.motion_offset.x += 1

@@ -6,27 +6,28 @@ var minigame
 var tabClass = preload("res://scenes/menus/codex/Tab.tscn")
 
 var codex_data_script = load("res://scenes/menus/codex/codex_data.gd")
-var codex_data = codex_data_script.codex_data
-var max_page_idx = len(codex_data.keys()) - 1
+var codex_data: Dictionary = codex_data_script.codex_data
+var max_page_idx: int = len(codex_data.keys()) - 1
 
-const faction_names = ["Albion", "Rome", "Bretagne", "Türkiye", "Gore"]
-const type_lookup = ["k", "q", "b", "n", "r", "p"]
-const page_lookup = [1,] #7, 13, 19, 25]
-const piece_types = ["Monarch", "Consort", "Bishop", "Knight", "Rook", "Pawn"]
+const faction_names: Array[String] = ["Albion", "Rome", "Bretagne", "Türkiye", "Gore"]
+const type_lookup: Array[String] = ["k", "q", "b", "n", "r", "p"]
+const page_lookup: Array[int] = [1,] #7, 13, 19, 25] update when adding the rest of the pieces.
+const piece_types: Array[String] = ["Monarch", "Consort", "Bishop", "Knight", "Rook", "Pawn"]
 
 enum {CLOSED, OPENING, TEXT_APPEAR, OPEN, TEXT_DISAPPEAR, FLIPPING}
-var state = CLOSED
+var state := CLOSED
 var book: Area2D
 var sprite: AnimatedSprite2D
 var page := 0
 
 func _ready() -> void:
+	# Onload, open book after short delay and load text. Also cache the game running in the background
 	book = $Parent/Book
 	
 	load_page_data(0)
 	minigame = load("res://scenes/game/graphics/gfx_game_manager.tscn").instantiate()
 	$Parent/Book/Page/SubViewportContainer/SubViewport.add_child(minigame)
-	#minigame.global_position = Vector2(350, 400)
+
 	minigame.get_node("bg").hide()
 	minigame.custom_init(0, "")
 	minigame.change_player_each_turn = false
@@ -45,6 +46,7 @@ func _ready() -> void:
 	state = TEXT_APPEAR
 	$Parent/Book/Page.show()
 	
+	# create a tab per faction that allows for quick access
 	for i in range(len(page_lookup)):
 		var tab = tabClass.instantiate()
 		$Parent/Book.add_child(tab)
@@ -62,6 +64,7 @@ func tab_click(faction_idx: int) -> void:
 	turn_to_page(page, new_page)
 
 func turn_to_page(old_idx: int, new_idx: int) -> void:
+	# Set limits of pages to go to
 	if new_idx == 7 or new_idx == -1:
 		return
 	$Parent/Book/Flip.play()

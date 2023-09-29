@@ -15,21 +15,15 @@ var times: Array[int] = [-1, 5, 10, 30, 999]
 var auto_joined = false
 
 # ======================== DISPLAY ========================
-func matches_filter(item: Array, g_filter: int=-1, t_filter: int=-1) -> bool:
-	var out = true
-	if g_filter > -1 && g_filter != item[1]:
-		out = false
-	if t_filter > -1 && t_filter != item[2]:
-		out = false
-	return out
-
 func _get_space(n: int) -> String:
+	# Meant to acheieve uniform spacing between usernames, game modes and times but doesn't.
 	var out := ""
 	for i in range(n):
 		out += " "
 	return out
 
 func get_item_str(item: Array) -> String:
+	# Get text to insert into the game list
 	var name_str: String = item[0]
 	var name_space_n := 30 - len(name_str)
 	var name_space := _get_space(name_space_n)
@@ -42,10 +36,12 @@ func get_item_str(item: Array) -> String:
 	return name_str + name_space + game_str + game_space + time_name
 
 func add_item(item: Array, game_list: ItemList, look: cst.look_types, first: bool=false) -> void:
+	# Insert item=[username, game mode, time control, lobby_id] into game list
 	var entry := get_item_str(item)
 	game_list.add_item(entry)
 	var idx = game_list.item_count - 1
 	game_list.set_item_tooltip_enabled(idx, false)
+	# Show your hosted lobby if applicable
 	if look == cst.look_types.HOST && first == false:
 		game_list.set_item_disabled(idx, true)
 	elif look == cst.look_types.HOST && first == true:
@@ -53,12 +49,11 @@ func add_item(item: Array, game_list: ItemList, look: cst.look_types, first: boo
 		game_list.set_item_custom_bg_color(idx, Color(0.09, 0.361, 0.545))
 
 func update_item_list(new_data: Array, look: cst.look_types=cst.look_types.HOST) -> void:
+	# On lobby list update, refresh game list
 	var game_list: ItemList = $Canv/GameList
 	game_list.clear()
 	if look == cst.look_types.HOST:
-		var your_entry = [steam.STEAM_USERNAME, stg.mode, stg.total_time_min, 0]
-		if matches_filter(your_entry, game_filter, time_filter):
-			new_data = add_your_lobby(new_data)
+		new_data = add_your_lobby(new_data)
 	var first_item := true
 	for item in new_data:
 		add_item(item, game_list, look, first_item)
@@ -72,12 +67,12 @@ func add_your_lobby(new_data: Array) -> Array:
 	return new_data
 
 func update_filter(value_idx: int, picker_idx: int) -> void:
+	# When game mode or time filter changes in the menu
 	if picker_idx == 0:
 		game_filter = value_idx - 1
 	else:
 		time_filter = times[value_idx]
 	_get_lobbies()
-	#update_item_list(data)
 
 func lobby_selected(idx: int) -> void:
 	selected_idx = idx
@@ -89,12 +84,10 @@ func back() -> void:
 
 func init_graphics() -> void:
 	if stg.look_type == cst.look_types.HOST:
-		$Canv/h/h2/Invite.show()
 		$Canv/h/h2/Join.hide()
 		$Canv/h/h2/Waiting.show()
 		$Canv/Searching.hide()
 	elif stg.look_type == cst.look_types.BROWSE:
-		$Canv/h/h2/Invite.hide()
 		$Canv/h/h2/Waiting.hide()
 		$Canv/Searching.hide()
 	else:
@@ -114,14 +107,14 @@ enum LOBBY_AVAILABILITY {PRIVATE, FRIENDS, PUBLIC, INVISIBLE}
 
 
 func _ready() -> void:
+	# Connect steam signals here
 	Steam.lobby_created.connect(_on_lobby_created)
 	Steam.lobby_match_list.connect(_on_lobby_match_list)
 	Steam.lobby_joined.connect(_on_lobby_joined)
 	#Steam.lobby_invite.connect(_on_Lobby_Invite)
 	Steam.lobby_chat_update.connect(_on_lobby_chat_update)
 	#Steam.join_requested.connect(_on_Lobby_Join_Requested)
-	
-	
+
 	if stg.look_type == cst.look_types.AUTO:
 		game_filter = stg.mode
 		time_filter = stg.total_time_min
@@ -132,7 +125,7 @@ func _ready() -> void:
 	init_graphics()
 
 func _create_lobby() -> void:
-	if LOBBY_ID == 0:
+	if LOBBY_ID == 0: # i.e if not in a lobby already
 		Steam.createLobby(Steam.LOBBY_TYPE_PUBLIC, LOBBY_MAX_MEMBERS)
 
 func _on_lobby_created(connection: int, lobby_id: int) -> void:
@@ -152,7 +145,7 @@ func _on_lobby_created(connection: int, lobby_id: int) -> void:
 		print("Allowing Steam to be relay backup: "+str(RELAY))
 
 func _get_lobbies() -> void:
-	# If in private mode, only look at friend's lobbies
+	# If in private mode, only look at friend's lobbies else look at all public lobbies
 	if stg.private:
 		var lobbies := _get_friends_lobbies()
 		_on_lobby_match_list(lobbies)
@@ -161,18 +154,21 @@ func _get_lobbies() -> void:
 
 
 func _get_global_lobbies() -> void:
+	# Get list of lobbies that satisfy filters
 	if game_filter > -1:
 		Steam.addRequestLobbyListStringFilter("mode", str(stg.mode), Steam.LOBBY_COMPARISON_EQUAL)
 	if time_filter > -1:
 		Steam.addRequestLobbyListStringFilter("time", str(stg.total_time_min), Steam.LOBBY_COMPARISON_EQUAL)
+	# List only public lobbies
 	Steam.addRequestLobbyListStringFilter("private", str(false), Steam.LOBBY_COMPARISON_EQUAL)
-	Steam.addRequestLobbyListDistanceFilter(Steam.LOBBY_DISTANCE_FILTER_FAR) # Set distance to far
+	Steam.addRequestLobbyListDistanceFilter(Steam.LOBBY_DISTANCE_FILTER_FAR)
 	Steam.addRequestLobbyListFilterSlotsAvailable(1)
 	Steam.addRequestLobbyListResultCountFilter(200)
 	Steam.requestLobbyList()
 
 
 func _get_friends_lobbies() -> Array:
+	# Loop over all friends, check if in game and in lobby then add to lust
 	var results: Array = []
 	for i in range(0, Steam.getFriendCount()):
 		var steam_id: int = Steam.getFriendByIndex(i, Steam.FRIEND_FLAG_IMMEDIATE)
@@ -204,12 +200,12 @@ func _on_lobby_match_list(lobbies: Array) -> void:
 			
 	data = new_data
 	update_item_list(new_data, stg.look_type)
-	# no matching lobbies
+	# no matching lobbies during auto matchmaking -> create one s.t others can join
 	if stg.look_type == cst.look_types.AUTO and len(new_data) == 0 and auto_joined == false:
 		stg.look_type = cst.look_types.HOST
 		auto_joined = true
 		_create_lobby()
-	# auto join first matching lobby
+	# otherwise auto join first matching lobby
 	elif stg.look_type == cst.look_types.AUTO and len(new_data) > 0 and auto_joined == false:
 		var join_lobby: int = lobbies[0]
 		if LOBBY_ID != join_lobby:
@@ -262,14 +258,13 @@ func _on_lobby_join_requested(lobby_id: int, friendID: int) -> void:
 func _on_lobby_chat_update(_lobby_id: int, change_id: int, _making_change_id: int, chat_state: int) -> void:
 	# Get the user who has made the lobby change
 	var CHANGER: String = Steam.getFriendPersonaName(change_id)
-	# If a player has joined the lobby
+	# If a player has joined the lobby and you're hosting, store their info
 	if chat_state == 1 and stg.look_type == cst.look_types.HOST:
 		OTHER_PLAYER = _get_other_player()
 		OTHER_PLAYER = {"steam_id":change_id, "steam_name":CHANGER}
 		start_game(change_id)
 
 func _leave_lobby() -> void:
-	# If in a lobby, leave it
 	if LOBBY_ID != 0:
 		Steam.leaveLobby(LOBBY_ID)
 
@@ -285,10 +280,10 @@ func _notification(what):
 		_leave_lobby()
 
 func start_game(other_player_id: int) -> void:
+	# The p2p node inn gfx game manager will now handle connections and setting up the game
 	stg.OTHER_PLAYER_ID = other_player_id
 	stg.uname_2 = OTHER_PLAYER["steam_name"]
 	var game_path := "res://scenes/game/graphics/gfx_game_manager.tscn"
 	var child: Node = load(game_path).instantiate()
 	get_tree().get_root().add_child(child)
-	#child.init(stg.chosen_fen)
 	get_tree().get_root().remove_child(self)
