@@ -303,10 +303,16 @@ func accept_rematch() -> void:
 	var packet = {"type":"rematch_accept"}
 	$P2P._send_P2P_packet(stg.OTHER_PLAYER_ID, packet)
 	fen_recieved(stg.opponent_half_FEN)
+	
+func warning_recived(warning_text: String) -> void:
+	var warning: Control = load("res://scenes/menus/in_game/warning_modal.tscn").instantiate()
+	warning.init(warning_text, true)
+	$GUILayer.add_child(warning)
 
 # ======================== PROCCESSES =================
 func _ready() -> void:
 	game_manager.connect("promotion", $Promote.play)
+	$P2P.connect("warning", warning_recived)
 	board.apply_scale(cst.BOARD_DRAW_SCALE)
 	board.play(str(stg.chosen_map))
 	if stg.draw_iso == true:
@@ -317,4 +323,5 @@ func _ready() -> void:
 
 func _init():
 	add_child(game_manager)
+
 

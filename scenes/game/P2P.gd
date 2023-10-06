@@ -6,6 +6,7 @@ signal fen_recieved(half_fen: String)
 signal rematch_request
 signal rematch_accept
 signal rematch_reject
+signal warning(text: String)
 
 var connected: bool = stg.OTHER_PLAYER_ID > -1 and stg.network == cst.network_types.ONLINE
 var is_host := stg.look_type == cst.look_types.HOST
@@ -87,20 +88,22 @@ func _handle_packet(packet: Dictionary) -> void:
 		rematch_reject.emit()
 
 func _on_P2P_session_connect_fail(steamID: int, session_error: int) -> void:
+	var warning_text: String = ""
 	if session_error == 0:
-		print("WARNING: Session failure with "+str(steamID)+" [no error given].")
+		warning_text = "Session failure with "+str(steamID)+" [no error given]."
 	elif session_error == 1:
-		print("WARNING: Session failure with "+str(steamID)+" [target user not running the same game].")
+		warning_text = "Session failure with "+str(steamID)+" [target user not running the same game]."
 	elif session_error == 2:
-		print("WARNING: Session failure with "+str(steamID)+" [local user doesn't own app / game].")
+		warning_text = "Session failure with "+str(steamID)+" [local user doesn't own app / game]."
 	elif session_error == 3:
-		print("WARNING: Session failure with "+str(steamID)+" [target user isn't connected to Steam].")
+		warning_text = "Session failure with "+str(steamID)+" [target user isn't connected to Steam]."
 	elif session_error == 4:
-		print("WARNING: Session failure with "+str(steamID)+" [connection timed out].")
+		warning_text = "Session failure with "+str(steamID)+" [connection timed out]."
 	elif session_error == 5:
-		print("WARNING: Session failure with "+str(steamID)+" [unused].")
+		warning_text = "Session failure with "+str(steamID)+" [unused]."
 	else:
-		print("WARNING: Session failure with "+str(steamID)+" [unknown error "+str(session_error)+"].")
+		warning_text = "Session failure with "+str(steamID)+" [unknown error "+str(session_error)+"]."
+	warning.emit(warning_text)
 
 func _close_connection() -> void:
 	Steam.closeP2PSessionWithUser(stg.OTHER_PLAYER_ID)

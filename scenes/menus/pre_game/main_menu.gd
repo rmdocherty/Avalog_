@@ -1,8 +1,13 @@
 extends Node2D
 
 var inc := 0
+var n_moves := 0
+
+const move_speed :=  120.
 const update_per := 7
 const overflow_lim := 2000
+
+
 
 @onready var p_layer := $Canv/HSplit/Castle/PBG/PLayer
 
@@ -28,11 +33,15 @@ func steam_failed() -> void:
 func _init() -> void:
 	steam.init_failed.connect(steam_failed )
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	# Reset parallax layer
-	inc += 1
-	if inc % update_per == 0:
+	inc += move_speed * delta # this should fix it for windows/faster _process calls but isn't correct
+	if inc > update_per:
 		p_layer.motion_offset.x += 1
-	if inc > overflow_lim:
+		n_moves += 1
+		inc = 0
+	if n_moves > overflow_lim:
+		print('reset!')
+		n_moves = 0
 		inc = 0
 
