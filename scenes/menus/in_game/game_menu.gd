@@ -69,6 +69,7 @@ func toggle_classic_icons(state: bool) -> void:
 	stg.classic_icons = state
 	if state == true:
 		get_parent().get_parent().show_board(true)
+		
 		stg.draw_iso = false
 	gfx_changed.emit()
 
