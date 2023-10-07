@@ -3,7 +3,7 @@ extends Node2D
 var inc := 0.
 var n_moves := 0
 
-const move_speed :=  120.
+const move_speed :=  100.
 const update_per := 7
 const overflow_lim := 2000
 
