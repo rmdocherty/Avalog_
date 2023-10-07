@@ -99,7 +99,7 @@ func play() -> void:
 		var child: Node = load(game_path).instantiate()
 		get_tree().get_root().add_child(child)
 		child.init(stg.chosen_fen)
-		self.queue_free()
+		queue_free()
 	elif stg.network == cst.network_types.ONLINE:
 		# If 'Play' clicked and online, begin automatchmaking 
 		stg.look_type = cst.look_types.AUTO

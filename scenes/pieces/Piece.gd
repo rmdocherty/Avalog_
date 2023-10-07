@@ -71,7 +71,6 @@ func update_lines(nested_vms: Array) -> void:
 	are then used for phantom move matching. It also accounts for extra moves."""
 	reset_flat_arrs()
 	var mvs: Array = logic.active_mvs
-	#var nested_vms: Array = logic.nested_valid_moves
 	var N_vm := len(nested_vms)
 	var N_mvs := len(mvs)
 	for i in range(N_vm):
@@ -95,6 +94,9 @@ func update_lines(nested_vms: Array) -> void:
 				flat_ends.push_back(end)
 				flat_mvs.push_back(mv_type)
 				flat_draws.push_back(draw_type)
+		# in case that all moves for knight are valid, need to finish the polygon (duh!)
+		if draw_type == cst.draw_type.RADIAL:
+			graphics.finish_polygon()
 
 func play_attack_anim() -> void:
 	var sprite: AnimatedSprite2D = graphics.sprite

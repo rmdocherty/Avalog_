@@ -294,7 +294,7 @@ position = Vector2(742, 351)
 shape = SubResource("RectangleShape2D_8dktx")
 
 [node name="ShowLines" type="Timer" parent="."]
-wait_time = 0.2
+wait_time = 0.1
 one_shot = true
 
 [connection signal="pressed" from="Parent/Back" to="." method="back"]

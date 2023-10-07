@@ -84,17 +84,7 @@ func _input(event: InputEvent) -> void:
 		zoom_in()
 	elif event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
 		zoom_out()
-
-	if Input.is_key_pressed(KEY_A):
-		target_pos += hlp.norm_to_iso(flip_vec * Vector2(-1, 0))
-	if Input.is_key_pressed(KEY_D):
-		target_pos += hlp.norm_to_iso(flip_vec * Vector2(1, 0))
-	if Input.is_key_pressed(KEY_W):
-		target_pos += hlp.norm_to_iso(flip_vec * Vector2(0, -1))
-	if Input.is_key_pressed(KEY_S):
-		target_pos += hlp.norm_to_iso(flip_vec * Vector2(0, 1))
-	if Input.is_key_pressed(KEY_F):
-		flip_camera()
+	
 	if Input.is_key_pressed(KEY_V):
 		emit_signal("hide_bar_key_pressed")
 	if Input.is_key_label_pressed(KEY_F11) and window_mode == DisplayServer.WINDOW_MODE_WINDOWED:
@@ -108,3 +98,18 @@ func _input(event: InputEvent) -> void:
 	
 	if Input.is_key_label_pressed(KEY_ESCAPE):
 		emit_signal("esc_key_pressed")
+	
+	if stg.draw_iso == false: # stop people panning in flat view
+		return
+
+	if Input.is_key_pressed(KEY_A):
+		target_pos += hlp.norm_to_iso(flip_vec * Vector2(-1, 0))
+	if Input.is_key_pressed(KEY_D):
+		target_pos += hlp.norm_to_iso(flip_vec * Vector2(1, 0))
+	if Input.is_key_pressed(KEY_W):
+		target_pos += hlp.norm_to_iso(flip_vec * Vector2(0, -1))
+	if Input.is_key_pressed(KEY_S):
+		target_pos += hlp.norm_to_iso(flip_vec * Vector2(0, 1))
+	if Input.is_key_pressed(KEY_F):
+		flip_camera()
+	

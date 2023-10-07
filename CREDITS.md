@@ -20,6 +20,15 @@ Confetti script adapted (ported to godot 4) from ['2D fake confetti particles by
 
 Castle adapted (resized, palletised, edited) from ['Castle Eltz by Timo Rüßler'](https://commons.wikimedia.org/wiki/File:Castle_Eltz_(121706463).jpeg) (CC BY-SA 3.0)
 
+## Text Credits:
+All from [Project Gutenberg](https://www.gutenberg.org/)
+
+[Le Morte d'Arthur, Thomas Malory](https://www.gutenberg.org/ebooks/1251)
+
+[Hero-Myths & Legends of the British Race, M. I. Ebbutt](https://www.gutenberg.org/ebooks/25502) (changed 'he' -> 'she')
+
+[The Canterybury Tales, Geoffrey Chaucer](https://www.gutenberg.org/ebooks/22120)
+
 ## Fonts
 
 Title font is ['Bitfantasy' by Nimble Beasts Collective](https://nimblebeastscollective.itch.io/nb-pixel-font-bundle) (CC0)
