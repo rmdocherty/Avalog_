@@ -1,6 +1,6 @@
 extends Node2D
 
-var inc := 0
+var inc := 0.
 var n_moves := 0
 
 const move_speed :=  120.
