@@ -2,6 +2,8 @@ extends Node
 
 const albion_moves_class = preload("res://scenes/pieces/albion/albion_mvs.gd")
 var albion_moves = albion_moves_class.new()
+const rome_moves_class = preload("res://scenes/pieces/rome/rome_mvs.gd")
+var rome_moves = rome_moves_class.new()
 
 
 """
@@ -98,4 +100,11 @@ var table = {
 			#"extra_moves": albion_moves.get_king_castling_moves()
 		},
 	},
+	"r": {
+		"p": {
+			"piece": preload("res://scenes/pieces/rome/Phalanx.tscn"),
+			"logic": preload("res://scenes/pieces/inherited/MultiStateLogicPiece.tscn"),
+			"states": rome_moves.get_pawn_moves(),
+		},
+	}
 }

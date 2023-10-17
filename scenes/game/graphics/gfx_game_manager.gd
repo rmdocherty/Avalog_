@@ -60,7 +60,7 @@ func add_pieces_from_fen(fen_str: String) -> Array[Piece]:
 	var pieces: Array[Piece] = []
 	var x_idx: int = start_x
 	var y_idx: int = start_y
-	var _faction_int: int = -1
+	var faction_int: int = -1
 	var i := 0
 	for letter in fen_str:
 		var p0 := Vector2((x_idx + 0.5) * cst.LOGIC_SQ_W, (y_idx + 0.5) * cst.LOGIC_SQ_W)
@@ -70,16 +70,19 @@ func add_pieces_from_fen(fen_str: String) -> Array[Piece]:
 		elif letter.is_valid_int():
 			x_idx += int(letter)
 		elif letter in cst.fen_faction_lookup:
-			_faction_int = cst.fen_faction_lookup.find(letter, 0)
+			faction_int = cst.fen_faction_lookup.find(letter, 0)
 		else:
-			var piece: Piece = add_piece(letter, p0, i)
+			if faction_int == -1:
+				faction_int = 0
+			var faction_char: String = cst.faction_lookup[faction_int]
+			var piece: Piece = add_piece(letter, p0, i, faction_char)
 			i += 1
 			pieces.push_back(piece)
-			_faction_int = -1
+			faction_int = -1
 			x_idx += 1
 	return pieces
 
-func add_piece(piece_letter: String, pos: Vector2, piece_n: int) -> Piece:
+func add_piece(piece_letter: String, pos: Vector2, piece_n: int, faction: String) -> Piece:
 	"""Query the lookup and get a piece, initialise it then add as a child."""
 	var colour: cst.colour
 	var piece_type: String = piece_letter.to_lower()
@@ -88,7 +91,7 @@ func add_piece(piece_letter: String, pos: Vector2, piece_n: int) -> Piece:
 	else:
 		colour = cst.colour.WHITE
 	
-	var temp_piece = lkp.add_piece("a", piece_type, colour)
+	var temp_piece = lkp.add_piece(faction, piece_type, colour)
 	add_child(temp_piece)
 	temp_piece.init(pos, colour, piece_n)
 	all_pieces.push_back(temp_piece)

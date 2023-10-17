@@ -1,7 +1,7 @@
 extends "res://scenes/pieces/LogicPiece.gd"
 
 var current_mv_state := 0
-var mv_states = []
+var mv_states: Array = []
 
 func post_move(_delta: Vector2) -> void:
 	# To be overwritten later, for castling or state switching
