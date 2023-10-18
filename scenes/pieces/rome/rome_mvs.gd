@@ -12,7 +12,7 @@ func get_king_moves() -> Array[MoveVector]:
 
 
 func get_queen_moves() -> Array[MoveVector]:
-	var line = [Vector2(0, 1),  Vector2(0, -1), Vector2(1, 0), Vector2(-1, 0)]
+	var line: Array[Vector2] = [Vector2(0, 1),  Vector2(0, -1), Vector2(1, 0), Vector2(-1, 0)]
 	var mvs := helper.get_line_mvs(line, cst.mv_type.NORMAL, 3)
 	var state: Array[MoveVector] = [mvs]
 	for mag in [sqrt(2), sqrt(5)]:
@@ -22,17 +22,16 @@ func get_queen_moves() -> Array[MoveVector]:
 
 
 func get_bishop_moves() -> Array[MoveVector]:
-	var mvs = []
+	var state: Array[MoveVector] = []
 	for i in range(4):
 		var angle = i * 90
 		var circle = helper.get_circle_mvs(0.1, sqrt(4.5), angle - 20, angle + 20, cst.mv_type.NORMAL)
-		mvs.push_back(circle)
-	var state: Array[MoveVector] = [mvs]
+		state.push_back(circle)
 	return state
 
 
 func get_knight_moves() -> Array[MoveVector]:
-	var line = [Vector2(1, -1), Vector2(-1, 1), Vector2(-1, -1), Vector2(1, 1)]
+	var line: Array[Vector2] = [Vector2(1, -1), Vector2(-1, 1), Vector2(-1, -1), Vector2(1, 1)]
 	var mvs := helper.get_line_mvs(line, cst.mv_type.NORMAL, 3)
 	var state: Array[MoveVector] = [mvs]
 	return state
@@ -45,8 +44,8 @@ func get_rook_moves() -> Array[MoveVector]:
 
 
 func get_pawn_moves(dir: float=1, monarch_faction: String="a") -> Array:
-	var inner := 0.1
-	var forward := 0.75
+	var inner := dir * 0.1
+	var forward := dir * 0.75
 
 	var states: Array
 	var state_1: MoveVector

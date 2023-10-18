@@ -7,7 +7,7 @@ var LINE_DRAW_WIDTH := 0.20 # was 0.2 iirc
 var PIECE_DRAW_SCALE := Vector2(2.2, 2.2)#Vector2(2.5, 2.5) # defo add this as a slider - 2 is interesting
 
 # FEN strings
-const full_board := "rnbqkbnr/pippppppp/8/8/8/8/PPPPPPPP/RNBQKBNR"
+const full_board := "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR"
 
 const lasker = "rn3rk1/pbppq1pQ/1p2pb2/4N3/3PN3/3B4/PPP2PPP/R3K2R" #scene 2
 const vladimirov = "R4K1R/1B2Bpr1/P4N2/3P4/4p2p/1Q2b2b/pPp5/1k4r1"

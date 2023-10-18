@@ -131,6 +131,7 @@ animations = [{
 }]
 
 [node name="Piece" instance=ExtResource("1_81ins")]
+faction_char = "r"
 piece_char = "k"
 
 [node name="GraphicalPiece" parent="." index="1"]

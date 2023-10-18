@@ -132,6 +132,7 @@ animations = [{
 }]
 
 [node name="Piece" instance=ExtResource("1_bvj7w")]
+faction_char = "r"
 
 [node name="LogicPiece" parent="." index="0"]
 script = ExtResource("2_82gw2")

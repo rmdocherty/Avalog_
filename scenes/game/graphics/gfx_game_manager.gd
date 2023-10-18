@@ -10,6 +10,8 @@ const start_y := -4
 
 var gfx_offset := cst.FLAT_DRAW_SCALE * cst.LOGIC_SQ_W * Vector2(start_x, start_y)
 
+var player_monarch_factions: Array[cst.factions] = [cst.factions.ALBION, cst.factions.ALBION]
+
 var change_player_each_turn: bool = true
 
 var all_pieces: Array[Piece] = []
@@ -55,8 +57,34 @@ func fen_recieved(other_half_fen: String) -> void:
 		stg.replace_palettes = new_palettes
 	init(fen)
 
+func find_factions_of_monarchs(fen_str: String) -> Array[cst.factions]:
+	"""Loop through FEN to get faction of king per player, i.e if in draft mode and king has a
+	faction modifier prepended else just use player faction."""
+	var monarch_factions: Array[cst.factions] = [cst.factions.ALBION, cst.factions.ALBION]
+	var idx: int = 0
+	for letter in fen_str:
+		if letter.to_lower() == "k":
+			var colour: cst.colour
+			var piece_type: String = letter.to_lower()
+
+			if (letter == piece_type):
+				colour = cst.colour.BLACK
+			else:
+				colour = cst.colour.WHITE
+
+			var faction_int: int
+			if fen_str[idx - 1] in cst.fen_faction_lookup:
+				faction_int = cst.fen_faction_lookup.find(letter, 0)
+			else:
+				faction_int = stg.chosen_factions[colour]
+			monarch_factions[colour] = faction_int
+		idx += 1
+	return monarch_factions
+
 func add_pieces_from_fen(fen_str: String) -> Array[Piece]:
 	"""Loop through FEN string, initialising new pieces at correct position w/ correct colour."""
+	player_monarch_factions = find_factions_of_monarchs(fen_str)
+	
 	var pieces: Array[Piece] = []
 	var x_idx: int = start_x
 	var y_idx: int = start_y
@@ -72,17 +100,14 @@ func add_pieces_from_fen(fen_str: String) -> Array[Piece]:
 		elif letter in cst.fen_faction_lookup:
 			faction_int = cst.fen_faction_lookup.find(letter, 0)
 		else:
-			if faction_int == -1:
-				faction_int = 0
-			var faction_char: String = cst.faction_lookup[faction_int]
-			var piece: Piece = add_piece(letter, p0, i, faction_char)
+			var piece: Piece = add_piece(letter, p0, i, faction_int)
 			i += 1
 			pieces.push_back(piece)
 			faction_int = -1
 			x_idx += 1
 	return pieces
 
-func add_piece(piece_letter: String, pos: Vector2, piece_n: int, faction: String) -> Piece:
+func add_piece(piece_letter: String, pos: Vector2, piece_n: int, faction_int: int) -> Piece:
 	"""Query the lookup and get a piece, initialise it then add as a child."""
 	var colour: cst.colour
 	var piece_type: String = piece_letter.to_lower()
@@ -91,7 +116,13 @@ func add_piece(piece_letter: String, pos: Vector2, piece_n: int, faction: String
 	else:
 		colour = cst.colour.WHITE
 	
-	var temp_piece = lkp.add_piece(faction, piece_type, colour)
+	var faction: String
+	if faction_int == -1:
+		faction_int = stg.chosen_factions[colour]
+	faction = cst.faction_lookup[faction_int]
+	# Need to add a check for monarch faction to this function and find it before looping through fen
+	var monarch_faction_char: String = cst.faction_lookup[player_monarch_factions[colour]]
+	var temp_piece = lkp.add_piece(faction, piece_type, colour, monarch_faction_char)
 	add_child(temp_piece)
 	temp_piece.init(pos, colour, piece_n)
 	all_pieces.push_back(temp_piece)
