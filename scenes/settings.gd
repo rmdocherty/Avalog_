@@ -11,17 +11,19 @@ const full_board := "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR"
 
 const lasker = "rn3rk1/pbppq1pQ/1p2pb2/4N3/3PN3/3B4/PPP2PPP/R3K2R" #scene 2
 const vladimirov = "R4K1R/1B2Bpr1/P4N2/3P4/4p2p/1Q2b2b/pPp5/1k4r1"
-#const marshall = "5rk1/pp4pp/4p3/2R3Q1/3n4/2q4r/P1P2PPP/5RK1"
 const marshall = "5RK1/PP4PP/4P3/4r1q1/3N4/2Q4R/p1p2ppp/5rk1"
 const london = "rnbqkb1r/ppp1pppp/5n2/3p4/3P1B2/5N2/PPP1PPPP/RN1QKB1R"
 const morphy = "RN2KB1R/P3QPPP/5N2/1P2P1b1/2b1p3/1q6/ppp2ppp/r3k2r"
+const marketing := "8/8/8/8/8/8/1k/R"
 
 
 var half_FEN := "rnbqkbnr/pppppppp/"
 var opponent_half_FEN := "rnbqkbnr/pppppppp/"
+
 const test := "r1kQ2pn/1P6/p3B2P/2fr/1P6/7p/2p2prP/R3K2R"
-const marketing := "8/8/8/8/8/8/1k/R"
-var chosen_fen := test
+const test_shoot = "8/qqqqqq/8/8/8/5fN"
+
+var chosen_fen := test_shoot
 # Game variables: updated during runtime
 var network := cst.network_types.LOCAL
 var mode := cst.modes.CLASSIC

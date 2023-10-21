@@ -46,8 +46,8 @@ func get_rook_moves() -> Array[MoveVector]:
 
 
 func get_knight_moves() -> Array[MoveVector]:
-	const mag := sqrt(5)
-	var mvs := helper.get_circle_mvs(0, mag, 0, 360, cst.mv_type.JUMPING, true, 64)
+	var line: Array[Vector2] = [Vector2(1, 0), Vector2(-1, 0), Vector2(0, -1), Vector2(0, 1)]
+	var mvs := helper.get_line_mvs(line, cst.mv_type.NO_ATTACK, 2.0)
 	var state: Array[MoveVector] = [mvs]
 	return state
 
