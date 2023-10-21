@@ -4,6 +4,8 @@ const albion_moves_class = preload("res://scenes/pieces/albion/albion_mvs.gd")
 var albion_moves = albion_moves_class.new()
 const rome_moves_class = preload("res://scenes/pieces/rome/rome_mvs.gd")
 var rome_moves = rome_moves_class.new()
+const bretagne_moves_class = preload("res://scenes/pieces/bretagne/bretagne_mvs.gd")
+var bretagne_moves = bretagne_moves_class.new()
 
 
 """
@@ -48,6 +50,8 @@ func set_logic_piece(node: LogicPiece, faction_char: String, piece_char: String,
 		node = get_peasant(node, colour, monarch_faction)
 	elif faction_char == "r" and piece_char == "p":
 		node = get_phalanx(node, colour, monarch_faction)
+	elif faction_char == "b" and piece_char == "p":
+		node = get_agriculteur(node, colour, monarch_faction)
 
 	node.piece_char = piece_char
 	node.faction_char = faction_char
@@ -76,6 +80,17 @@ func get_phalanx(node: LogicPiece, colour: cst.colour, monarch_faction: String="
 	node.active_mvs = states[0]
 	return node
 
+
+func get_agriculteur(node: LogicPiece, colour: cst.colour, monarch_faction: String="a") -> LogicPiece:
+	var forward := 1
+	if colour == cst.colour.WHITE:
+		forward = -1
+	var states = bretagne_moves.get_pawn_moves(forward, monarch_faction)
+	node.mv_states = states
+	node.active_mvs = states[0]
+	var extra_moves = bretagne_moves.get_pawn_attacks(forward)
+	node.extra_moves = extra_moves
+	return node
 
 var table = {
 	"a": {
@@ -142,6 +157,29 @@ var table = {
 			"piece": preload("res://scenes/pieces/rome/Count.tscn"),
 			"logic": preload("res://scenes/pieces/LogicPiece.tscn"),
 			"mvs": rome_moves.get_king_moves(),
+		},
+	},
+	"b": {
+		"p": {
+			"piece": preload("res://scenes/pieces/bretagne/Agriculteur.tscn"),
+			"logic": preload("res://scenes/pieces/inherited/LogicPawn.tscn"),
+			"states": bretagne_moves.get_pawn_moves(),
+			"extra_moves": bretagne_moves.get_pawn_attacks()
+		},
+		"q": {
+			"piece": preload("res://scenes/pieces/bretagne/Soleil.tscn"),
+			"logic": preload("res://scenes/pieces/LogicPiece.tscn"),
+			"mvs": bretagne_moves.get_queen_moves()
+		},
+		"r": {
+			"piece": preload("res://scenes/pieces/bretagne/Halberd.tscn"),
+			"logic": preload("res://scenes/pieces/LogicPiece.tscn"),
+			"mvs": bretagne_moves.get_rook_moves(),
+		},
+		"k": {
+			"piece": preload("res://scenes/pieces/bretagne/Gradlon.tscn"),
+			"logic": preload("res://scenes/pieces/LogicPiece.tscn"),
+			"mvs": bretagne_moves.get_king_moves()
 		},
 	}
 }

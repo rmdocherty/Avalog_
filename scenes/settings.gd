@@ -19,7 +19,7 @@ const morphy = "RN2KB1R/P3QPPP/5N2/1P2P1b1/2b1p3/1q6/ppp2ppp/r3k2r"
 
 var half_FEN := "rnbqkbnr/pppppppp/"
 var opponent_half_FEN := "rnbqkbnr/pppppppp/"
-const test := "r1kQ2pn/1P6/p3B2P/2r/1P6/7p/2p2prP/R3K2R"
+const test := "r1kQ2pn/1P6/p3B2P/2fr/1P6/7p/2p2prP/R3K2R"
 const marketing := "8/8/8/8/8/8/1k/R"
 var chosen_fen := test
 # Game variables: updated during runtime

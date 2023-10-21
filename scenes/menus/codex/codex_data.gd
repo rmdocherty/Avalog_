@@ -105,7 +105,7 @@ const codex_data: Dictionary = {
 		"faction": 1,
 		"type": "p",
 		"tooltip": "", # maybe some fake history about them fighting gradlon near paris?
-		"lore": "",
+		"lore": "Their enemy was outside Paris, his plans well in motion. To stop him, they had to traverse the land of the Gauls - they had conquered them before, they could do it again. For the first (and the last) time in their history, during the twilight of their empire, they had not come to subjugate, but to save. \n And so they marched, they marched for Rome, for the Pope, for God and even for France. They were the sword and shield of the empire - conscripted from farmers, bakers, merchants then trained, honed and unleashed. They had fought winter wars, guerilla wars and pitched battles. There was no force more organized or experienced in all of Christendom. They were, sadly, not enough.",
 		"author": HISTORY
 	},
 	"13": {
@@ -121,7 +121,7 @@ const codex_data: Dictionary = {
 		"faction": 2,
 		"type": "q",
 		"tooltip": "[color=red]Jumping[/color] in a star pattern",
-		"lore": "",
+		"lore": "", # about how he turned on gradlon in the end but was too late to stop him?
 		"author": HISTORY
 	},
 	"15": {
@@ -145,7 +145,7 @@ const codex_data: Dictionary = {
 		"faction": 2,
 		"type": "r",
 		"tooltip": "",
-		"lore": "",
+		"lore": "", # how she was strong fighter and about the battle with count lucius?
 		"author": "- Friar Morgan, Historia"
 	},
 	"18": {

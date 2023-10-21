@@ -147,6 +147,7 @@ animations = [{
 
 [node name="Piece" instance=ExtResource("1_3os4k")]
 piece_char = "r"
+piece_vel = 65.0
 
 [node name="GraphicalPiece" parent="." index="1"]
 material = SubResource("ShaderMaterial_mq3wr")
@@ -161,7 +162,6 @@ animation = &"default"
 
 [node name="Sprite" parent="GraphicalPiece" index="2"]
 sprite_frames = SubResource("SpriteFrames_kyi5w")
-animation = &"0_attack"
 
 [node name="Attack" parent="Audio" index="1"]
 stream = ExtResource("4_3ie5b")
