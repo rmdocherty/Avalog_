@@ -133,6 +133,7 @@ animations = [{
 
 [node name="Piece" instance=ExtResource("1_bvj7w")]
 faction_char = "r"
+piece_vel = 60.0
 
 [node name="LogicPiece" parent="." index="0"]
 script = ExtResource("2_82gw2")
@@ -151,4 +152,8 @@ animation = &"default"
 [node name="Sprite" parent="GraphicalPiece" index="2"]
 sprite_frames = SubResource("SpriteFrames_7k1m7")
 
+[node name="AttackDelay" parent="Audio" index="2"]
+wait_time = 0.33
+
 [editable path="GraphicalPiece"]
+[editable path="Audio"]

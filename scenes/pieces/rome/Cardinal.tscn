@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://dteavcmtt5ui4"]
+[gd_scene load_steps=27 format=3 uid="uid://dteavcmtt5ui4"]
 
 [ext_resource type="PackedScene" uid="uid://cfobj247gpa7q" path="res://scenes/pieces/Piece.tscn" id="1_cpv8a"]
 [ext_resource type="Shader" path="res://scenes/pieces/graphics/Piece.gdshader" id="2_8nlv4"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cnswwvfxu7xme" path="res://assets/pieces/rome/cross_attack.png" id="4_fe24p"]
 [ext_resource type="Texture2D" uid="uid://cmado0pd2kdr3" path="res://assets/pieces/classic/p.png" id="5_wi6q3"]
 [ext_resource type="Texture2D" uid="uid://dsfc42cu5anbj" path="res://assets/pieces/icons.png" id="6_r4xtl"]
+[ext_resource type="AudioStream" uid="uid://bie4lp3m2lldo" path="res://assets/sfx/holy_magic.wav" id="8_fgeqh"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7scw7"]
 resource_local_to_scene = true
@@ -185,4 +186,8 @@ animation = &"default"
 [node name="Sprite" parent="GraphicalPiece" index="2"]
 sprite_frames = SubResource("SpriteFrames_8luce")
 
+[node name="Attack" parent="Audio" index="1"]
+stream = ExtResource("8_fgeqh")
+
 [editable path="GraphicalPiece"]
+[editable path="Audio"]

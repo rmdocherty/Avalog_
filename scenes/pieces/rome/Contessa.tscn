@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://ci57pjnvbs4y7"]
+[gd_scene load_steps=23 format=3 uid="uid://ci57pjnvbs4y7"]
 
 [ext_resource type="PackedScene" uid="uid://cfobj247gpa7q" path="res://scenes/pieces/Piece.tscn" id="1_ac5xs"]
 [ext_resource type="Shader" path="res://scenes/pieces/graphics/Piece.gdshader" id="2_j4ap0"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://b050d58pv4p0n" path="res://assets/pieces/classic/P.png" id="4_4mrkf"]
 [ext_resource type="Texture2D" uid="uid://cmado0pd2kdr3" path="res://assets/pieces/classic/p.png" id="5_5wsbb"]
 [ext_resource type="Texture2D" uid="uid://dsfc42cu5anbj" path="res://assets/pieces/icons.png" id="6_ujpix"]
+[ext_resource type="AudioStream" uid="uid://bwbh4jsssac3j" path="res://assets/sfx/epee.wav" id="7_myoaf"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ptbon"]
 resource_local_to_scene = true
@@ -95,13 +96,13 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_cvf6u"]
-atlas = ExtResource("3_v5mkf")
-region = Rect2(48, 0, 16, 17)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_0b838"]
 atlas = ExtResource("3_v5mkf")
 region = Rect2(16, 0, 16, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cvf6u"]
+atlas = ExtResource("3_v5mkf")
+region = Rect2(48, 0, 16, 17)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v0jdw"]
 atlas = ExtResource("3_v5mkf")
@@ -120,10 +121,10 @@ resource_local_to_scene = true
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_cvf6u")
+"texture": SubResource("AtlasTexture_0b838")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_0b838")
+"texture": SubResource("AtlasTexture_cvf6u")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_v0jdw")
@@ -160,6 +161,12 @@ animation = &"default"
 
 [node name="Sprite" parent="GraphicalPiece" index="2"]
 sprite_frames = SubResource("SpriteFrames_ujhpj")
-animation = &"0_passive"
+
+[node name="Attack" parent="Audio" index="1"]
+stream = ExtResource("7_myoaf")
+
+[node name="AttackDelay" parent="Audio" index="2"]
+wait_time = 0.66
 
 [editable path="GraphicalPiece"]
+[editable path="Audio"]

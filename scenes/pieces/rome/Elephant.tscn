@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://cgf68jh4ih0eg"]
+[gd_scene load_steps=22 format=3 uid="uid://cgf68jh4ih0eg"]
 
 [ext_resource type="PackedScene" uid="uid://cfobj247gpa7q" path="res://scenes/pieces/Piece.tscn" id="1_n5kv4"]
 [ext_resource type="Shader" path="res://scenes/pieces/graphics/Piece.gdshader" id="2_xdyhl"]
@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://cmado0pd2kdr3" path="res://assets/pieces/classic/p.png" id="5_f3m1o"]
 [ext_resource type="Texture2D" uid="uid://dsfc42cu5anbj" path="res://assets/pieces/icons.png" id="6_6aj60"]
 [ext_resource type="Texture2D" uid="uid://b2setgrm7w60x" path="res://assets/pieces/rome/elephant.png" id="7_l2fe0"]
+[ext_resource type="AudioStream" uid="uid://bble6oncylv3p" path="res://assets/sfx/stomp.mp3" id="7_p5siv"]
+[ext_resource type="AudioStream" uid="uid://bfvdmpfbbcdl8" path="res://assets/sfx/elephant.mp3" id="8_g2x1o"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_m3u12"]
 resource_local_to_scene = true
@@ -152,4 +154,11 @@ sprite_frames = SubResource("SpriteFrames_b27d2")
 animation = &"0_passive"
 offset = Vector2(1, -8)
 
+[node name="Move" parent="Audio" index="0"]
+stream = ExtResource("7_p5siv")
+
+[node name="Attack" parent="Audio" index="1"]
+stream = ExtResource("8_g2x1o")
+
 [editable path="GraphicalPiece"]
+[editable path="Audio"]

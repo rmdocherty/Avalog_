@@ -77,7 +77,7 @@ func find_factions_of_monarchs(fen_str: String) -> Array[cst.factions]:
 				faction_int = cst.fen_faction_lookup.find(letter, 0)
 			else:
 				faction_int = stg.chosen_factions[colour]
-			monarch_factions[colour] = faction_int
+			monarch_factions[colour] = faction_int as cst.factions
 		idx += 1
 	return monarch_factions
 
@@ -142,7 +142,7 @@ func init(fen: String, track: int=1) -> void:
 
 	all_pieces = add_pieces_from_fen(fen)
 	game_manager.add_pieces_from_nodes(all_pieces)
-	game_manager.init()
+	game_manager.init(player_monarch_factions)
 	# short delay here so all nodes can load before we find moves
 	$InitialTimer.start()
 

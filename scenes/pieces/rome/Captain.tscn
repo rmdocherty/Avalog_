@@ -145,6 +145,9 @@ animation = &"default"
 
 [node name="Sprite" parent="GraphicalPiece" index="2"]
 sprite_frames = SubResource("SpriteFrames_p6s3d")
-animation = &"0_passive"
+
+[node name="AttackDelay" parent="Audio" index="2"]
+wait_time = 0.33
 
 [editable path="GraphicalPiece"]
+[editable path="Audio"]

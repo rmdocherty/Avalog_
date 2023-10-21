@@ -104,7 +104,7 @@ const codex_data: Dictionary = {
 		"name": "Phalanx",
 		"faction": 1,
 		"type": "p",
-		"tooltip": "",
+		"tooltip": "", # maybe some fake history about them fighting gradlon near paris?
 		"lore": "",
 		"author": HISTORY
 	},
