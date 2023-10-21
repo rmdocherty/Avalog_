@@ -21,7 +21,7 @@ var half_FEN := "rnbqkbnr/pppppppp/"
 var opponent_half_FEN := "rnbqkbnr/pppppppp/"
 
 const test := "r1kQ2pn/1P6/p3B2P/2fr/1P6/7p/2p2prP/R3K2R"
-const test_shoot = "8/qqqqqq/8/8/8/5fN"
+const test_shoot = "8/qqqqqq/8/8/8/4fN"
 
 var chosen_fen := test_shoot
 # Game variables: updated during runtime

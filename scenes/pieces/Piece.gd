@@ -54,6 +54,7 @@ func set_shader_params(replace_palettes: Array[int]) -> void:
 	graphics.material.set_shader_parameter("replace_palette_num", replace_palettes[colour + 2])
 
 func reset_drag_hide_phantom(_move_confirmed: bool=false) -> void:
+	# this could be moved to graphicalPiece probs
 	$GraphicalPiece/Phantom.position = Vector2(0, 0)
 	$GraphicalPiece/Icon.position = Vector2(0, 0)
 	$GraphicalPiece/Phantom.dragging = false

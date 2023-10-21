@@ -27,3 +27,5 @@ const faction_lookup = ["a", "r", "b", "t", "m"]
 
 const BOARD_DRAW_SCALE := Vector2(3.75, 3.75)
 const FLAT_DRAW_SCALE := Vector2(1, 1)
+
+const PROJ_SPEED := Vector2(75, 75)
