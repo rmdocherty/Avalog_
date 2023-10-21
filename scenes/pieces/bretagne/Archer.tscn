@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://iahid3ogbrgb"]
+[gd_scene load_steps=25 format=3 uid="uid://iahid3ogbrgb"]
 
 [ext_resource type="Script" path="res://scenes/pieces/Piece.gd" id="1_d7hrp"]
 [ext_resource type="PackedScene" uid="uid://cdh83gck0sud6" path="res://scenes/pieces/inherited/RangedLogicPiece.tscn" id="2_gqjju"]
@@ -7,10 +7,11 @@
 [ext_resource type="Texture2D" uid="uid://b050d58pv4p0n" path="res://assets/pieces/classic/P.png" id="4_dghx2"]
 [ext_resource type="Texture2D" uid="uid://dl6jng3pthprk" path="res://assets/pieces/bretagne/archer.png" id="5_2yqln"]
 [ext_resource type="Texture2D" uid="uid://cmado0pd2kdr3" path="res://assets/pieces/classic/p.png" id="5_q15md"]
+[ext_resource type="Script" path="res://scenes/pieces/graphics/RangedCircle.gd" id="6_3064x"]
 [ext_resource type="Texture2D" uid="uid://dsfc42cu5anbj" path="res://assets/pieces/icons.png" id="6_crrb8"]
 [ext_resource type="PackedScene" uid="uid://bc53legwu4s01" path="res://scenes/pieces/graphics/AudioPiece.tscn" id="9_i2hpr"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_alylp"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1im8g"]
 resource_local_to_scene = true
 shader = ExtResource("2_nsc6f")
 shader_parameter/tol = 0.05
@@ -152,11 +153,12 @@ animations = [{
 [node name="Piece" type="Node2D"]
 z_index = 1
 script = ExtResource("1_d7hrp")
+ranged = true
 
 [node name="LogicPiece" parent="." instance=ExtResource("2_gqjju")]
 
 [node name="GraphicalPiece" parent="." instance=ExtResource("3_noqfk")]
-material = SubResource("ShaderMaterial_alylp")
+material = SubResource("ShaderMaterial_1im8g")
 
 [node name="PlayerCircle" parent="GraphicalPiece/Phantom" index="0"]
 z_index = 1
@@ -164,6 +166,9 @@ z_index = 1
 [node name="PhantomSprite" parent="GraphicalPiece/Phantom" index="2"]
 sprite_frames = SubResource("SpriteFrames_wbhbo")
 animation = &"0_attack"
+
+[node name="RangedCircle" type="CollisionPolygon2D" parent="GraphicalPiece/Phantom" index="3"]
+script = ExtResource("6_3064x")
 
 [node name="Icon" parent="GraphicalPiece" index="1"]
 use_parent_material = true

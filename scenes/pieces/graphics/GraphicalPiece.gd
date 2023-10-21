@@ -139,6 +139,9 @@ func update_iso(iso: bool) -> void:
 		$Icon.show()
 	circle.change_draw_mode(iso)
 	$Phantom/Hover.polygon = circle.inner_points
+	if piece.ranged:
+		$Phantom/RangedCircle.polygon = circle.inner_points
+		$Phantom/RangedCircle.change_draw_mode(iso)
 
 func classic_icons_toggle(state: bool) -> void:
 	if state == true and stg.mode == cst.modes.CLASSIC:

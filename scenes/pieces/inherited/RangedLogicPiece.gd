@@ -28,10 +28,9 @@ func get_all_moves(_turn_n: int) -> Array:
 	return nested_valid_moves
 
 func on_ranged_overlap(area: Area2D) -> void:
-	print("oi")
 	var is_enemy = area.colour != colour and area.colour != cst.colour.NONE
-	print(area, is_enemy)
 	if is_enemy and (state == states.MOVED || state == states.ATTACKING):
+		state = states.ATTACKING
 		area.delete()
 
 #plan: in the move call, move the ranged collision N squares forward. Reset its position in get_moves()

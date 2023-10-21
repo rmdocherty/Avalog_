@@ -47,7 +47,7 @@ func get_rook_moves() -> Array[MoveVector]:
 
 func get_knight_moves() -> Array[MoveVector]:
 	var line: Array[Vector2] = [Vector2(1, 0), Vector2(-1, 0), Vector2(0, -1), Vector2(0, 1)]
-	var mvs := helper.get_line_mvs(line, cst.mv_type.NO_ATTACK, 2.0)
+	var mvs := helper.get_line_mvs(line, cst.mv_type.NO_ATTACK, 1.5)
 	var state: Array[MoveVector] = [mvs]
 	return state
 

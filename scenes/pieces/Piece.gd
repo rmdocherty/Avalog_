@@ -23,6 +23,7 @@ var flat_draws := PackedInt32Array([])
 @onready var gfx_manager = get_parent()
 
 @export var mixed_move_types = false
+@export var ranged = false
 @export var faction_char: String = "a"
 @export var piece_char: String = "p"
 @export var piece_vel: float = 1.5 * cst.LOGIC_SQ_W
@@ -57,6 +58,8 @@ func reset_drag_hide_phantom(_move_confirmed: bool=false) -> void:
 	$GraphicalPiece/Icon.position = Vector2(0, 0)
 	$GraphicalPiece/Phantom.dragging = false
 	$GraphicalPiece/Phantom/PhantomSprite.hide()
+	if ranged:
+		$GraphicalPiece/Phantom/RangedCircle.hide()
 
 func reset_flat_arrs() -> void:
 	graphics.delete_lines()
