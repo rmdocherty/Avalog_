@@ -33,7 +33,7 @@ func get_queen_moves() -> Array[MoveVector]:
 
 
 func get_bishop_moves() -> Array[MoveVector]:
-	var mvs := helper.get_line_mvs(b_moves, cst.mv_type.NORMAL, 12.0)
+	var mvs := helper.get_line_mvs(b_moves, cst.mv_type.NORMAL, 3.0)
 	var state: Array[MoveVector] = [mvs]
 	return state
 

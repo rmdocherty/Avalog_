@@ -21,9 +21,9 @@ var half_FEN := "rnbqkbnr/pppppppp/"
 var opponent_half_FEN := "rnbqkbnr/pppppppp/"
 
 const test := "r1kQ2pn/1P6/p3B2P/2fr/1P6/7p/2p2prP/R3K2R"
-const test_shoot = "8/qqqqqq/8/8/8/4fN"
+const test_shoot = "8/qqqqqq/8/8/8/4fB"
 
-var chosen_fen := test_shoot
+var chosen_fen := full_board
 # Game variables: updated during runtime
 var network := cst.network_types.LOCAL
 var mode := cst.modes.CLASSIC

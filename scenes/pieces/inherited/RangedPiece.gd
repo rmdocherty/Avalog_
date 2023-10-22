@@ -1,5 +1,6 @@
 extends "res://scenes/pieces/Piece.gd"
 var projectile_class = preload("res://scenes/pieces/Projectile.tscn")
+@export var proj_sprite: int = 0
 
 func play_attack_anim() -> void:
 	var sprite: AnimatedSprite2D = graphics.sprite
@@ -8,7 +9,7 @@ func play_attack_anim() -> void:
 
 	var projectile = projectile_class.instantiate()
 	graphics.add_child(projectile)
-	projectile.shoot(logic.position, logic.position + to_move.normalized() * logic.ranged_dist)
+	projectile.shoot(logic.position, logic.position + to_move.normalized() * logic.ranged_dist, proj_sprite)
 	sprite.play(graphics.passive_anim)
 	await projectile.hit_target
 	$Audio/Hit.play()

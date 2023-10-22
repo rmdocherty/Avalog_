@@ -18,12 +18,15 @@ signal hit_target
 # Called when the node enters the scene tree for the first time.
 
 
-func shoot(start_pos: Vector2, target_pos: Vector2) -> void:
+func shoot(start_pos: Vector2, target_pos: Vector2, anim_idx: int) -> void:
 	#init()
 	var gfx_start_pos := hlp.logic_to_iso(start_pos)
 	var gfx_end_pos := hlp.logic_to_iso(target_pos)
 	var angle := gfx_start_pos.angle_to_point(gfx_end_pos)
-	print(start_pos, target_pos)
+	$Sprite.play(str(anim_idx))
+	if anim_idx == 1:
+		vel = 4 * cst.PROJ_SPEED
+		rotate_spr = false
 
 	if rotate_spr:
 		$Sprite.rotate(angle + (45.0 / (2 * PI)))

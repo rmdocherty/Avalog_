@@ -11,7 +11,7 @@ var max_page_idx: int = len(codex_data.keys()) - 1
 
 const faction_names: Array[String] = ["Albion", "Rome", "Bretagne", "Türkiye", "Gore"]
 const type_lookup: Array[String] = ["k", "q", "b", "n", "r", "p"]
-const page_lookup: Array[int] = [1, 7] #7, 13, 19, 25] update when adding the rest of the pieces.
+const page_lookup: Array[int] = [1, 7, 13] #7, 13, 19, 25] update when adding the rest of the pieces.
 const piece_types: Array[String] = ["Monarch", "Consort", "Bishop", "Knight", "Rook", "Pawn"]
 
 enum {CLOSED, OPENING, TEXT_APPEAR, OPEN, TEXT_DISAPPEAR, FLIPPING}
@@ -65,7 +65,7 @@ func tab_click(faction_idx: int) -> void:
 
 func turn_to_page(old_idx: int, new_idx: int) -> void:
 	# Set limits of pages to go to
-	if new_idx == 13 or new_idx == -1:
+	if new_idx >= 19 or new_idx <= -1:
 		return
 	$Parent/Book/Flip.play()
 	$Parent/Book/Page.modulate.a = 0
@@ -93,8 +93,11 @@ func load_page_data(idx: int) -> void:
 			label.label_settings.font_color =  cst.faction_colours[faction_int]
 		$Parent/Book/Page/RulesText.text = data["tooltip"]
 		$Parent/Book/Page/Attribution.text = data["author"]
+		
 		var AFEN = "8/8/8/4%s%s/8/8/8/8" % [cst.fen_faction_lookup[faction_int], type_lookup[type_int].to_upper()]
 		minigame.remove_all()
+		var current_factions: Array[cst.factions] = [faction_int, faction_int]
+		minigame.player_monarch_factions = current_factions #set this to make pawn moves work
 		minigame.custom_init(faction_int, AFEN)
 		$ShowLines.start()
 	else:

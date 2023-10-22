@@ -186,5 +186,10 @@ var table = {
 			"logic": preload("res://scenes/pieces/inherited/RangedLogicPiece.tscn"),
 			"mvs": bretagne_moves.get_knight_moves(),
 		},
+		"b": {
+			"piece": preload("res://scenes/pieces/bretagne/Druid.tscn"),
+			"logic": preload("res://scenes/pieces/inherited/RangedLogicPiece.tscn"),
+			"mvs": bretagne_moves.get_bishop_moves(),
+		},
 	}
 }

@@ -1,7 +1,8 @@
 extends Node
 
-const MALORY = "- Malory, Le Morte D'Arthur"
-const HISTORY = "- Morgan, Historia"
+const MALORY = "- T. Malory, Le Morte D'Arthur"
+const HISTORY = "- F. Morgan, Historia"
+const SPENCE = "- L. Spence, Legends & Romances ..."
 
 const codex_data: Dictionary = {
 	"0": {
@@ -58,7 +59,7 @@ const codex_data: Dictionary = {
 		"type": "p",
 		"tooltip": "[color=red]No attack[/color] forward.\n[color=red]Attacks[/color] diagonally.",
 		"lore": "‘Now herkneth,’ quod the Miller, ‘alle and some!\nBut first I make a protestacioun\nThat I am dronke, I knowe it by my soun;\nAnd therfore, if that I misspeke or seye,\nWyte it the ale of Southwerk, I yow preye;\nFor I wol telle a legende and a lyf\nBothe of a Carpenter, and of his wyf,\nHow that a clerk hath set the wrightes cappe.’",
-		"author": "- Chaucer, the Canterbury Tales"
+		"author": "- G. Chaucer, the Canterbury Tales"
 	},
 	"7": {
 		"name": "Count Lucius",
@@ -82,15 +83,15 @@ const codex_data: Dictionary = {
 		"type": "b",
 		"tooltip": "",
 		"lore": "FIFTH ARTICLE [I, Q. 115, Art. 5]\nWhether Heavenly Bodies Can Act on the Demons?\n\nObjection 1: It would seem that heavenly bodies can act on the demons. For the demons, according to certain phases of the moon, can harass men, who on that account are called lunatics, as appears from Matt. 4:24 and 17:14. But this would not be if they were not subject to the heavenly bodies. Therefore the demons are subject to them.\n\nObj. 2: Further, necromancers observe certain constellations in order to invoke the demons. But these would not be invoked through the heavenly bodies unless they were subject to them. Therefore they are subject to them.",
-		"author": "- St. Aquinas, Summa Theologica"
+		"author": "- St. T. Aquinas, Summa Theologica"
 	},
 	"10": {
 		"name": "Captain",
 		"faction": 1,
 		"type": "n",
 		"tooltip": "",
-		"lore": "",
-		"author": HISTORY
+		"lore": "the Roman emperors had a third difficulty in having to put up with the cruelty and avarice of their soldiers, a matter so beset with difficulties that it was the ruin of many; for it was a hard thing to give satisfaction both to soldiers and people; because the people loved peace, and for this reason they loved the unaspiring prince, whilst the soldiers loved the warlike prince who was bold, cruel, and rapacious, which qualities they were quite willing he should exercise upon the people, so that they could get double pay and give vent to their own greed and cruelty.",
+		"author": "- N. Machiavelli, the Prince"
 	},
 	"11": {
 		"name": "Elephant",
@@ -105,7 +106,7 @@ const codex_data: Dictionary = {
 		"faction": 1,
 		"type": "p",
 		"tooltip": "", # maybe some fake history about them fighting gradlon near paris?
-		"lore": "Their enemy was outside Paris, his plans well in motion. To stop him, they had to traverse the land of the Gauls - they had conquered them before, they could do it again. For the first (and the last) time in their history, during the twilight of their empire, they had not come to subjugate, but to save. \n And so they marched, they marched for Rome, for the Pope, for God and even for France. They were the sword and shield of the empire - conscripted from farmers, bakers, merchants then trained, honed and unleashed. They had fought winter wars, guerilla wars and pitched battles. There was no force more organized or experienced in all of Christendom. They were, sadly, not enough.",
+		"lore": "Their enemy was outside Paris, his plans well in motion. To stop him, they had to traverse the land of the Gauls - they had conquered them before, they could do it again. For the first (and the last) time in their history, in the twilight of their empire, they had not come to subjugate, but to save. \n And so they marched, they marched for Rome, for the Pope, for God and even for France. They were the sword and shield of the empire - conscripted from farmers, bakers, merchants then trained, honed and unleashed. They had fought winter wars, guerilla wars and pitched battles. There was no force more organized or experienced in all of Christendom. They were, sadly, not enough.",
 		"author": HISTORY
 	},
 	"13": {
@@ -114,7 +115,7 @@ const codex_data: Dictionary = {
 		"type": "k",
 		"tooltip": "[color=red]Aura:[/color] your pieces can move up to 1 square further.",
 		"lore": "The legend of the submerged city of Ys, or Is, is perhaps the most romantic and imaginative effort of Breton popular legend. Who has not heard of the submerged bells of Ys, and who has not heard them ring in the echoes of his own imagination? This picturesque legend tells us that in the early days of the Christian epoch the city of Ys, or Ker-is, was ruled by a prince called Gradlon, surnamed Meur, which in Celtic means ‘the Great.’ Gradlon was a saintly and pious man, and acted as patron to Gwénnolé, founder and first abbé of the first monastery built in Armorica. But, besides being a religious man, Gradlon was a prudent prince, and defended his capital of Ys from the invasions of the sea by constructing an immense basin", #rhyme about Ys
-		"author": "- Lewis Spence F.R.A.I."
+		"author": SPENCE
 	},
 	"14": {
 		"name": "Knight of the Sun",
@@ -137,15 +138,15 @@ const codex_data: Dictionary = {
 		"faction": 2,
 		"type": "n",
 		"tooltip": "[color=red]Ranged[/color]",
-		"lore": "",
-		"author": "- Friar Morgan, Historia"
+		"lore": "The scene changes to the fortress of Nomenoë, and we see its master returning from the chase, accompanied by his great hounds and laden with trophies. His bow is in his hand, and he carries the carcass of a boar upon his shoulder. The red blood drops from the dead beast’s mouth and stains his hand. The aged chief, well-nigh demented, awaits his coming, and Nomenoë greets him courteously.\n“Hail, honest mountaineer!” he cries. “What is your news? What would you with Nomenoë?”\n“I come for justice, Lord Nomenoë,” replies the aged man. “Is there a God in heaven and a chief in Brittany?",
+		"author": SPENCE
 	},
 	"17": {
 		"name": "Hallebarde",
 		"faction": 2,
 		"type": "r",
-		"tooltip": "",
-		"lore": "", # how she was strong fighter and about the battle with count lucius?
+		"tooltip": "Moves in a square",
+		"lore": "The ", # how she was strong fighter and about the battle with count lucius?
 		"author": "- Friar Morgan, Historia"
 	},
 	"18": {
@@ -153,8 +154,8 @@ const codex_data: Dictionary = {
 		"faction": 2,
 		"type": "p",
 		"tooltip": "[color=red]No attack[/color] diagonally.\n[color=red]Attacks[/color] forward.",
-		"lore": "",
-		"author": "- Friar Morgan, Historia"
+		"lore": "On one occasion, we are told, Goezenou asked a farmer’s wife for some cream cheeses, but the woman, not wishing to part with them, declared that she had none. “You speak the truth,” said the Saint. “You had some, but if you will now look in your cupboard you will find they have been turned into stone,” and when the ungenerous housewife ran to her cupboard she found that this was so! The petrified cheeses were long preserved in the church of Goezenou—being removed during the Revolution, and afterward preserved in the manor of Kergivas.",
+		"author": SPENCE
 	},
 	"19": {
 		"name": "Roxelena",
@@ -225,8 +226,8 @@ const codex_data: Dictionary = {
 		"faction": 4,
 		"type": "b",
 		"tooltip": "",
-		"lore": "",
-		"author": HISTORY
+		"lore": "[b]We love casting spells![/b]",
+		"author": "- Shadow Wizard Money Gang"
 	},
 	"28": {
 		"name": "Skeleton Archer",

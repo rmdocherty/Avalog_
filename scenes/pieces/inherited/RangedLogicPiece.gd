@@ -1,6 +1,6 @@
 extends "res://scenes/pieces/LogicPiece.gd"
-
-var ranged_dist: float = cst.LOGIC_SQ_W * 3.0
+@export var ranged_multiplier := 3.0
+var ranged_dist: float = cst.LOGIC_SQ_W * ranged_multiplier
 @onready var ranged: Area2D = $Ranged
 
 # Called when the node enters the scene tree for the first time.

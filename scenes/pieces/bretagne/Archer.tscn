@@ -155,8 +155,11 @@ animations = [{
 z_index = 1
 script = ExtResource("1_uycxq")
 ranged = true
+faction_char = "b"
+piece_char = "n"
 
 [node name="LogicPiece" parent="." instance=ExtResource("2_gqjju")]
+ranged_multiplier = 3.0
 
 [node name="GraphicalPiece" parent="." instance=ExtResource("3_noqfk")]
 material = SubResource("ShaderMaterial_iqfp8")
