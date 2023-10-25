@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://g1hxxeppuyg1"]
+[gd_scene load_steps=25 format=3 uid="uid://g1hxxeppuyg1"]
 
 [ext_resource type="PackedScene" uid="uid://cfobj247gpa7q" path="res://scenes/pieces/Piece.tscn" id="1_x01g4"]
 [ext_resource type="Shader" path="res://scenes/pieces/graphics/Piece.gdshader" id="2_romlv"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cmado0pd2kdr3" path="res://assets/pieces/classic/p.png" id="5_2p1tu"]
 [ext_resource type="Texture2D" uid="uid://dsfc42cu5anbj" path="res://assets/pieces/icons.png" id="6_a0hd7"]
 [ext_resource type="Texture2D" uid="uid://dlxcv04gepo16" path="res://assets/pieces/morgana/shadow_wizard.png" id="7_0jp6t"]
+[ext_resource type="AudioStream" uid="uid://b2ypaxic2t8ln" path="res://assets/sfx/evil_magic.wav" id="7_2aupa"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_uf53b"]
 resource_local_to_scene = true
@@ -165,6 +166,8 @@ animations = [{
 }]
 
 [node name="Piece" instance=ExtResource("1_x01g4")]
+faction_char = "m"
+piece_char = "b"
 
 [node name="GraphicalPiece" parent="." index="1"]
 material = SubResource("ShaderMaterial_uf53b")
@@ -180,4 +183,11 @@ animation = &"default"
 [node name="Sprite" parent="GraphicalPiece" index="2"]
 sprite_frames = SubResource("SpriteFrames_6rtpr")
 
+[node name="Attack" parent="Audio" index="1"]
+stream = ExtResource("7_2aupa")
+
+[node name="AttackDelay" parent="Audio" index="2"]
+wait_time = 0.33
+
 [editable path="GraphicalPiece"]
+[editable path="Audio"]

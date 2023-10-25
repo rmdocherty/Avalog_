@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://cnuesxoa1kljr"]
+[gd_scene load_steps=22 format=3 uid="uid://cnuesxoa1kljr"]
 
 [ext_resource type="PackedScene" uid="uid://cfobj247gpa7q" path="res://scenes/pieces/Piece.tscn" id="1_ggqii"]
 [ext_resource type="Script" path="res://scenes/pieces/inherited/MultiStateLogicPiece.gd" id="2_o8spl"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://b050d58pv4p0n" path="res://assets/pieces/classic/P.png" id="4_p3var"]
 [ext_resource type="Texture2D" uid="uid://cmado0pd2kdr3" path="res://assets/pieces/classic/p.png" id="5_2hc12"]
 [ext_resource type="Texture2D" uid="uid://dsfc42cu5anbj" path="res://assets/pieces/icons.png" id="6_sn4pq"]
+[ext_resource type="AudioStream" uid="uid://cm4qxe4dnphar" path="res://assets/sfx/zombie.mp3" id="8_w7kxv"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_uvugt"]
 resource_local_to_scene = true
@@ -152,4 +153,11 @@ animation = &"default"
 sprite_frames = SubResource("SpriteFrames_efl6f")
 animation = &"0_passive"
 
+[node name="Attack" parent="Audio" index="1"]
+stream = ExtResource("8_w7kxv")
+
+[node name="AttackDelay" parent="Audio" index="2"]
+wait_time = 0.33
+
 [editable path="GraphicalPiece"]
+[editable path="Audio"]

@@ -12,7 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://bc53legwu4s01" path="res://scenes/pieces/graphics/AudioPiece.tscn" id="9_i2hpr"]
 [ext_resource type="AudioStream" uid="uid://c8rjk2onrf1j1" path="res://assets/sfx/spear.wav" id="11_xoxmt"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_vhfwg"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vvheg"]
 resource_local_to_scene = true
 shader = ExtResource("2_nsc6f")
 shader_parameter/tol = 0.05
@@ -161,7 +161,7 @@ piece_char = "n"
 [node name="LogicPiece" parent="." instance=ExtResource("2_gqjju")]
 
 [node name="GraphicalPiece" parent="." instance=ExtResource("3_noqfk")]
-material = SubResource("ShaderMaterial_vhfwg")
+material = SubResource("ShaderMaterial_vvheg")
 
 [node name="PlayerCircle" parent="GraphicalPiece/Phantom" index="0"]
 z_index = 1
@@ -180,6 +180,7 @@ sprite_frames = SubResource("SpriteFrames_cexso")
 [node name="Sprite" parent="GraphicalPiece" index="2"]
 use_parent_material = true
 sprite_frames = SubResource("SpriteFrames_nwbeu")
+animation = &"0_attack"
 
 [node name="Audio" parent="." instance=ExtResource("9_i2hpr")]
 

@@ -36,7 +36,7 @@ func add_logic_piece(faction_char: String, piece_char: String, colour: cst.colou
 func set_logic_piece(node: LogicPiece, faction_char: String, piece_char: String, 
 					colour: cst.colour, monarch_faction: String="a") -> LogicPiece:
 	# Useful for remapping a Piece's logic node in-place
-	print(faction_char, piece_char)
+	#print(faction_char, piece_char)
 	# add checks here for weird pieces like pawn or king, and remappings for say aura pieces
 	var temp_dict: Dictionary = table[faction_char][piece_char]
 	if temp_dict.has("states"):
@@ -46,6 +46,9 @@ func set_logic_piece(node: LogicPiece, faction_char: String, piece_char: String,
 	elif temp_dict.has("mvs"):
 		var mvs: Array = temp_dict["mvs"]
 		node.active_mvs = mvs
+	
+	if temp_dict.has("ranged_dist"):
+		node.ranged_dist = cst.LOGIC_SQ_W * temp_dict["ranged_dist"]
 	
 	if temp_dict.has("extra_moves"):
 		node.extra_moves = temp_dict["extra_moves"]
@@ -60,12 +63,52 @@ func set_logic_piece(node: LogicPiece, faction_char: String, piece_char: String,
 		node = get_yaya(node, colour, monarch_faction)
 	elif faction_char == "m" and piece_char == "p":
 		node = get_zombie(node, colour, monarch_faction)
+	
+	if monarch_faction == "t" and temp_dict.has("states"):
+		node = apply_turkiye_aura(node)
+	
+	if monarch_faction == "b":
+		node = apply_bretagne_aura(node, temp_dict.has("states"))
+	
+	# for b aura, loop through all arrays and add Vec2(0.5) in direction
+	# for t aura, loop throug all pieces w/ multi states, remap each state to
+	# also include the other
 
 	node.piece_char = piece_char
 	node.faction_char = faction_char
 	node.colour = colour
 	return node
 
+
+func apply_bretagne_aura(node: LogicPiece, states: bool) -> LogicPiece:
+	var old_states: Array = []
+	if states == true:
+		old_states = node.mv_states
+	else:
+		old_states = [node.active_mvs]
+	
+	for state in old_states:
+		for mv in state:
+			for i in range(mv.N):
+				var dir: Vector2 = mv.delta_arr[i].normalized()
+				mv.to_arr[i] += Vector2(0.5, 0.5) * dir
+				mv.delta_arr[i] += Vector2(0.5, 0.5) * dir
+	return node
+
+func apply_turkiye_aura(node: LogicPiece) -> LogicPiece:
+	var old_states: Array = node.mv_states
+	var new_states: Array = []
+	var flat_state: Array = []
+	for state in old_states:
+		for mv in state:
+			flat_state.push_back(mv)
+	for _temp in old_states:
+		new_states.push_back(flat_state)
+	
+	node.mv_states = new_states
+	node.active_mvs = new_states[0]
+	node.get_parent().mixed_move_types = true
+	return node
 
 func get_peasant(node: LogicPiece, colour: cst.colour, monarch_faction: String="a") -> LogicPiece:
 	var forward := 1
@@ -201,11 +244,13 @@ var table = {
 			"piece": preload("res://scenes/pieces/bretagne/Archer.tscn"),
 			"logic": preload("res://scenes/pieces/inherited/RangedLogicPiece.tscn"),
 			"mvs": bretagne_moves.get_knight_moves(),
+			"ranged_dist": 2.5,
 		},
 		"b": {
 			"piece": preload("res://scenes/pieces/bretagne/Druid.tscn"),
 			"logic": preload("res://scenes/pieces/inherited/RangedLogicPiece.tscn"),
 			"mvs": bretagne_moves.get_bishop_moves(),
+			"ranged_dist": 3.0,
 		},
 		"q": {
 			"piece": preload("res://scenes/pieces/bretagne/Soleil.tscn"),
@@ -233,6 +278,7 @@ var table = {
 			"piece": preload("res://scenes/pieces/turkiye/Janissary.tscn"),
 			"logic": preload("res://scenes/pieces/inherited/RangedLogicPiece.tscn"),
 			"states": turkiye_moves.get_knight_moves(),
+			"ranged_dist": 2.0,
 		},
 		"b": {
 			"piece": preload("res://scenes/pieces/turkiye/Vizier.tscn"),
@@ -265,6 +311,7 @@ var table = {
 			"piece": preload("res://scenes/pieces/morgana/Skeleton.tscn"),
 			"logic": preload("res://scenes/pieces/inherited/RangedLogicPiece.tscn"),
 			"mvs": morgana_moves.get_knight_moves(),
+			"ranged_dist": 2.0,
 		},
 		"b": {
 			"piece": preload("res://scenes/pieces/morgana/Shadow.tscn"),

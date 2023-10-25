@@ -37,7 +37,7 @@ func get_rook_moves() -> Array:
 
 
 func get_knight_moves() -> Array[MoveVector]:
-	var mvs := helper.get_square_mvs(0, 2, 0, 360, cst.mv_type.NO_ATTACK, false, 128)
+	var mvs := helper.get_square_mvs(0, 1.5, 0, 360, cst.mv_type.NO_ATTACK, false, 128)
 	var state: Array[MoveVector] = [mvs]
 	return state
 

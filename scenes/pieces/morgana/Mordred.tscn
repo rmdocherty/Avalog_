@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://b5kwynutrfmoa"]
+[gd_scene load_steps=21 format=3 uid="uid://b5kwynutrfmoa"]
 
 [ext_resource type="PackedScene" uid="uid://cfobj247gpa7q" path="res://scenes/pieces/Piece.tscn" id="1_pf7mt"]
 [ext_resource type="Shader" path="res://scenes/pieces/graphics/Piece.gdshader" id="2_mysva"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://b050d58pv4p0n" path="res://assets/pieces/classic/P.png" id="4_mnn3a"]
 [ext_resource type="Texture2D" uid="uid://cmado0pd2kdr3" path="res://assets/pieces/classic/p.png" id="5_ym38y"]
 [ext_resource type="Texture2D" uid="uid://dsfc42cu5anbj" path="res://assets/pieces/icons.png" id="6_7175u"]
+[ext_resource type="AudioStream" uid="uid://d3chte7exh4vc" path="res://assets/sfx/medium_sword.wav" id="7_2nole"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4utrr"]
 resource_local_to_scene = true
@@ -153,4 +154,8 @@ animation = &"default"
 sprite_frames = SubResource("SpriteFrames_v31ee")
 animation = &"0_passive"
 
+[node name="Attack" parent="Audio" index="1"]
+stream = ExtResource("7_2nole")
+
 [editable path="GraphicalPiece"]
+[editable path="Audio"]

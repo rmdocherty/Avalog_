@@ -18,4 +18,4 @@ func post_gfx_move() -> void:
 	graphics.passive_anim = str(logic.current_mv_state) + "_passive"
 	graphics.sprite.play(str(logic.current_mv_state) + "_passive")
 	graphics.sprite.stop()
-	graphics.attack_anim = str(logic.current_mv_state) + "_active"
+	graphics.attack_anim = str(logic.current_mv_state) + "_attack"

@@ -20,7 +20,7 @@ func post_gfx_move() -> void:
 	graphics.sprite.stop()
 	graphics.attack_anim = str(logic.current_mv_state) + "_attack"
 	
-	if logic.current_mv_state == 0:
+	if logic.current_mv_state == 0 and mixed_move_types == false:
 		ranged = false
 		logic.reset_ranged_pos()
 	else:

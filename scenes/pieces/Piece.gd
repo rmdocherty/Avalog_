@@ -50,6 +50,7 @@ func graphics_init(logic_pos: Vector2, set_colour: cst.colour) -> void:
 
 # ======================== GFX LOGIC =================
 func set_shader_params(replace_palettes: Array[int]) -> void:
+	# change this to use the piece's faction, not player choice faction
 	graphics.material.set_shader_parameter("original_palette_num", replace_palettes[colour])
 	graphics.material.set_shader_parameter("replace_palette_num", replace_palettes[colour + 2])
 
