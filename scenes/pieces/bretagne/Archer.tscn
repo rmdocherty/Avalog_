@@ -12,7 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://bc53legwu4s01" path="res://scenes/pieces/graphics/AudioPiece.tscn" id="9_i2hpr"]
 [ext_resource type="AudioStream" uid="uid://c8rjk2onrf1j1" path="res://assets/sfx/spear.wav" id="11_xoxmt"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_iqfp8"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vhfwg"]
 resource_local_to_scene = true
 shader = ExtResource("2_nsc6f")
 shader_parameter/tol = 0.05
@@ -146,7 +146,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_50n2g")
 }],
-"loop": false,
+"loop": true,
 "name": &"0_passive",
 "speed": 3.0
 }]
@@ -159,10 +159,9 @@ faction_char = "b"
 piece_char = "n"
 
 [node name="LogicPiece" parent="." instance=ExtResource("2_gqjju")]
-ranged_multiplier = 3.0
 
 [node name="GraphicalPiece" parent="." instance=ExtResource("3_noqfk")]
-material = SubResource("ShaderMaterial_iqfp8")
+material = SubResource("ShaderMaterial_vhfwg")
 
 [node name="PlayerCircle" parent="GraphicalPiece/Phantom" index="0"]
 z_index = 1

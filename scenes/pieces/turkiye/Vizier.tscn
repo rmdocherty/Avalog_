@@ -1,0 +1,151 @@
+[gd_scene load_steps=20 format=3 uid="uid://dh855vjykcmkm"]
+
+[ext_resource type="PackedScene" uid="uid://cfobj247gpa7q" path="res://scenes/pieces/Piece.tscn" id="1_fjb2i"]
+[ext_resource type="Shader" path="res://scenes/pieces/graphics/Piece.gdshader" id="2_5f6c5"]
+[ext_resource type="Texture2D" uid="uid://ykiw130dwg5f" path="res://assets/pieces/turkiye/vizier.png" id="3_6hyl6"]
+[ext_resource type="Texture2D" uid="uid://b050d58pv4p0n" path="res://assets/pieces/classic/P.png" id="4_jhdug"]
+[ext_resource type="Texture2D" uid="uid://cmado0pd2kdr3" path="res://assets/pieces/classic/p.png" id="5_7bxfv"]
+[ext_resource type="Texture2D" uid="uid://dsfc42cu5anbj" path="res://assets/pieces/icons.png" id="6_c4uk8"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_m34hx"]
+resource_local_to_scene = true
+shader = ExtResource("2_5f6c5")
+shader_parameter/tol = 0.05
+shader_parameter/original_palette_num = null
+shader_parameter/replace_palette_num = null
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h6ag0"]
+atlas = ExtResource("3_6hyl6")
+region = Rect2(32, 0, 16, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dqrbw"]
+atlas = ExtResource("3_6hyl6")
+region = Rect2(48, 0, 16, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6fgkc"]
+atlas = ExtResource("3_6hyl6")
+region = Rect2(0, 0, 16, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c8pbm"]
+atlas = ExtResource("3_6hyl6")
+region = Rect2(16, 0, 16, 18)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sr6u5"]
+resource_local_to_scene = true
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h6ag0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dqrbw")
+}],
+"loop": true,
+"name": &"0_attack",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6fgkc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c8pbm")
+}],
+"loop": true,
+"name": &"0_passive",
+"speed": 3.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bi84w"]
+atlas = ExtResource("6_c4uk8")
+region = Rect2(72, 72, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fbg8c"]
+resource_local_to_scene = true
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_jhdug")
+}],
+"loop": false,
+"name": &"0",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_7bxfv")
+}],
+"loop": false,
+"name": &"1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bi84w")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_blis5"]
+atlas = ExtResource("3_6hyl6")
+region = Rect2(32, 0, 16, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7c10p"]
+atlas = ExtResource("3_6hyl6")
+region = Rect2(48, 0, 16, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ip17o"]
+atlas = ExtResource("3_6hyl6")
+region = Rect2(0, 0, 16, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wqcpc"]
+atlas = ExtResource("3_6hyl6")
+region = Rect2(16, 0, 16, 18)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_j1bd8"]
+resource_local_to_scene = true
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_blis5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7c10p")
+}],
+"loop": true,
+"name": &"0_attack",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ip17o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wqcpc")
+}],
+"loop": true,
+"name": &"0_passive",
+"speed": 3.0
+}]
+
+[node name="Piece" instance=ExtResource("1_fjb2i")]
+faction_char = "t"
+piece_char = "b"
+
+[node name="GraphicalPiece" parent="." index="1"]
+material = SubResource("ShaderMaterial_m34hx")
+
+[node name="PhantomSprite" parent="GraphicalPiece/Phantom" index="2"]
+sprite_frames = SubResource("SpriteFrames_sr6u5")
+
+[node name="Icon" parent="GraphicalPiece" index="1"]
+sprite_frames = SubResource("SpriteFrames_fbg8c")
+animation = &"default"
+
+[node name="Sprite" parent="GraphicalPiece" index="2"]
+sprite_frames = SubResource("SpriteFrames_j1bd8")
+animation = &"0_passive"
+
+[editable path="GraphicalPiece"]

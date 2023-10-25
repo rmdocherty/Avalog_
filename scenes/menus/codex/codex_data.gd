@@ -170,7 +170,7 @@ const codex_data: Dictionary = {
 		"faction": 3,
 		"type": "q",
 		"tooltip": "[color=red]State 1:[/color] star shaped lines.\n[color=red]State 2: jumping[/color] in concentric crescents.",
-		"lore": "",
+		"lore": "", # something about arthur's mad invasion?
 		"author": HISTORY
 	},
 	"21": {

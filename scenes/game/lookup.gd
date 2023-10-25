@@ -6,6 +6,10 @@ const rome_moves_class = preload("res://scenes/pieces/rome/rome_mvs.gd")
 var rome_moves = rome_moves_class.new()
 const bretagne_moves_class = preload("res://scenes/pieces/bretagne/bretagne_mvs.gd")
 var bretagne_moves = bretagne_moves_class.new()
+const turkiye_moves_class = preload("res://scenes/pieces/turkiye/turkiye_mvs.gd")
+var turkiye_moves = turkiye_moves_class.new()
+const morgana_moves_class = preload("res://scenes/pieces/morgana/morgana_mvs.gd")
+var morgana_moves = morgana_moves_class.new()
 
 
 """
@@ -32,7 +36,7 @@ func add_logic_piece(faction_char: String, piece_char: String, colour: cst.colou
 func set_logic_piece(node: LogicPiece, faction_char: String, piece_char: String, 
 					colour: cst.colour, monarch_faction: String="a") -> LogicPiece:
 	# Useful for remapping a Piece's logic node in-place
-
+	print(faction_char, piece_char)
 	# add checks here for weird pieces like pawn or king, and remappings for say aura pieces
 	var temp_dict: Dictionary = table[faction_char][piece_char]
 	if temp_dict.has("states"):
@@ -52,6 +56,10 @@ func set_logic_piece(node: LogicPiece, faction_char: String, piece_char: String,
 		node = get_phalanx(node, colour, monarch_faction)
 	elif faction_char == "b" and piece_char == "p":
 		node = get_agriculteur(node, colour, monarch_faction)
+	elif faction_char == "t" and piece_char == "p":
+		node = get_yaya(node, colour, monarch_faction)
+	elif faction_char == "m" and piece_char == "p":
+		node = get_zombie(node, colour, monarch_faction)
 
 	node.piece_char = piece_char
 	node.faction_char = faction_char
@@ -92,6 +100,24 @@ func get_agriculteur(node: LogicPiece, colour: cst.colour, monarch_faction: Stri
 	node.extra_moves = extra_moves
 	return node
 
+func get_yaya(node: LogicPiece, colour: cst.colour, monarch_faction: String="a") -> LogicPiece:
+	var forward := 1
+	if colour == cst.colour.WHITE:
+		forward = -1
+	var states = turkiye_moves.get_pawn_moves(forward, monarch_faction)
+	node.mv_states = states
+	node.active_mvs = states[0]
+	return node
+	
+func get_zombie(node: LogicPiece, colour: cst.colour, monarch_faction: String="a") -> LogicPiece:
+	var forward := 1
+	if colour == cst.colour.WHITE:
+		forward = -1
+	var states = morgana_moves.get_pawn_moves(forward, monarch_faction)
+	node.mv_states = states
+	node.active_mvs = states[0]
+	return node
+
 var table = {
 	"a": {
 		"p": {
@@ -130,7 +156,7 @@ var table = {
 	"r": {
 		"p": {
 			"piece": preload("res://scenes/pieces/rome/Phalanx.tscn"),
-			"logic": preload("res://scenes/pieces/inherited/MultiStateLogicPiece.tscn"),
+			"logic": preload("res://scenes/pieces/inherited/LogicPawn.tscn"),
 			"states": rome_moves.get_pawn_moves(),
 		},
 		"r": {
@@ -166,20 +192,10 @@ var table = {
 			"states": bretagne_moves.get_pawn_moves(),
 			"extra_moves": bretagne_moves.get_pawn_attacks()
 		},
-		"q": {
-			"piece": preload("res://scenes/pieces/bretagne/Soleil.tscn"),
-			"logic": preload("res://scenes/pieces/LogicPiece.tscn"),
-			"mvs": bretagne_moves.get_queen_moves()
-		},
 		"r": {
 			"piece": preload("res://scenes/pieces/bretagne/Halberd.tscn"),
 			"logic": preload("res://scenes/pieces/LogicPiece.tscn"),
 			"mvs": bretagne_moves.get_rook_moves(),
-		},
-		"k": {
-			"piece": preload("res://scenes/pieces/bretagne/Gradlon.tscn"),
-			"logic": preload("res://scenes/pieces/LogicPiece.tscn"),
-			"mvs": bretagne_moves.get_king_moves()
 		},
 		"n": {
 			"piece": preload("res://scenes/pieces/bretagne/Archer.tscn"),
@@ -190,6 +206,80 @@ var table = {
 			"piece": preload("res://scenes/pieces/bretagne/Druid.tscn"),
 			"logic": preload("res://scenes/pieces/inherited/RangedLogicPiece.tscn"),
 			"mvs": bretagne_moves.get_bishop_moves(),
+		},
+		"q": {
+			"piece": preload("res://scenes/pieces/bretagne/Soleil.tscn"),
+			"logic": preload("res://scenes/pieces/LogicPiece.tscn"),
+			"mvs": bretagne_moves.get_queen_moves()
+		},
+		"k": {
+			"piece": preload("res://scenes/pieces/bretagne/Gradlon.tscn"),
+			"logic": preload("res://scenes/pieces/LogicPiece.tscn"),
+			"mvs": bretagne_moves.get_king_moves()
+		},
+	},
+	"t": {
+		"p": {
+			"piece": preload("res://scenes/pieces/turkiye/Yaya.tscn"),
+			"logic": preload("res://scenes/pieces/inherited/MultiStateLogicPiece.tscn"),
+			"states": turkiye_moves.get_pawn_moves(),
+		},
+		"r": {
+			"piece": preload("res://scenes/pieces/turkiye/Dardanelles.tscn"),
+			"logic": preload("res://scenes/pieces/inherited/RangedLogicPiece.tscn"),
+			"mvs": turkiye_moves.get_rook_moves(),
+		},
+		"n": {
+			"piece": preload("res://scenes/pieces/turkiye/Janissary.tscn"),
+			"logic": preload("res://scenes/pieces/inherited/RangedLogicPiece.tscn"),
+			"states": turkiye_moves.get_knight_moves(),
+		},
+		"b": {
+			"piece": preload("res://scenes/pieces/turkiye/Vizier.tscn"),
+			"logic": preload("res://scenes/pieces/LogicPiece.tscn"),
+			"mvs": turkiye_moves.get_bishop_moves(),
+		},
+		"q": {
+			"piece": preload("res://scenes/pieces/turkiye/Suleiman.tscn"),
+			"logic": preload("res://scenes/pieces/inherited/MultiStateLogicPiece.tscn"),
+			"states": turkiye_moves.get_queen_moves(),
+		},
+		"k": {
+			"piece": preload("res://scenes/pieces/turkiye/Roxelena.tscn"),
+			"logic": preload("res://scenes/pieces/LogicPiece.tscn"),
+			"mvs": turkiye_moves.get_king_moves(),
+		},
+	},
+	"m": {
+		"p": {
+			"piece": preload("res://scenes/pieces/morgana/Zombie.tscn"),
+			"logic": preload("res://scenes/pieces/inherited/MultiStateLogicPiece.tscn"),
+			"states": morgana_moves.get_pawn_moves(),
+		},
+		"r": {
+			"piece": preload("res://scenes/pieces/morgana/MMC.tscn"),
+			"logic": preload("res://scenes/pieces/inherited/MultiStateLogicPiece.tscn"),
+			"states": morgana_moves.get_rook_moves(),
+		},
+		"n": {
+			"piece": preload("res://scenes/pieces/morgana/Skeleton.tscn"),
+			"logic": preload("res://scenes/pieces/inherited/RangedLogicPiece.tscn"),
+			"mvs": morgana_moves.get_knight_moves(),
+		},
+		"b": {
+			"piece": preload("res://scenes/pieces/morgana/Shadow.tscn"),
+			"logic": preload("res://scenes/pieces/LogicPiece.tscn"),
+			"mvs": morgana_moves.get_bishop_moves()
+		},
+		"q": {
+			"piece": preload("res://scenes/pieces/morgana/Mordred.tscn"),
+			"logic": preload("res://scenes/pieces/LogicPiece.tscn"),
+			"mvs": morgana_moves.get_queen_moves()
+		},
+		"k": {
+			"piece": preload("res://scenes/pieces/morgana/Morgana.tscn"),
+			"logic": preload("res://scenes/pieces/LogicPiece.tscn"),
+			"mvs": morgana_moves.get_king_moves(),
 		},
 	}
 }

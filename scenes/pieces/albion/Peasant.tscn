@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://bc53legwu4s01" path="res://scenes/pieces/graphics/AudioPiece.tscn" id="6_saumb"]
 [ext_resource type="Texture2D" uid="uid://cmado0pd2kdr3" path="res://assets/pieces/classic/p.png" id="7_25l27"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_2tsbp"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_eire0"]
 resource_local_to_scene = true
 shader = ExtResource("2_vbty6")
 shader_parameter/tol = 0.05
@@ -139,7 +139,7 @@ script = ExtResource("1_38s2e")
 [node name="LogicPiece" parent="." instance=ExtResource("1_jcbdf")]
 
 [node name="GraphicalPiece" parent="." instance=ExtResource("2_pu88p")]
-material = SubResource("ShaderMaterial_2tsbp")
+material = SubResource("ShaderMaterial_eire0")
 
 [node name="PlayerCircle" parent="GraphicalPiece/Phantom" index="0"]
 z_index = 1

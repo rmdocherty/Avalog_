@@ -18,9 +18,12 @@ func move(pos: Vector2) -> void:
 	moved = true
 	post_move(delta)
 
+func reset_ranged_pos() -> void:
+	ranged.position = Vector2(0, 0)
+
 func get_all_moves(_turn_n: int) -> Array:
 	# Loop through all active moves attribute, find valid moves and assign to nested_valid moves attr
-	ranged.position = Vector2(0, 0)
+	reset_ranged_pos()
 	var output: Array = []
 	for mv in active_mvs:
 		output.push_back(get_valid_moves((mv)))
@@ -28,7 +31,7 @@ func get_all_moves(_turn_n: int) -> Array:
 	return nested_valid_moves
 
 func on_ranged_overlap(area: Area2D) -> void:
-	var is_enemy = area.colour != colour and area.colour != cst.colour.NONE
+	var is_enemy = area.colour != colour and area.colour != cst.colour.NONE and get_parent().ranged
 	if is_enemy and (state == states.MOVED || state == states.ATTACKING):
 		state = states.ATTACKING
 		area.delete()

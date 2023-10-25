@@ -1,0 +1,157 @@
+[gd_scene load_steps=20 format=3 uid="uid://cljurencxrxid"]
+
+[ext_resource type="PackedScene" uid="uid://cfobj247gpa7q" path="res://scenes/pieces/Piece.tscn" id="1_gw1dr"]
+[ext_resource type="Shader" path="res://scenes/pieces/graphics/Piece.gdshader" id="2_d7k66"]
+[ext_resource type="Texture2D" uid="uid://b050d58pv4p0n" path="res://assets/pieces/classic/P.png" id="4_0ig7c"]
+[ext_resource type="Texture2D" uid="uid://cmado0pd2kdr3" path="res://assets/pieces/classic/p.png" id="5_wbc5k"]
+[ext_resource type="Texture2D" uid="uid://dsfc42cu5anbj" path="res://assets/pieces/icons.png" id="6_gum5q"]
+[ext_resource type="Texture2D" uid="uid://cjgksav2ho5sx" path="res://assets/pieces/morgana/morgana.png" id="7_8tthm"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_q7xo0"]
+resource_local_to_scene = true
+shader = ExtResource("2_d7k66")
+shader_parameter/tol = 0.05
+shader_parameter/original_palette_num = null
+shader_parameter/replace_palette_num = null
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qjgmo"]
+atlas = ExtResource("7_8tthm")
+region = Rect2(32, 0, 16, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_58mgt"]
+atlas = ExtResource("7_8tthm")
+region = Rect2(48, 0, 16, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_527uo"]
+atlas = ExtResource("7_8tthm")
+region = Rect2(0, 0, 16, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1v0i8"]
+atlas = ExtResource("7_8tthm")
+region = Rect2(16, 0, 16, 17)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_c7wn5"]
+resource_local_to_scene = true
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qjgmo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_58mgt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qjgmo")
+}],
+"loop": true,
+"name": &"0_attack",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_527uo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1v0i8")
+}],
+"loop": true,
+"name": &"0_passive",
+"speed": 3.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lu8uo"]
+atlas = ExtResource("6_gum5q")
+region = Rect2(120, 96, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_whuwd"]
+resource_local_to_scene = true
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_0ig7c")
+}],
+"loop": false,
+"name": &"0",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_wbc5k")
+}],
+"loop": false,
+"name": &"1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lu8uo")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dxwsd"]
+atlas = ExtResource("7_8tthm")
+region = Rect2(32, 0, 16, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ymdh5"]
+atlas = ExtResource("7_8tthm")
+region = Rect2(48, 0, 16, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8p36x"]
+atlas = ExtResource("7_8tthm")
+region = Rect2(0, 0, 16, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dldhu"]
+atlas = ExtResource("7_8tthm")
+region = Rect2(16, 0, 16, 17)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xewg7"]
+resource_local_to_scene = true
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dxwsd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ymdh5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dxwsd")
+}],
+"loop": true,
+"name": &"0_attack",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8p36x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dldhu")
+}],
+"loop": true,
+"name": &"0_passive",
+"speed": 3.0
+}]
+
+[node name="Piece" instance=ExtResource("1_gw1dr")]
+faction_char = "m"
+piece_char = "k"
+
+[node name="GraphicalPiece" parent="." index="1"]
+material = SubResource("ShaderMaterial_q7xo0")
+
+[node name="PhantomSprite" parent="GraphicalPiece/Phantom" index="2"]
+sprite_frames = SubResource("SpriteFrames_c7wn5")
+animation = &"0_attack"
+
+[node name="Icon" parent="GraphicalPiece" index="1"]
+sprite_frames = SubResource("SpriteFrames_whuwd")
+animation = &"default"
+
+[node name="Sprite" parent="GraphicalPiece" index="2"]
+sprite_frames = SubResource("SpriteFrames_xewg7")
+
+[editable path="GraphicalPiece"]

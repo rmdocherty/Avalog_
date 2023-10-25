@@ -7,6 +7,7 @@
 
 [node name="LogicPiece" instance=ExtResource("1_h462q")]
 script = ExtResource("2_tomar")
+ranged_multiplier = 3.0
 
 [node name="Ranged" type="Area2D" parent="." index="2"]
 collision_layer = 32

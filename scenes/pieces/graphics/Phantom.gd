@@ -31,7 +31,7 @@ func _input_event(_viewport, event: InputEvent, _shape_idx) -> void:
 
 func mouse_exited_circle() -> void:
 	if !dragging:
-		graphics.sprite.play("0_passive")
+		graphics.sprite.play(graphics.passive_anim)
 		graphics.sprite.stop()
 		graphics.hide_lines()
 

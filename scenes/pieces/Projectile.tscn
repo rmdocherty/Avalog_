@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://cbyberlc7tmaw"]
+[gd_scene load_steps=9 format=3 uid="uid://cbyberlc7tmaw"]
 
 [ext_resource type="Script" path="res://scenes/pieces/Projectile.gd" id="1_rwawx"]
 [ext_resource type="Texture2D" uid="uid://fpef7jdp5ott" path="res://assets/pieces/bretagne/arrow.png" id="2_c4ucl"]
 [ext_resource type="Texture2D" uid="uid://k4ppnir62lv4" path="res://assets/pieces/bretagne/birds.png" id="3_538ek"]
+[ext_resource type="Texture2D" uid="uid://dfao2iiorr4jc" path="res://assets/pieces/turkiye/cannonball.png" id="4_od82d"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wy8a1"]
 atlas = ExtResource("3_538ek")
@@ -42,6 +43,14 @@ animations = [{
 "loop": true,
 "name": &"1",
 "speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_od82d")
+}],
+"loop": true,
+"name": &"2",
+"speed": 5.0
 }]
 
 [node name="Projectile" type="Node2D"]
@@ -50,4 +59,4 @@ script = ExtResource("1_rwawx")
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_lnh14")
-animation = &"1"
+animation = &"2"

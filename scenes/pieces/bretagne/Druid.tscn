@@ -132,7 +132,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_wl42y")
 }],
-"loop": false,
+"loop": true,
 "name": &"0_passive",
 "speed": 3.0
 }]
@@ -149,13 +149,13 @@ material = SubResource("ShaderMaterial_e582l")
 
 [node name="PhantomSprite" parent="GraphicalPiece/Phantom" index="2"]
 sprite_frames = SubResource("SpriteFrames_iprod")
+animation = &"0_passive"
 
 [node name="Icon" parent="GraphicalPiece" index="1"]
 sprite_frames = SubResource("SpriteFrames_etcce")
 
 [node name="Sprite" parent="GraphicalPiece" index="2"]
 sprite_frames = SubResource("SpriteFrames_37nlb")
-animation = &"0_attack"
 
 [node name="Attack" parent="Audio" index="1"]
 stream = ExtResource("7_4fuwe")

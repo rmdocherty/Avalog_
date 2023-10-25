@@ -27,6 +27,9 @@ func shoot(start_pos: Vector2, target_pos: Vector2, anim_idx: int) -> void:
 	if anim_idx == 1:
 		vel = 4 * cst.PROJ_SPEED
 		rotate_spr = false
+	elif anim_idx == 1:
+		vel = 8 * cst.PROJ_SPEED
+		rotate_spr = false
 
 	if rotate_spr:
 		$Sprite.rotate(angle + (45.0 / (2 * PI)))
