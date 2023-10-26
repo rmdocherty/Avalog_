@@ -89,9 +89,7 @@ func init(player_factions=[cst.factions.ALBION, cst.factions.ALBION]) -> void:
 	# Add this here for rematches
 	turn_number = 1
 	current_turn_colour = cst.colour.WHITE
-	# If other player is Rome and you're not, they start first
-	# TODO: when Morgana implemented, abstract this custom init into a separate ccfunction
-	# Also test this online
+
 	if player_factions[1] == cst.factions.ROME and player_factions[0] != cst.factions.ROME:
 		current_turn_colour = cst.colour.BLACK
 		turn_number = 2

@@ -128,6 +128,17 @@ func add_piece(piece_letter: String, pos: Vector2, piece_n: int, faction_int: in
 	all_pieces.push_back(temp_piece)
 	return temp_piece
 
+func apply_morgana_aura(piece_list: Array[Piece], monarch_factions: Array[cst.factions]) -> Array[Piece]:
+	var zombie_positions := [cst.LOGIC_SQ_W * Vector2(0, 1.5), cst.LOGIC_SQ_W * Vector2(0, -1.5)]
+	for i in range(2):
+		var player_faction := player_monarch_factions[i]
+		if player_faction == cst.factions.MORGANA:
+			var colour := i as cst.colour
+			var temp_piece = lkp.add_piece("m", "p", colour, "m")
+			add_child(temp_piece)
+			temp_piece.init(zombie_positions[i], colour, len(piece_list))
+			piece_list.push_back(temp_piece)
+	return piece_list
 
 # ======================== GAME LOGIC =================
 func init(fen: String, track: int=1) -> void:
@@ -141,6 +152,7 @@ func init(fen: String, track: int=1) -> void:
 		Music.switch_tracks(track)
 
 	all_pieces = add_pieces_from_fen(fen)
+	all_pieces = apply_morgana_aura(all_pieces, player_monarch_factions)
 	game_manager.add_pieces_from_nodes(all_pieces)
 	game_manager.init(player_monarch_factions)
 	# short delay here so all nodes can load before we find moves

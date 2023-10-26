@@ -1,0 +1,78 @@
+[gd_scene load_steps=3 format=3 uid="uid://dj8vrtscmluxv"]
+
+[ext_resource type="Texture2D" uid="uid://qwn4oagaw4g8" path="res://assets/menus/draft/page.png" id="1_gwt2t"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w7taq"]
+size = Vector2(315, 380)
+
+[node name="DraftPage" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -172.0
+offset_top = -189.0
+offset_right = 159.0
+offset_bottom = 209.0
+mouse_filter = 2
+color = Color(1, 1, 1, 0)
+
+[node name="Hover" type="Area2D" parent="."]
+collision_layer = 256
+collision_mask = 256
+
+[node name="Sprite" type="Sprite2D" parent="Hover"]
+scale = Vector2(2, 2)
+texture = ExtResource("1_gwt2t")
+
+[node name="Parent" type="Control" parent="Hover"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Snap" type="Sprite2D" parent="Hover/Parent"]
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Hover/Parent"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -3.655
+anchor_top = -2.149
+anchor_right = -3.655
+anchor_bottom = -2.149
+offset_left = 18.0
+offset_top = 23.0
+offset_right = 258.0
+offset_bottom = 167.0
+
+[node name="SubViewport" type="SubViewport" parent="Hover/Parent/SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+canvas_item_default_texture_filter = 0
+physics_object_picking = true
+gui_embed_subwindows = true
+size = Vector2i(240, 144)
+render_target_update_mode = 4
+
+[node name="RulesText" type="RichTextLabel" parent="Hover/Parent"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PieceType" type="Label" parent="Hover/Parent"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 14.0
+
+[node name="Faction" type="Label" parent="Hover/Parent"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 14.0
+
+[node name="Title" type="Label" parent="Hover/Parent"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 14.0
+text = "Arthur"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hover/Parent"]
+position = Vector2(-7.5, 9)
+shape = SubResource("RectangleShape2D_w7taq")

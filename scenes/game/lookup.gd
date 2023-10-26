@@ -36,8 +36,6 @@ func add_logic_piece(faction_char: String, piece_char: String, colour: cst.colou
 func set_logic_piece(node: LogicPiece, faction_char: String, piece_char: String, 
 					colour: cst.colour, monarch_faction: String="a") -> LogicPiece:
 	# Useful for remapping a Piece's logic node in-place
-	#print(faction_char, piece_char)
-	# add checks here for weird pieces like pawn or king, and remappings for say aura pieces
 	var temp_dict: Dictionary = table[faction_char][piece_char]
 	if temp_dict.has("states"):
 		var states = temp_dict["states"]

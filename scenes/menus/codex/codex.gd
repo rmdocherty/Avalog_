@@ -97,6 +97,7 @@ func load_page_data(idx: int) -> void:
 		var AFEN = "8/8/8/4%s%s/8/8/8/8" % [cst.fen_faction_lookup[faction_int], type_lookup[type_int].to_upper()]
 		minigame.remove_all()
 		var current_factions: Array[cst.factions] = [faction_int, faction_int]
+		print(current_factions)
 		minigame.player_monarch_factions = current_factions #set this to make pawn moves work
 		minigame.custom_init(faction_int, AFEN)
 		$ShowLines.start()
