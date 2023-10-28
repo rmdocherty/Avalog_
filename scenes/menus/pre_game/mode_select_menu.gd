@@ -91,16 +91,25 @@ func go_back() -> void:
 func play() -> void:
 	time_changed($Canv/Cont/TimeControl/Picker.selected)
 	game_mode_changed($Canv/Cont/GameMode/Picker.selected)
-	if stg.mode == cst.modes.DRAFT:
-		pass
-	elif stg.network == cst.network_types.LOCAL:
+	var is_local: bool = stg.network == cst.network_types.LOCAL
+	var is_online: bool = stg.network == cst.network_types.ONLINE
+	
+	if stg.mode == cst.modes.DRAFT and is_local:
+		var game_path := "res://scenes/menus/draft/DraftMenu.tscn"
+		var child: Node = load(game_path).instantiate()
+		get_tree().get_root().add_child(child)
+		child.n_players = 2
+		child.debug = false
+		#child.init()
+		queue_free()
+	elif is_local:
 		# If 'Play' clicked and local, start game.
 		var game_path := "res://scenes/game/graphics/gfx_game_manager.tscn"
 		var child: Node = load(game_path).instantiate()
 		get_tree().get_root().add_child(child)
 		child.init(stg.chosen_fen)
 		queue_free()
-	elif stg.network == cst.network_types.ONLINE:
+	elif is_online:
 		# If 'Play' clicked and online, begin automatchmaking 
 		stg.look_type = cst.look_types.AUTO
 		hlp.load_child_remove_parent("res://scenes/menus/pre_game/BrowseGames.tscn", self)

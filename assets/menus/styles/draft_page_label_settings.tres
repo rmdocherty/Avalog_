@@ -1,0 +1,8 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://jh8rgo7a1r64"]
+
+[ext_resource type="FontFile" uid="uid://dig8hjpqiefp" path="res://assets/menus/styles/Bitfantasy.ttf" id="1_2olgg"]
+
+[resource]
+font = ExtResource("1_2olgg")
+font_size = 25
+font_color = Color(0, 0, 0, 1)

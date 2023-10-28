@@ -128,7 +128,7 @@ func add_piece(piece_letter: String, pos: Vector2, piece_n: int, faction_int: in
 	all_pieces.push_back(temp_piece)
 	return temp_piece
 
-func apply_morgana_aura(piece_list: Array[Piece], monarch_factions: Array[cst.factions]) -> Array[Piece]:
+func apply_morgana_aura(piece_list: Array[Piece], _monarch_factions: Array[cst.factions]) -> Array[Piece]:
 	var zombie_positions := [cst.LOGIC_SQ_W * Vector2(0, 1.5), cst.LOGIC_SQ_W * Vector2(0, -1.5)]
 	for i in range(2):
 		var player_faction := player_monarch_factions[i]

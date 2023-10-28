@@ -43,7 +43,7 @@ func get_knight_moves() -> Array:
 	return states
 
 
-func get_pawn_moves(dir: float=1, monarch_faction: String="a") -> Array:
+func get_pawn_moves(dir: float=1, _monarch_faction: String="a") -> Array:
 	var states: Array
 	var state_1 := helper.get_line_mvs([Vector2(0, dir)], cst.mv_type.NORMAL)
 	var state_2 := helper.get_line_mvs([Vector2(-1, dir), Vector2(1, dir)], cst.mv_type.NORMAL)

@@ -1,11 +1,25 @@
-[gd_scene load_steps=3 format=3 uid="uid://dj8vrtscmluxv"]
+[gd_scene load_steps=8 format=3 uid="uid://dj8vrtscmluxv"]
 
+[ext_resource type="Script" path="res://scenes/menus/draft/DraftPage.gd" id="1_74l1n"]
 [ext_resource type="Texture2D" uid="uid://qwn4oagaw4g8" path="res://assets/menus/draft/page.png" id="1_gwt2t"]
+[ext_resource type="LabelSettings" uid="uid://jh8rgo7a1r64" path="res://assets/menus/styles/draft_page_label_settings.tres" id="2_1p0gr"]
+[ext_resource type="FontFile" uid="uid://dig8hjpqiefp" path="res://assets/menus/styles/Bitfantasy.ttf" id="2_md3qa"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_net5k"]
+font = ExtResource("2_md3qa")
+font_size = 23
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_383nj"]
+font = ExtResource("2_md3qa")
+font_size = 23
+font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w7taq"]
 size = Vector2(315, 380)
 
 [node name="DraftPage" type="Node2D"]
+script = ExtResource("1_74l1n")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_left = -172.0
@@ -54,25 +68,50 @@ render_target_update_mode = 4
 
 [node name="RulesText" type="RichTextLabel" parent="Hover/Parent"]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = -120.0
+offset_top = 103.0
+offset_right = 100.0
+offset_bottom = 178.0
+mouse_filter = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+bbcode_enabled = true
+text = "[color=red]State switcher:[/color] changes possible moves after moving"
 
 [node name="PieceType" type="Label" parent="Hover/Parent"]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 14.0
+offset_left = 26.0
+offset_top = -102.0
+offset_right = 144.0
+offset_bottom = -76.0
+text = "Monarch"
+label_settings = SubResource("LabelSettings_net5k")
+horizontal_alignment = 1
 
 [node name="Faction" type="Label" parent="Hover/Parent"]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 14.0
+offset_left = -153.0
+offset_top = -102.0
+offset_right = -35.0
+offset_bottom = -76.0
+text = "Albion"
+label_settings = SubResource("LabelSettings_383nj")
+horizontal_alignment = 1
 
 [node name="Title" type="Label" parent="Hover/Parent"]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 14.0
+offset_left = -120.0
+offset_top = -157.0
+offset_right = 105.0
+offset_bottom = -109.0
 text = "Arthur"
+label_settings = ExtResource("2_1p0gr")
+horizontal_alignment = 1
+autowrap_mode = 3
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hover/Parent"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hover"]
 position = Vector2(-7.5, 9)
 shape = SubResource("RectangleShape2D_w7taq")
+
+[connection signal="input_event" from="Hover" to="." method="_on_hover_click"]
+[connection signal="mouse_entered" from="Hover" to="." method="_on_hover_mouse_entered"]
+[connection signal="mouse_exited" from="Hover" to="." method="_on_hover_mouse_exited"]
