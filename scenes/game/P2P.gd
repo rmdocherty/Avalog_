@@ -70,12 +70,12 @@ func _handle_packet(packet: Dictionary) -> void:
 		var your_chosen_faction :=stg.chosen_factions[0]
 		stg.player_colour = colour_set
 		stg.opponent_half_FEN = packet["half_fen"]
-		stg.chosen_factions[1 - colour_set] = packet["faction"] #hmmm
+		#stg.chosen_factions[1 - colour_set] = packet["faction"] #hmmm
 		fen_recieved.emit(packet["half_fen"])
 		var resp_packet = {"type":"setup_respond", "half_fen":stg.half_FEN, "faction": your_chosen_faction}
 		_send_P2P_packet(stg.OTHER_PLAYER_ID, resp_packet)
 	if packet["type"] == "setup_respond":
-		stg.chosen_factions[1 - stg.player_colour] = packet["faction"] #hmmmm
+		#stg.chosen_factions[1 - stg.player_colour] = packet["faction"] #hmmmm
 		fen_recieved.emit(packet["half_fen"])
 	if packet["type"] == "move":
 		var piece_n: int = packet["piece_n"]

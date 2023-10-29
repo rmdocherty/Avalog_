@@ -141,7 +141,7 @@ func finish_picking(player_n: int) -> void:
 	if player_n == 1 and stg.network == cst.network_types.ONLINE:
 		var half_fen = insert_pieces_into_fen(current_player_pieces, player_n)
 		fen_str = fen_str.to_lower() # half fens in lowercase
-		stg.half_FEN = half_fen
+		stg.half_FEN = half_fen + "/"
 		var game_path := "res://scenes/game/graphics/gfx_game_manager.tscn"
 		var child: Node = load(game_path).instantiate()
 		get_tree().get_root().add_child(child)
