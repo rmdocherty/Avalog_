@@ -22,9 +22,12 @@ var selected_piece: Piece
 
 # ======================== FEN LOGIC =================
 func invert_str(s: String) -> String:
+	# this needs to work for afens
 	var out: String = ""
-	for i in range(s.length() - 1, -1, -1):
-		var c = s[i]
+	var str_idx := s.length() - 1
+	for i in range(s.length()):
+		var possible_faction := s[str_idx - 1]
+		var c = s[str_idx]
 		if c == "Q":
 			c = "K"
 		elif c == "q":
@@ -33,7 +36,15 @@ func invert_str(s: String) -> String:
 			c = "Q"
 		elif c == "k":
 			c = "q"
-		out += c
+			
+		if possible_faction in cst.fen_faction_lookup:
+			out += possible_faction
+			out += c
+			str_idx -= 2
+		else:
+			out += c
+			str_idx -= 1
+
 	return out
 
 func assemble_fen(other_half_fen: String) -> String:
