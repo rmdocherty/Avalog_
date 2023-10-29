@@ -17,7 +17,7 @@ const codex_data: Dictionary = {
 		"name": "Arthur",
 		"faction": 0,
 		"type": "k",
-		"tooltip": "[color=red]Aura:[/color] Pawns can move twice as far on their first move & this can swap  with Rooks if neither has moved yet.",
+		"tooltip": "[color=red]Aura:[/color] Pawns can move twice as far on their first move & this can swap with Rooks if neither has moved yet.",
 		"lore": "How gat ye this sword? said Sir Ector to Arthur. Sir, I will tell you. When I came home for my brother’s sword, I found nobody at home to deliver me his sword; and so I thought my brother Sir Kay should not be swordless, and so I came hither eagerly and pulled it out of the stone without any pain. Found ye any knights about this sword? said Sir Ector. Nay, said Arthur.\n  Now, said Sir Ector to Arthur, I understand ye must be king of this land. Wherefore I, said Arthur, and for what cause? Sir, said Ector, for God will have it so; for there should never man have drawn out this sword, but he that shall be rightwise king of this land.",
 		"author": MALORY
 	},
@@ -122,7 +122,7 @@ const codex_data: Dictionary = {
 		"faction": 2,
 		"type": "q",
 		"tooltip": "[color=red]Jumping[/color] in a star pattern",
-		"lore": "", # about how he turned on gradlon in the end but was too late to stop him?
+		"lore": "It was there in the chamber, with victory all but assured, that he had his doubts. Maybe he had always had doubts, since the academy, or the  ", # about how he turned on gradlon in the end but was too late to stop him?
 		"author": HISTORY
 	},
 	"15": {
@@ -146,7 +146,7 @@ const codex_data: Dictionary = {
 		"faction": 2,
 		"type": "r",
 		"tooltip": "Moves in a square",
-		"lore": "The ", # how she was strong fighter and about the battle with count lucius?
+		"lore": "The Roman vanguard had arrived before Gradlon II could reach the altar, so her task was simple: hold the bridge. And so she held it, wave after wave beaten back by axe or sword or arrow. By all accounts she slew at least fifty men herself, and having held the bridge for four hours it came time to push back, to create a widnow for Gradlon to cross. It was suicide, of course, insanity even - a bridge is a chokepoint, it could be held, supplied, defended. Charging a forward formation was a different story; maybe that was why it worked. They say she's buried there, a giant rusted ax-head for a gravestone. ", # how she was strong fighter and about the battle with count lucius?
 		"author": "- Friar Morgan, Historia"
 	},
 	"18": {
@@ -242,7 +242,7 @@ const codex_data: Dictionary = {
 		"faction": 4,
 		"type": "r",
 		"tooltip": "[color=red]State 1:[/color] knight-like. \n[color=red]State 2:[/color] bishop-like. \n[color=red]State 3:[/color] rook-like.",
-		"lore": "",
+		"lore": "", # bit from Macbeth?
 		"author": ""
 	},
 	"30": {

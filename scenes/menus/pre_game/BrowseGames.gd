@@ -283,7 +283,13 @@ func start_game(other_player_id: int) -> void:
 	# The p2p node inn gfx game manager will now handle connections and setting up the game
 	stg.OTHER_PLAYER_ID = other_player_id
 	stg.uname_2 = OTHER_PLAYER["steam_name"]
-	var game_path := "res://scenes/game/graphics/gfx_game_manager.tscn"
-	var child: Node = load(game_path).instantiate()
-	get_tree().get_root().add_child(child)
-	get_tree().get_root().remove_child(self)
+	if stg.mode != cst.modes.DRAFT:
+		var game_path := "res://scenes/game/graphics/gfx_game_manager.tscn"
+		var child: Node = load(game_path).instantiate()
+		get_tree().get_root().add_child(child)
+		get_tree().get_root().remove_child(self)
+	else: # if draft mode assign other player & load draft menu
+		var game_path := "res://scenes/menus/draft/DraftMenu.tscn"
+		var child: Node = load(game_path).instantiate()
+		get_tree().get_root().add_child(child)
+		queue_free()

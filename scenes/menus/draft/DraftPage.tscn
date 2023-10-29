@@ -6,11 +6,13 @@
 [ext_resource type="FontFile" uid="uid://dig8hjpqiefp" path="res://assets/menus/styles/Bitfantasy.ttf" id="2_md3qa"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_net5k"]
+resource_local_to_scene = true
 font = ExtResource("2_md3qa")
 font_size = 23
 font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_383nj"]
+resource_local_to_scene = true
 font = ExtResource("2_md3qa")
 font_size = 23
 font_color = Color(0, 0, 0, 1)

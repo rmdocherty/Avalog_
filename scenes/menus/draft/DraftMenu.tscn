@@ -45,8 +45,12 @@ text = "Choose Your"
 label_settings = ExtResource("3_ybb4f")
 
 [node name="Player" type="Label" parent="Parent"]
-offset_left = 486.0
-offset_right = 780.0
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -147.0
+offset_right = 147.0
 offset_bottom = 98.0
+grow_horizontal = 2
 text = "Player 1"
 label_settings = ExtResource("3_ybb4f")

@@ -13,12 +13,11 @@ var minigames := []
 
 var fen_str := ""
 
-var debug := true
 
 var pick_idx := 0
 var n_players := 1
 const pick_order := [1, 2, 3, 3, 4, 4, 5, 5, 6, 6, 6, 6, 6, 6, 6, 6]
-const positions := [4, 3, 2, 5, 1, 6, 0, 7]
+const positions := [3, 4, 2, 5, 1, 6, 0, 7]
 
 var current_player_pieces := ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""]
 
@@ -28,7 +27,6 @@ func _ready() -> void:
 	minigame_2 = minigameClass.instantiate()
 
 	minigames = [minigame_1, minigame_2]
-	#if debug == true:
 	load_pages(pick_idx)
 	$Parent/Player.text = stg.uname_1
 
@@ -90,24 +88,36 @@ func insert_piece_into_arr(piece_char: String, idx: int, player_n: int) -> void:
 	if idx > 7:
 		insert_idx = pick_idx
 	elif idx == 0 and player_n == 2:
-		insert_idx = positions[idx] - 1
-	elif idx == 1 and player_n == 2:
 		insert_idx = positions[idx] + 1
+	elif idx == 1 and player_n == 2:
+		insert_idx = positions[idx] - 1
 	else:
 		insert_idx = positions[idx]
 	current_player_pieces[insert_idx] = piece_char
 
-func insert_pieces_into_fen(player_pieces: Array, player_n: int) -> void:
-	var i := 0
-	if player_n == 2:
-		fen_str += "/8/8/8/8/"
+func insert_pieces_into_fen(player_pieces: Array, player_n: int) -> String:
+	var temp_str = ""
+	if player_n == 1:
+		fen_str = "/8/8/8/8/"
 		player_pieces.reverse()
-	
-	for p in player_pieces:
-		if i == 8:
-			fen_str += "/"
-		fen_str += player_pieces[i]
-		i += 1
+		var i := 0
+		for p in player_pieces:
+			if i == 8:
+				temp_str += "/"
+				i = 0
+			temp_str += p
+			i += 1
+		fen_str = fen_str + temp_str
+	elif player_n == 2:
+		var i := 0
+		for p in player_pieces:
+			if i == 8:
+				temp_str += "/"
+				i = 0
+			temp_str += p
+			i += 1
+		fen_str = temp_str + fen_str
+	return temp_str
 
 func pick_page(idx: int) -> void:
 	move_pages(idx)
@@ -120,13 +130,20 @@ func pick_page(idx: int) -> void:
 	pick_idx += 1
 
 	if pick_idx == len(pick_order):
+		print('a player has finished picking', n_players)
 		finish_picking(n_players)
 	else:
 		load_pages(pick_idx)
 
 func finish_picking(player_n: int) -> void:
 	if player_n == 1 and stg.network == cst.network_types.ONLINE:
-		pass
+		var half_fen = insert_pieces_into_fen(current_player_pieces, player_n)
+		fen_str = fen_str.to_lower() # half fens in lowercase
+		stg.half_FEN = half_fen
+		var game_path := "res://scenes/game/graphics/gfx_game_manager.tscn"
+		var child: Node = load(game_path).instantiate()
+		get_tree().get_root().add_child(child)
+		get_tree().get_root().remove_child(self)
 	elif player_n == 1 and stg.network == cst.network_types.LOCAL:
 		insert_pieces_into_fen(current_player_pieces, n_players)
 		current_player_pieces = ["", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""]
@@ -139,5 +156,6 @@ func finish_picking(player_n: int) -> void:
 		insert_pieces_into_fen(current_player_pieces, n_players)
 		var game_manager = load("res://scenes/game/graphics/gfx_game_manager.tscn").instantiate()
 		get_tree().get_root().add_child(game_manager)
+		print(fen_str)
 		game_manager.init(fen_str)
 		queue_free()

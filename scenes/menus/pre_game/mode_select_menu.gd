@@ -98,9 +98,6 @@ func play() -> void:
 		var game_path := "res://scenes/menus/draft/DraftMenu.tscn"
 		var child: Node = load(game_path).instantiate()
 		get_tree().get_root().add_child(child)
-		child.n_players = 2
-		child.debug = false
-		#child.init()
 		queue_free()
 	elif is_local:
 		# If 'Play' clicked and local, start game.
