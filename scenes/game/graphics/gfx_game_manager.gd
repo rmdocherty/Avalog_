@@ -13,6 +13,7 @@ var gfx_offset := cst.FLAT_DRAW_SCALE * cst.LOGIC_SQ_W * Vector2(start_x, start_
 var player_monarch_factions: Array[cst.factions] = [cst.factions.ALBION, cst.factions.ALBION]
 
 var change_player_each_turn: bool = true
+var is_minigame: bool = false
 
 var all_pieces: Array[Piece] = []
 var selected_piece: Piece

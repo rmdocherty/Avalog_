@@ -10,18 +10,19 @@ signal warning(text: String)
 
 var connected: bool = stg.OTHER_PLAYER_ID > -1 and stg.network == cst.network_types.ONLINE
 var is_host := stg.look_type == cst.look_types.HOST
+@onready var active: bool = not get_parent().is_minigame
 
 func _ready() -> void:
-	if connected:
+	if connected and active:
 		Steam.p2p_session_request.connect(_on_P2P_session_request)
 		Steam.p2p_session_connect_fail.connect(_on_P2P_session_connect_fail)
 	await get_tree().create_timer(0.75).timeout
-	if stg.look_type == cst.look_types.HOST and connected:
+	if stg.look_type == cst.look_types.HOST and connected and active:
 		_make_P2P_handshake()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	if connected:
+	if connected and active:
 		_read_P2P_packet()
 
 

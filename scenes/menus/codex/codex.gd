@@ -26,6 +26,7 @@ func _ready() -> void:
 	
 	load_page_data(0)
 	minigame = load("res://scenes/game/graphics/gfx_game_manager.tscn").instantiate()
+	minigame.is_minigame = true
 	$Parent/Book/Page/SubViewportContainer/SubViewport.add_child(minigame)
 
 	minigame.get_node("bg").hide()

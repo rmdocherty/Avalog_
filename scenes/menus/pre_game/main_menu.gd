@@ -25,7 +25,6 @@ func quit() -> void:
 	get_tree().quit()
 
 func steam_failed() -> void:
-	print("foo bar")
 	var warning: Control = load("res://scenes/menus/in_game/warning_modal.tscn").instantiate()
 	warning.init("Steam failed to start, multiplayer won't work.", false)
 	$Canv.add_child(warning)
@@ -41,7 +40,6 @@ func _process(delta: float) -> void:
 		n_moves += 1
 		inc = 0
 	if n_moves > overflow_lim:
-		print('reset!')
 		n_moves = 0
 		inc = 0
 

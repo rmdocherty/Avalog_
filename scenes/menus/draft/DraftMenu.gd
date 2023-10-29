@@ -25,6 +25,8 @@ var current_player_pieces := ["", "", "", "", "", "", "", "", "", "", "", "", ""
 func _ready() -> void:
 	minigame_1 = minigameClass.instantiate()
 	minigame_2 = minigameClass.instantiate()
+	minigame_1.is_minigame = true
+	minigame_2.is_minigame = true
 
 	minigames = [minigame_1, minigame_2]
 	load_pages(pick_idx)
