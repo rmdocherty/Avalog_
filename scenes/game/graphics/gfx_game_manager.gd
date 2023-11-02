@@ -85,7 +85,7 @@ func find_factions_of_monarchs(fen_str: String) -> Array[cst.factions]:
 
 			var faction_int: int
 			if fen_str[idx - 1] in cst.fen_faction_lookup:
-				faction_int = cst.fen_faction_lookup.find(letter, 0)
+				faction_int = cst.fen_faction_lookup.find(fen_str[idx - 1], 0)
 			else:
 				faction_int = stg.chosen_factions[colour]
 			monarch_factions[colour] = faction_int as cst.factions
@@ -164,6 +164,7 @@ func init(fen: String, track: int=1) -> void:
 
 	all_pieces = add_pieces_from_fen(fen)
 	all_pieces = apply_morgana_aura(all_pieces, player_monarch_factions)
+	print(player_monarch_factions)
 	game_manager.add_pieces_from_nodes(all_pieces)
 	game_manager.init(player_monarch_factions)
 	# short delay here so all nodes can load before we find moves
