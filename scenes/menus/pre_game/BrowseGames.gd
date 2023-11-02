@@ -282,14 +282,14 @@ func _notification(what):
 func adjust_half_fen() -> String:
 	# Loop through and prepend faction to half fen
 	var out := ""
-	for char in stg.half_FEN:
-		if char == "/":
-			out += char
-		elif char.is_valid_int():
+	for c in stg.half_FEN:
+		if c == "/":
+			out += c
+		elif c.is_valid_int():
 			pass
 		else:
 			out += cst.fen_faction_lookup[stg.chosen_factions[0]]
-			out += char
+			out += c
 	return out
 
 func start_game(other_player_id: int) -> void:
