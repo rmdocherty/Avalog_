@@ -50,8 +50,8 @@ func graphics_init(logic_pos: Vector2, set_colour: cst.colour) -> void:
 
 # ======================== GFX LOGIC =================
 func set_shader_params(replace_palettes: Array[int]) -> void:
-	# change this to use the piece's faction, not player choice faction
-	graphics.material.set_shader_parameter("original_palette_num", replace_palettes[colour])
+	var original_faction: int = cst.faction_lookup.find(faction_char)
+	graphics.material.set_shader_parameter("original_palette_num", original_faction)
 	graphics.material.set_shader_parameter("replace_palette_num", replace_palettes[colour + 2])
 
 func reset_drag_hide_phantom(_move_confirmed: bool=false) -> void:
@@ -170,11 +170,26 @@ func change_turn(new_turn_number: int) -> void:
 		graphics.change_player_circle("active")
 	elif not your_piece and online:
 		graphics.change_player_circle("inactive")
-	
+
+func stop_move_audio() -> void:
+	var move_audio: AudioStreamPlayer = $Audio/Move
+	var prev_vol = move_audio.volume_db
+	var tw1 := get_tree().create_tween()
+	var zero_vol_db := linear_to_db(0.01)
+	var FADE_TIME := 1
+	tw1.tween_property(move_audio, "volume_db", zero_vol_db, FADE_TIME).set_trans(Tween.TRANS_QUAD)
+	var fn = Callable(self, "stop_tween_callback")
+	tw1.tween_callback(fn.bind(move_audio, prev_vol))
+
+func stop_tween_callback(audio: AudioStreamPlayer, prev_vol_db: float) -> void:
+	audio.stop()
+	print(prev_vol_db)
+	audio.volume_db = prev_vol_db
 
 func post_gfx_move() -> void:
 	move_ended = true
-	$Audio/Move.stop()
+	stop_move_audio()
+
 	if moving_to_attack and stg.classic_icons == false:
 		$Audio/AttackDelay.start()
 		await play_attack_anim()

@@ -147,6 +147,8 @@ animations = [{
 
 [node name="Piece" instance=ExtResource("1_ac5xs")]
 mixed_move_types = true
+faction_char = "r"
+piece_char = "q"
 
 [node name="GraphicalPiece" parent="." index="1"]
 material = SubResource("ShaderMaterial_ptbon")

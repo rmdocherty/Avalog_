@@ -131,6 +131,7 @@ animations = [{
 }]
 
 [node name="Piece" instance=ExtResource("1_rhnxl")]
+faction_char = "m"
 
 [node name="LogicPiece" parent="." index="0"]
 ranged_multiplier = 1.0

@@ -86,6 +86,8 @@ func load_page_data(idx: int) -> void:
 		for N in $Parent/Book/Page.get_children():
 			N.show()
 		var faction_int = data["faction"]
+		stg.chosen_factions = [faction_int, faction_int]
+		stg.replace_palettes = [0, 0, faction_int, faction_int]
 		var type_int = type_lookup.find(data["type"], 0)
 		$Parent/Book/Page/Title.text = data["name"]
 		$Parent/Book/Page/Faction.text = faction_names[faction_int]

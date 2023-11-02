@@ -138,6 +138,8 @@ animations = [{
 }]
 
 [node name="Piece" instance=ExtResource("1_pf7mt")]
+faction_char = "m"
+piece_char = "q"
 
 [node name="GraphicalPiece" parent="." index="1"]
 material = SubResource("ShaderMaterial_4utrr")

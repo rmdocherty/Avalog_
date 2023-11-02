@@ -212,8 +212,7 @@ animations = [{
 [node name="Piece" instance=ExtResource("1_pj2m4")]
 script = ExtResource("2_iu3n3")
 ranged = false
-faction_char = "a"
-piece_char = "p"
+faction_char = "t"
 
 [node name="LogicPiece" parent="." index="0"]
 script = ExtResource("3_klgoc")

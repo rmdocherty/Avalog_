@@ -4,6 +4,8 @@ var sprs: Array[AnimatedSprite2D] = []
 
 # ======================== INIT METHODS ========================
 func _ready() -> void:
+	stg.chosen_factions = [cst.factions.ALBION, cst.factions.ALBION]
+	stg.replace_palettes = [0, 0, cst.factions.ALBION, cst.factions.ROME]
 	# Init scene and set values of menu items to the values in esttings
 	if stg.network == cst.network_types.ONLINE:
 		$Canv/Cont/PlayButtons/OnlineOptions.show()
@@ -48,6 +50,8 @@ func game_mode_changed(game_mode: int) -> void:
 		var dropdown: OptionButton = get_node(node_str % str(i))
 		dropdown.hide()
 		if game_mode == cst.modes.CUSTOM:
+			if i == 2 and stg.network == cst.network_types.ONLINE:
+				dropdown.modulate = 0
 			dropdown.show()
 		if game_mode == cst.modes.DRAFT:
 			sprs[i - 1].play(("%s_passive" % str(-1)))
