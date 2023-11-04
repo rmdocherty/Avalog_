@@ -40,6 +40,12 @@ var chosen_factions: Array[int] = [cst.factions.ALBION, cst.factions.ALBION]
 var replace_palettes: Array[int] = [chosen_factions[0], chosen_factions[1], 0, 1]
 var chosen_map := cst.factions.ALBION
 
+var your_colour := Color(0.29, 0.56, 0.96, 0.8)
+var opponent_colour := Color(0.96, 0.29, 0.29, 0.8)
+var highlight_colour := Color(0.92, 0.8, 0.2, 0.8)
+var inactive_colour := Color("#919191")
+var stipple := false
+
 var OTHER_PLAYER_ID: int = -1
 
 var uname_1 := "Player 1"

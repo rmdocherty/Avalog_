@@ -1,7 +1,7 @@
 extends Control
 
 const MOVE_SPEED: float = -18
-const WRAP_ROUND_Y: int = -1340
+const WRAP_ROUND_Y: int = -1900
 const RESET_Y: int = 700
 var moving: bool = false
 
@@ -54,7 +54,10 @@ var data = {
 		],
 	"SFX": [
 		"Adapted from Freesound", 
-		"Footsteps - audioninja001"
+		"Footsteps by audioninja001",
+		"Elephant Sound by y89312",
+		"Stomp Sound by 000600" ,
+		"Zombie by ArriGD"
 		],
 	"Art": [
 		"Sprites adapted from Gustavo Vituri",
@@ -66,6 +69,17 @@ var data = {
 	"Fonts": [
 		"Bitfantasy by Nimble Beasts Collective",
 		"Pixuf by erytau"
+	],
+	"Texts": [
+		"All from Project Gutenberg",
+		 "Le Morte d'Arthur by Thomas Malory",
+		"Hero-Myths & Legends of the British Race by M. I. Ebbutt",
+		"The Canterbury Tales by Geoffrey Chaucer",
+		"Summa Theologica by Saint Thomas Aquinas",
+		"The Prince by Niccolò Machiavelli",
+		"Legends & Romances of Brittany by Lewis Spence",
+		"Ibrahim Pasha by Hester D Jenkins",
+		"Macbeth by William Shakespeare"
 	],
 	"Software": [
 		"Godot Game Engine",
