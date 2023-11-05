@@ -122,7 +122,7 @@ const codex_data: Dictionary = {
 		"faction": 2,
 		"type": "q",
 		"tooltip": "[color=red]Jumping[/color] in a star pattern",
-		"lore": "It was there in the chamber, with victory all but assured, that he had his doubts. Maybe he had always had doubts, since the academy, or the  ", # about how he turned on gradlon in the end but was too late to stop him?
+		"lore": "It was there in the chamber, with victory all but assured, that he had his doubts. He had been injured in the melee, struck in the leg by a rogue arrow. He was prepared to die - even if the tales were true, he had always assumed they'd die before they reached it. They had been told that deep in the cave was an altar that could restore them back to their former glory, to rule Brittany and France as they were meant to.\nSlumped against the cold cave wall, seeing the lights and phantoms pour from the altar, he finally understood Gradlon's plan and realised he had to stop it. He was a virtuosic swordsman, a generational talent, and this was the only duel he ever lost.", # about how he turned on gradlon in the end but was too late to stop him?
 		"author": HISTORY
 	},
 	"15": {
@@ -147,7 +147,7 @@ const codex_data: Dictionary = {
 		"type": "r",
 		"tooltip": "Moves in a square",
 		"lore": "The Roman vanguard had arrived before Gradlon II could reach the altar, so her task was simple: hold the bridge. And so she held it, wave after wave beaten back by axe or sword or arrow. By all accounts she slew at least fifty men herself, and having held the bridge for four hours it came time to push back, to create a widnow for Gradlon to cross. It was suicide, of course, insanity even - a bridge is a chokepoint, it could be held, supplied, defended. Charging a forward formation was a different story; maybe that was why it worked. They say she's buried there, a giant rusted ax-head for a gravestone. ", # how she was strong fighter and about the battle with count lucius?
-		"author": "- Friar Morgan, Historia"
+		"author": HISTORY
 	},
 	"18": {
 		"name": "Agriculteur",
@@ -163,7 +163,7 @@ const codex_data: Dictionary = {
 		"type": "k",
 		"tooltip": "[color=red]Aura:[/color] your multi-state pieces have all states at once.",
 		"lore": "On the 22d day of May, 1524, the Sultan celebrated with great pomp the marriage of Ibrahim Pasha. Who the bride was we cannot be certain, but this is in accord with Turkish etiquette which strictly forbids all mention of the harem, and considers any public knowledge of woman as an insult to her, thus depriving historians of desirable information concerning such important political figures as Roxelana, who greatly influenced Suleiman the Magnificent, Baffa the Venetian sultana, and others.",
-		"author": "- Hester D. Jenkins"
+		"author": "- H D. Jenkins, Ibrahim Pasha"
 	},
 	"20": {
 		"name": "Suleiman",
@@ -179,7 +179,7 @@ const codex_data: Dictionary = {
 		"type": "b",
 		"tooltip": "",
 		"lore": "Ibrahim’s first office was page to the heir apparent Suleiman. When the latter came to the throne in 1520, he made Ibrahim Head Falconer, and then raised him in rapid succession to the respective posts of Khass‐oda‐Bashi, or Master of the Household, of Beylerbey of Roumelie, Vizir, Grand Vizir, and finally Serasker, or general‐in‐chief of the Imperial forces—a dazzlingly rapid promotion. Baudier tells a story in this connection which might easily be true, being quite in character, although it can not be verified. The story runs thus: “Ibrahim’s rapid rise began to alarm him. [...] He besought Suleiman not to advance him so high that his fall would be his ruin.“",
-		"author": "- Hester D. Jenkins"
+		"author": "- H D. Jenkins, Ibrahim Pasha"
 	},
 	"22": {
 		"name": "Janissary",
@@ -187,7 +187,7 @@ const codex_data: Dictionary = {
 		"type": "n",
 		"tooltip": "[color=red]State 1: Jumping[/color] in a circle.\n[color=red]State 2: Ranged[/color].",
 		"lore": "",
-		"author": "- Friar Morgan, Historia"
+		"author": HISTORY
 	},
 	"23": {
 		"name": "Dardanelles Cannon",
@@ -203,7 +203,7 @@ const codex_data: Dictionary = {
 		"type": "p",
 		"tooltip": "[color=red]State 1[/color] move & attack forwards. \n[color=red]State 2:[/color] move & attack diagonally.",
 		"lore": "",
-		"author": "- Friar Morgan, Historia"
+		"author": HISTORY
 	},
 	"25": {
 		"name": "Morgana",
@@ -214,7 +214,7 @@ const codex_data: Dictionary = {
 		"author": MALORY
 	},
 	"26": {
-		"name": "Modred",
+		"name": "Mordred",
 		"faction": 4,
 		"type": "q",
 		"tooltip":"",
@@ -234,23 +234,23 @@ const codex_data: Dictionary = {
 		"faction": 4,
 		"type": "n",
 		"tooltip": "[color=red]Ranged[/color] in a square.",
-		"lore": "",
-		"author": "- Friar Morgan, Historia"
+		"lore": "The kingdom was in disarray, reeling from the disastrous crusade, upheaval on the continent and the open revolt of half the round table. The people were scared and the atmosphere charged. The king was a recluse, confused and prone to lashing out at anyone who distrubed him. It was against this backdrop that Mordred made his move. Whether he was motivated by genuine concern for the people, or whether he simply felt he deserved the throne we may never know. All we know is what happened: how Morgana summoned legions of beasts and ghouls and dead men and marched on Camelot. How the land was razed, the people slain and how, with the enemy at the gates, Arthur roused and rode to meet them.",
+		"author": HISTORY
 	},
 	"29": {
 		"name": "The Maiden, the Mother, the Crone",
 		"faction": 4,
 		"type": "r",
 		"tooltip": "[color=red]State 1:[/color] knight-like. \n[color=red]State 2:[/color] bishop-like. \n[color=red]State 3:[/color] rook-like.",
-		"lore": "", # bit from Macbeth?
-		"author": ""
+		"lore": "MACBETH.\nSpeak, if you can;—what are you?\n\nFIRST WITCH.\nAll hail, Macbeth! hail to thee, Thane of Glamis!\n\nSECOND WITCH.\nAll hail, Macbeth! hail to thee, Thane of Cawdor!\n\nTHIRD WITCH.\nAll hail, Macbeth! that shalt be king hereafter!", # bit from Macbeth?
+		"author": "W. Shakespeare, Macbeth"
 	},
 	"30": {
 		"name": "Zombie",
 		"faction": 4,
 		"type": "p",
 		"tooltip": "",
-		"lore": "",
-		"author": ""
+		"lore": "Yet some men say in many parts of England that King Arthur is not dead, but had by the will of our Lord Jesu into another place; and men say that he shall come again, and he shall win the holy cross. I will not say it shall be so, but rather I will say: here in this world he changed his life. But many men say that there is written upon his tomb this verse: HIC IACET ARTHURUS, REX QUONDAM, REXQUE FUTURUS",
+		"author": MALORY
 	},
 }

@@ -134,8 +134,9 @@ animations = [{
 }]
 
 [sub_resource type="LabelSettings" id="LabelSettings_6ejxr"]
+resource_local_to_scene = true
 font = ExtResource("31_aro0g")
-font_size = 32
+font_size = 28
 font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8mlct"]
