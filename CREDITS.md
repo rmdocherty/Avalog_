@@ -15,6 +15,8 @@ All from [freesound](https://freesound.org/)
 
 ['Stomp' by 000600](https://freesound.org/people/000600/sounds/180015/) (CC0)
 
+['Caw' by egomassive](https://freesound.org/people/egomassive/sounds/536732/) (CC0)
+
 ['Zombie Roar 2' by ArriGD](https://freesound.org/people/ArriGD/sounds/144000/) (CC0)
 
 ## Art:
@@ -44,6 +46,8 @@ All from [Project Gutenberg](https://www.gutenberg.org/)
 [Legends & Romances of Brittany, Lewis Spence](https://www.gutenberg.org/ebooks/30871/)
 
 [Ibrahim Pasha: Grand Vizir of Suleiman the Magnificent, Hester Donaldson Jenkins](https://www.gutenberg.org/ebooks/51299/)
+
+[The Foundation of the Ottoman Empire, Herbet Adam Gibbons](https://www.gutenberg.org/ebooks/56836)
 
 [Macbeth, William Shakespeare](https://www.gutenberg.org/ebooks/1533/)
 

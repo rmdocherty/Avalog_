@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://bnxp5dc6x0w0"]
+[gd_scene load_steps=32 format=3 uid="uid://bnxp5dc6x0w0"]
 
 [ext_resource type="PackedScene" uid="uid://cfobj247gpa7q" path="res://scenes/pieces/Piece.tscn" id="1_ikhdp"]
 [ext_resource type="Shader" path="res://scenes/pieces/graphics/Piece.gdshader" id="2_fixor"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://dsfc42cu5anbj" path="res://assets/pieces/icons.png" id="6_8g5tb"]
 [ext_resource type="Texture2D" uid="uid://c2jesafej0ikv" path="res://assets/pieces/turkiye/suleiman_2.png" id="9_w7d8y"]
 [ext_resource type="Texture2D" uid="uid://tjtk3g7lnjqy" path="res://assets/pieces/turkiye/suleiman.png" id="10_0xbly"]
+[ext_resource type="AudioStream" uid="uid://draknrwfpohv5" path="res://assets/sfx/double_dagger.wav" id="10_mqfqd"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_eemtl"]
 resource_local_to_scene = true
@@ -232,4 +233,8 @@ animation = &"default"
 sprite_frames = SubResource("SpriteFrames_5nf3k")
 animation = &"0_passive"
 
+[node name="Attack" parent="Audio" index="1"]
+stream = ExtResource("10_mqfqd")
+
 [editable path="GraphicalPiece"]
+[editable path="Audio"]

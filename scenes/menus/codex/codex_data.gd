@@ -170,7 +170,7 @@ const codex_data: Dictionary = {
 		"faction": 3,
 		"type": "q",
 		"tooltip": "[color=red]State 1:[/color] star shaped lines.\n[color=red]State 2: jumping[/color] in concentric crescents.",
-		"lore": "", # something about arthur's mad invasion?
+		"lore": "They sent a delegation once, when he was younger. Four knights of the Round Table: Lancelot, Gawain, Galehaut and Gaheris, and a host of scholars and priests. They shared stories - tales of honor and heroism - the Grail quest, the Green knight, slaying the dragon of Corbenic. There seemed to be no malice in their words or deeds, which only made it more confusing when twenty years later they returned with swords and catapults and men.",
 		"author": HISTORY
 	},
 	"21": {
@@ -186,8 +186,8 @@ const codex_data: Dictionary = {
 		"faction": 3,
 		"type": "n",
 		"tooltip": "[color=red]State 1: Jumping[/color] in a circle.\n[color=red]State 2: Ranged[/color].",
-		"lore": "",
-		"author": HISTORY
+		"lore": "Sigismund made a speech to the chevaliers from western and central Europe, in which he declared: ‘Let him come or not come, in the summer which will return, if it pleases God, we shall get through the kingdom of Armenia and shall pass the Bras Saint-George and shall go into Syria and shall get from the Saracens the gates of Jaffa and Beirut and several other [cities] to go down into Syria, and we shall go to conquer the city of Jerusalem and all the Holy Land. And if the Sultan, with all the strength he can muster, comes before us, we shall fight him, and there will be no going away without the battle, in God’s pleasure.’ Froissart naïvely adds immediately after his report of this speech: ‘But it turned out very much in another way.’",
+		"author": "- H A Gibbons, The Foundation of ..."
 	},
 	"23": {
 		"name": "Dardanelles Cannon",
@@ -202,7 +202,7 @@ const codex_data: Dictionary = {
 		"faction": 3,
 		"type": "p",
 		"tooltip": "[color=red]State 1[/color] move & attack forwards. \n[color=red]State 2:[/color] move & attack diagonally.",
-		"lore": "",
+		"lore": "The English had cut a bloody swathe through Europe towards Constantinople. They had pushed through, progressing without care for logistics or losses. Suleiman's plan was to draw out the heavy cavalry with a sacrificial platoon, encircle them and attack any units sent to support them. They did not expect Arthur to only send half his horses or that he would completely abandon them in favour of attacking the city.",
 		"author": HISTORY
 	},
 	"25": {

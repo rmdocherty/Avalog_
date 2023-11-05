@@ -1,7 +1,7 @@
 extends Control
 
 const MOVE_SPEED: float = -18
-const WRAP_ROUND_Y: int = -1900
+const WRAP_ROUND_Y: int = -1980
 const RESET_Y: int = 700
 var moving: bool = false
 
@@ -56,7 +56,8 @@ var data = {
 		"Adapted from Freesound", 
 		"Footsteps by audioninja001",
 		"Elephant Sound by y89312",
-		"Stomp Sound by 000600" ,
+		"Stomp Sound by 000600",
+		"Crow Sound by egomassive",
 		"Zombie by ArriGD"
 		],
 	"Art": [
@@ -79,6 +80,7 @@ var data = {
 		"The Prince by Niccolò Machiavelli",
 		"Legends & Romances of Brittany by Lewis Spence",
 		"Ibrahim Pasha by Hester D Jenkins",
+		"The Foundation of the Ottoman Empire by Herbet A Gibbons",
 		"Macbeth by William Shakespeare"
 	],
 	"Software": [
