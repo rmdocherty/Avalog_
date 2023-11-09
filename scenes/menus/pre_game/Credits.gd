@@ -1,7 +1,7 @@
 extends Control
 
 const MOVE_SPEED: float = -18
-const WRAP_ROUND_Y: int = -1980
+const WRAP_ROUND_Y: int = -1940
 const RESET_Y: int = 700
 var moving: bool = false
 

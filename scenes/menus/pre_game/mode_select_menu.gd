@@ -16,6 +16,7 @@ func _ready() -> void:
 		$Canv/Cont/SpritesMapFactions/NameCont/P1/Name.editable = false
 	else:
 		stg.uname_1 = "Player 1"
+		stg.uname_2 = "Player 2"
 	# Loop through each player, "Player 1es and names
 	var names = [stg.uname_1, stg.uname_2]
 	for i in [1, 2]:
