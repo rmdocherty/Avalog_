@@ -309,4 +309,5 @@ func start_game(other_player_id: int) -> void:
 		var game_path := "res://scenes/game/graphics/gfx_game_manager.tscn"
 		var child: Node = load(game_path).instantiate()
 		get_tree().get_root().add_child(child)
-		get_tree().get_root().remove_child(self)
+		queue_free()
+		#get_tree().get_root().remove_child(self)

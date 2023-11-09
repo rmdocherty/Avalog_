@@ -25,7 +25,7 @@ func invert_str(s: String) -> String:
 	# this needs to work for afens
 	var out: String = ""
 	var str_idx := s.length() - 1
-	while str_idx > 0:
+	while str_idx >= 0:
 		var possible_faction := s[str_idx - 1].to_lower()
 		var c = s[str_idx]
 		if c == "Q":
