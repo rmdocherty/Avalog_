@@ -17,6 +17,7 @@ var is_minigame: bool = false
 
 var all_pieces: Array[Piece] = []
 var selected_piece: Piece
+var taken_pieces: Array[String] = []
 
 @onready var board := $board
 
@@ -112,6 +113,8 @@ func add_pieces_from_fen(fen_str: String) -> Array[Piece]:
 			faction_int = cst.fen_faction_lookup.find(letter, 0)
 		else:
 			var piece: Piece = add_piece(letter, p0, i, faction_int)
+			piece.taken.connect(on_piece_taken)
+			# connect taken callback here
 			i += 1
 			pieces.push_back(piece)
 			faction_int = -1
@@ -153,6 +156,7 @@ func apply_morgana_aura(piece_list: Array[Piece], _monarch_factions: Array[cst.f
 
 # ======================== GAME LOGIC =================
 func init(fen: String, track: int=1) -> void:
+	Music.get_node("ProceduralMusic").init(fen)
 	remove_all()
 	$GUILayer/win_menu.hide_winner()
 	$GUILayer.show_bar()
@@ -319,8 +323,17 @@ func move_piece_dist(piece: Piece, move_dist: Vector2, send:bool=false) -> void:
 
 func after_piece_finished_moving() -> void:
 	# we need a short delay here s.t the physics can update after piece moved
+	# remove taken pieces from audio
+	var colour = 1 - game_manager.current_turn_colour
+	print("Turn colour is: " + str(colour))
+	for letter in taken_pieces:
+		Music.get_node("ProceduralMusic").lose_piece(colour, letter)
+	taken_pieces = []
 	$Camera2D.movement_zoom_out()
 	$TakeTurnTimer.start()
+
+func on_piece_taken(letter: String) -> void:
+	taken_pieces.append(letter)
 
 # ======================== DRAWING =================
 func draw_flat_board(h: int, w: int) -> void:

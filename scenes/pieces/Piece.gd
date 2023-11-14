@@ -28,6 +28,8 @@ var flat_draws := PackedInt32Array([])
 @export var piece_char: String = "p"
 @export var piece_vel: float = 1.5 * cst.LOGIC_SQ_W
 
+signal taken(letter: String)
+
 
 # ======================== INIT LOGIC =================
 func init(logic_pos: Vector2, set_colour: cst.colour, n: int) -> void:
@@ -203,6 +205,10 @@ func post_gfx_move() -> void:
 
 func invalid_audio() -> void:
 	$Audio/Invalid.play()
+
+func on_taken() -> void:
+	print(piece_char)
+	taken.emit(piece_char)
 
 # ======================== PROCESSES =================
 func _ready():
