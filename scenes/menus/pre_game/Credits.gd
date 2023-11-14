@@ -49,8 +49,8 @@ func _process(delta: float):
 var data = {
 	"Created by:": "Ronan Docherty",
 	"Music": [
-		"8-Bit Music Pack for RPGs by Francesco Fabrizio", 
-		"Trailer by Olly Flaig"
+		"Music by Olly Flaig (trailer, procedural) ",
+		"8-Bit Music Pack for RPGs by Francesco Fabrizio (demo tracks)", 
 		],
 	"SFX": [
 		"Adapted from Freesound", 

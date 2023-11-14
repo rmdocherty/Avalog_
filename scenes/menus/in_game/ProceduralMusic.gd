@@ -100,9 +100,9 @@ func match_loop_n_to_arr(loop_n: int) -> Array:
 	if (loop_n - 1) % 4 == 0:
 		return p1_a_nodes
 	elif (loop_n - 1) % 4 == 1:
-		return p2_a_nodes
-	elif (loop_n - 1) % 4 == 2:
 		return p1_b_nodes
+	elif (loop_n - 1) % 4 == 2:
+		return p2_a_nodes
 	else:
 		return p2_b_nodes
 

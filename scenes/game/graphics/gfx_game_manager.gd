@@ -161,10 +161,7 @@ func init(fen: String, track: int=1) -> void:
 	$GUILayer/win_menu.hide_winner()
 	$GUILayer.show_bar()
 
-	if stg.total_time_min == 5:
-		Music.switch_tracks(Music.tracks.TIME)
-	else:	
-		Music.switch_tracks(track)
+	Music.switch_tracks(track)
 
 	all_pieces = add_pieces_from_fen(fen)
 	all_pieces = apply_morgana_aura(all_pieces, player_monarch_factions)
