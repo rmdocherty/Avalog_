@@ -37,7 +37,7 @@ func get_moves():
 		if promote:
 			var new_logic = promote_piece(p, p.global_position)
 			new_logic.get_all_moves(turn_number)
-	print(end - start)
+	#print(end - start)
 
 func take_turn(change_player: bool=true) -> int:
 	if current_turn_colour == cst.colour.WHITE and change_player:

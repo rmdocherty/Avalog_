@@ -185,7 +185,6 @@ func stop_move_audio() -> void:
 
 func stop_tween_callback(audio: AudioStreamPlayer, prev_vol_db: float) -> void:
 	audio.stop()
-	print(prev_vol_db)
 	audio.volume_db = prev_vol_db
 
 func post_gfx_move() -> void:
@@ -207,7 +206,6 @@ func invalid_audio() -> void:
 	$Audio/Invalid.play()
 
 func on_taken() -> void:
-	print(piece_char)
 	taken.emit(piece_char)
 
 # ======================== PROCESSES =================

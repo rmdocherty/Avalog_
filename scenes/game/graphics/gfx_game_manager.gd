@@ -156,7 +156,7 @@ func apply_morgana_aura(piece_list: Array[Piece], _monarch_factions: Array[cst.f
 
 # ======================== GAME LOGIC =================
 func init(fen: String, track: int=1) -> void:
-	Music.get_node("ProceduralMusic").init(fen)
+	Music.procedural.init(fen)
 	remove_all()
 	$GUILayer/win_menu.hide_winner()
 	$GUILayer.show_bar()
@@ -165,7 +165,7 @@ func init(fen: String, track: int=1) -> void:
 
 	all_pieces = add_pieces_from_fen(fen)
 	all_pieces = apply_morgana_aura(all_pieces, player_monarch_factions)
-	print(player_monarch_factions)
+
 	game_manager.add_pieces_from_nodes(all_pieces)
 	game_manager.init(player_monarch_factions)
 	# short delay here so all nodes can load before we find moves
@@ -193,7 +193,12 @@ func take_turn_timer_trigger() -> void:
 func take_turn(change_player: bool=true) -> void:
 	"""Update the logical game manager (to find all piece's moves), loop through all pieces and 
 	update their graphics (colours, lines, z-index)."""
-	print(game_manager.turn_number)
+	var colour = 1 - game_manager.current_turn_colour
+	print("Turn number is: " + str(game_manager.turn_number) + ", colour is: " + str(1 - colour))
+	for letter in taken_pieces:
+		Music.procedural.lose_piece(colour, letter)
+	taken_pieces = []
+
 	var turn_n: int = game_manager.take_turn(change_player)
 	$GUILayer.clock_start_after_move_finished(game_manager.current_turn_colour)
 	var z_count: int = 0
@@ -320,12 +325,6 @@ func move_piece_dist(piece: Piece, move_dist: Vector2, send:bool=false) -> void:
 
 func after_piece_finished_moving() -> void:
 	# we need a short delay here s.t the physics can update after piece moved
-	# remove taken pieces from audio
-	var colour = 1 - game_manager.current_turn_colour
-	print("Turn colour is: " + str(colour))
-	for letter in taken_pieces:
-		Music.get_node("ProceduralMusic").lose_piece(colour, letter)
-	taken_pieces = []
 	$Camera2D.movement_zoom_out()
 	$TakeTurnTimer.start()
 

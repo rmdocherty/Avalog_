@@ -56,7 +56,7 @@ func get_stem(faction: String, type: String, piece_char: String, number: int) ->
 
 func load_nodes_from_fen(fen: String) -> Array:
 	reset_arrs()
-	print(fen)
+	#print(fen)
 	var out_nodes = [[], [], [], [], []] # intro, p1_a, p1_b, p2_a, p2_b
 	var faction_int := -1
 	for letter in fen:
@@ -87,6 +87,7 @@ func load_nodes_from_fen(fen: String) -> Array:
 	return out_nodes
 
 func init(fen: String) -> void:
+	n_plays = 0
 	initial_fen = fen
 	var result = load_nodes_from_fen(fen)
 	intro_nodes = result[0]
@@ -100,17 +101,19 @@ func match_loop_n_to_arr(loop_n: int) -> Array:
 	if (loop_n - 1) % 4 == 0:
 		return p1_a_nodes
 	elif (loop_n - 1) % 4 == 1:
-		return p1_b_nodes
-	elif (loop_n - 1) % 4 == 2:
 		return p2_a_nodes
+	elif (loop_n - 1) % 4 == 2:
+		return p1_b_nodes
 	else:
 		return p2_b_nodes
 
 func lose_piece(colour: int, piece_char: String) -> void:
-	# delete piece from p_arr, fade with delete tween,  
+	# delete piece from p_arr, fade with delete tween,
+	
 	var p_pieces = p1_pieces if colour == 0 else p2_pieces
 	var p_audio = match_loop_n_to_arr(n_plays)
 	var node_idx = p_pieces.rfind(piece_char)
+	print("Taking piece " + piece_char + " at idx " + str(node_idx))
 	var node = p_audio[node_idx]
 	var tw1 := get_tree().create_tween()
 	tw1.tween_property(node, "volume_db", zero_vol_db, FADE_TIME).set_trans(Tween.TRANS_EXPO)
@@ -123,7 +126,6 @@ func play() -> void:
 		node.stop()
 	if n_plays >= 1:
 		current_nodes = match_loop_n_to_arr(n_plays)
-	print(len(current_nodes))
 	
 	for node in current_nodes:
 		node.set_volume_db(0)

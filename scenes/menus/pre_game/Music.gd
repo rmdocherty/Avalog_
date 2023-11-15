@@ -6,6 +6,8 @@ var track_names: Array[String] = ["Melancholy", "Procedural", "Peaceful", "Frant
 var playing_track: tracks
 var target_track: int = -1
 
+@onready var procedural = $ProceduralMusic
+
 var FADE_TIME := 2
 var current_fade_time := 0.
 

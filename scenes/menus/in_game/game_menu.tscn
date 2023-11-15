@@ -357,6 +357,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 4
 theme = ExtResource("3_4niey")
 item_count = 7
+selected = 1
 popup/item_0/text = "Melancholy"
 popup/item_0/id = 0
 popup/item_1/text = "Procedural"
