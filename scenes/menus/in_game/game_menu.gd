@@ -8,11 +8,11 @@ var prev_master_vol := 1.
 
 
 func _ready() -> void:
-	var values: Array = [stg.display_mode, stg.ANIM_ON, stg.ANIM_SPEED, 1., stg.LINE_DRAW_WIDTH, false, stg.master_vol, stg.music_vol, stg.effects_vol, Music.playing_track]
-	var names: Array[String] = ["Fullscreen", "Anims", "AnimSpeed", "SpriteSize", "LineWidth", "Mute", "Master", "Music", "Effects", "Track"]
+	var values: Array = [stg.display_mode, stg.ANIM_ON, stg.ANIM_SPEED, 1., stg.LINE_DRAW_WIDTH, stg.stipple, false, stg.master_vol, stg.music_vol, stg.effects_vol, 1]
+	var names: Array[String] = ["Fullscreen", "Anims", "AnimSpeed", "SpriteSize", "LineWidth", "Stipple", "Mute", "Master", "Music", "Effects", "Track"]
 	
 	for i in range(len(values)):
-		var tab := "/Graphics/v/" if i < 5 else "/Sound/v/"
+		var tab := "/Graphics/v/" if i < 6 else "/Sound/v/"
 		var node_path := "Outer/Contents/Bar/Container" + tab + names[i] + "/HSlider"
 		var node: Control = get_node(node_path)
 		set_state(node, values[i])
@@ -94,6 +94,10 @@ func set_sprite_size(value: float) -> void:
 
 func set_line_width(value: float) -> void:
 	stg.LINE_DRAW_WIDTH = value
+	gfx_changed.emit()
+
+func set_stipple(value: bool) -> void:
+	stg.stipple = value
 	gfx_changed.emit()
 
 # ======================== SOUND ========================

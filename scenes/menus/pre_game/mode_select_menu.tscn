@@ -253,10 +253,8 @@ popup/item_0/text = "classic"
 popup/item_0/id = 0
 popup/item_1/text = "draft"
 popup/item_1/id = 1
-popup/item_1/disabled = true
 popup/item_2/text = "custom"
 popup/item_2/id = 2
-popup/item_2/disabled = true
 
 [node name="TimeControl" type="HBoxContainer" parent="Canv/Cont"]
 layout_mode = 2

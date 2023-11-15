@@ -7,7 +7,17 @@ Created by Ronan Docherty
 Trailer Music by Olly Flaig, on [Bandcamp](https://ollyflaig.bandcamp.com/) and [Spotify](https://open.spotify.com/artist/5sUt08IDBSAIeApGm9eHfZ?si=6eg4XAdUQCWA4vVU5aA1IA)
 
 ## SFX:
+All from [freesound](https://freesound.org/)
+
 ['Footsteps' by audioninja001](https://freesound.org/people/audioninja001/sounds/455062/) (CC0)
+
+[Elephant Sound '44' by y89312](https://freesound.org/people/y89312/sounds/139875/) (CC BY-DEED 3.0)
+
+['Stomp' by 000600](https://freesound.org/people/000600/sounds/180015/) (CC0)
+
+['Caw' by egomassive](https://freesound.org/people/egomassive/sounds/536732/) (CC0)
+
+['Zombie Roar 2' by ArriGD](https://freesound.org/people/ArriGD/sounds/144000/) (CC0)
 
 ## Art:
 Sprites adapted (tiles kept, sprites inspired by) from ['[8x8] Isometric TRPG Asset Pack' by Gustavo Vituri](https://gvituri.itch.io/isometric-trpg) (~CC0)
@@ -28,6 +38,19 @@ All from [Project Gutenberg](https://www.gutenberg.org/)
 [Hero-Myths & Legends of the British Race, M. I. Ebbutt](https://www.gutenberg.org/ebooks/25502) (changed 'he' -> 'she')
 
 [The Canterybury Tales, Geoffrey Chaucer](https://www.gutenberg.org/ebooks/22120)
+
+[Summa Theologica, Saint Thomas Aquinas](https://www.gutenberg.org/ebooks/17611)
+
+[The Prince, Niccolò Machiavelli](https://www.gutenberg.org/ebooks/1232)
+
+[Legends & Romances of Brittany, Lewis Spence](https://www.gutenberg.org/ebooks/30871/)
+
+[Ibrahim Pasha: Grand Vizir of Suleiman the Magnificent, Hester Donaldson Jenkins](https://www.gutenberg.org/ebooks/51299/)
+
+[The Foundation of the Ottoman Empire, Herbet Adam Gibbons](https://www.gutenberg.org/ebooks/56836)
+
+[Macbeth, William Shakespeare](https://www.gutenberg.org/ebooks/1533/)
+
 
 ## Fonts
 

@@ -10,18 +10,25 @@ const start_y := -4
 
 var gfx_offset := cst.FLAT_DRAW_SCALE * cst.LOGIC_SQ_W * Vector2(start_x, start_y)
 
+var player_monarch_factions: Array[cst.factions] = [cst.factions.ALBION, cst.factions.ALBION]
+
 var change_player_each_turn: bool = true
+var is_minigame: bool = false
 
 var all_pieces: Array[Piece] = []
 var selected_piece: Piece
+var taken_pieces: Array[String] = []
 
 @onready var board := $board
 
 # ======================== FEN LOGIC =================
 func invert_str(s: String) -> String:
+	# this needs to work for afens
 	var out: String = ""
-	for i in range(s.length() - 1, -1, -1):
-		var c = s[i]
+	var str_idx := s.length() - 1
+	while str_idx >= 0:
+		var possible_faction := s[str_idx - 1].to_lower()
+		var c = s[str_idx]
 		if c == "Q":
 			c = "K"
 		elif c == "q":
@@ -30,7 +37,14 @@ func invert_str(s: String) -> String:
 			c = "Q"
 		elif c == "k":
 			c = "q"
-		out += c
+			
+		if possible_faction in cst.fen_faction_lookup:
+			out += possible_faction
+			out += c
+			str_idx -= 2
+		elif c not in cst.fen_faction_lookup:
+			out += c
+			str_idx -= 1
 	return out
 
 func assemble_fen(other_half_fen: String) -> String:
@@ -55,12 +69,38 @@ func fen_recieved(other_half_fen: String) -> void:
 		stg.replace_palettes = new_palettes
 	init(fen)
 
+func find_factions_of_monarchs(fen_str: String) -> Array[cst.factions]:
+	"""Loop through FEN to get faction of king per player, i.e if in draft mode and king has a
+	faction modifier prepended else just use player faction."""
+	var monarch_factions: Array[cst.factions] = [cst.factions.ALBION, cst.factions.ALBION]
+	var idx: int = 0
+	for letter in fen_str:
+		if letter.to_lower() == "k":
+			var colour: cst.colour
+			var piece_type: String = letter.to_lower()
+
+			if (letter == piece_type):
+				colour = cst.colour.BLACK
+			else:
+				colour = cst.colour.WHITE
+
+			var faction_int: int
+			if fen_str[idx - 1] in cst.fen_faction_lookup:
+				faction_int = cst.fen_faction_lookup.find(fen_str[idx - 1], 0)
+			else:
+				faction_int = stg.chosen_factions[colour]
+			monarch_factions[colour] = faction_int as cst.factions
+		idx += 1
+	return monarch_factions
+
 func add_pieces_from_fen(fen_str: String) -> Array[Piece]:
 	"""Loop through FEN string, initialising new pieces at correct position w/ correct colour."""
+	player_monarch_factions = find_factions_of_monarchs(fen_str)
+	
 	var pieces: Array[Piece] = []
 	var x_idx: int = start_x
 	var y_idx: int = start_y
-	var _faction_int: int = -1
+	var faction_int: int = -1
 	var i := 0
 	for letter in fen_str:
 		var p0 := Vector2((x_idx + 0.5) * cst.LOGIC_SQ_W, (y_idx + 0.5) * cst.LOGIC_SQ_W)
@@ -70,16 +110,18 @@ func add_pieces_from_fen(fen_str: String) -> Array[Piece]:
 		elif letter.is_valid_int():
 			x_idx += int(letter)
 		elif letter in cst.fen_faction_lookup:
-			_faction_int = cst.fen_faction_lookup.find(letter, 0)
+			faction_int = cst.fen_faction_lookup.find(letter, 0)
 		else:
-			var piece: Piece = add_piece(letter, p0, i)
+			var piece: Piece = add_piece(letter, p0, i, faction_int)
+			piece.taken.connect(on_piece_taken)
+			# connect taken callback here
 			i += 1
 			pieces.push_back(piece)
-			_faction_int = -1
+			faction_int = -1
 			x_idx += 1
 	return pieces
 
-func add_piece(piece_letter: String, pos: Vector2, piece_n: int) -> Piece:
+func add_piece(piece_letter: String, pos: Vector2, piece_n: int, faction_int: int) -> Piece:
 	"""Query the lookup and get a piece, initialise it then add as a child."""
 	var colour: cst.colour
 	var piece_type: String = piece_letter.to_lower()
@@ -88,27 +130,44 @@ func add_piece(piece_letter: String, pos: Vector2, piece_n: int) -> Piece:
 	else:
 		colour = cst.colour.WHITE
 	
-	var temp_piece = lkp.add_piece("a", piece_type, colour)
+	var faction: String
+	if faction_int == -1:
+		faction_int = stg.chosen_factions[colour]
+	faction = cst.faction_lookup[faction_int]
+	# Need to add a check for monarch faction to this function and find it before looping through fen
+	var monarch_faction_char: String = cst.faction_lookup[player_monarch_factions[colour]]
+	var temp_piece = lkp.add_piece(faction, piece_type, colour, monarch_faction_char)
 	add_child(temp_piece)
 	temp_piece.init(pos, colour, piece_n)
 	all_pieces.push_back(temp_piece)
 	return temp_piece
 
+func apply_morgana_aura(piece_list: Array[Piece], _monarch_factions: Array[cst.factions]) -> Array[Piece]:
+	var zombie_positions := [cst.LOGIC_SQ_W * Vector2(0, 1.5), cst.LOGIC_SQ_W * Vector2(0, -1.5)]
+	for i in range(2):
+		var player_faction := player_monarch_factions[i]
+		if player_faction == cst.factions.MORGANA:
+			var colour := i as cst.colour
+			var temp_piece = lkp.add_piece("m", "p", colour, "m")
+			add_child(temp_piece)
+			temp_piece.init(zombie_positions[i], colour, len(piece_list))
+			piece_list.push_back(temp_piece)
+	return piece_list
 
 # ======================== GAME LOGIC =================
 func init(fen: String, track: int=1) -> void:
+	Music.procedural.init(fen)
 	remove_all()
 	$GUILayer/win_menu.hide_winner()
 	$GUILayer.show_bar()
 
-	if stg.total_time_min == 5:
-		Music.switch_tracks(Music.tracks.TIME)
-	else:	
-		Music.switch_tracks(track)
+	Music.switch_tracks(track)
 
 	all_pieces = add_pieces_from_fen(fen)
+	all_pieces = apply_morgana_aura(all_pieces, player_monarch_factions)
+
 	game_manager.add_pieces_from_nodes(all_pieces)
-	game_manager.init()
+	game_manager.init(player_monarch_factions)
 	# short delay here so all nodes can load before we find moves
 	$InitialTimer.start()
 
@@ -134,7 +193,12 @@ func take_turn_timer_trigger() -> void:
 func take_turn(change_player: bool=true) -> void:
 	"""Update the logical game manager (to find all piece's moves), loop through all pieces and 
 	update their graphics (colours, lines, z-index)."""
-	print(game_manager.turn_number)
+	var colour = 1 - game_manager.current_turn_colour
+	print("Turn number is: " + str(game_manager.turn_number) + ", colour is: " + str(1 - colour))
+	for letter in taken_pieces:
+		Music.procedural.lose_piece(colour, letter)
+	taken_pieces = []
+
 	var turn_n: int = game_manager.take_turn(change_player)
 	$GUILayer.clock_start_after_move_finished(game_manager.current_turn_colour)
 	var z_count: int = 0
@@ -263,6 +327,9 @@ func after_piece_finished_moving() -> void:
 	# we need a short delay here s.t the physics can update after piece moved
 	$Camera2D.movement_zoom_out()
 	$TakeTurnTimer.start()
+
+func on_piece_taken(letter: String) -> void:
+	taken_pieces.append(letter)
 
 # ======================== DRAWING =================
 func draw_flat_board(h: int, w: int) -> void:

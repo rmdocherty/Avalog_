@@ -1,0 +1,166 @@
+[gd_scene load_steps=21 format=3 uid="uid://dghnp5ss6prj1"]
+
+[ext_resource type="PackedScene" uid="uid://cfobj247gpa7q" path="res://scenes/pieces/Piece.tscn" id="1_hlh3f"]
+[ext_resource type="Shader" path="res://scenes/pieces/graphics/Piece.gdshader" id="2_jmojs"]
+[ext_resource type="Texture2D" uid="uid://b050d58pv4p0n" path="res://assets/pieces/classic/P.png" id="4_3dews"]
+[ext_resource type="Texture2D" uid="uid://cmado0pd2kdr3" path="res://assets/pieces/classic/p.png" id="5_iqf2y"]
+[ext_resource type="Texture2D" uid="uid://dsfc42cu5anbj" path="res://assets/pieces/icons.png" id="6_in8vf"]
+[ext_resource type="AudioStream" uid="uid://6okifos3et43" path="res://assets/sfx/axe.wav" id="7_qrrc4"]
+[ext_resource type="Texture2D" uid="uid://b41fn7f8nouhp" path="res://assets/pieces/bretagne/halberd.png" id="7_xfbxx"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2ko3t"]
+resource_local_to_scene = true
+shader = ExtResource("2_jmojs")
+shader_parameter/tol = 0.05
+shader_parameter/original_palette_num = null
+shader_parameter/replace_palette_num = null
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ge1c"]
+atlas = ExtResource("7_xfbxx")
+region = Rect2(16, 0, 16, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bpqk3"]
+atlas = ExtResource("7_xfbxx")
+region = Rect2(32, 0, 16, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ne0jn"]
+atlas = ExtResource("7_xfbxx")
+region = Rect2(48, 0, 16, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aryth"]
+atlas = ExtResource("7_xfbxx")
+region = Rect2(0, 0, 16, 17)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_a3hml"]
+resource_local_to_scene = true
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7ge1c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bpqk3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ne0jn")
+}],
+"loop": true,
+"name": &"0_attack",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aryth")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7ge1c")
+}],
+"loop": true,
+"name": &"0_passive",
+"speed": 3.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tx53e"]
+atlas = ExtResource("6_in8vf")
+region = Rect2(24, 48, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_d8mux"]
+resource_local_to_scene = true
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_3dews")
+}],
+"loop": false,
+"name": &"0",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_iqf2y")
+}],
+"loop": false,
+"name": &"1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tx53e")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x12fe"]
+atlas = ExtResource("7_xfbxx")
+region = Rect2(16, 0, 16, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4odxr"]
+atlas = ExtResource("7_xfbxx")
+region = Rect2(32, 0, 16, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sil6n"]
+atlas = ExtResource("7_xfbxx")
+region = Rect2(48, 0, 16, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yfu2w"]
+atlas = ExtResource("7_xfbxx")
+region = Rect2(0, 0, 16, 17)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_aw6bl"]
+resource_local_to_scene = true
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x12fe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4odxr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sil6n")
+}],
+"loop": true,
+"name": &"0_attack",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yfu2w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x12fe")
+}],
+"loop": true,
+"name": &"0_passive",
+"speed": 3.0
+}]
+
+[node name="Piece" instance=ExtResource("1_hlh3f")]
+faction_char = "b"
+piece_char = "r"
+piece_vel = 65.0
+
+[node name="GraphicalPiece" parent="." index="1"]
+material = SubResource("ShaderMaterial_2ko3t")
+
+[node name="PhantomSprite" parent="GraphicalPiece/Phantom" index="2"]
+sprite_frames = SubResource("SpriteFrames_a3hml")
+animation = &"0_attack"
+
+[node name="Icon" parent="GraphicalPiece" index="1"]
+sprite_frames = SubResource("SpriteFrames_d8mux")
+animation = &"default"
+
+[node name="Sprite" parent="GraphicalPiece" index="2"]
+sprite_frames = SubResource("SpriteFrames_aw6bl")
+
+[node name="Attack" parent="Audio" index="1"]
+stream = ExtResource("7_qrrc4")
+
+[node name="AttackDelay" parent="Audio" index="2"]
+wait_time = 0.8
+
+[editable path="GraphicalPiece"]
+[editable path="Audio"]

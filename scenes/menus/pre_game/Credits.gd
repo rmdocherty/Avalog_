@@ -1,7 +1,7 @@
 extends Control
 
 const MOVE_SPEED: float = -18
-const WRAP_ROUND_Y: int = -1340
+const WRAP_ROUND_Y: int = -1940
 const RESET_Y: int = 700
 var moving: bool = false
 
@@ -49,12 +49,16 @@ func _process(delta: float):
 var data = {
 	"Created by:": "Ronan Docherty",
 	"Music": [
-		"8-Bit Music Pack for RPGs by Francesco Fabrizio", 
-		"Trailer by Olly Flaig"
+		"Music by Olly Flaig (trailer, procedural) ",
+		"8-Bit Music Pack for RPGs by Francesco Fabrizio (demo tracks)", 
 		],
 	"SFX": [
 		"Adapted from Freesound", 
-		"Footsteps - audioninja001"
+		"Footsteps by audioninja001",
+		"Elephant Sound by y89312",
+		"Stomp Sound by 000600",
+		"Crow Sound by egomassive",
+		"Zombie by ArriGD"
 		],
 	"Art": [
 		"Sprites adapted from Gustavo Vituri",
@@ -66,6 +70,18 @@ var data = {
 	"Fonts": [
 		"Bitfantasy by Nimble Beasts Collective",
 		"Pixuf by erytau"
+	],
+	"Texts": [
+		"All from Project Gutenberg",
+		 "Le Morte d'Arthur by Thomas Malory",
+		"Hero-Myths & Legends of the British Race by M. I. Ebbutt",
+		"The Canterbury Tales by Geoffrey Chaucer",
+		"Summa Theologica by Saint Thomas Aquinas",
+		"The Prince by Niccolò Machiavelli",
+		"Legends & Romances of Brittany by Lewis Spence",
+		"Ibrahim Pasha by Hester D Jenkins",
+		"The Foundation of the Ottoman Empire by Herbet A Gibbons",
+		"Macbeth by William Shakespeare"
 	],
 	"Software": [
 		"Godot Game Engine",

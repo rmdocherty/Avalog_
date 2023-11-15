@@ -24,6 +24,9 @@ const faction_colours = [Color("#3978a8"), Color("#c23131"), Color("#4a791f"), C
 
 const fen_faction_lookup = ["a", "i", "f", "t", "m"]
 const faction_lookup = ["a", "r", "b", "t", "m"]
+const piece_lookup = ["p", "r", "n", "b", "q", "k"]
 
 const BOARD_DRAW_SCALE := Vector2(3.75, 3.75)
 const FLAT_DRAW_SCALE := Vector2(1, 1)
+
+const PROJ_SPEED := Vector2(75, 75)

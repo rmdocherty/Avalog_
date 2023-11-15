@@ -1,0 +1,159 @@
+[gd_scene load_steps=21 format=3 uid="uid://83n3e40rnid3"]
+
+[ext_resource type="PackedScene" uid="uid://cfobj247gpa7q" path="res://scenes/pieces/Piece.tscn" id="1_bvj7w"]
+[ext_resource type="Shader" path="res://scenes/pieces/graphics/Piece.gdshader" id="2_5peym"]
+[ext_resource type="Script" path="res://scenes/pieces/inherited/MultiStateLogicPiece.gd" id="2_82gw2"]
+[ext_resource type="Texture2D" uid="uid://b050d58pv4p0n" path="res://assets/pieces/classic/P.png" id="4_nnofr"]
+[ext_resource type="Texture2D" uid="uid://d0rlw3ma5uetw" path="res://assets/pieces/rome/phalanx.png" id="4_vcb5q"]
+[ext_resource type="Texture2D" uid="uid://cmado0pd2kdr3" path="res://assets/pieces/classic/p.png" id="5_n77dc"]
+[ext_resource type="Texture2D" uid="uid://dsfc42cu5anbj" path="res://assets/pieces/icons.png" id="6_27y0t"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gn2nv"]
+resource_local_to_scene = true
+shader = ExtResource("2_5peym")
+shader_parameter/tol = 0.05
+shader_parameter/original_palette_num = null
+shader_parameter/replace_palette_num = null
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wskoe"]
+atlas = ExtResource("4_vcb5q")
+region = Rect2(32, 0, 16, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t0htt"]
+atlas = ExtResource("4_vcb5q")
+region = Rect2(48, 0, 16, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yq5uc"]
+atlas = ExtResource("4_vcb5q")
+region = Rect2(0, 0, 16, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3xm68"]
+atlas = ExtResource("4_vcb5q")
+region = Rect2(16, 0, 16, 17)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vpco3"]
+resource_local_to_scene = true
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wskoe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t0htt")
+}],
+"loop": true,
+"name": &"0_attack",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yq5uc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3xm68")
+}],
+"loop": true,
+"name": &"0_passive",
+"speed": 3.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lkkb2"]
+atlas = ExtResource("6_27y0t")
+region = Rect2(0, 24, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_j5tyx"]
+resource_local_to_scene = true
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_nnofr")
+}],
+"loop": false,
+"name": &"0",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_n77dc")
+}],
+"loop": false,
+"name": &"1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lkkb2")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mbaqm"]
+atlas = ExtResource("4_vcb5q")
+region = Rect2(32, 0, 16, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_flrtx"]
+atlas = ExtResource("4_vcb5q")
+region = Rect2(48, 0, 16, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_44ikv"]
+atlas = ExtResource("4_vcb5q")
+region = Rect2(0, 0, 16, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wj2xr"]
+atlas = ExtResource("4_vcb5q")
+region = Rect2(16, 0, 16, 17)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7k1m7"]
+resource_local_to_scene = true
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mbaqm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_flrtx")
+}],
+"loop": true,
+"name": &"0_attack",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_44ikv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wj2xr")
+}],
+"loop": true,
+"name": &"0_passive",
+"speed": 3.0
+}]
+
+[node name="Piece" instance=ExtResource("1_bvj7w")]
+faction_char = "r"
+piece_vel = 60.0
+
+[node name="LogicPiece" parent="." index="0"]
+script = ExtResource("2_82gw2")
+
+[node name="GraphicalPiece" parent="." index="1"]
+material = SubResource("ShaderMaterial_gn2nv")
+
+[node name="PhantomSprite" parent="GraphicalPiece/Phantom" index="2"]
+sprite_frames = SubResource("SpriteFrames_vpco3")
+animation = &"0_attack"
+
+[node name="Icon" parent="GraphicalPiece" index="1"]
+sprite_frames = SubResource("SpriteFrames_j5tyx")
+animation = &"default"
+
+[node name="Sprite" parent="GraphicalPiece" index="2"]
+sprite_frames = SubResource("SpriteFrames_7k1m7")
+
+[node name="AttackDelay" parent="Audio" index="2"]
+wait_time = 0.33
+
+[editable path="GraphicalPiece"]
+[editable path="Audio"]

@@ -31,7 +31,7 @@ func _input_event(_viewport, event: InputEvent, _shape_idx) -> void:
 
 func mouse_exited_circle() -> void:
 	if !dragging:
-		graphics.sprite.play("0_passive")
+		graphics.sprite.play(graphics.passive_anim)
 		graphics.sprite.stop()
 		graphics.hide_lines()
 
@@ -71,3 +71,10 @@ func _process(_delta: float) -> void:
 		else:
 			graphics.get_node("Icon").position = logic_pos
 			position = logic_pos
+		
+		if piece.ranged:
+			var dist: float = piece.logic.ranged_dist
+			var pos: Vector2 = dist * most_similar_delta.normalized()
+			var new_pos: Vector2 = hlp.logic_to_iso(cst.BOARD_DRAW_SCALE * pos) if stg.draw_iso else pos
+			$RangedCircle.show()
+			$RangedCircle.position = new_pos

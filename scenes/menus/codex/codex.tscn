@@ -134,8 +134,9 @@ animations = [{
 }]
 
 [sub_resource type="LabelSettings" id="LabelSettings_6ejxr"]
+resource_local_to_scene = true
 font = ExtResource("31_aro0g")
-font_size = 32
+font_size = 28
 font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8mlct"]
@@ -219,7 +220,7 @@ anchor_bottom = 1.35
 offset_left = 626.0
 offset_top = 187.0
 offset_right = 873.0
-offset_bottom = 425.0
+offset_bottom = 445.0
 rotation = 0.00523599
 mouse_filter = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
@@ -229,9 +230,9 @@ text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod 
 [node name="Attribution" type="Label" parent="Parent/Book/Page"]
 layout_mode = 0
 offset_left = 626.0
-offset_top = 490.0
+offset_top = 502.0
 offset_right = 861.0
-offset_bottom = 518.0
+offset_bottom = 530.0
 rotation = 0.00872665
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "- Historia"

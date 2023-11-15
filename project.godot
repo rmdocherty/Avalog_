@@ -51,6 +51,7 @@ click={
 2d_physics/layer_1="Logic"
 2d_physics/layer_2="Mouse"
 2d_physics/layer_5="en_passant"
+2d_physics/layer_6="ranged"
 
 [rendering]
 

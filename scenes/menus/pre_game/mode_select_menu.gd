@@ -4,6 +4,8 @@ var sprs: Array[AnimatedSprite2D] = []
 
 # ======================== INIT METHODS ========================
 func _ready() -> void:
+	stg.chosen_factions = [cst.factions.ALBION, cst.factions.ALBION]
+	stg.replace_palettes = [0, 0, cst.factions.ALBION, cst.factions.ROME]
 	# Init scene and set values of menu items to the values in esttings
 	if stg.network == cst.network_types.ONLINE:
 		$Canv/Cont/PlayButtons/OnlineOptions.show()
@@ -14,6 +16,7 @@ func _ready() -> void:
 		$Canv/Cont/SpritesMapFactions/NameCont/P1/Name.editable = false
 	else:
 		stg.uname_1 = "Player 1"
+		stg.uname_2 = "Player 2"
 	# Loop through each player, "Player 1es and names
 	var names = [stg.uname_1, stg.uname_2]
 	for i in [1, 2]:
@@ -48,6 +51,8 @@ func game_mode_changed(game_mode: int) -> void:
 		var dropdown: OptionButton = get_node(node_str % str(i))
 		dropdown.hide()
 		if game_mode == cst.modes.CUSTOM:
+			if i == 2 and stg.network == cst.network_types.ONLINE:
+				dropdown.modulate = 0
 			dropdown.show()
 		if game_mode == cst.modes.DRAFT:
 			sprs[i - 1].play(("%s_passive" % str(-1)))
@@ -91,16 +96,22 @@ func go_back() -> void:
 func play() -> void:
 	time_changed($Canv/Cont/TimeControl/Picker.selected)
 	game_mode_changed($Canv/Cont/GameMode/Picker.selected)
-	if stg.mode == cst.modes.DRAFT:
-		pass
-	elif stg.network == cst.network_types.LOCAL:
+	var is_local: bool = stg.network == cst.network_types.LOCAL
+	var is_online: bool = stg.network == cst.network_types.ONLINE
+	
+	if stg.mode == cst.modes.DRAFT and is_local:
+		var game_path := "res://scenes/menus/draft/DraftMenu.tscn"
+		var child: Node = load(game_path).instantiate()
+		get_tree().get_root().add_child(child)
+		queue_free()
+	elif is_local:
 		# If 'Play' clicked and local, start game.
 		var game_path := "res://scenes/game/graphics/gfx_game_manager.tscn"
 		var child: Node = load(game_path).instantiate()
 		get_tree().get_root().add_child(child)
 		child.init(stg.chosen_fen)
 		queue_free()
-	elif stg.network == cst.network_types.ONLINE:
+	elif is_online:
 		# If 'Play' clicked and online, begin automatchmaking 
 		stg.look_type = cst.look_types.AUTO
 		hlp.load_child_remove_parent("res://scenes/menus/pre_game/BrowseGames.tscn", self)

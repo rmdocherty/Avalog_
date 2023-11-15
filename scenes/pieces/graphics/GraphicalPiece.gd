@@ -42,6 +42,9 @@ func create_single_line(poly: Polygon2D, start_point: Vector2, end_point: Vector
 	poly.polygon = points
 	poly.color = circle.default_colour
 	poly.z_index = 0 # set z index of enemies to be -1?
+	var stipple_on: bool = ((circle.current_state != "active") && (circle.current_state != "paused")) && stg.stipple
+	if stipple_on:
+		poly = add_stipple(poly)
 
 func append_line(logic_start_pos: Vector2, logic_end_pos: Vector2, pointed: bool=true):
 	var poly = Polygon2D.new()
@@ -63,6 +66,20 @@ func add_points_to_polygon(inner_point: Vector2, outer_point: Vector2) -> void:
 		current_polygon[0].push_back(inner_point)
 	current_polygon[1].push_back(outer_point)
 
+func add_stipple(poly: Polygon2D) -> Polygon2D:
+	var texture = NoiseTexture2D.new()
+	texture.width = 128
+	texture.height = 128
+	var noise = FastNoiseLite.new()
+	noise.noise_type = FastNoiseLite.TYPE_SIMPLEX
+	noise.frequency = 0.1
+	noise.fractal_type = FastNoiseLite.FRACTAL_NONE
+	texture.noise = noise
+	texture.normalize = false
+	poly.texture = texture
+	return poly
+	
+
 func finish_polygon() -> void:
 	var poly = Polygon2D.new()
 	add_child(poly)
@@ -70,6 +87,10 @@ func finish_polygon() -> void:
 	poly.polygon = current_polygon[0] + current_polygon[1]
 	poly.hide()
 	poly.color = circle.default_colour
+	var stipple_on: bool = ((circle.current_state != "active") && (circle.current_state != "paused")) && stg.stipple
+	if stipple_on:
+		poly = add_stipple(poly)
+	
 	poly.z_index = 0
 	poly.apply_scale(cst.BOARD_DRAW_SCALE)
 	lines.push_back(poly)
@@ -139,6 +160,9 @@ func update_iso(iso: bool) -> void:
 		$Icon.show()
 	circle.change_draw_mode(iso)
 	$Phantom/Hover.polygon = circle.inner_points
+	if piece.ranged:
+		$Phantom/RangedCircle.polygon = circle.inner_points
+		$Phantom/RangedCircle.change_draw_mode(iso)
 
 func classic_icons_toggle(state: bool) -> void:
 	if state == true and stg.mode == cst.modes.CLASSIC:

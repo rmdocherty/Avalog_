@@ -10,18 +10,19 @@ signal warning(text: String)
 
 var connected: bool = stg.OTHER_PLAYER_ID > -1 and stg.network == cst.network_types.ONLINE
 var is_host := stg.look_type == cst.look_types.HOST
+@onready var active: bool = not get_parent().is_minigame
 
 func _ready() -> void:
-	if connected:
+	if connected and active:
 		Steam.p2p_session_request.connect(_on_P2P_session_request)
 		Steam.p2p_session_connect_fail.connect(_on_P2P_session_connect_fail)
 	await get_tree().create_timer(0.75).timeout
-	if stg.look_type == cst.look_types.HOST and connected:
+	if stg.look_type == cst.look_types.HOST and connected and active:
 		_make_P2P_handshake()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	if connected:
+	if connected and active:
 		_read_P2P_packet()
 
 
@@ -62,16 +63,19 @@ func _handle_packet(packet: Dictionary) -> void:
 		var colour := randi_range(0, 1)
 		var other_player_colour := 1 - colour
 		stg.player_colour = colour as cst.colour
-		var resp_packet = {"type":"setup", "colour":other_player_colour, "half_fen":stg.half_FEN}
+		var resp_packet = {"type":"setup", "colour":other_player_colour, "half_fen":stg.half_FEN, "faction": stg.chosen_factions[0]}
 		_send_P2P_packet(stg.OTHER_PLAYER_ID, resp_packet)
 	if packet["type"] == "setup" and not is_host:
 		var colour_set := packet["colour"] as cst.colour
+		var your_chosen_faction :=stg.chosen_factions[0]
 		stg.player_colour = colour_set
 		stg.opponent_half_FEN = packet["half_fen"]
+		#stg.chosen_factions[1 - colour_set] = packet["faction"] #hmmm
 		fen_recieved.emit(packet["half_fen"])
-		var resp_packet = {"type":"setup_respond", "half_fen":stg.half_FEN}
+		var resp_packet = {"type":"setup_respond", "half_fen":stg.half_FEN, "faction": your_chosen_faction}
 		_send_P2P_packet(stg.OTHER_PLAYER_ID, resp_packet)
 	if packet["type"] == "setup_respond":
+		#stg.chosen_factions[1 - stg.player_colour] = packet["faction"] #hmmmm
 		fen_recieved.emit(packet["half_fen"])
 	if packet["type"] == "move":
 		var piece_n: int = packet["piece_n"]

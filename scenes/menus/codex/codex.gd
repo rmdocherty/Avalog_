@@ -11,7 +11,7 @@ var max_page_idx: int = len(codex_data.keys()) - 1
 
 const faction_names: Array[String] = ["Albion", "Rome", "Bretagne", "Türkiye", "Gore"]
 const type_lookup: Array[String] = ["k", "q", "b", "n", "r", "p"]
-const page_lookup: Array[int] = [1,] #7, 13, 19, 25] update when adding the rest of the pieces.
+const page_lookup: Array[int] = [1, 7, 13, 19, 25] #7, 13, 19, 25] update when adding the rest of the pieces.
 const piece_types: Array[String] = ["Monarch", "Consort", "Bishop", "Knight", "Rook", "Pawn"]
 
 enum {CLOSED, OPENING, TEXT_APPEAR, OPEN, TEXT_DISAPPEAR, FLIPPING}
@@ -26,6 +26,7 @@ func _ready() -> void:
 	
 	load_page_data(0)
 	minigame = load("res://scenes/game/graphics/gfx_game_manager.tscn").instantiate()
+	minigame.is_minigame = true
 	$Parent/Book/Page/SubViewportContainer/SubViewport.add_child(minigame)
 
 	minigame.get_node("bg").hide()
@@ -65,7 +66,7 @@ func tab_click(faction_idx: int) -> void:
 
 func turn_to_page(old_idx: int, new_idx: int) -> void:
 	# Set limits of pages to go to
-	if new_idx == 7 or new_idx == -1:
+	if new_idx >= 31 or new_idx <= -1:
 		return
 	$Parent/Book/Flip.play()
 	$Parent/Book/Page.modulate.a = 0
@@ -85,6 +86,8 @@ func load_page_data(idx: int) -> void:
 		for N in $Parent/Book/Page.get_children():
 			N.show()
 		var faction_int = data["faction"]
+		stg.chosen_factions = [faction_int, faction_int]
+		stg.replace_palettes = [0, 0, faction_int, faction_int]
 		var type_int = type_lookup.find(data["type"], 0)
 		$Parent/Book/Page/Title.text = data["name"]
 		$Parent/Book/Page/Faction.text = faction_names[faction_int]
@@ -93,8 +96,12 @@ func load_page_data(idx: int) -> void:
 			label.label_settings.font_color =  cst.faction_colours[faction_int]
 		$Parent/Book/Page/RulesText.text = data["tooltip"]
 		$Parent/Book/Page/Attribution.text = data["author"]
+		
 		var AFEN = "8/8/8/4%s%s/8/8/8/8" % [cst.fen_faction_lookup[faction_int], type_lookup[type_int].to_upper()]
 		minigame.remove_all()
+		var current_factions: Array[cst.factions] = [faction_int, faction_int]
+		print(current_factions)
+		minigame.player_monarch_factions = current_factions #set this to make pawn moves work
 		minigame.custom_init(faction_int, AFEN)
 		$ShowLines.start()
 	else:

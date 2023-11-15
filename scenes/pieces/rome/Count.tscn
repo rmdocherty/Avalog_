@@ -1,0 +1,159 @@
+[gd_scene load_steps=21 format=3 uid="uid://bwko7knuavppj"]
+
+[ext_resource type="PackedScene" uid="uid://cfobj247gpa7q" path="res://scenes/pieces/Piece.tscn" id="1_81ins"]
+[ext_resource type="Shader" path="res://scenes/pieces/graphics/Piece.gdshader" id="2_ixesr"]
+[ext_resource type="Texture2D" uid="uid://b3hui022cb4cj" path="res://assets/pieces/rome/count.png" id="3_vccl2"]
+[ext_resource type="Texture2D" uid="uid://b050d58pv4p0n" path="res://assets/pieces/classic/P.png" id="4_mwvpf"]
+[ext_resource type="Texture2D" uid="uid://cmado0pd2kdr3" path="res://assets/pieces/classic/p.png" id="5_xv84x"]
+[ext_resource type="Texture2D" uid="uid://dsfc42cu5anbj" path="res://assets/pieces/icons.png" id="6_1eiwy"]
+[ext_resource type="AudioStream" uid="uid://cox8n37omtuv8" path="res://assets/sfx/dagger.wav" id="7_kslx6"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_f0s13"]
+resource_local_to_scene = true
+shader = ExtResource("2_ixesr")
+shader_parameter/tol = 0.05
+shader_parameter/original_palette_num = null
+shader_parameter/replace_palette_num = null
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bk3lt"]
+atlas = ExtResource("3_vccl2")
+region = Rect2(32, 0, 16, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0n0r2"]
+atlas = ExtResource("3_vccl2")
+region = Rect2(48, 0, 16, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_imalo"]
+atlas = ExtResource("3_vccl2")
+region = Rect2(0, 0, 16, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p3rly"]
+atlas = ExtResource("3_vccl2")
+region = Rect2(16, 0, 16, 17)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hyhnu"]
+resource_local_to_scene = true
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bk3lt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0n0r2")
+}],
+"loop": true,
+"name": &"0_attack",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_imalo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p3rly")
+}],
+"loop": true,
+"name": &"0_passive",
+"speed": 3.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rdmib"]
+atlas = ExtResource("6_1eiwy")
+region = Rect2(120, 24, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ks5aj"]
+resource_local_to_scene = true
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_mwvpf")
+}],
+"loop": false,
+"name": &"0",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_xv84x")
+}],
+"loop": false,
+"name": &"1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rdmib")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2gxx7"]
+atlas = ExtResource("3_vccl2")
+region = Rect2(32, 0, 16, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hyni6"]
+atlas = ExtResource("3_vccl2")
+region = Rect2(48, 0, 16, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j218m"]
+atlas = ExtResource("3_vccl2")
+region = Rect2(0, 0, 16, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sdcab"]
+atlas = ExtResource("3_vccl2")
+region = Rect2(16, 0, 16, 17)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xrpxj"]
+resource_local_to_scene = true
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2gxx7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hyni6")
+}],
+"loop": true,
+"name": &"0_attack",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j218m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sdcab")
+}],
+"loop": true,
+"name": &"0_passive",
+"speed": 3.0
+}]
+
+[node name="Piece" instance=ExtResource("1_81ins")]
+faction_char = "r"
+piece_char = "k"
+
+[node name="GraphicalPiece" parent="." index="1"]
+material = SubResource("ShaderMaterial_f0s13")
+
+[node name="PhantomSprite" parent="GraphicalPiece/Phantom" index="2"]
+sprite_frames = SubResource("SpriteFrames_hyhnu")
+animation = &"0_attack"
+
+[node name="Icon" parent="GraphicalPiece" index="1"]
+sprite_frames = SubResource("SpriteFrames_ks5aj")
+animation = &"default"
+
+[node name="Sprite" parent="GraphicalPiece" index="2"]
+sprite_frames = SubResource("SpriteFrames_xrpxj")
+
+[node name="Attack" parent="Audio" index="1"]
+stream = ExtResource("7_kslx6")
+
+[node name="AttackDelay" parent="Audio" index="2"]
+wait_time = 0.33
+
+[editable path="GraphicalPiece"]
+[editable path="Audio"]

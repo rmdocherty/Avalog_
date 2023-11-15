@@ -156,7 +156,6 @@ animation = &"default"
 
 [node name="Sprite" parent="GraphicalPiece" index="2"]
 sprite_frames = SubResource("SpriteFrames_0p61l")
-animation = &"0_attack"
 
 [node name="Attack" parent="Audio" index="1"]
 stream = ExtResource("5_72voh")

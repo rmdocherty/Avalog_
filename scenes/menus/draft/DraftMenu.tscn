@@ -1,0 +1,56 @@
+[gd_scene load_steps=5 format=3 uid="uid://dsoe8c02v2lsi"]
+
+[ext_resource type="Script" path="res://scenes/menus/draft/DraftMenu.gd" id="1_aiemf"]
+[ext_resource type="Texture2D" uid="uid://bwaumvo2l7ve8" path="res://assets/menus/main_menu_bg.png" id="1_wf7mq"]
+[ext_resource type="Texture2D" uid="uid://dryr0kdcjfbga" path="res://assets/menus/codex/desk.png" id="2_cdk37"]
+[ext_resource type="LabelSettings" uid="uid://c7k4afipkahja" path="res://assets/menus/styles/main_menu_text.tres" id="3_ybb4f"]
+
+[node name="DraftMenu" type="Node2D"]
+script = ExtResource("1_aiemf")
+
+[node name="Parent" type="CanvasLayer" parent="."]
+
+[node name="SidebarBg" type="TextureRect" parent="Parent"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_wf7mq")
+expand_mode = 4
+stretch_mode = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Parent"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Parent"]
+position = Vector2(197, 55)
+texture = ExtResource("2_cdk37")
+centered = false
+
+[node name="ChooseYour" type="Label" parent="Parent"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -243.0
+offset_top = 525.0
+offset_right = 300.0
+offset_bottom = 623.0
+grow_horizontal = 2
+text = "Choose Your"
+label_settings = ExtResource("3_ybb4f")
+
+[node name="Player" type="Label" parent="Parent"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -147.0
+offset_right = 147.0
+offset_bottom = 98.0
+grow_horizontal = 2
+text = "Player 1"
+label_settings = ExtResource("3_ybb4f")

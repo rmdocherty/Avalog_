@@ -121,3 +121,4 @@ text = "Main Menu"
 
 [connection signal="gui_input" from="blur" to="." method="on_bg_click"]
 [connection signal="pressed" from="Outer/Contents/Close" to="." method="close"]
+[connection signal="pressed" from="Outer/Contents/v/MainMenu" to="." method="main_menu"]
