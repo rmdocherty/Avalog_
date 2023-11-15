@@ -8,7 +8,7 @@ var prev_master_vol := 1.
 
 
 func _ready() -> void:
-	var values: Array = [stg.display_mode, stg.ANIM_ON, stg.ANIM_SPEED, 1., stg.LINE_DRAW_WIDTH, stg.stipple, false, stg.master_vol, stg.music_vol, stg.effects_vol, Music.playing_track]
+	var values: Array = [stg.display_mode, stg.ANIM_ON, stg.ANIM_SPEED, 1., stg.LINE_DRAW_WIDTH, stg.stipple, false, stg.master_vol, stg.music_vol, stg.effects_vol, 1]
 	var names: Array[String] = ["Fullscreen", "Anims", "AnimSpeed", "SpriteSize", "LineWidth", "Stipple", "Mute", "Master", "Music", "Effects", "Track"]
 	
 	for i in range(len(values)):

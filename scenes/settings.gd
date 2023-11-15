@@ -25,7 +25,7 @@ const test_factions := "trinbtqmkbfnir/aptpmpip/"
 const test_piece := "8/8/8/4tN/8/8/3p"
 const test_shoot = "8/qqqqqq/8/8/8/4tR"
 
-var chosen_fen := full_board
+var chosen_fen := "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR"
 # Game variables: updated during runtime
 var network := cst.network_types.LOCAL
 var mode := cst.modes.CLASSIC

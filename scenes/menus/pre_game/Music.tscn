@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://0onsrcirqqt4"]
+[gd_scene load_steps=9 format=3 uid="uid://0onsrcirqqt4"]
 
 [ext_resource type="Script" path="res://scenes/menus/pre_game/Music.gd" id="1_8vvbl"]
 [ext_resource type="AudioStream" uid="uid://dcs001y4568xx" path="res://assets/music/melancholy.ogg" id="2_l0s6k"]
@@ -7,6 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://c8mj4kg52mddb" path="res://assets/music/embark.ogg" id="5_amkdn"]
 [ext_resource type="AudioStream" uid="uid://wpi2ndpouwjm" path="res://assets/music/beginning.ogg" id="6_la1k3"]
 [ext_resource type="AudioStream" uid="uid://e6mn5dw1vo5s" path="res://assets/music/groovy.ogg" id="7_j4cpw"]
+[ext_resource type="PackedScene" uid="uid://byshro5h6huvv" path="res://scenes/menus/in_game/ProceduralMusic.tscn" id="8_upmyq"]
 
 [node name="Music" type="Node2D"]
 script = ExtResource("1_8vvbl")
@@ -37,9 +38,12 @@ bus = &"music"
 stream = ExtResource("7_j4cpw")
 bus = &"music"
 
+[node name="ProceduralMusic" parent="." instance=ExtResource("8_upmyq")]
+
 [connection signal="finished" from="Melancholy" to="." method="track_timeout"]
 [connection signal="finished" from="Peaceful" to="." method="track_timeout"]
 [connection signal="finished" from="Frantic" to="." method="track_timeout"]
 [connection signal="finished" from="Embark" to="." method="track_timeout"]
 [connection signal="finished" from="Beginning" to="." method="track_timeout"]
 [connection signal="finished" from="Groovy" to="." method="track_timeout"]
+[connection signal="finished" from="ProceduralMusic" to="." method="track_timeout"]

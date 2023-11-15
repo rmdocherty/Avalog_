@@ -17,6 +17,7 @@ var is_minigame: bool = false
 
 var all_pieces: Array[Piece] = []
 var selected_piece: Piece
+var taken_pieces: Array[String] = []
 
 @onready var board := $board
 
@@ -112,6 +113,8 @@ func add_pieces_from_fen(fen_str: String) -> Array[Piece]:
 			faction_int = cst.fen_faction_lookup.find(letter, 0)
 		else:
 			var piece: Piece = add_piece(letter, p0, i, faction_int)
+			piece.taken.connect(on_piece_taken)
+			# connect taken callback here
 			i += 1
 			pieces.push_back(piece)
 			faction_int = -1
@@ -153,18 +156,16 @@ func apply_morgana_aura(piece_list: Array[Piece], _monarch_factions: Array[cst.f
 
 # ======================== GAME LOGIC =================
 func init(fen: String, track: int=1) -> void:
+	Music.procedural.init(fen)
 	remove_all()
 	$GUILayer/win_menu.hide_winner()
 	$GUILayer.show_bar()
 
-	if stg.total_time_min == 5:
-		Music.switch_tracks(Music.tracks.TIME)
-	else:	
-		Music.switch_tracks(track)
+	Music.switch_tracks(track)
 
 	all_pieces = add_pieces_from_fen(fen)
 	all_pieces = apply_morgana_aura(all_pieces, player_monarch_factions)
-	print(player_monarch_factions)
+
 	game_manager.add_pieces_from_nodes(all_pieces)
 	game_manager.init(player_monarch_factions)
 	# short delay here so all nodes can load before we find moves
@@ -192,7 +193,12 @@ func take_turn_timer_trigger() -> void:
 func take_turn(change_player: bool=true) -> void:
 	"""Update the logical game manager (to find all piece's moves), loop through all pieces and 
 	update their graphics (colours, lines, z-index)."""
-	print(game_manager.turn_number)
+	var colour = 1 - game_manager.current_turn_colour
+	print("Turn number is: " + str(game_manager.turn_number) + ", colour is: " + str(1 - colour))
+	for letter in taken_pieces:
+		Music.procedural.lose_piece(colour, letter)
+	taken_pieces = []
+
 	var turn_n: int = game_manager.take_turn(change_player)
 	$GUILayer.clock_start_after_move_finished(game_manager.current_turn_colour)
 	var z_count: int = 0
@@ -321,6 +327,9 @@ func after_piece_finished_moving() -> void:
 	# we need a short delay here s.t the physics can update after piece moved
 	$Camera2D.movement_zoom_out()
 	$TakeTurnTimer.start()
+
+func on_piece_taken(letter: String) -> void:
+	taken_pieces.append(letter)
 
 # ======================== DRAWING =================
 func draw_flat_board(h: int, w: int) -> void:
