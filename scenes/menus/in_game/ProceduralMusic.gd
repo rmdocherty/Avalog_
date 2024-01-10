@@ -114,6 +114,8 @@ func lose_piece(colour: int, piece_char: String) -> void:
 	var p_audio = match_loop_n_to_arr(n_plays)
 	var node_idx = p_pieces.rfind(piece_char)
 	print("Taking piece " + piece_char + " at idx " + str(node_idx))
+	if node_idx == -1: # this triggers in minigames for some reason
+		return
 	var node = p_audio[node_idx]
 	var tw1 := get_tree().create_tween()
 	tw1.tween_property(node, "volume_db", zero_vol_db, FADE_TIME).set_trans(Tween.TRANS_EXPO)

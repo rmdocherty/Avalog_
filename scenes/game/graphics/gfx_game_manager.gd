@@ -196,7 +196,8 @@ func take_turn(change_player: bool=true) -> void:
 	var colour = 1 - game_manager.current_turn_colour
 	print("Turn number is: " + str(game_manager.turn_number) + ", colour is: " + str(1 - colour))
 	for letter in taken_pieces:
-		Music.procedural.lose_piece(colour, letter)
+		if is_minigame == false:
+			Music.procedural.lose_piece(colour, letter)
 	taken_pieces = []
 
 	var turn_n: int = game_manager.take_turn(change_player)
