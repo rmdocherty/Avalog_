@@ -25,6 +25,7 @@
 - [Donate on Patreon](https://www.patreon.com/AvalogGames)
 - [Youtube](https://www.youtube.com/@AvalogGames)
 - Music by Olly Flaig: [Bandcamp](https://ollyflaig.bandcamp.com/) and [Spotify](https://open.spotify.com/artist/5sUt08IDBSAIeApGm9eHfZ?si=6eg4XAdUQCWA4vVU5aA1IA)
+- Inspired by this [repo](https://github.com/ehulinsky/AnalogChess/blob/main/README.md) and associated [post](https://news.ycombinator.com/item?id=34370440). 
 
 <h4>Downloading:</h4>
 
